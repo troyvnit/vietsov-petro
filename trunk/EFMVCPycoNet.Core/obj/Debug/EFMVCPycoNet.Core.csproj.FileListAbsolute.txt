@@ -1,0 +1,4 @@
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Core\bin\Debug\EFMVCPycoNet.Core.dll
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Core\bin\Debug\EFMVCPycoNet.Core.pdb
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Core\obj\Debug\EFMVCPycoNet.Core.dll
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Core\obj\Debug\EFMVCPycoNet.Core.pdb
