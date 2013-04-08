@@ -1,0 +1,4 @@
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.ComandProcessor\bin\Debug\EFMVCPycoNet.ComandProcessor.dll
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.ComandProcessor\bin\Debug\EFMVCPycoNet.ComandProcessor.pdb
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.ComandProcessor\obj\Debug\EFMVCPycoNet.ComandProcessor.dll
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.ComandProcessor\obj\Debug\EFMVCPycoNet.ComandProcessor.pdb

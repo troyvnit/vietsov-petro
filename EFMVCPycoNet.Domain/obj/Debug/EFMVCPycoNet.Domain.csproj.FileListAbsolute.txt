@@ -1,0 +1,10 @@
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\obj\Debug\EFMVCPycoNet.Domain.csprojResolveAssemblyReference.cache
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\bin\Debug\EFMVCPycoNet.Domain.dll.config
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\bin\Debug\EFMVCPycoNet.Domain.dll
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\bin\Debug\EFMVCPycoNet.Domain.pdb
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\bin\Debug\EFMVCPycoNet.Core.dll
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\bin\Debug\EntityFramework.dll
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\bin\Debug\EFMVCPycoNet.Core.pdb
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\bin\Debug\EntityFramework.xml
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\obj\Debug\EFMVCPycoNet.Domain.dll
+d:\users\tri.lecao\documents\visual studio 2012\Projects\EFMVCPycoNet\EFMVCPycoNet.Domain\obj\Debug\EFMVCPycoNet.Domain.pdb
