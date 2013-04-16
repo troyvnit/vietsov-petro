@@ -18,10 +18,13 @@ namespace VietSovPetro.Data.Infrastructure
             DatabaseFactory = databaseFactory;
             dbset = DataContext.Set<T>();
         }
+
         protected IDatabaseFactory DatabaseFactory
         {
-            get; private set;
+            get;
+            private set;
         }
+
         protected VietSovPetroDataContext DataContext
         {
             get { return dataContext ?? (dataContext = DatabaseFactory.Get()); }
@@ -33,7 +36,7 @@ namespace VietSovPetro.Data.Infrastructure
         public virtual void Update(T entity)
         {
             dbset.Attach(entity);
-            dataContext.Entry(entity).State = EntityState.Modified; 
+            dataContext.Entry(entity).State = EntityState.Modified;
         }
         public virtual void Delete(T entity)
         {
@@ -42,16 +45,18 @@ namespace VietSovPetro.Data.Infrastructure
         public virtual void Delete(Expression<Func<T, bool>> where)
         {
             IEnumerable<T> objects = dbset.Where<T>(where).AsEnumerable();
-            foreach(T obj in objects)
-            {
+            foreach (T obj in objects)
                 dbset.Remove(obj);
-            }
         }
-        public virtual T GetByID(long id)
+        public virtual T GetById(long id)
         {
             return dbset.Find(id);
         }
-        public virtual T GetByID(string id)
+        public virtual T GetById(string id)
+        {
+            return dbset.Find(id);
+        }
+        public virtual T GetById(Guid id)
         {
             return dbset.Find(id);
         }
@@ -61,11 +66,11 @@ namespace VietSovPetro.Data.Infrastructure
         }
         public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
         {
-            return dbset.Where<T>(where).ToList();
+            return dbset.Where(where).ToList();
         }
         public T Get(Expression<Func<T, bool>> where)
         {
-            return dbset.Where<T>(where).FirstOrDefault();
+            return dbset.Where(where).FirstOrDefault<T>();
         }
     }
 }

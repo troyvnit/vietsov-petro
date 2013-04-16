@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VietSovPetro.ComandProcessor.Commands.ICommands
+namespace VietSovPetro.CommandProcessor.Commands.ICommands
 {
     public interface IValidationHandler<in TCommand> where TCommand : ICommand
     {

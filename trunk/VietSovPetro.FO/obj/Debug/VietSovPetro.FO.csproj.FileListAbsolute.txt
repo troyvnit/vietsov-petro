@@ -89,8 +89,8 @@ D:\VietSov_Petro\trunk\EFMVCPycoNet.FO\bin\EFMVCPycoNet.Data.pdb
 D:\VietSov_Petro\trunk\EFMVCPycoNet.FO\bin\EFMVCPycoNet.Domain.pdb
 D:\VietSov_Petro\trunk\EFMVCPycoNet.FO\bin\EFMVCPycoNet.Core.pdb
 D:\VietSov_Petro\trunk\EFMVCPycoNet.FO\obj\Debug\VietSovPetro.FO.csprojResolveAssemblyReference.cache
-D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EFMVCPycoNet.dll
-D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EFMVCPycoNet.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\VietSovPetro.FO.dll
+D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\VietSovPetro.FO.pdb
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\Antlr3.Runtime.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\DotNetOpenAuth.AspNet.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\DotNetOpenAuth.Core.dll
@@ -98,7 +98,6 @@ D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\DotNetOpenAuth.OAuth.Consumer.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\DotNetOpenAuth.OAuth.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\DotNetOpenAuth.OpenId.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
-D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EFMVCPycoNet.Data.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EntityFramework.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\Microsoft.Data.Edm.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\Microsoft.Data.OData.dll
@@ -118,12 +117,13 @@ D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\System.Web.Razor.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\System.Web.WebPages.Deployment.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\System.Web.WebPages.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\System.Web.WebPages.Razor.dll
+D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\VietSovPetro.Data.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\WebGrease.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\WebMatrix.Data.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\WebMatrix.WebData.dll
-D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EFMVCPycoNet.Domain.dll
-D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EFMVCPycoNet.Core.dll
-D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EFMVCPycoNet.Data.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\VietSovPetro.Model.dll
+D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\VietSovPetro.Core.dll
+D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\VietSovPetro.Data.pdb
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EntityFramework.xml
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\Newtonsoft.Json.xml
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\System.Net.Http.Formatting.xml
@@ -148,8 +148,8 @@ D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\System.Web.Http.OData.xml
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\Microsoft.Data.Edm.xml
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\Microsoft.Data.OData.xml
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\System.Spatial.xml
-D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EFMVCPycoNet.Domain.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\EFMVCPycoNet.Core.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\VietSovPetro.Model.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\VietSovPetro.Core.pdb
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\de\Microsoft.Data.Edm.resources.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\es\Microsoft.Data.Edm.resources.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\fr\Microsoft.Data.Edm.resources.dll
@@ -178,5 +178,5 @@ D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\ru\System.Spatial.resources.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\zh-Hans\System.Spatial.resources.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\bin\zh-Hant\System.Spatial.resources.dll
 D:\VietSov_Petro\trunk\VietSovPetro.FO\obj\Debug\VietSovPetro.FO.csprojResolveAssemblyReference.cache
-D:\VietSov_Petro\trunk\VietSovPetro.FO\obj\Debug\EFMVCPycoNet.dll
-D:\VietSov_Petro\trunk\VietSovPetro.FO\obj\Debug\EFMVCPycoNet.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.FO\obj\Debug\VietSovPetro.FO.dll
+D:\VietSov_Petro\trunk\VietSovPetro.FO\obj\Debug\VietSovPetro.FO.pdb
