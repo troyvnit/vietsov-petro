@@ -27,6 +27,7 @@ namespace VietSovPetro.BO
             AuthConfig.RegisterAuth();
             var context = new VietSovPetroDataContext();
             context.Database.Initialize(true);
+            Bootstrapper.Run();
         }
     }
 }

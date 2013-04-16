@@ -2,7 +2,10 @@ D:\VietSov_Petro\trunk\EFMVCPycoNet.Core\bin\Debug\EFMVCPycoNet.Core.dll
 D:\VietSov_Petro\trunk\EFMVCPycoNet.Core\bin\Debug\EFMVCPycoNet.Core.pdb
 D:\VietSov_Petro\trunk\EFMVCPycoNet.Core\obj\Debug\EFMVCPycoNet.Core.dll
 D:\VietSov_Petro\trunk\EFMVCPycoNet.Core\obj\Debug\EFMVCPycoNet.Core.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.Core\bin\Debug\EFMVCPycoNet.Core.dll
-D:\VietSov_Petro\trunk\VietSovPetro.Core\bin\Debug\EFMVCPycoNet.Core.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.Core\obj\Debug\EFMVCPycoNet.Core.dll
-D:\VietSov_Petro\trunk\VietSovPetro.Core\obj\Debug\EFMVCPycoNet.Core.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Core\bin\Debug\VietSovPetro.Core.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Core\bin\Debug\VietSovPetro.Core.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Core\bin\Debug\Newtonsoft.Json.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Core\bin\Debug\Newtonsoft.Json.xml
+D:\VietSov_Petro\trunk\VietSovPetro.Core\obj\Debug\VietSovPetro.Core.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Core\obj\Debug\VietSovPetro.Core.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Core\obj\Debug\VietSovPetro.Core.csprojResolveAssemblyReference.cache

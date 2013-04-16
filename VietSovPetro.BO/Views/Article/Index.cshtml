@@ -1,0 +1,410 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="example" class="k-content">
+    <div id="vertical">
+        <div id="top-pane">
+            <div id="horizontal" style="height: 100%; width: 100%;">
+                <div id="left-pane">
+                    <div class="pane-content">
+                        <div class="article-category-list">
+                            <a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span>Add new record</a>
+                        </div>
+
+                        <div class="article-category-list">
+                            <div id="listView"></div>
+                            <div id="pager" class="k-pager-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="right-pane">
+                    <div class="pane-content">
+                        <div id="details"></div>
+                        <div id="grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-kendo-tmpl" id="template">
+        <div class="article-category-view k-widget">
+            <div class="edit-buttons">
+                <a class="k-button k-button-icontext k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
+                <a class="k-button k-button-icontext k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
+            </div>
+            <dl>
+                <dt>Article Category Name</dt>
+                <dd>#:ArticleCategoryName#</dd>
+                <dt>Article Category Type</dt>
+                <dd>#:ArticleCategoryType#</dd>
+                <dt>Description</dt>
+                <dd>#:Description#</dd>
+            </dl>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-tmpl" id="editTemplate">
+        <div class="article-category-view k-widget">
+            <div class="edit-buttons">
+                <a class="k-button k-button-icontext k-update-button" href="\\#"><span class="k-icon k-update"></span></a>
+                <a class="k-button k-button-icontext k-cancel-button" href="\\#"><span class="k-icon k-cancel"></span></a>
+            </div>
+            <dl>
+                <input type="hidden" data-bind="value:ArticleCategoryID" name="ArticleCategoryID"/>
+                <dt>Article Category Name</dt>
+                <dd>
+                    <input type="text" class="k-textbox" data-bind="value:ArticleCategoryName" name="ArticleCategoryName" required="required" validationMessage="required" />
+                    <span data-for="ArticleCategoryName" class="k-invalid-msg"></span>
+                </dd>
+                <dt>Article Category Type</dt>
+                <dd>
+                    <input type="text" class="k-textbox" data-bind="value:ArticleCategoryType" name="ArticleCategoryType" required="required" validationMessage="required" />
+                    <span data-for="ArticleCategoryType" class="k-invalid-msg"></span>
+                </dd>
+                <dt>Description</dt>
+                <dd>
+                    <input type="text" class="k-textbox" data-bind="value:Description" name="Description"/>
+                </dd>
+            </dl>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="wtemplate">
+                <div id="details-container">
+                    <textarea id="editor" rows="10" cols="30" style="width:100%;height:400px">
+                       #= Title #
+                    </textarea>
+                </div>
+    </script>
+
+    <script>
+        var wnd, detailsTemplate;
+
+        $(document).ready(function () {
+            //article category list view
+            var articleCategoryDataSource = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: '@Url.Action("GetArticleCategories", "Article")',
+                            type: "post",
+                            dataType: "json"
+                        },
+                        update: {
+                            url: '@Url.Action("CreateOrUpdateArticleCategories", "Article")',
+                            type: "post",
+                            dataType: "json"
+                        },
+                        destroy: {
+                            url: '@Url.Action("DeleteArticleCategories", "Article")',
+                            type: "post",
+                            dataType: "json"
+                        },
+                        create: {
+                            url: '@Url.Action("CreateOrUpdateArticleCategories", "Article")',
+                            type: "post",
+                            dataType: "json"
+                        },
+                        parameterMap: function (options, operation) {
+                            if (operation !== "read" && options.models) {
+                                return { models: kendo.stringify(options.models), page: options.page, pageSize: 6 };
+                            }
+                        }
+                    },
+                batch: true,
+                serverPaging: true,
+                pageSize: 6,
+                schema: {
+                    model: {
+                        id: "ArticleCategoryID",
+                        fields: {
+                            ArticleCategoryID: { editable: false, nullable: true },
+                            ArticleCategoryName: "ArticleCategoryName",
+                            ArticleCategoryType: "ArticleCategoryType",
+                            Description: "Description"
+                        }
+                    }
+                }
+            });
+
+
+            $("#pager").kendoPager({
+                dataSource: articleCategoryDataSource
+            });
+
+            var listView = $("#listView").kendoListView({
+                dataSource: articleCategoryDataSource,
+                template: kendo.template($("#template").html()),
+                editTemplate: kendo.template($("#editTemplate").html())
+            }).data("kendoListView");
+
+            $(".k-add-button").click(function (e) {
+                listView.add();
+                e.preventDefault();
+            });
+            //article grid
+            var articleDataSource = new kendo.data.DataSource({
+                pageSize: 20,
+                transport: {
+                    read: {
+                        url: '@Url.Action("GetArticles", "Article")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    update: {
+                        url: '@Url.Action("CreateOrUpdateArticles", "Article")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    destroy: {
+                        url: '@Url.Action("DeleteArticles", "Article")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    create: {
+                        url: '@Url.Action("CreateOrUpdateArticles", "Article")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    parameterMap: function (options, operation) {
+                        if (operation !== "read" && options.models) {
+                            return { models: kendo.stringify(options.models) };
+                        }
+                    }
+                },
+                batch: true,
+                schema: {
+                    model: {
+                        id: "ArticleID",
+                        fields: {
+                            ArticleID: { editable: false, nullable: true },
+                            Title: { validation: { required: true } },
+                            Description: { type: "string" },
+                            Author: { type: "string" },
+                            Content: { type: "string" },
+                            ImageUrl: { type: "string" },
+                            IsPublished: { type: "boolean" },
+                            IsNew: { type: "boolean" }
+                        }
+                    }
+                }
+            });
+            $("#grid").kendoGrid({
+                dataSource: articleDataSource,
+                dataBound: articleDataBound,
+                pageable: true,
+                height: 430,
+                toolbar: ["create", "save", "cancel"],
+                columns: [
+                    { field: "Title", title: "Title" },
+                    { field: "Description", title: "Description" },
+                    { field: "Author", title: "Author" },
+                    { field: "ImageUrl", template: "<img /><input type='file' name='imageUrl' />", width: "200px" },
+                    { field: "Content", hidden: true },
+                    { field: "IsPublished", title: "IsPublished", width: "20px" },
+                    { field: "IsNew", title: "IsNew", width: "20px" },
+                    { command: [{ text: "View Details", click: showDetails }, "destroy"], title: " ", width: "180px" }],
+                editable: true
+            });
+            wnd = $("#details")
+                        .kendoWindow({
+                            title: "Content",
+                            modal: true,
+                            visible: false,
+                            resizable: false,
+                            width: 600
+                        }).data("kendoWindow");
+
+            detailsTemplate = kendo.template($("#wtemplate").html());
+        });
+
+        function articleDataBound(e) {
+            var grid = this;
+            var img = this.tbody.find("img");
+            this.tbody.find("input[name=imageUrl]").kendoUpload({
+                multiple: false,
+                async: {
+                    saveUrl: '@Url.Action("SaveImages", "Common")',
+                },
+                upload: function (e) {
+                    var item = grid.dataItem(this.element.closest("tr"));
+                    e.data = { id: item.id };
+                },
+                success: function (e) {
+                    var ImageUrl = e.response.ImageUrl;
+                    var item = grid.dataItem(this.element.closest("tr"));
+                    item.ImageUrl = ImageUrl;
+                    item.dirty = true;
+                    img.attr("src", ImageUrl);
+                    console.log(ImageUrl);
+                }
+            });
+    }
+    function showDetails(e) {
+        e.preventDefault();
+
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        wnd.content(detailsTemplate(dataItem));
+        $("#editor").kendoEditor({
+            tools: [
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "fontName",
+                "fontSize",
+                "foreColor",
+                "backColor",
+                "justifyLeft",
+                "justifyCenter",
+                "justifyRight",
+                "justifyFull",
+                "insertUnorderedList",
+                "insertOrderedList",
+                "indent",
+                "outdent",
+                "formatBlock",
+                "createLink",
+                "unlink",
+                "insertImage",
+                "subscript",
+                "superscript",
+                "viewHtml"
+            ]
+        });
+        wnd.center().open();
+    }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#vertical").kendoSplitter({
+                orientation: "vertical",
+                panes: [
+                    { collapsible: false }
+                ]
+            });
+
+            $("#horizontal").kendoSplitter({
+                panes: [
+                    { collapsible: true, size: "30%" },
+                    { collapsible: true, size: "70%" }
+                ]
+            });
+        });
+    </script>
+
+    <style scoped>
+        #vertical
+        {
+            height: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        #middle-pane
+        {
+            background-color: rgba(60, 70, 80, 0.10);
+        }
+
+        #bottom-pane
+        {
+            background-color: rgba(60, 70, 80, 0.15);
+        }
+
+        #left-pane, #center-pane, #right-pane
+        {
+            background-color: rgba(60, 70, 80, 0.05);
+        }
+
+        .pane-content
+        {
+            padding: 0 10px;
+        }
+
+        .article-category-list
+        {
+            width: 100%;
+        }
+
+        .article-category-view
+        {
+            float: left;
+            position: relative;
+            width: 301px;
+            margin: -1px -1px 0 0;
+        }
+
+            .article-category-view dl
+            {
+                margin: 10px 0;
+                padding: 0;
+                min-width: 0;
+            }
+
+            .article-category-view dt, dd
+            {
+                float: left;
+                margin: 0;
+                padding: 3px;
+                height: 26px;
+                width: 160px;
+                line-height: 26px;
+                overflow: hidden;
+            }
+
+            .article-category-view dt
+            {
+                clear: left;
+                padding: 3px 5px 3px 0;
+                text-align: right;
+                opacity: 0.6;
+                width: 100px;
+            }
+
+        .k-listview
+        {
+            border: 0;
+            padding: 0;
+            min-height: 740px;
+        }
+
+            .k-listview:after, .product-view dl:after
+            {
+                content: ".";
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+
+        .edit-buttons
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 26px;
+            height: 146px;
+            padding: 2px 2px 0 3px;
+            background-color: rgba(0,0,0,0.1);
+        }
+
+            .edit-buttons .k-button
+            {
+                width: 26px;
+                margin-bottom: 1px;
+            }
+
+        .k-pager-wrap
+        {
+            border-top: 0;
+        }
+
+        span.k-invalid-msg
+        {
+            position: absolute;
+            margin-left: 6px;
+        }
+    </style>
+</div>

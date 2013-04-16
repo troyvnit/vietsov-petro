@@ -7,8 +7,8 @@
     <ProjectGuid>{D14C20D7-F8FB-4795-829A-9421EB42E64B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EFMVCPycoNet.Domain</RootNamespace>
-    <AssemblyName>EFMVCPycoNet.Domain</AssemblyName>
+    <RootNamespace>VietSovPetro.Domain</RootNamespace>
+    <AssemblyName>VietSovPetro.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,6 +33,9 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -43,12 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Article.cs" />
-    <Compile Include="Entities\ArticleCategory.cs" />
-    <Compile Include="Entities\Gallery.cs" />
-    <Compile Include="Entities\Price.cs" />
-    <Compile Include="Entities\Room.cs" />
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="Commands\CreateOrUpdateArticleCategoryCommand.cs" />
+    <Compile Include="Commands\DeleteArticleCategoryCommand.cs" />
+    <Compile Include="Handlers\CanAddArticleCategory.cs" />
+    <Compile Include="Handlers\CreateOrUpdateArticleCategoryHandler.cs" />
+    <Compile Include="Handlers\DeleteArticleCategoryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,9 +60,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VietSovPetro.ComandProcessor\VietSovPetro.CommandProcessor.csproj">
+      <Project>{49a40d5b-64a6-4579-8897-638585dab966}</Project>
+      <Name>VietSovPetro.CommandProcessor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VietSovPetro.Core\VietSovPetro.Core.csproj">
       <Project>{ba8dd8fc-9e92-46d0-835a-14dbab29121e}</Project>
       <Name>VietSovPetro.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VietSovPetro.Data\VietSovPetro.Data.csproj">
+      <Project>{f45fc798-cee0-44b1-8fa3-dee2b994e1b5}</Project>
+      <Name>VietSovPetro.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VietSovPetro.Model\VietSovPetro.Model.csproj">
+      <Project>{631e4095-073a-44df-8b96-b20d3e013d4a}</Project>
+      <Name>VietSovPetro.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

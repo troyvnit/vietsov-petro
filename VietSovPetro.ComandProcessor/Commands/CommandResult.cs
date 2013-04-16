@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietSovPetro.ComandProcessor.Commands.ICommands;
+using VietSovPetro.CommandProcessor.Commands.ICommands;
 
-namespace VietSovPetro.ComandProcessor.Commands
+namespace VietSovPetro.CommandProcessor.Commands
 {
     public class CommandResult : ICommandResult
     {

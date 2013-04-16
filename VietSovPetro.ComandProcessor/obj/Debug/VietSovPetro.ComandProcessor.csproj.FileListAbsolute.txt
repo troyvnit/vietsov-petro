@@ -7,3 +7,4 @@ D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\bin\Debug\EFMVCPycoNet.Coman
 D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\bin\Debug\EFMVCPycoNet.ComandProcessor.pdb
 D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\obj\Debug\EFMVCPycoNet.ComandProcessor.dll
 D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\obj\Debug\EFMVCPycoNet.ComandProcessor.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\obj\Debug\VietSovPetro.ComandProcessor.csprojResolveAssemblyReference.cache

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VietSovPetro.ComandProcessor.Commands
+namespace VietSovPetro.CommandProcessor.Commands
 {
     public class ValidationResult
     {
