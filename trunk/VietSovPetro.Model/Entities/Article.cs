@@ -13,6 +13,8 @@ namespace VietSovPetro.Model.Entities
         public Article()
         {
             CreatedOn = DateTime.Now;
+            UpdatedOn = DateTime.Now;
+            UserID = Guid.Parse("9680f042-3d4e-43ee-8573-f62a32cfd976");
         }
         [Key]
         public Guid ArticleID { get; set; }
@@ -22,7 +24,7 @@ namespace VietSovPetro.Model.Entities
         [MaxLength(100)]
         public string Title { get; set; }
         [MaxLength(500)]
-        public string Descripton { get; set; }
+        public string Description { get; set; }
         [Required]
         public string Content { get; set; }
         [Required]

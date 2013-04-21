@@ -39,7 +39,7 @@ namespace VietSovPetro.BO.Controllers
             return Json(articleCategoryRepository.GetAll().Where(a => a.IsDeleted != true), JsonRequestBehavior.AllowGet);
         }    
         [HttpPost]
-        public void CreateOrUpdateArticleCategories(string models)
+        public ActionResult CreateOrUpdateArticleCategories(string models)
         {
             ArticleCategoryViewModel articleCategory = JsonConvert.DeserializeObject<List<ArticleCategoryViewModel>>(models).FirstOrDefault();
             if (ModelState.IsValid)
@@ -49,23 +49,43 @@ namespace VietSovPetro.BO.Controllers
                 if (ModelState.IsValid)
                 {
                     var result = commandBus.Submit(command);
+                    return Json(command, JsonRequestBehavior.AllowGet);
                 }
             }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public void DeleteArticleCategories(string models)
+        public ActionResult DeleteArticleCategories(string models)
         {
             ArticleCategoryViewModel articleCategory = JsonConvert.DeserializeObject<List<ArticleCategoryViewModel>>(models).FirstOrDefault();
             if (ModelState.IsValid)
             {
                 var command = Mapper.Map<ArticleCategoryViewModel, DeleteArticleCategoryCommand>(articleCategory);
                 var result = commandBus.Submit(command);
+                return Json(command, JsonRequestBehavior.AllowGet);
             }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public JsonResult GetArticles()
         {
             return Json(articleRepository.GetAll().Where(a => a.IsDeleted != true), JsonRequestBehavior.AllowGet);
-        } 
+        }
+        [HttpPost]
+        public ActionResult CreateOrUpdateArticles(string models)
+        {
+            ArticleViewModel articleCategory = JsonConvert.DeserializeObject<List<ArticleViewModel>>(models).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                var command = Mapper.Map<ArticleViewModel, CreateOrUpdateArticleCommand>(articleCategory);
+                IEnumerable<ValidationResult> errors = commandBus.Validate(command);
+                if (ModelState.IsValid)
+                {
+                    var result = commandBus.Submit(command);
+                    return Json(command, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

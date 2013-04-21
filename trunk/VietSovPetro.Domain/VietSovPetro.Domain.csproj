@@ -47,9 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CreateOrUpdateArticleCategoryCommand.cs" />
+    <Compile Include="Commands\CreateOrUpdateArticleCommand.cs" />
     <Compile Include="Commands\DeleteArticleCategoryCommand.cs" />
+    <Compile Include="Handlers\CanAddArticle.cs" />
     <Compile Include="Handlers\CanAddArticleCategory.cs" />
     <Compile Include="Handlers\CreateOrUpdateArticleCategoryHandler.cs" />
+    <Compile Include="Handlers\CreateOrUpdateArticleHandler.cs" />
     <Compile Include="Handlers\DeleteArticleCategoryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
