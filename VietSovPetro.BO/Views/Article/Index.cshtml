@@ -21,8 +21,15 @@
                 </div>
                 <div id="right-pane">
                     <div class="pane-content">
-                        <div id="details"></div>
+                        <div id="article-content">
+                            <input type="file" id="uploadimage" name="files"/>
+                            <img id="aimage" />
+                            <span class="articlecategoryspan"><label>Hạng mục:</label> <select id="articlecategories"></select></span>
+                            <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">
+                            </textarea>
+                        </div>
                         <div id="grid"></div>
+                        <input type="hidden" id="articlecategoryids"/>
                     </div>
                 </div>
             </div>
@@ -35,11 +42,11 @@
                 <a class="k-button k-button-icontext k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
             </div>
             <dl>
-                <dt>Article Category Name</dt>
+                <dt>Tên hạng mục</dt>
                 <dd>#:ArticleCategoryName#</dd>
-                <dt>Article Category Type</dt>
+                <dt>Loại hạng mục</dt>
                 <dd>#:ArticleCategoryType#</dd>
-                <dt>Description</dt>
+                <dt>Mô tả</dt>
                 <dd>#:Description#</dd>
             </dl>
         </div>
@@ -53,17 +60,17 @@
             </div>
             <dl>
                 <input type="hidden" data-bind="value:ArticleCategoryID" name="ArticleCategoryID"/>
-                <dt>Article Category Name</dt>
+                <dt>Tên hạng mục</dt>
                 <dd>
                     <input type="text" class="k-textbox" data-bind="value:ArticleCategoryName" name="ArticleCategoryName" required="required" validationMessage="required" />
                     <span data-for="ArticleCategoryName" class="k-invalid-msg"></span>
                 </dd>
-                <dt>Article Category Type</dt>
+                <dt>Loại hạng mục</dt>
                 <dd>
                     <input type="text" class="k-textbox" data-bind="value:ArticleCategoryType" name="ArticleCategoryType" required="required" validationMessage="required" />
                     <span data-for="ArticleCategoryType" class="k-invalid-msg"></span>
                 </dd>
-                <dt>Description</dt>
+                <dt>Mô tả</dt>
                 <dd>
                     <input type="text" class="k-textbox" data-bind="value:Description" name="Description"/>
                 </dd>
@@ -72,15 +79,16 @@
     </script>
 
     <script type="text/x-kendo-template" id="wtemplate">
-                <div id="details-container">
+                <div id="article-content-container">
+
                     <textarea id="editor" rows="10" cols="30" style="width:100%;height:400px">
-                       #= Title #
+                       #= Content #
                     </textarea>
                 </div>
     </script>
 
     <script>
-        var wnd, detailsTemplate;
+        var wnd, dataItem;
 
         $(document).ready(function () {
             //article category list view
@@ -120,9 +128,9 @@
                         id: "ArticleCategoryID",
                         fields: {
                             ArticleCategoryID: { editable: false, nullable: true },
-                            ArticleCategoryName: "ArticleCategoryName",
-                            ArticleCategoryType: "ArticleCategoryType",
-                            Description: "Description"
+                            ArticleCategoryName: { title: "Tên hạng mục" },
+                            ArticleCategoryType: { title: "Loại hạng mục" },
+                            Description: { title: "Mô tả" }
                         }
                     }
                 }
@@ -185,7 +193,8 @@
                             Content: { type: "string" },
                             ImageUrl: { type: "string" },
                             IsPublished: { type: "boolean" },
-                            IsNew: { type: "boolean" }
+                            IsNew: { type: "boolean" },
+                            ArticleCategoryIDs: { type: "string" }
                         }
                     }
                 }
@@ -194,29 +203,99 @@
                 dataSource: articleDataSource,
                 dataBound: articleDataBound,
                 pageable: true,
-                height: 430,
+                height: 740,
                 toolbar: ["create", "save", "cancel"],
                 columns: [
-                    { field: "Title", title: "Title" },
-                    { field: "Description", title: "Description" },
-                    { field: "Author", title: "Author" },
-                    { field: "ImageUrl", template: "<img /><input type='file' name='imageUrl' />", width: "200px" },
-                    { field: "Content", hidden: true },
-                    { field: "IsPublished", title: "IsPublished", width: "20px" },
-                    { field: "IsNew", title: "IsNew", width: "20px" },
-                    { command: [{ text: "View Details", click: showDetails }, "destroy"], title: " ", width: "180px" }],
+                    { field: "Title", title: "Tiêu đề" },
+                    { field: "Description", title: "Mô tả" },
+                    { field: "Author", title: "Tác giả" },
+                    { field: "ImageUrl", title: "ImageUrl", hidden: true },
+                    { field: "Content", title: "Content", hidden: true },
+                    { field: "IsPublished", title: "Công bố ?", width: "100px" },
+                    { field: "IsNew", title: "Mới ?", width: "100px" },
+                    { command: [{ text: "Article Content", click: contentEditor }, "destroy"], title: " ", width: "200px" }],
                 editable: true
             });
-            wnd = $("#details")
+            wnd = $("#article-content")
                         .kendoWindow({
                             title: "Content",
+                            actions: ["Tick", "Minimize", "Maximize", "Close"],
                             modal: true,
                             visible: false,
                             resizable: false,
-                            width: 600
+                            width: 800
                         }).data("kendoWindow");
 
-            detailsTemplate = kendo.template($("#wtemplate").html());
+            wnd.wrapper.find(".k-i-tick").click(function (e) {
+                onSaveContentWindow();
+                e.preventDefault();
+                wnd.close();
+            });
+            $("#uploadimage").kendoUpload({
+                multiple: true,
+                async: {
+                    saveUrl: '@Url.Action("SaveImages", "Common")'
+                },
+                success: function (e) {
+                    var ImageUrl = e.response.ImageUrl;
+                    dataItem.ImageUrl = ImageUrl;
+                    $("#aimage").attr("src", "Images/" + ImageUrl);
+                    console.log(dataItem.ImageUrl);
+                }
+            });
+            $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh cho bài viết");
+            $("#articlecategories").kendoMultiSelect({
+                placeholder: "Chọn hạng mục cho bài viết...",
+                dataTextField: "ArticleCategoryName",
+                dataValueField: "ArticleCategoryID",
+                dataSource: {
+                    serverFiltering: true,
+                    transport: {
+                        read: {
+                            url: '@Url.Action("GetArticleCategories", "Article")',
+                            type: "post",
+                            dataType: "json"
+                        }
+                    }
+                }
+            });
+            $("#ceditor").kendoEditor({
+                encoded: false,
+                tools: [
+                    "bold",
+                    "italic",
+                    "underline",
+                    "strikethrough",
+                    "fontName",
+                    "fontSize",
+                    "foreColor",
+                    "backColor",
+                    "justifyLeft",
+                    "justifyCenter",
+                    "justifyRight",
+                    "justifyFull",
+                    "insertUnorderedList",
+                    "insertOrderedList",
+                    "indent",
+                    "outdent",
+                    "formatBlock",
+                    "createLink",
+                    "unlink",
+                    "insertImage",
+                    "subscript",
+                    "superscript",
+                    "viewHtml"
+                ]
+            });
+            function onSaveContentWindow() {
+                var ceditor = $("#ceditor").data("kendoEditor");
+                dataItem.Content = $('<div/>').text(ceditor.value()).html();
+                console.log(dataItem.Content);
+                var articlecategories = $("#articlecategories").data("kendoMultiSelect");
+                $("#articlecategoryids").val(articlecategories.value());
+                dataItem.ArticleCategoryIDs = articlecategories.value();
+                console.log($("#articlecategoryids").val());
+            }
         });
 
         function articleDataBound(e) {
@@ -226,6 +305,7 @@
                 multiple: false,
                 async: {
                     saveUrl: '@Url.Action("SaveImages", "Common")',
+                    autoUpload: true
                 },
                 upload: function (e) {
                     var item = grid.dataItem(this.element.closest("tr"));
@@ -241,40 +321,12 @@
                 }
             });
     }
-    function showDetails(e) {
+    function contentEditor(e) {
         e.preventDefault();
-
-        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-        wnd.content(detailsTemplate(dataItem));
-        $("#editor").kendoEditor({
-            tools: [
-                "bold",
-                "italic",
-                "underline",
-                "strikethrough",
-                "fontName",
-                "fontSize",
-                "foreColor",
-                "backColor",
-                "justifyLeft",
-                "justifyCenter",
-                "justifyRight",
-                "justifyFull",
-                "insertUnorderedList",
-                "insertOrderedList",
-                "indent",
-                "outdent",
-                "formatBlock",
-                "createLink",
-                "unlink",
-                "insertImage",
-                "subscript",
-                "superscript",
-                "viewHtml"
-            ]
-        });
+        dataItem = this.dataItem($(e.currentTarget).closest("tr"));
         wnd.center().open();
     }
+    
     </script>
 
     <script>
@@ -288,8 +340,8 @@
 
             $("#horizontal").kendoSplitter({
                 panes: [
-                    { collapsible: true, size: "30%" },
-                    { collapsible: true, size: "70%" }
+                    { collapsible: true, size: "26%" },
+                    { collapsible: true, size: "74%" }
                 ]
             });
         });
@@ -405,6 +457,46 @@
         {
             position: absolute;
             margin-left: 6px;
+        }
+        .k-editor
+        {
+            width: 100% !important;
+        }
+        #article-content .k-upload
+        {
+            float: left;
+            width: 30%;      
+            height: 220px;
+            margin-right: 5px;
+        }
+        #article-content img
+        {
+            float: left;
+            max-width: 65%;
+            max-height: 220px;
+            margin: 5px 0;
+        }
+        #article-content .articlecategoryspan
+        {
+            float: left;
+            margin-right: 5px;
+            width: 100%;
+        }
+        #article-content .k-multiselect
+        {
+            float: left;
+            width: 89%;
+            margin: 5px 0;
+        }
+        #article-content label
+        {
+            float: left;
+            width: 10%;
+            margin: 5px 0;
+        }
+        #article-content .k-upload-button
+        {
+            width: 100%;
         }
     </style>
 </div>

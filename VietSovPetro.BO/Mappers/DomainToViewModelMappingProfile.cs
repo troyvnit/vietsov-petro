@@ -18,6 +18,7 @@ namespace VietSovPetro.BO.Mappers
         protected override void Configure()
         {
             Mapper.CreateMap<ArticleCategory, ArticleCategoryViewModel>();
+            Mapper.CreateMap<Article, ArticleViewModel>();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace VietSovPetro.BO.Controllers
         //
         // GET: /Common/
         [HttpPost]
-        public JsonResult SaveImages(IEnumerable<HttpPostedFileBase> files)
+        public ActionResult SaveImages(IEnumerable<HttpPostedFileBase> files)
         {
             string ImageUrl = "";
             // The Name of the Upload component is "files"
@@ -27,7 +27,7 @@ namespace VietSovPetro.BO.Controllers
 
                     // The files are not actually saved in this demo
                     file.SaveAs(physicalPath);
-                    ImageUrl = physicalPath;
+                    ImageUrl = fileName;
                 }
             }
 

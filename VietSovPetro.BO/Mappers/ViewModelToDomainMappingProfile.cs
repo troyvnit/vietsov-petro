@@ -20,6 +20,7 @@ namespace VietSovPetro.BO.Mappers
         {
             Mapper.CreateMap<ArticleCategoryViewModel, CreateOrUpdateArticleCategoryCommand>();
             Mapper.CreateMap<ArticleCategoryViewModel, DeleteArticleCategoryCommand>();
+            Mapper.CreateMap<ArticleViewModel, CreateOrUpdateArticleCommand>();
         }
     }
 }
