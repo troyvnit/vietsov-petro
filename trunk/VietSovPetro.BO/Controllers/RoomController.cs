@@ -31,7 +31,7 @@ namespace VietSovPetro.BO.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            return View("~/Views/Admin/Room/Index.cshtml");
         }
         [HttpPost]
         public JsonResult GetRoomTypes()
