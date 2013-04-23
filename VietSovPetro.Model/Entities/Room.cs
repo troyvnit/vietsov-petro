@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using VietSovPetro.Core.Common;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VietSovPetro.Model.Entities
 {
@@ -13,15 +14,14 @@ namespace VietSovPetro.Model.Entities
         public Room()
         {
             CreatedOn = DateTime.Now;
+            UpdatedOn = DateTime.Now;
         }
         [Key]
         public Guid RoomID { get; set; }
         [Required]
         public string RoomName { get; set; }
-        [Required]
-        public bool IsBooked { get; set; }
-        public DateTime BookedFrom { get; set; }
-        public DateTime BookedTo { get; set; }
+        public DateTime? BookedFrom { get; set; }
+        public DateTime? BookedTo { get; set; }
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsPublished { get; set; }
@@ -31,7 +31,7 @@ namespace VietSovPetro.Model.Entities
         public Guid CreatedBy { get; set; }
         public DateTime UpdatedOn { get; set; }
         public Guid UpdatedBy { get; set; }
-        public Guid ArticleID { get; set; }
+        public Guid? ArticleID { get; set; }
         public virtual Article Article { get; set; }
         public virtual ICollection<Price> Prices { get; set; }
         public virtual ICollection<RoomType> RoomTypes { get; set; }

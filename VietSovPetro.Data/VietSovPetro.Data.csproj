@@ -58,7 +58,13 @@
     <Compile Include="Repositories\ArticleRepository.cs" />
     <Compile Include="Repositories\IRepositories\IArticleCategoryRepository.cs" />
     <Compile Include="Repositories\IRepositories\IArticleRepository.cs" />
+    <Compile Include="Repositories\IRepositories\IRoomPropertyRepository.cs" />
+    <Compile Include="Repositories\IRepositories\IRoomRepository.cs" />
+    <Compile Include="Repositories\IRepositories\IRoomTypeRepository.cs" />
     <Compile Include="Repositories\IRepositories\IUserRepository.cs" />
+    <Compile Include="Repositories\RoomPropertyRepository.cs" />
+    <Compile Include="Repositories\RoomRepository.cs" />
+    <Compile Include="Repositories\RoomTypeRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="VietSovPetroDataContext.cs" />
   </ItemGroup>

@@ -21,6 +21,9 @@ namespace VietSovPetro.BO.Mappers
             Mapper.CreateMap<ArticleCategoryViewModel, CreateOrUpdateArticleCategoryCommand>();
             Mapper.CreateMap<ArticleCategoryViewModel, DeleteArticleCategoryCommand>();
             Mapper.CreateMap<ArticleViewModel, CreateOrUpdateArticleCommand>();
+            Mapper.CreateMap<RoomViewModel, CreateOrUpdateRoomCommand>();
+            Mapper.CreateMap<RoomTypeViewModel, CreateOrUpdateRoomTypeCommand>();
+            Mapper.CreateMap<RoomPropertyViewModel, CreateOrUpdateRoomPropertyCommand>();
         }
     }
 }

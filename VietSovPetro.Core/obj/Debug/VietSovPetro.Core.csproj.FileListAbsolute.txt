@@ -8,4 +8,3 @@ D:\VietSov_Petro\trunk\VietSovPetro.Core\bin\Debug\Newtonsoft.Json.dll
 D:\VietSov_Petro\trunk\VietSovPetro.Core\bin\Debug\Newtonsoft.Json.xml
 D:\VietSov_Petro\trunk\VietSovPetro.Core\obj\Debug\VietSovPetro.Core.dll
 D:\VietSov_Petro\trunk\VietSovPetro.Core\obj\Debug\VietSovPetro.Core.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.Core\obj\Debug\VietSovPetro.Core.csprojResolveAssemblyReference.cache
