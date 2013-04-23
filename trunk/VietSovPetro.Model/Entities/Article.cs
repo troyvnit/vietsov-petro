@@ -14,7 +14,7 @@ namespace VietSovPetro.Model.Entities
         {
             CreatedOn = DateTime.Now;
             UpdatedOn = DateTime.Now;
-            UserID = Guid.Parse("9680f042-3d4e-43ee-8573-f62a32cfd976");
+            //UserID = Guid.Parse("9680f042-3d4e-43ee-8573-f62a32cfd976");
         }
         [Key]
         public Guid ArticleID { get; set; }
@@ -39,8 +39,8 @@ namespace VietSovPetro.Model.Entities
         public Guid CreatedBy { get; set; }
         public DateTime UpdatedOn { get; set; }
         public Guid UpdatedBy { get; set; }
-        public Guid UserID { get; set; }
-        public virtual User User { get; set; }
+        //public Guid UserID { get; set; }
+        //public virtual User User { get; set; }
         public virtual ICollection<ArticleCategory> ArticleCategories { get; set; }
         public virtual ICollection<Gallery> Galleries { get; set; }
     }

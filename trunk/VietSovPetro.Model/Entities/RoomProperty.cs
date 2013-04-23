@@ -14,7 +14,9 @@ namespace VietSovPetro.Model.Entities
         public Guid RoomPropertyID { get; set; }
         [Required]
         public string RoomPropertyName { get; set; }
-        public string RoomPropertyValue { get; set; }
+        public string RoomPropertyStringValue { get; set; }
+        public int RoomPropertyNumberValue { get; set; }
+        public short RoomPropertyType { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }

@@ -19,6 +19,9 @@ namespace VietSovPetro.BO.Mappers
         {
             Mapper.CreateMap<ArticleCategory, ArticleCategoryViewModel>();
             Mapper.CreateMap<Article, ArticleViewModel>();
+            Mapper.CreateMap<Room, RoomViewModel>();
+            Mapper.CreateMap<RoomType, RoomTypeViewModel>();
+            Mapper.CreateMap<RoomProperty, RoomPropertyViewModel>();
         }
     }
 }

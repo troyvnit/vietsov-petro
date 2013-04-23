@@ -48,11 +48,20 @@
   <ItemGroup>
     <Compile Include="Commands\CreateOrUpdateArticleCategoryCommand.cs" />
     <Compile Include="Commands\CreateOrUpdateArticleCommand.cs" />
+    <Compile Include="Commands\CreateOrUpdateRoomCommand.cs" />
+    <Compile Include="Commands\CreateOrUpdateRoomPropertyCommand.cs" />
+    <Compile Include="Commands\CreateOrUpdateRoomTypeCommand.cs" />
     <Compile Include="Commands\DeleteArticleCategoryCommand.cs" />
     <Compile Include="Handlers\CanAddArticle.cs" />
     <Compile Include="Handlers\CanAddArticleCategory.cs" />
+    <Compile Include="Handlers\CanAddRoom.cs" />
+    <Compile Include="Handlers\CanAddRoomProperty.cs" />
+    <Compile Include="Handlers\CanAddRoomType.cs" />
     <Compile Include="Handlers\CreateOrUpdateArticleCategoryHandler.cs" />
     <Compile Include="Handlers\CreateOrUpdateArticleHandler.cs" />
+    <Compile Include="Handlers\CreateOrUpdateRoomHandler.cs" />
+    <Compile Include="Handlers\CreateOrUpdateRoomPropertyHandler.cs" />
+    <Compile Include="Handlers\CreateOrUpdateRoomTypeHandler.cs" />
     <Compile Include="Handlers\DeleteArticleCategoryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

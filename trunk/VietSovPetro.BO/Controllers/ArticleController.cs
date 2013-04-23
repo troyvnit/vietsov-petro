@@ -36,7 +36,12 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public JsonResult GetArticleCategories()
         {
-            return Json(articleCategoryRepository.GetAll().Where(a => a.IsDeleted != true), JsonRequestBehavior.AllowGet);
+            var articlecategories = new List<ArticleCategoryViewModel>(); 
+            foreach (ArticleCategory articlecategory in articleCategoryRepository.GetAll().Where(a => a.IsDeleted != true))
+            {
+                articlecategories.Add(Mapper.Map<ArticleCategory, ArticleCategoryViewModel>(articlecategory));
+            }
+            return Json(articlecategories, JsonRequestBehavior.AllowGet);
         }    
         [HttpPost]
         public ActionResult CreateOrUpdateArticleCategories(string models)
@@ -69,7 +74,14 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public JsonResult GetArticles()
         {
-            return Json(articleRepository.GetAll().Where(a => a.IsDeleted != true), JsonRequestBehavior.AllowGet);
+            var articles = new List<ArticleViewModel>();
+            foreach(Article article in articleRepository.GetAll().Where(a => a.IsDeleted != true))
+            {
+                var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+                articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                articles.Add(articlevm);
+            }
+            return Json(articles, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult CreateOrUpdateArticles(string models)

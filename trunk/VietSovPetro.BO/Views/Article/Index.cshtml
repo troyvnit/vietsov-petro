@@ -22,11 +22,11 @@
                 <div id="right-pane">
                     <div class="pane-content">
                         <div id="article-content">
-                            <input type="file" id="uploadimage" name="files"/>
+                            @*<input type="file" id="uploadimage" name="files"/>
                             <img id="aimage" />
                             <span class="articlecategoryspan"><label>Hạng mục:</label> <select id="articlecategories"></select></span>
                             <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">
-                            </textarea>
+                            </textarea>*@
                         </div>
                         <div id="grid"></div>
                         <input type="hidden" id="articlecategoryids"/>
@@ -79,20 +79,19 @@
     </script>
 
     <script type="text/x-kendo-template" id="wtemplate">
-                <div id="article-content-container">
-
-                    <textarea id="editor" rows="10" cols="30" style="width:100%;height:400px">
-                       #= Content #
+                    <input type="file" id="uploadimage" name="files"/>
+                            <img src="Images/#= ImageUrl #" id="aimage" />
+                            <span class="articlecategoryspan"><label>Hạng mục:</label> <select id="articlecategories"></select></span>
+                            <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">#= Content #
                     </textarea>
-                </div>
     </script>
 
     <script>
-        var wnd, dataItem;
+        var wnd, dataItem, articleCategoryDataSource;
 
         $(document).ready(function () {
             //article category list view
-            var articleCategoryDataSource = new kendo.data.DataSource({
+            articleCategoryDataSource = new kendo.data.DataSource({
                 transport: {
                     read: {
                         url: '@Url.Action("GetArticleCategories", "Article")',
@@ -128,9 +127,9 @@
                         id: "ArticleCategoryID",
                         fields: {
                             ArticleCategoryID: { editable: false, nullable: true },
-                            ArticleCategoryName: { title: "Tên hạng mục" },
-                            ArticleCategoryType: { title: "Loại hạng mục" },
-                            Description: { title: "Mô tả" }
+                            ArticleCategoryName: { type: "string" },
+                            ArticleCategoryType: { type: "string" },
+                            Description: { type: "string" }
                         }
                     }
                 }
@@ -213,7 +212,7 @@
                     { field: "Content", title: "Content", hidden: true },
                     { field: "IsPublished", title: "Công bố ?", width: "100px" },
                     { field: "IsNew", title: "Mới ?", width: "100px" },
-                    { command: [{ text: "Article Content", click: contentEditor }, "destroy"], title: " ", width: "200px" }],
+                    { command: [{ text: "Nội dung", click: contentEditor }, "destroy"], title: " ", width: "200px" }],
                 editable: true
             });
             wnd = $("#article-content")
@@ -226,39 +225,75 @@
                             width: 800
                         }).data("kendoWindow");
 
+            detailsTemplate = kendo.template($("#wtemplate").html());
+
             wnd.wrapper.find(".k-i-tick").click(function (e) {
                 onSaveContentWindow();
                 e.preventDefault();
                 wnd.close();
             });
-            $("#uploadimage").kendoUpload({
-                multiple: true,
+            
+            function onSaveContentWindow() {
+                var ceditor = $("#ceditor").data("kendoEditor");
+                dataItem.Content = $('<div/>').text(ceditor.value()).html();
+                console.log(dataItem.Content);
+                var articlecategories = $("#articlecategories").data("kendoMultiSelect");
+                $("#articlecategoryids").val(articlecategories.value());
+                dataItem.ArticleCategoryIDs = articlecategories.value();
+                console.log($("#articlecategoryids").val());
+                wnd.refresh();
+            }
+        });
+
+        function articleDataBound(e) {
+            var grid = this;
+            var img = this.tbody.find("img");
+            this.tbody.find("input[name=imageUrl]").kendoUpload({
+                multiple: false,
                 async: {
-                    saveUrl: '@Url.Action("SaveImages", "Common")'
+                    saveUrl: '@Url.Action("SaveImages", "Common")',
+                    autoUpload: true
+                },
+                upload: function (e) {
+                    var item = grid.dataItem(this.element.closest("tr"));
+                    e.data = { id: item.id };
                 },
                 success: function (e) {
                     var ImageUrl = e.response.ImageUrl;
-                    dataItem.ImageUrl = ImageUrl;
-                    $("#aimage").attr("src", "Images/" + ImageUrl);
-                    console.log(dataItem.ImageUrl);
+                    var item = grid.dataItem(this.element.closest("tr"));
+                    item.ImageUrl = ImageUrl;
+                    item.dirty = true;
+                    img.attr("src", ImageUrl);
+                    console.log(ImageUrl);
                 }
             });
+    }
+    function contentEditor(e) {
+        e.preventDefault();
+        dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        wnd.content(detailsTemplate(dataItem));
+        $("#uploadimage").kendoUpload({
+            multiple: true,
+            async: {
+                saveUrl: '@Url.Action("SaveImages", "Common")'
+                },
+            success: function (e) {
+                var ImageUrl = e.response.ImageUrl;
+                dataItem.ImageUrl = ImageUrl;
+                $("#aimage").attr("src", "Images/" + ImageUrl);
+                console.log(dataItem.ImageUrl);
+            }
+        });
             $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh cho bài viết");
             $("#articlecategories").kendoMultiSelect({
                 placeholder: "Chọn hạng mục cho bài viết...",
                 dataTextField: "ArticleCategoryName",
                 dataValueField: "ArticleCategoryID",
-                dataSource: {
-                    serverFiltering: true,
-                    transport: {
-                        read: {
-                            url: '@Url.Action("GetArticleCategories", "Article")',
-                            type: "post",
-                            dataType: "json"
-                        }
-                    }
-                }
+                dataSource: articleCategoryDataSource
             });
+            var acmultiselect = $("#articlecategories").data("kendoMultiSelect");
+            console.log(dataItem.ArticleCategoryIDs.split(","));
+            acmultiselect.value(dataItem.ArticleCategoryIDs.split(","));
             $("#ceditor").kendoEditor({
                 encoded: false,
                 tools: [
@@ -296,37 +331,39 @@
                 dataItem.ArticleCategoryIDs = articlecategories.value();
                 console.log($("#articlecategoryids").val());
             }
-        });
-
-        function articleDataBound(e) {
-            var grid = this;
-            var img = this.tbody.find("img");
-            this.tbody.find("input[name=imageUrl]").kendoUpload({
-                multiple: false,
-                async: {
-                    saveUrl: '@Url.Action("SaveImages", "Common")',
-                    autoUpload: true
-                },
-                upload: function (e) {
-                    var item = grid.dataItem(this.element.closest("tr"));
-                    e.data = { id: item.id };
-                },
-                success: function (e) {
-                    var ImageUrl = e.response.ImageUrl;
-                    var item = grid.dataItem(this.element.closest("tr"));
-                    item.ImageUrl = ImageUrl;
-                    item.dirty = true;
-                    img.attr("src", ImageUrl);
-                    console.log(ImageUrl);
-                }
-            });
-    }
-    function contentEditor(e) {
-        e.preventDefault();
-        dataItem = this.dataItem($(e.currentTarget).closest("tr"));
         wnd.center().open();
     }
-    
+    function openContentEditor(container, options) {
+        $("<textarea id='contenteditor' rows='10' cols='30' style='width:100%;height:400px' data-bind='value:" + options.field + "></textarea>").appendTo(container)
+        .kendoEditor({
+            encoded: false,
+            tools: [
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "fontName",
+                "fontSize",
+                "foreColor",
+                "backColor",
+                "justifyLeft",
+                "justifyCenter",
+                "justifyRight",
+                "justifyFull",
+                "insertUnorderedList",
+                "insertOrderedList",
+                "indent",
+                "outdent",
+                "formatBlock",
+                "createLink",
+                "unlink",
+                "insertImage",
+                "subscript",
+                "superscript",
+                "viewHtml"
+            ]
+        });
+    }
     </script>
 
     <script>

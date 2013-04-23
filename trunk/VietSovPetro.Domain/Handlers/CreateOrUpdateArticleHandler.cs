@@ -6,6 +6,7 @@ using VietSovPetro.Model.Entities;
 using System;
 using VietSovPetro.CommandProcessor.Commands;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VietSovPetro.Domain.Handlers
 {
@@ -22,32 +23,60 @@ namespace VietSovPetro.Domain.Handlers
         }
         public ICommandResult Execute(CreateOrUpdateArticleCommand command)
         {
-            var articlecategories = new List<ArticleCategory>();
-            foreach (Guid acID in command.ArticleCategoryIDs)
+
+            if (command.ArticleID == Guid.Empty)
             {
-                articlecategories.Add(articleCategoryRepository.GetById(acID));
-            }
-            var article = new Article
-            {
-                ArticleID = command.ArticleID,
-                Author = command.Author,
-                Content = command.Content,
-                Description = command.Description,
-                ImageUrl = command.ImageUrl,
-                IsNew = command.IsNew,
-                IsPublished = command.IsPublished,
-                Title = command.Title,
-                IsDeleted = false,
-                ActicleNumber = 1,
-                ArticleCategories = articlecategories
-            };
-            if (article.ArticleID == Guid.Empty)
-            {
-                article.ArticleID = Guid.NewGuid();
+                var article = new Article
+                {
+                    ArticleID = Guid.NewGuid(),
+                    Author = command.Author,
+                    Content = command.Content,
+                    Description = command.Description,
+                    ImageUrl = command.ImageUrl,
+                    IsNew = command.IsNew,
+                    IsPublished = command.IsPublished,
+                    Title = command.Title,
+                    IsDeleted = false,
+                    ActicleNumber = 1
+                };
+                article.ArticleCategories = new List<ArticleCategory>();
+                foreach (Guid acID in command.ArticleCategoryIDs)
+                {
+                    var articlecategory = articleCategoryRepository.GetById(acID);
+                    article.ArticleCategories.Add(articlecategory);
+                }
                 articleRepository.Add(article);
             }
             else
             {
+                var article = articleRepository.GetById(command.ArticleID);
+                article.Author = command.Author;
+                article.Content = command.Content;
+                article.Description = command.Description;
+                article.ImageUrl = command.ImageUrl;
+                article.IsNew = command.IsNew;
+                article.IsPublished = command.IsPublished;
+                article.Title = command.Title;
+                article.IsDeleted = false;
+                article.ActicleNumber = 1;
+                var articlecategories = new List<ArticleCategory>();
+                foreach (Guid acID in command.ArticleCategoryIDs)
+                {
+                    var articlecategory = articleCategoryRepository.GetById(acID);
+                    articlecategories.Add(articlecategory);
+                }
+                var deleteCats = article.ArticleCategories.Where(ac => !command.ArticleCategoryIDs.Contains(ac.ArticleCategoryID)).ToList();
+                var addCats = articlecategories.Where(ac => !article.ArticleCategories.Select(a => a.ArticleCategoryID).Contains(ac.ArticleCategoryID)).ToList();
+
+                foreach (var deleteCat in deleteCats)
+                {
+                    article.ArticleCategories.Remove(deleteCat);
+                }
+
+                foreach (var addCat in addCats)
+                {
+                    article.ArticleCategories.Add(addCat);
+                }
                 articleRepository.Update(article);
             }
             unitOfWork.Commit();
