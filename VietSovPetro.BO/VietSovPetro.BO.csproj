@@ -2035,7 +2035,7 @@
     <Content Include="KendoUI\content\web\datasource\top250movies.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Admin\Article\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VietSovPetro.ComandProcessor\VietSovPetro.CommandProcessor.csproj">
@@ -2056,7 +2056,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Room\Index.cshtml" />
+    <Content Include="Views\Admin\Room\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
