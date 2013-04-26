@@ -9,5 +9,6 @@ namespace VietSovPetro.CommandProcessor.Commands.ICommands
     public interface ICommandResult
     {
         bool Success { get; }
+        Guid ID { get; }
     }
 }

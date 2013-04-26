@@ -19,6 +19,7 @@ namespace VietSovPetro.Domain.Handlers
         }
         public ICommandResult Execute(CreateOrUpdateRoomPropertyCommand command)
         {
+            var ID = Guid.Empty;
             var roomProperty = new RoomProperty
             {
                 RoomPropertyID = command.RoomPropertyID,
@@ -34,13 +35,15 @@ namespace VietSovPetro.Domain.Handlers
             {
                 roomProperty.RoomPropertyID = Guid.NewGuid();
                 roomPropertyRepository.Add(roomProperty);
+                ID = roomProperty.RoomPropertyID;
             }
             else
             {
                 roomPropertyRepository.Update(roomProperty);
+                ID = roomProperty.RoomPropertyID;
             }
             unitOfWork.Commit();
-            return new CommandResult(true);
+            return new CommandResult(true, ID);
         }
     }
 }

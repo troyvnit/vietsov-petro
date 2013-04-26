@@ -17,6 +17,10 @@ namespace VietSovPetro.BO.ViewModels
         public DateTime? BookedFrom { get; set; }
         public DateTime? BookedTo { get; set; }
         public string Description { get; set; }
+        public int Quantity { get; set; }
+        public int OrderID { get; set; }
+        public string LanguageCode { get; set; }
+        public string ImageUrl { get; set; }
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
         public bool IsDeal { get; set; }

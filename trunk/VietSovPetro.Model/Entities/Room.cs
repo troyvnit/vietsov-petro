@@ -23,6 +23,10 @@ namespace VietSovPetro.Model.Entities
         public DateTime? BookedFrom { get; set; }
         public DateTime? BookedTo { get; set; }
         public string Description { get; set; }
+        public int Quantity { get; set; }
+        public string ImageUrl { get; set; }
+        public int OrderID { get; set; }
+        public string LanguageCode { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
@@ -31,8 +35,6 @@ namespace VietSovPetro.Model.Entities
         public Guid CreatedBy { get; set; }
         public DateTime UpdatedOn { get; set; }
         public Guid UpdatedBy { get; set; }
-        public Guid? ArticleID { get; set; }
-        public virtual Article Article { get; set; }
         public virtual ICollection<Price> Prices { get; set; }
         public virtual ICollection<RoomType> RoomTypes { get; set; }
         public virtual ICollection<RoomDetail> RoomDetails { get; set; }

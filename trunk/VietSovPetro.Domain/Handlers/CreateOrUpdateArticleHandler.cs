@@ -23,7 +23,7 @@ namespace VietSovPetro.Domain.Handlers
         }
         public ICommandResult Execute(CreateOrUpdateArticleCommand command)
         {
-
+            var ID = Guid.Empty;
             if (command.ArticleID == Guid.Empty)
             {
                 var article = new Article
@@ -46,6 +46,7 @@ namespace VietSovPetro.Domain.Handlers
                     article.ArticleCategories.Add(articlecategory);
                 }
                 articleRepository.Add(article);
+                ID = article.ArticleID;
             }
             else
             {
@@ -78,9 +79,10 @@ namespace VietSovPetro.Domain.Handlers
                     article.ArticleCategories.Add(addCat);
                 }
                 articleRepository.Update(article);
+                ID = article.ArticleID;
             }
             unitOfWork.Commit();
-            return new CommandResult(true);
+            return new CommandResult(true, ID);
         }
     }
 }

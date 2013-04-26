@@ -7,7 +7,7 @@ namespace VietSovPetro.Domain.Commands
     public class CreateOrUpdateRoomTypeCommand : ICommand
     {
         public CreateOrUpdateRoomTypeCommand(Guid RoomTypeID, string RoomTypeName, string Description, string RoomGroup,
-            bool IsPublished, bool IsNew, bool IsDeal)
+            bool IsPublished, bool IsNew, bool IsDeal, string LanguageCode)
         {
             this.RoomTypeID = RoomTypeID;
             this.RoomTypeName = RoomTypeName;
@@ -21,6 +21,7 @@ namespace VietSovPetro.Domain.Commands
         public string RoomTypeName { get; set; }
         public string RoomGroup { get; set; }
         public string Description { get; set; }
+        public string LanguageCode { get; set; }
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
         public bool IsDeal { get; set; }

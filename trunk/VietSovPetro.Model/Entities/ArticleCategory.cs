@@ -17,6 +17,7 @@ namespace VietSovPetro.Model.Entities
         [Required]
         public string ArticleCategoryType { get; set; }
         public string Description { get; set; }
+        public string LanguageCode { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }

@@ -23,7 +23,7 @@ namespace VietSovPetro.Domain.Handlers
         }
         public ICommandResult Execute(CreateOrUpdateRoomCommand command)
         {
-
+            var ID = Guid.Empty;
             if (command.RoomID == Guid.Empty)
             {
                 var room = new Room
@@ -37,7 +37,9 @@ namespace VietSovPetro.Domain.Handlers
                     IsNew = command.IsNew,
                     IsPublished = command.IsPublished,
                     IsDeleted = false,
-                    ArticleID = command.ArticleID
+                    ImageUrl = command.ImageUrl,
+                    Quantity = command.Quantity,
+                    OrderID = command.OrderID
                 };
                 room.RoomTypes = new List<RoomType>();
                 foreach (Guid rID in command.RoomTypeIDs)
@@ -46,6 +48,7 @@ namespace VietSovPetro.Domain.Handlers
                     room.RoomTypes.Add(roomtype);
                 }
                 roomRepository.Add(room);
+                ID = room.RoomID;
             }
             else
             {
@@ -58,7 +61,9 @@ namespace VietSovPetro.Domain.Handlers
                 room.IsNew = command.IsNew;
                 room.IsPublished = command.IsPublished;
                 room.IsDeleted = false;
-                room.ArticleID = command.ArticleID;
+                room.ImageUrl = command.ImageUrl;
+                room.Quantity = command.Quantity;
+                room.OrderID = command.OrderID;
 
                 var roomtypes = new List<RoomType>();
                 foreach (Guid rID in command.RoomTypeIDs)
@@ -79,9 +84,10 @@ namespace VietSovPetro.Domain.Handlers
                     room.RoomTypes.Add(addCat);
                 }
                 roomRepository.Update(room);
+                ID = room.RoomID;
             }
             unitOfWork.Commit();
-            return new CommandResult(true);
+            return new CommandResult(true, ID);
         }
     }
 }

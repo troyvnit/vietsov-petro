@@ -10,7 +10,7 @@
                 <div id="left-pane">
                     <div class="pane-content">
                         <div class="article-category-list">
-                            <a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span>Add new record</a>
+                            <a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span></a>
                         </div>
 
                         <div class="article-category-list">
@@ -62,12 +62,15 @@
                 <input type="hidden" data-bind="value:ArticleCategoryID" name="ArticleCategoryID"/>
                 <dt>Tên hạng mục</dt>
                 <dd>
-                    <input type="text" class="k-textbox" data-bind="value:ArticleCategoryName" name="ArticleCategoryName" required="required" validationMessage="required" />
+                    <input type="text" class="k-textbox" data-bind="value:ArticleCategoryName" name="ArticleCategoryName" required="required" validationMessage="không được trống" />
                     <span data-for="ArticleCategoryName" class="k-invalid-msg"></span>
                 </dd>
                 <dt>Loại hạng mục</dt>
                 <dd>
-                    <input type="text" class="k-textbox" data-bind="value:ArticleCategoryType" name="ArticleCategoryType" required="required" validationMessage="required" />
+                    <select data-role="dropdownlist" data-bind="value:ArticleCategoryType" name="ArticleCategoryType" required="required" validationMessage="không được trống">  
+                       <option value="Room">Giới thiệu phòng</option>
+                       <option value="Introduction">Giới thiệu VietSov Petro</option>
+                    </select>
                     <span data-for="ArticleCategoryType" class="k-invalid-msg"></span>
                 </dd>
                 <dt>Mô tả</dt>
@@ -80,7 +83,7 @@
 
     <script type="text/x-kendo-template" id="wtemplate">
                     <input type="file" id="uploadimage" name="files"/>
-                            <img src="Images/#= ImageUrl #" id="aimage" />
+                            <img src="/Images/#= ImageUrl #" id="aimage" />
                             <span class="articlecategoryspan"><label>Hạng mục:</label> <select id="articlecategories"></select></span>
                             <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">#= Content #
                     </textarea>
@@ -95,30 +98,30 @@
                 transport: {
                     read: {
                         url: '@Url.Action("GetArticleCategories", "Article")',
-                            type: "post",
-                            dataType: "json"
-                        },
-                        update: {
-                            url: '@Url.Action("CreateOrUpdateArticleCategories", "Article")',
-                            type: "post",
-                            dataType: "json"
-                        },
-                        destroy: {
-                            url: '@Url.Action("DeleteArticleCategories", "Article")',
-                            type: "post",
-                            dataType: "json"
-                        },
-                        create: {
-                            url: '@Url.Action("CreateOrUpdateArticleCategories", "Article")',
-                            type: "post",
-                            dataType: "json"
-                        },
-                        parameterMap: function (options, operation) {
-                            if (operation !== "read" && options.models) {
-                                return { models: kendo.stringify(options.models), page: options.page, pageSize: 6 };
-                            }
-                        }
+                        type: "post",
+                        dataType: "json"
                     },
+                    update: {
+                        url: '@Url.Action("CreateOrUpdateArticleCategories", "Article")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    destroy: {
+                        url: '@Url.Action("DeleteArticleCategories", "Article")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    create: {
+                        url: '@Url.Action("CreateOrUpdateArticleCategories", "Article")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    parameterMap: function (options, operation) {
+                        if (operation !== "read" && options.models) {
+                            return { models: kendo.stringify(options.models), page: options.page, pageSize: 6 };
+                        }
+                    }
+                },
                 batch: true,
                 serverPaging: true,
                 pageSize: 6,
@@ -191,6 +194,7 @@
                             Author: { type: "string" },
                             Content: { type: "string" },
                             ImageUrl: { type: "string" },
+                            OrderID: { type: "number" },
                             IsPublished: { type: "boolean" },
                             IsNew: { type: "boolean" },
                             ArticleCategoryIDs: { type: "string" }
@@ -200,7 +204,7 @@
             });
             $("#grid").kendoGrid({
                 dataSource: articleDataSource,
-                dataBound: articleDataBound,
+                //dataBound: articleDataBound,
                 pageable: true,
                 height: 740,
                 toolbar: ["create", "save", "cancel"],
@@ -209,6 +213,7 @@
                     { field: "Description", title: "Mô tả" },
                     { field: "Author", title: "Tác giả" },
                     { field: "ImageUrl", title: "ImageUrl", hidden: true },
+                    { field: "OrderID", title: "Thứ tự" },
                     { field: "Content", title: "Content", hidden: true },
                     { field: "IsPublished", title: "Công bố ?", width: "100px" },
                     { field: "IsNew", title: "Mới ?", width: "100px" },
@@ -217,7 +222,7 @@
             });
             wnd = $("#article-content")
                         .kendoWindow({
-                            title: "Content",
+                            title: "Nội dung",
                             actions: ["Tick", "Minimize", "Maximize", "Close"],
                             modal: true,
                             visible: false,
@@ -245,7 +250,7 @@
             }
         });
 
-        function articleDataBound(e) {
+        @*function articleDataBound(e) {
             var grid = this;
             var img = this.tbody.find("img");
             this.tbody.find("input[name=imageUrl]").kendoUpload({
@@ -267,7 +272,7 @@
                     console.log(ImageUrl);
                 }
             });
-    }
+    } *@
     function contentEditor(e) {
         e.preventDefault();
         dataItem = this.dataItem($(e.currentTarget).closest("tr"));
@@ -280,7 +285,7 @@
             success: function (e) {
                 var ImageUrl = e.response.ImageUrl;
                 dataItem.ImageUrl = ImageUrl;
-                $("#aimage").attr("src", "Images/" + ImageUrl);
+                $("#aimage").attr("src", "/Images/" + ImageUrl);
                 console.log(dataItem.ImageUrl);
             }
         });
@@ -333,37 +338,37 @@
             }
         wnd.center().open();
     }
-    function openContentEditor(container, options) {
-        $("<textarea id='contenteditor' rows='10' cols='30' style='width:100%;height:400px' data-bind='value:" + options.field + "></textarea>").appendTo(container)
-        .kendoEditor({
-            encoded: false,
-            tools: [
-                "bold",
-                "italic",
-                "underline",
-                "strikethrough",
-                "fontName",
-                "fontSize",
-                "foreColor",
-                "backColor",
-                "justifyLeft",
-                "justifyCenter",
-                "justifyRight",
-                "justifyFull",
-                "insertUnorderedList",
-                "insertOrderedList",
-                "indent",
-                "outdent",
-                "formatBlock",
-                "createLink",
-                "unlink",
-                "insertImage",
-                "subscript",
-                "superscript",
-                "viewHtml"
-            ]
-        });
-    }
+    //function openContentEditor(container, options) {
+    //    $("<textarea id='contenteditor' rows='10' cols='30' style='width:100%;height:400px' data-bind='value:" + options.field + "></textarea>").appendTo(container)
+    //    .kendoEditor({
+    //        encoded: false,
+    //        tools: [
+    //            "bold",
+    //            "italic",
+    //            "underline",
+    //            "strikethrough",
+    //            "fontName",
+    //            "fontSize",
+    //            "foreColor",
+    //            "backColor",
+    //            "justifyLeft",
+    //            "justifyCenter",
+    //            "justifyRight",
+    //            "justifyFull",
+    //            "insertUnorderedList",
+    //            "insertOrderedList",
+    //            "indent",
+    //            "outdent",
+    //            "formatBlock",
+    //            "createLink",
+    //            "unlink",
+    //            "insertImage",
+    //            "subscript",
+    //            "superscript",
+    //            "viewHtml"
+    //        ]
+    //    });
+    //}
     </script>
 
     <script>

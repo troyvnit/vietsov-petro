@@ -19,6 +19,7 @@ namespace VietSovPetro.Domain.Handlers
         }
         public ICommandResult Execute(CreateOrUpdateRoomTypeCommand command)
         {
+            var ID = Guid.Empty;
             var roomType = new RoomType
             {
                 RoomTypeID = command.RoomTypeID,
@@ -33,13 +34,15 @@ namespace VietSovPetro.Domain.Handlers
             {
                 roomType.RoomTypeID = Guid.NewGuid();
                 roomTypeRepository.Add(roomType);
+                ID = roomType.RoomTypeID;
             }
             else
             {
                 roomTypeRepository.Update(roomType);
+                ID = roomType.RoomTypeID;
             }
             unitOfWork.Commit();
-            return new CommandResult(true);
+            return new CommandResult(true, ID);
         }
     }
 }
