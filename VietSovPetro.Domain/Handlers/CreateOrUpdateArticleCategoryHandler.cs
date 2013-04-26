@@ -19,6 +19,7 @@ namespace VietSovPetro.Domain.Handlers
         }
         public ICommandResult Execute(CreateOrUpdateArticleCategoryCommand command)
         {
+            var ID = Guid.Empty;
             var articleCategory = new ArticleCategory
             {
                 ArticleCategoryID = command.ArticleCategoryId,
@@ -30,13 +31,15 @@ namespace VietSovPetro.Domain.Handlers
             {
                 articleCategory.ArticleCategoryID = Guid.NewGuid();
                 articleCategoryRepository.Add(articleCategory);
+                ID = articleCategory.ArticleCategoryID;
             }
             else
             {
                 articleCategoryRepository.Update(articleCategory);
+                ID = articleCategory.ArticleCategoryID;
             }
             unitOfWork.Commit();
-            return new CommandResult(true);
+            return new CommandResult(true, ID);
         }
     }
 }

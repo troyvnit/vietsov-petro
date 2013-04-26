@@ -17,6 +17,7 @@ namespace VietSovPetro.BO.ViewModels
         [Required]
         public string RoomGroup { get; set; }
         public string Description { get; set; }
+        public string LanguageCode { get; set; }
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
         public bool IsDeal { get; set; }

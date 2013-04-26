@@ -16,6 +16,7 @@ namespace VietSovPetro.Model.Entities
         public string RoomTypeName { get; set; }
         [Required]
         public string RoomGroup { get; set; }
+        public string LanguageCode { get; set; }
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsPublished { get; set; }

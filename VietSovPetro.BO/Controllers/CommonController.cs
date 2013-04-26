@@ -12,7 +12,7 @@ namespace VietSovPetro.BO.Controllers
         //
         // GET: /Common/
         [HttpPost]
-        public ActionResult SaveImages(IEnumerable<HttpPostedFileBase> files)
+        public ActionResult SaveImages(IEnumerable<HttpPostedFileBase> files, string folder)
         {
             string ImageUrl = "";
             // The Name of the Upload component is "files"
@@ -23,44 +23,25 @@ namespace VietSovPetro.BO.Controllers
                     // Some browsers send file names with full path.
                     // We are only interested in the file name.
                     var fileName = Path.GetFileName(file.FileName);
-                    var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
+                    var pathString = Path.Combine(Server.MapPath("~/Images/"), folder);
+                    if (!Directory.Exists(pathString))
+                    {
+                        Directory.CreateDirectory(pathString);
+                    }
+                    var physicalPath = Path.Combine(pathString, fileName);
 
                     // The files are not actually saved in this demo
                     file.SaveAs(physicalPath);
-                    ImageUrl = fileName;
-                }
-            }
-
-            // Return an empty string to signify success
-            return Json(new { ImageUrl = ImageUrl }, JsonRequestBehavior.AllowGet);
-
-        }
-        [HttpPost]
-        public ActionResult RemoveImages(string[] fileNames)
-        {
-
-            // The parameter of the Remove action must be called "fileNames"
-
-            if (fileNames != null)
-            {
-                foreach (var fullName in fileNames)
-                {
-                    var fileName = Path.GetFileName(fullName);
-                    var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
-
-                    // TODO: Verify user permissions
-
-                    if (System.IO.File.Exists(physicalPath))
+                    var fileInfo = new FileInfo(fileName);
+                    if (fileInfo.Extension == ".jpg" || fileInfo.Extension == ".png" || fileInfo.Extension == ".gif" || fileInfo.Extension == ".jpeg" || fileInfo.Extension == ".html")
                     {
-                        // The files are not actually removed in this demo
-                        System.IO.File.Delete(physicalPath);
-
+                        ImageUrl = String.Concat(folder + "/" + fileName);
                     }
                 }
             }
 
             // Return an empty string to signify success
-            return Content("");
+            return Json(new { ImageUrl = ImageUrl, Folder = folder }, JsonRequestBehavior.AllowGet);
 
         }
     }

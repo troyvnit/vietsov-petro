@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Introduction";
+    Layout = "~/Views/Shared/_LayoutFO.cshtml";
+    System.Collections.Generic.List<VietSovPetro.BO.ViewModels.ArticleViewModel> articles = ViewBag.IntroductionArticles;
+}
+
+<div class="banner-G">
+    <div class="B-Left">
+        <div class="tt-B-Left">
+            <p>Phòng &amp; Giá phòng</p>
+        </div>
+        <div class="cc-B-Left">
+          <ul>
+              <li class="nut"><a href="booking.php">Đặt phòng nhanh</a></li>
+              <li class="tex"><p>Xin vui lòng gọi điện thoại hoặc gửi email cho chúng tôi để đặt phòng. Chúng tôi hân hạnh được phục vụ bạn.</p></li>
+              <li class="hot">
+                  <ul>
+                      <li><p>Điện thoại: (84.64) 3.782.256</p></li>
+                      <li><p>Fax: (84.64) 3.782.255</p></li>
+                  </ul>
+              </li>
+            </ul>
+        </div>
+    </div>
+    <div class="B-Right">
+        <iframe src="@Url.Content("~/virtualTour/mainRestaurant/mainRestaurant.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
+        <div class="fullscreen"><a href="#" style="display:block;"><img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
+    </div>
+</div>
+@foreach (var article in articles)
+{
+    <div class="in-booking">
+            <div class="in-booking-1">
+                <div class="in-booking-2">
+                    <div class="booking">
+                        <div class="tit-booking"><span>@article.Title</span></div><!--tit-booking-->
+                        <div class="tett">
+                            @Html.Raw(HttpUtility.HtmlDecode(article.Content))
+                        </div><!--tett-->
+                    </div><!--booking-->
+                </div><!--in-booking-2-->
+            </div><!--in-booking-1-->
+        </div><!--in-booking-->   
+}

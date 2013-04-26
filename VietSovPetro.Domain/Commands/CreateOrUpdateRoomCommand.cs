@@ -8,7 +8,8 @@ namespace VietSovPetro.Domain.Commands
     public class CreateOrUpdateRoomCommand : ICommand
     {
         public CreateOrUpdateRoomCommand(Guid RoomID, string RoomName, DateTime? BookedFrom, DateTime? BookedTo, string Description,
-            bool IsPublished, bool IsNew, bool IsDeal, Guid? ArticleID, Article Article, List<Guid> RoomTypeIDs)
+            bool IsPublished, bool IsNew, bool IsDeal, Guid? ArticleID, List<Guid> RoomTypeIDs,
+            int Quantity, string ImageUrl, int OrderID, string LanguageCode)
         {
             this.RoomID = RoomID;
             this.RoomName = RoomName;
@@ -18,20 +19,23 @@ namespace VietSovPetro.Domain.Commands
             this.IsPublished = IsPublished;
             this.IsNew = IsNew;
             this.IsDeal = IsDeal;
-            this.ArticleID = ArticleID;
-            this.Article = Article;
             this.RoomTypeIDs = RoomTypeIDs;
+            this.Quantity = Quantity;
+            this.ImageUrl = ImageUrl;
+            this.OrderID = OrderID;
         }
         public Guid RoomID { get; set; }
         public string RoomName { get; set; }
         public DateTime? BookedFrom { get; set; }
         public DateTime? BookedTo { get; set; }
         public string Description { get; set; }
+        public int Quantity { get; set; }
+        public int OrderID { get; set; }
+        public string LanguageCode { get; set; }
+        public string ImageUrl { get; set; }
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
         public bool IsDeal { get; set; }
-        public Guid? ArticleID { get; set; }
-        public virtual Article Article { get; set; }
         public List<Guid> RoomTypeIDs { get; set; }
     }
 }
