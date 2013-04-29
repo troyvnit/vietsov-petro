@@ -26,3 +26,21 @@ D:\VietSov_Petro\trunk\VietSovPetro.Domain\bin\Debug\Newtonsoft.Json.xml
 D:\VietSov_Petro\trunk\VietSovPetro.Domain\obj\Debug\VietSovPetro.Domain.csprojResolveAssemblyReference.cache
 D:\VietSov_Petro\trunk\VietSovPetro.Domain\obj\Debug\VietSovPetro.Domain.dll
 D:\VietSov_Petro\trunk\VietSovPetro.Domain\obj\Debug\VietSovPetro.Domain.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.Domain.dll.config
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.Domain.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.Domain.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\EntityFramework.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\Newtonsoft.Json.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.ComandProcessor.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.Core.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.Data.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.Model.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.ComandProcessor.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.Core.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.Data.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\VietSovPetro.Model.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\EntityFramework.xml
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\bin\Debug\Newtonsoft.Json.xml
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\obj\Debug\VietSovPetro.Domain.csprojResolveAssemblyReference.cache
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\obj\Debug\VietSovPetro.Domain.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Domain\obj\Debug\VietSovPetro.Domain.pdb

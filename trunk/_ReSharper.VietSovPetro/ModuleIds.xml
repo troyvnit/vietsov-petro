@@ -1,0 +1,7 @@
+<Modules>
+  <Module PersistentId="EAA1334A-5F1B-487C-9245-E07D43F6BBDF" ModuleId="VietSovPetro.BO" />
+  <Module PersistentId="631E4095-073A-44DF-8B96-B20D3E013D4A" ModuleId="VietSovPetro.Model" />
+  <Module PersistentId="D14C20D7-F8FB-4795-829A-9421EB42E64B" ModuleId="VietSovPetro.Domain" />
+  <Module PersistentId="F45FC798-CEE0-44B1-8FA3-DEE2B994E1B5" ModuleId="VietSovPetro.Data" />
+  <Module PersistentId="49A40D5B-64A6-4579-8897-638585DAB966" ModuleId="VietSovPetro.CommandProcessor" />
+</Modules>

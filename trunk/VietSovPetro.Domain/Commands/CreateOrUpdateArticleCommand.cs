@@ -20,6 +20,7 @@ namespace VietSovPetro.Domain.Commands
             this.Title = Title;
             this.ArticleCategoryIDs = ArticleCategoryIDs;
             this.OrderID = OrderID;
+            this.LanguageCode = LanguageCode;
         }
         public Guid ArticleID { get; set; }
         public string Title { get; set; }

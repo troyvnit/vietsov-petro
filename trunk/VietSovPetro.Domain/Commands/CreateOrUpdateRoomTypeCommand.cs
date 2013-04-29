@@ -16,6 +16,7 @@ namespace VietSovPetro.Domain.Commands
             this.IsPublished = IsPublished;
             this.IsNew = IsNew;
             this.IsDeal = IsDeal;
+            this.LanguageCode = LanguageCode;
         }
         public Guid RoomTypeID { get; set; }
         public string RoomTypeName { get; set; }

@@ -10,3 +10,15 @@ D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Debug\Newtonsoft.Json.xml
 D:\VietSov_Petro\trunk\VietSovPetro.Model\obj\Debug\VietSovPetro.Model.csprojResolveAssemblyReference.cache
 D:\VietSov_Petro\trunk\VietSovPetro.Model\obj\Debug\VietSovPetro.Model.dll
 D:\VietSov_Petro\trunk\VietSovPetro.Model\obj\Debug\VietSovPetro.Model.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\bin\Debug\VietSovPetro.Model.dll.config
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\bin\Debug\VietSovPetro.Model.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\bin\Debug\VietSovPetro.Model.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\bin\Debug\EntityFramework.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\bin\Debug\Newtonsoft.Json.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\bin\Debug\VietSovPetro.Core.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\bin\Debug\VietSovPetro.Core.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\bin\Debug\EntityFramework.xml
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\bin\Debug\Newtonsoft.Json.xml
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\obj\Debug\VietSovPetro.Model.csprojResolveAssemblyReference.cache
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\obj\Debug\VietSovPetro.Model.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Model\obj\Debug\VietSovPetro.Model.pdb

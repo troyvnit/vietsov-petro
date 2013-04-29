@@ -9,6 +9,7 @@
             <div id="horizontal" style="height: 100%; width: 100%;">
                 <div id="left-pane">
                     <div class="pane-content">
+                        <p style="width: 100%; text-align: center">QUẢN LÝ LOẠI NHÀ HÀNG KHÁCH SẠN</p>
                         <div class="room-category-list">
                             <a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span></a>
                         </div>
@@ -21,6 +22,7 @@
                 </div>
                 <div id="right-pane">
                     <div class="pane-content">
+                        <p style="width: 100%; text-align: center">QUẢN LÝ NHÀ HÀNG KHÁCH SẠN</p>
                         <div id="room-type">
                         </div>
                         <div id="grid"></div>
@@ -41,6 +43,8 @@
                 <dd>#:RoomTypeName#</dd>
                 <dt>Nhóm phòng</dt>
                 <dd>#:RoomGroup#</dd>
+                <dt>Ngôn ngữ</dt>
+                <dd>#:LanguageCode#</dd>
                 <dt>Mô tả</dt>
                 <dd>#:Description#</dd>
                 <dt>Công khai ?</dt>
@@ -69,11 +73,20 @@
                 <dt>Nhóm phòng</dt>
                 <dd>
                     <select data-role="dropdownlist" data-bind="value:RoomGroup" name="RoomGroup" required="required" validationMessage="không được trống">
-                       <option value="Room">Phòng nghỉ</option>
+                       <option value="Room And Price">Phòng nghỉ</option>
                        <option value="Meeting Room">Phòng họp</option>
                         <option value="Restaurant">Nhà hàng</option>
                     </select>
                     <span data-for="RoomGroup" class="k-invalid-msg"></span>
+                </dd>
+                <dt>Ngôn ngữ</dt>
+                <dd>
+                    <select data-role="dropdownlist" data-bind="value:LanguageCode" name="LanguageCode" required="required" validationMessage="không được trống">  
+                       <option value="vi-VN">Tiếng Việt</option>
+                       <option value="en-US">Tiếng Anh</option>
+                       <option value="ru-RU">Tiếng Nga</option>
+                    </select>
+                    <span data-for="ArticleCategoryType" class="k-invalid-msg"></span>
                 </dd>
                 <dt>Mô tả</dt>
                 <dd>
@@ -100,6 +113,7 @@
         <input type="file" id="uploadimage" name="files"/>
         <img src="/Images/#= ImageUrl #" id="aimage" alt="#= ImageUrl #"/>
         <span class="roomtypespan"><label>Loại phòng:</label> <select id="roomtypes"></select></span>
+        <p style="width: 100%; text-align: center; float: left">QUẢN LÝ THUỘC TÍNH</p>
         <div id="detailgrid"></div>
     </script>
 
@@ -144,7 +158,8 @@
                         fields: {
                             RoomTypeID: { editable: false, nullable: true },
                             RoomTypeName: { type: "string" },
-                            RoomGroup: { type: "string" },
+                            RoomGroup: { defaultValue: "Room And Price" },
+                            LanguageCode: { defaultValue: "vi-VN" },
                             Description: { type: "string" },
                             IsPublished: { type: "boolean" },
                             IsNew: { type: "boolean" },
@@ -204,7 +219,7 @@
                     model: {
                         id: "RoomID",
                         fields: {
-                            RoomID: { editable: false, nullable: true },
+                            RoomID: { editable: false, defaultValue: "@Guid.NewGuid()" },
                             RoomName: { validation: { required: true } },
                             Description: { type: "string" },
                             Quantity: { type: "number" },
@@ -215,6 +230,7 @@
                             IsDeal: { type: "boolean" },
                             ImageUrl: { type: "string" },
                             OrderID: { type: "number" },
+                            LanguageCode: { defaultValue: "vi-VN", template: "#= LanguageCode #" },
                             //Article: { defaultValue: { ArticleID: '@Guid.Empty', Title: "Chọn bài viết" } },
                             RoomTypeIDs: { type: "string" }
                         }
@@ -228,20 +244,42 @@
                 toolbar: ["create", "save", "cancel"],
                 columns: [
                     { field: "RoomName", title: "Tên phòng" },
-                    { field: "Description", title: "Mô tả" },
-                    { field: "Quantity", title: "Số lượng" },
+                    { field: "Description", title: "Mô tả", width: "100px" },
+                    { field: "Quantity", title: "Số lượng", width: "80px" },
                     { field: "ImageUrl", title: "ImageUrl", hidden: true },
-                    { field: "OrderID", title: "Thứ tự" },
+                    { field: "OrderID", title: "Thứ tự", width: "70px" },
+                    { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
                     { field: "BookedFrom", title: "Đặt từ", format: "{0:yyyy-MM-dd HH:mm}", editor: dateTimeEditor, hidden: true },
                     { field: "BookedTo", title: "Đặt đến", format: "{0:yyyy-MM-dd HH:mm}", editor: dateTimeEditor, hidden: true },
-                    { field: "IsDeal", title: "Khuyến mãi ?" },
-                    { field: "IsPublished", title: "Công bố ?" },
-                    { field: "IsNew", title: "Mới ?" },
+                    { field: "IsDeal", title: "Khuyến mãi ?", width: "100px" },
+                    { field: "IsPublished", title: "Công bố ?", width: "80px" },
+                    { field: "IsNew", title: "Mới ?", width: "50px" },
                    // { field: "Article", title: "Bài viết", editor: articleDropDownEditor, template: "#= Article.Title #" },
-                    { command: [{ text: "Chi tiết", click: roomDetails }, "destroy"], title: " " }],
-                editable: true
+                    { command: [{ text: "Chi tiết", click: roomDetails }, "destroy"], title: " ", width: "160px" }],
+                editable: true,
+                saveChanges: function (e) {
+                    console.log(e.sender);
+                    for (var i = 0; i < e.sender._data.length; i++) {
+                        if (e.sender._data[i].RoomName == "") {
+                            alert("Chưa có tên phòng, vui lòng nhập tên phòng trước khi lưu!");
+                            e.preventDefault();
+                        }
+                        else {
+                            console.log(typeof e.sender._data[i].RoomTypeIDs);
+                            if (e.sender._data[i].RoomTypeIDs != null && e.sender._data[i].RoomTypeIDs.length != "" && typeof e.sender._data[i].RoomTypeIDs == "string") {
+                                try {
+                                    e.sender._data[i].RoomTypeIDs = e.sender._data[i].RoomTypeIDs.split(',');
+                                } catch (ex) {
+                                    var arr = [];
+                                    arr.push(e.sender._data[i].RoomTypeIDs);
+                                    e.sender._data[i].RoomTypeIDs = arr.toString();
+                                }
+                            }
+                            e.sender._data[i].dirty = true;
+                        }
+                    }
+                }
             });
-
             wnd = $("#room-type")
                         .kendoWindow({
                             title: "Chi tiết",
@@ -249,7 +287,7 @@
                             modal: true,
                             visible: false,
                             resizable: false,
-                            width: 800
+                            width: 960
                         }).data("kendoWindow");
 
             detailsTemplate = kendo.template($("#wtemplate").html());
@@ -265,11 +303,12 @@
                 $("#roomtypes").val(roomtypes.value());
                 dataItem.RoomTypeIDs = roomtypes.value();
                 console.log(dataItem.toJSON());
-                if ($("#mainfilename").val() != null || $("#mainfilename").val() != "") {
+                if ($("#mainfilename").val() != null && $("#mainfilename").val() != "") {
                     dataItem.ImageUrl = dataItem.ImageUrl + "/" + $("#mainfilename").val();
                 }
                 wnd.refresh();
-                $.ajax({
+                $("#grid").data("kendoGrid").saveChanges();
+                @*$.ajax({
                     url: '@Url.Action("CreateOrUpdateRooms", "Room")',
                     type: 'POST',
                     traditional: true,
@@ -279,7 +318,7 @@
                         models: "[" + kendo.stringify(dataItem) + "]"
                     }),
                     success: function () { $("#grid").data("kendoGrid").dataSource.read(); }
-        });
+        });*@
             }
             function dateTimeEditor(container, options) {
                 $('<input data-text-field="' + options.field + '" data-value-field="' + options.field + '" data-bind="value:' + options.field + '" data-format="' + options.format + '"/>')
@@ -357,8 +396,10 @@
                 }
             });
             var rtmultiselect = $("#roomtypes").data("kendoMultiSelect");
-            console.log(dataItem.RoomTypeIDs.split(","));
-            rtmultiselect.value(dataItem.RoomTypeIDs.split(","));
+            if (typeof dataItem.RoomTypeIDs == "string") {
+                dataItem.RoomTypeIDs = dataItem.RoomTypeIDs.split(',');
+            }
+            rtmultiselect.value(dataItem.RoomTypeIDs);
             var rID = dataItem.RoomID;
             if (rID != null) {
                 //room property
@@ -366,22 +407,22 @@
                     pageSize: 20,
                     transport: {
                         read: {
-                            url: '/Room/GetRoomPropertys?rID=' + rID,
+                            url: '/Room/GetRoomProperties?rID=' + rID,
                             type: "post",
                             dataType: "json"
                         },
                         update: {
-                            url: '@Url.Action("CreateOrUpdateRoomPropertys", "Room")',
+                            url: '@Url.Action("CreateOrUpdateRoomProperties", "Room")',
                             type: "post",
                             dataType: "json"
                         },
                         destroy: {
-                            url: '@Url.Action("DeleteRoomPropertys", "Room")',
+                            url: '@Url.Action("DeleteRoomProperties", "Room")',
                             type: "post",
                             dataType: "json"
                         },
                         create: {
-                            url: '@Url.Action("CreateOrUpdateRoomPropertys", "Room")',
+                            url: '@Url.Action("CreateOrUpdateRoomProperties", "Room")',
                             type: "post",
                             dataType: "json"
                         },
@@ -402,9 +443,10 @@
                                 RoomPropertyNumberValue: { type: "number" },
                                 Unit: { type: "string" },
                                 OrderID: { type: "number" },
+                                LanguageCode: { defaultValue: "vi-VN", template: "#= LanguageCode #" },
                                 IsPublished: { type: "boolean" },
                                 IsNew: { type: "boolean" },
-                                RoomPropertyType: { defaultValue: 0, template: "#= RoomPropertyType #" },
+                                RoomPropertyType: { defaultValue: "Property", template: "#= RoomPropertyType #" },
                                 RoomID: { defaultValue: rID }
                             }
                         }
@@ -417,14 +459,15 @@
                     toolbar: ["create", "save", "cancel"],
                     columns: [
                         { field: "RoomPropertyName", title: "Tên thuộc tính" },
-                        { field: "RoomPropertyStringValue", title: "Giá trị chuỗi" },
-                        { field: "RoomPropertyNumberValue", title: "Giá trị số" },
-                        { field: "Unit", title: "Đơn vị" },
-                        { field: "OrderID", title: "Thứ tự" },
-                        { field: "IsPublished", title: "Công bố ?" },
-                        { field: "IsNew", title: "Mới ?" },
-                        { field: "RoomPropertyType", title: "Loại thuộc tính", editor: roomPropertyTypeDropDownEditor },
-                        { command: ["destroy"], title: " " }],
+                        { field: "RoomPropertyStringValue", title: "Giá trị chuỗi", width: "100px" },
+                        { field: "RoomPropertyNumberValue", title: "Giá trị số", width: "90px" },
+                        { field: "Unit", title: "Đơn vị", width: "60px" },
+                        { field: "OrderID", title: "Thứ tự", width: "70px" },
+                        { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
+                        { field: "IsPublished", title: "Công bố ?", width: "80px" },
+                        { field: "IsNew", title: "Mới ?", width: "50px" },
+                        { field: "RoomPropertyType", title: "Loại thuộc tính", editor: roomPropertyTypeDropDownEditor, width: "100px" },
+                        { command: ["destroy"], title: " ", width: "70px" }],
                     editable: true
                 });
             }
@@ -442,6 +485,19 @@
                     });
             }
             wnd.center().open();
+        }
+        function languageDropDownEditor(container, options) {
+            $('<input required data-text-field="Language" data-value-field="LanguageCode" data-bind="value:' + options.field + '"/>')
+                .appendTo(container)
+                .kendoDropDownList({
+                    autoBind: false,
+                    dataSource:
+                        [
+                            { Language: "Tiếng Việt", LanguageCode: "vi-VN" },
+                            { Language: "Tiếng Anh", LanguageCode: "en-US" },
+                            { Language: "Tiếng Nga", LanguageCode: "ru-RU" }
+                        ]
+                });
         }
     </script>
 

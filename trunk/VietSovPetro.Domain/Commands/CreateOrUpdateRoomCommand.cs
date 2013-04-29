@@ -23,6 +23,7 @@ namespace VietSovPetro.Domain.Commands
             this.Quantity = Quantity;
             this.ImageUrl = ImageUrl;
             this.OrderID = OrderID;
+            this.LanguageCode = LanguageCode;
         }
         public Guid RoomID { get; set; }
         public string RoomName { get; set; }

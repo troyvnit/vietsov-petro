@@ -48,13 +48,7 @@
   <ItemGroup>
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\ArticleCategory.cs" />
-    <Compile Include="Entities\Gallery.cs" />
-    <Compile Include="Entities\Price.cs" />
-    <Compile Include="Entities\Restaurant.cs" />
-    <Compile Include="Entities\RestaurantDetail.cs" />
-    <Compile Include="Entities\RestaurantMenu.cs" />
     <Compile Include="Entities\Room.cs" />
-    <Compile Include="Entities\RoomDetail.cs" />
     <Compile Include="Entities\RoomProperty.cs" />
     <Compile Include="Entities\RoomType.cs" />
     <Compile Include="Entities\User.cs" />

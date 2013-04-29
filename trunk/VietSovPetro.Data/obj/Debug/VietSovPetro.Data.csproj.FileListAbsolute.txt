@@ -22,3 +22,15 @@ D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Core.pdb
 D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.csprojResolveAssemblyReference.cache
 D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.dll
 D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.dll.config
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\EntityFramework.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Model.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Core.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Model.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\EntityFramework.xml
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Core.pdb
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.csprojResolveAssemblyReference.cache
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.dll
+E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.pdb
