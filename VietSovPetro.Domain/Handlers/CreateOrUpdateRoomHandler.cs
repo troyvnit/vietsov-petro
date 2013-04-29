@@ -23,28 +23,27 @@ namespace VietSovPetro.Domain.Handlers
         }
         public ICommandResult Execute(CreateOrUpdateRoomCommand command)
         {
-            var ID = Guid.Empty;
-            if (command.RoomID == Guid.Empty)
+            Guid ID;
+            if (roomRepository.GetById(command.RoomID) == null)
             {
                 var room = new Room
+                    {
+                        RoomName = command.RoomName,
+                        Description = command.Description,
+                        BookedFrom = command.BookedFrom,
+                        BookedTo = command.BookedTo,
+                        IsDeal = command.IsDeal,
+                        IsNew = command.IsNew,
+                        IsPublished = command.IsPublished,
+                        IsDeleted = false,
+                        ImageUrl = command.ImageUrl,
+                        Quantity = command.Quantity,
+                        OrderID = command.OrderID,
+                        LanguageCode = command.LanguageCode,
+                        RoomID = command.RoomID == Guid.Empty ? Guid.NewGuid() : command.RoomID, RoomTypes = new List<RoomType>()
+                    };
+                foreach (var roomtype in command.RoomTypeIDs.Select(rID => roomTypeRepository.GetById(rID)))
                 {
-                    RoomID = Guid.NewGuid(),
-                    RoomName = command.RoomName,
-                    Description = command.Description,
-                    BookedFrom = command.BookedFrom,
-                    BookedTo = command.BookedTo,
-                    IsDeal = command.IsDeal,
-                    IsNew = command.IsNew,
-                    IsPublished = command.IsPublished,
-                    IsDeleted = false,
-                    ImageUrl = command.ImageUrl,
-                    Quantity = command.Quantity,
-                    OrderID = command.OrderID
-                };
-                room.RoomTypes = new List<RoomType>();
-                foreach (Guid rID in command.RoomTypeIDs)
-                {
-                    var roomtype = roomTypeRepository.GetById(rID);
                     room.RoomTypes.Add(roomtype);
                 }
                 roomRepository.Add(room);
@@ -64,13 +63,9 @@ namespace VietSovPetro.Domain.Handlers
                 room.ImageUrl = command.ImageUrl;
                 room.Quantity = command.Quantity;
                 room.OrderID = command.OrderID;
+                room.LanguageCode = command.LanguageCode;
 
-                var roomtypes = new List<RoomType>();
-                foreach (Guid rID in command.RoomTypeIDs)
-                {
-                    var roomType = roomTypeRepository.GetById(rID);
-                    roomtypes.Add(roomType);
-                }
+                var roomtypes = command.RoomTypeIDs.Select(rID => roomTypeRepository.GetById(rID)).ToList();
                 var deleteCats = room.RoomTypes.Where(ac => !command.RoomTypeIDs.Contains(ac.RoomTypeID)).ToList();
                 var addCats = roomtypes.Where(ac => !room.RoomTypes.Select(a => a.RoomTypeID).Contains(ac.RoomTypeID)).ToList();
 

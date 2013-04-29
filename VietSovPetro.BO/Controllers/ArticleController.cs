@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using VietSovPetro.Data;
-using VietSovPetro.Data.Repositories;
+
 using VietSovPetro.Data.Repositories.IRepositories;
 using VietSovPetro.Model.Entities;
 using VietSovPetro.CommandProcessor.Dispatcher;
@@ -12,7 +9,6 @@ using VietSovPetro.Domain.Commands;
 using AutoMapper;
 using Newtonsoft.Json;
 using VietSovPetro.BO.ViewModels;
-using VietSovPetro.CommandProcessor.Commands;
 
 namespace VietSovPetro.BO.Controllers
 {
@@ -36,26 +32,22 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public JsonResult GetArticleCategories()
         {
-            var articlecategories = new List<ArticleCategoryViewModel>(); 
-            foreach (ArticleCategory articlecategory in articleCategoryRepository.GetAll().Where(a => a.IsDeleted != true))
-            {
-                articlecategories.Add(Mapper.Map<ArticleCategory, ArticleCategoryViewModel>(articlecategory));
-            }
-            return Json(articlecategories, JsonRequestBehavior.AllowGet);
+            var articlecategories = articleCategoryRepository.GetAll().Where(a => a.IsDeleted != true).Select(Mapper.Map<ArticleCategory, ArticleCategoryViewModel>).ToList();
+            return Json(articlecategories.OrderBy(a => a.ArticleCategoryType), JsonRequestBehavior.AllowGet);
         }    
         [HttpPost]
         public ActionResult CreateOrUpdateArticleCategories(string models)
         {
-            List<ArticleCategoryViewModel> articleCategories = JsonConvert.DeserializeObject<List<ArticleCategoryViewModel>>(models);
+            var articleCategories = JsonConvert.DeserializeObject<List<ArticleCategoryViewModel>>(models);
             if (ModelState.IsValid)
             {
                 foreach (var articleCategory in articleCategories)
                 {
                     var command = Mapper.Map<ArticleCategoryViewModel, CreateOrUpdateArticleCategoryCommand>(articleCategory);
-                    IEnumerable<ValidationResult> errors = commandBus.Validate(command);
+                    commandBus.Validate(command);
                     if (ModelState.IsValid)
                     {
-                        var result = commandBus.Submit(command);
+                        commandBus.Submit(command);
                     }
                 }
                 return Json(articleCategories, JsonRequestBehavior.AllowGet);
@@ -65,13 +57,12 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public ActionResult DeleteArticleCategories(string models)
         {
-             List<ArticleCategoryViewModel> articleCategories = JsonConvert.DeserializeObject<List<ArticleCategoryViewModel>>(models);
+             var articleCategories = JsonConvert.DeserializeObject<List<ArticleCategoryViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var articleCategory in articleCategories)
+                foreach (var command in articleCategories.Select(Mapper.Map<ArticleCategoryViewModel, DeleteArticleCategoryCommand>))
                 {
-                    var command = Mapper.Map<ArticleCategoryViewModel, DeleteArticleCategoryCommand>(articleCategory);
-                    var result = commandBus.Submit(command);
+                    commandBus.Submit(command);
                 }
                 return Json(articleCategories, JsonRequestBehavior.AllowGet);
             }
@@ -81,29 +72,30 @@ namespace VietSovPetro.BO.Controllers
         public JsonResult GetArticles()
         {
             var articles = new List<ArticleViewModel>();
-            foreach(Article article in articleRepository.GetAll().Where(a => a.IsDeleted != true))
+            foreach(var article in articleRepository.GetAll().Where(a => a.IsDeleted != true))
             {
                 var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
                 articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
                 articles.Add(articlevm);
             }
-            return Json(articles, JsonRequestBehavior.AllowGet);
+            return Json(articles.OrderBy(a => a.OrderID), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult CreateOrUpdateArticles(string models)
         {
-            List<ArticleViewModel> articles = JsonConvert.DeserializeObject<List<ArticleViewModel>>(models);
+            var articles = JsonConvert.DeserializeObject<List<ArticleViewModel>>(models);
             if (ModelState.IsValid)
             {
                 foreach (var article in articles)
                 {
                     var command = Mapper.Map<ArticleViewModel, CreateOrUpdateArticleCommand>(article);
-                    IEnumerable<ValidationResult> errors = commandBus.Validate(command);
-                    if (ModelState.IsValid)
+                    commandBus.Validate(command);
+                    if (!ModelState.IsValid)
                     {
-                        var result = commandBus.Submit(command);
-                        article.ArticleID = result.ID;
+                        continue;
                     }
+                    var result = commandBus.Submit(command);
+                    article.ArticleID = result.ID;
                 }
                 return Json(articles, JsonRequestBehavior.AllowGet);
             }
@@ -112,13 +104,12 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public ActionResult DeleteArticles(string models)
         {
-            List<ArticleViewModel> articles = JsonConvert.DeserializeObject<List<ArticleViewModel>>(models);
+            var articles = JsonConvert.DeserializeObject<List<ArticleViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var article in articles)
+                foreach (var command in articles.Select(Mapper.Map<ArticleViewModel, DeleteArticleCommand>))
                 {
-                    var command = Mapper.Map<ArticleViewModel, DeleteArticleCommand>(article);
-                    var result = commandBus.Submit(command);
+                    commandBus.Submit(command);
                 }
                 return Json(articles, JsonRequestBehavior.AllowGet);
             }

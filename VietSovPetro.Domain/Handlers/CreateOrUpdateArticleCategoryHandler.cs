@@ -19,13 +19,14 @@ namespace VietSovPetro.Domain.Handlers
         }
         public ICommandResult Execute(CreateOrUpdateArticleCategoryCommand command)
         {
-            var ID = Guid.Empty;
+            Guid ID;
             var articleCategory = new ArticleCategory
             {
                 ArticleCategoryID = command.ArticleCategoryId,
                 ArticleCategoryName = command.ArticleCategoryName,
                 ArticleCategoryType = command.ArticleCategoryType,
-                Description = command.Description
+                Description = command.Description,
+                LanguageCode = command.LanguageCode
             };
             if (articleCategory.ArticleCategoryID == Guid.Empty)
             {

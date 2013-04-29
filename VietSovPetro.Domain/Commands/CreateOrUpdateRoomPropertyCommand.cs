@@ -21,6 +21,7 @@ namespace VietSovPetro.Domain.Commands
             this.RoomID = RoomID;
             this.Unit = Unit;
             this.OrderID = OrderID;
+            this.LanguageCode = LanguageCode;
         }
         public Guid RoomPropertyID { get; set; }
         public string RoomPropertyName { get; set; }

@@ -17,15 +17,9 @@ namespace VietSovPetro.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<ArticleCategory> ArticleCategories { get; set; }
-        public DbSet<Gallery> Galleries { get; set; }
-        public DbSet<Price> Prices { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
-        public DbSet<RoomDetail> RoomDetails { get; set; }
         public DbSet<RoomProperty> RoomProperties { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<RestaurantDetail> RestaurantDetails { get; set; }
-        public DbSet<RestaurantMenu> RestaurantMenus { get; set; }
         public virtual void Commit()
         {
             try

@@ -24,6 +24,7 @@ namespace VietSovPetro.BO.ViewModels
         [MaxLength(256)]
         public string ImageUrl { get; set; }
         public int OrderID { get; set; }
+        public string LanguageCode { get; set; }
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
         public List<Guid> ArticleCategoryIDs { get; set; }

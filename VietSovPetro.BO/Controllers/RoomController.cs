@@ -41,7 +41,7 @@ namespace VietSovPetro.BO.Controllers
             {
                 roomtypes.Add(Mapper.Map<RoomType, RoomTypeViewModel>(roomtype));
             }
-            return Json(roomtypes, JsonRequestBehavior.AllowGet);
+            return Json(roomtypes.OrderBy(r => r.RoomGroup), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult CreateOrUpdateRoomTypes(string models)
@@ -87,7 +87,7 @@ namespace VietSovPetro.BO.Controllers
                 roomvm.RoomTypeIDs = room.RoomTypes.Select(a => a.RoomTypeID).ToList();
                 rooms.Add(roomvm);
             }
-            return Json(rooms, JsonRequestBehavior.AllowGet);
+            return Json(rooms.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult CreateOrUpdateRooms(string models)
@@ -124,17 +124,17 @@ namespace VietSovPetro.BO.Controllers
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public JsonResult GetRoomPropertys(Guid? rID)
+        public JsonResult GetRoomProperties(Guid? rID)
         {
             var roomPropertys = new List<RoomPropertyViewModel>();
             foreach (RoomProperty roomProperty in roomPropertyRepository.GetAll().Where(a => a.IsDeleted != true && a.RoomID == rID))
             {
                 roomPropertys.Add(Mapper.Map<RoomProperty, RoomPropertyViewModel>(roomProperty));
             }
-            return Json(roomPropertys, JsonRequestBehavior.AllowGet);
+            return Json(roomPropertys.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult CreateOrUpdateRoomPropertys(string models)
+        public ActionResult CreateOrUpdateRoomProperties(string models)
         {
             List<RoomPropertyViewModel> roomProperties = JsonConvert.DeserializeObject<List<RoomPropertyViewModel>>(models);
             if (ModelState.IsValid)

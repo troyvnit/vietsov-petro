@@ -9,6 +9,7 @@
             <div id="horizontal" style="height: 100%; width: 100%;">
                 <div id="left-pane">
                     <div class="pane-content">
+                        <p style="width: 100%; text-align: center">QUẢN LÝ HẠNG MỤC</p>
                         <div class="article-category-list">
                             <a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span></a>
                         </div>
@@ -21,6 +22,7 @@
                 </div>
                 <div id="right-pane">
                     <div class="pane-content">
+                        <p style="width: 100%; text-align: center">QUẢN LÝ BÀI VIẾT</p>
                         <div id="article-content">
                             @*<input type="file" id="uploadimage" name="files"/>
                             <img id="aimage" />
@@ -46,6 +48,8 @@
                 <dd>#:ArticleCategoryName#</dd>
                 <dt>Loại hạng mục</dt>
                 <dd>#:ArticleCategoryType#</dd>
+                <dt>Ngôn ngữ</dt>
+                <dd>#:LanguageCode#</dd>
                 <dt>Mô tả</dt>
                 <dd>#:Description#</dd>
             </dl>
@@ -68,8 +72,21 @@
                 <dt>Loại hạng mục</dt>
                 <dd>
                     <select data-role="dropdownlist" data-bind="value:ArticleCategoryType" name="ArticleCategoryType" required="required" validationMessage="không được trống">  
-                       <option value="Room">Giới thiệu phòng</option>
-                       <option value="Introduction">Giới thiệu VietSov Petro</option>
+                       <option value="Room">Phòng</option>
+                       <option value="Introduction">Giới thiệu</option>
+                       <option value="Contact">Liên hệ</option>
+                       <option value="Notification">Thông báo</option>
+                       <option value="Information">Thông tin</option>
+                       <option value="News">Tin tức</option>
+                    </select>
+                    <span data-for="ArticleCategoryType" class="k-invalid-msg"></span>
+                </dd>
+                <dt>Ngôn ngữ</dt>
+                <dd>
+                    <select data-role="dropdownlist" data-bind="value:LanguageCode" name="LanguageCode" required="required" validationMessage="không được trống">  
+                       <option value="vi-VN">Tiếng Việt</option>
+                       <option value="en-US">Tiếng Anh</option>
+                       <option value="ru-RU">Tiếng Nga</option>
                     </select>
                     <span data-for="ArticleCategoryType" class="k-invalid-msg"></span>
                 </dd>
@@ -82,9 +99,11 @@
     </script>
 
     <script type="text/x-kendo-template" id="wtemplate">
-                    <input type="file" id="uploadimage" name="files"/>
+                    <div style="float:left; width: 100%"><label style="margin-left:240px">Ảnh chính: </label><input type="text" style="display: none" name="mainfilename" id="mainfilename"/></div>
+        <input type="file" id="uploadimage" name="files"/>
                             <img src="/Images/#= ImageUrl #" id="aimage" />
                             <span class="articlecategoryspan"><label>Hạng mục:</label> <select id="articlecategories"></select></span>
+        <p style="width: 100%; text-align: center; float: left">QUẢN LÝ THUỘC TÍNH</p>
                             <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">#= Content #
                     </textarea>
     </script>
@@ -131,8 +150,9 @@
                         fields: {
                             ArticleCategoryID: { editable: false, nullable: true },
                             ArticleCategoryName: { type: "string" },
-                            ArticleCategoryType: { type: "string" },
-                            Description: { type: "string" }
+                            ArticleCategoryType: { defaultValue: "Introduction" },
+                            Description: { type: "string" },
+                            LanguageCode: { defaultValue: "vi-VN" }
                         }
                     }
                 }
@@ -188,13 +208,14 @@
                     model: {
                         id: "ArticleID",
                         fields: {
-                            ArticleID: { editable: false, nullable: true },
+                            ArticleID: { editable: false, defaultValue: "@Guid.NewGuid()" },
                             Title: { validation: { required: true } },
                             Description: { type: "string" },
-                            Author: { type: "string" },
-                            Content: { type: "string" },
+                            Author: { validation: { required: true } },
+                            Content: { validation: { required: true } },
                             ImageUrl: { type: "string" },
                             OrderID: { type: "number" },
+                            LanguageCode: { defaultValue: "vi-VN", template: "#= LanguageCode #" },
                             IsPublished: { type: "boolean" },
                             IsNew: { type: "boolean" },
                             ArticleCategoryIDs: { type: "string" }
@@ -210,16 +231,60 @@
                 toolbar: ["create", "save", "cancel"],
                 columns: [
                     { field: "Title", title: "Tiêu đề" },
-                    { field: "Description", title: "Mô tả" },
-                    { field: "Author", title: "Tác giả" },
+                    { field: "Description", title: "Mô tả", width: "70px" },
+                    { field: "Author", title: "Tác giả", width: "70px" },
+                    { field: "Content", title: "Nội dung", hidden: true },
                     { field: "ImageUrl", title: "ImageUrl", hidden: true },
-                    { field: "OrderID", title: "Thứ tự" },
-                    { field: "Content", title: "Content", hidden: true },
-                    { field: "IsPublished", title: "Công bố ?", width: "100px" },
-                    { field: "IsNew", title: "Mới ?", width: "100px" },
-                    { command: [{ text: "Nội dung", click: contentEditor }, "destroy"], title: " ", width: "200px" }],
-                editable: true
+                    { field: "OrderID", title: "Thứ tự", width: "70px" },
+                    { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
+                    { field: "IsPublished", title: "Công bố ?", width: "80px" },
+                    { field: "IsNew", title: "Mới ?", width: "50px" },
+                    { command: [{ text: "Nội dung", click: contentEditor }, "destroy"], title: " ", width: "180px" }],
+                editable: true,
+                saveChanges: function (e) {
+                    console.log(e.sender);
+                    for (var i = 0; i < e.sender._data.length; i++) {
+                        if (e.sender._data[i].Title == "") {
+                            alert("Bài viết chưa có tiêu đề, vui lòng nhập tiêu đề trước khi lưu!");
+                            e.preventDefault();
+                        }
+                        else if (e.sender._data[i].Author == "") {
+                            alert("Bài viết chưa có tác giả, vui lòng nhập tác giả trước khi lưu!");
+                            e.preventDefault();
+                        }
+                        else if (e.sender._data[i].Content == "") {
+                            alert("Bài viết " + e.sender._data[i].Title + " chưa có nội dung, vui lòng nhập nội dung trước khi lưu!");
+                            e.preventDefault();
+                        } 
+                        else {
+                            console.log(typeof e.sender._data[i].ArticleCategoryIDs);
+                            if (e.sender._data[i].ArticleCategoryIDs != null && e.sender._data[i].ArticleCategoryIDs.length != "" && typeof e.sender._data[i].ArticleCategoryIDs == "string") {
+                                try {
+                                    e.sender._data[i].ArticleCategoryIDs = e.sender._data[i].ArticleCategoryIDs.split(',');
+                                } catch (ex) {
+                                    var arr = [];
+                                    arr.push(e.sender._data[i].ArticleCategoryIDs);
+                                    e.sender._data[i].ArticleCategoryIDs = arr.toString();
+                                }
+                            }
+                            e.sender._data[i].dirty = true;
+                        }
+                    }
+                }
             });
+            function languageDropDownEditor(container, options) {
+                $('<input required data-text-field="Language" data-value-field="LanguageCode" data-bind="value:' + options.field + '"/>')
+                    .appendTo(container)
+                    .kendoDropDownList({
+                        autoBind: false,
+                        dataSource:
+                            [
+                                { Language: "Tiếng Việt", LanguageCode: "vi-VN" },
+                                { Language: "Tiếng Anh", LanguageCode: "en-US" },
+                                { Language: "Tiếng Nga", LanguageCode: "ru-RU" }
+                            ]
+                    });
+            }
             wnd = $("#article-content")
                         .kendoWindow({
                             title: "Nội dung",
@@ -227,7 +292,7 @@
                             modal: true,
                             visible: false,
                             resizable: false,
-                            width: 800
+                            width: 960
                         }).data("kendoWindow");
 
             detailsTemplate = kendo.template($("#wtemplate").html());
@@ -245,8 +310,25 @@
                 var articlecategories = $("#articlecategories").data("kendoMultiSelect");
                 $("#articlecategoryids").val(articlecategories.value());
                 dataItem.ArticleCategoryIDs = articlecategories.value();
-                console.log($("#articlecategoryids").val());
+                console.log($("#mainfilename").val());
+                if ($("#mainfilename").val() != null && $("#mainfilename").val() != "") {
+                    dataItem.ImageUrl = dataItem.ImageUrl + "/" + $("#mainfilename").val();
+                }
                 wnd.refresh();
+                $("#grid").data("kendoGrid").saveChanges();
+                                @*if (dataItem.Title != "" && dataItem.Content != "") {
+                    $.ajax({
+                        url: '@Url.Action("CreateOrUpdateArticles", "Article")',
+                        type: 'POST',
+                        traditional: true,
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: kendo.stringify({
+                            models: "[" + kendo.stringify(dataItem) + "]"
+                        }),
+                        success: function() { $("#grid").data("kendoGrid").dataSource.read(); }
+                    });
+                }*@
             }
         });
 
@@ -277,18 +359,40 @@
         e.preventDefault();
         dataItem = this.dataItem($(e.currentTarget).closest("tr"));
         wnd.content(detailsTemplate(dataItem));
+        var arrFiles = [];
         $("#uploadimage").kendoUpload({
             multiple: true,
             async: {
-                saveUrl: '@Url.Action("SaveImages", "Common")'
+                saveUrl: "/Common/SaveImages?folder=Article/" + dataItem.ArticleID
                 },
             success: function (e) {
-                var ImageUrl = e.response.ImageUrl;
+                var ImageUrl = e.response.Folder;
                 dataItem.ImageUrl = ImageUrl;
-                $("#aimage").attr("src", "/Images/" + ImageUrl);
-                console.log(dataItem.ImageUrl);
-            }
+            },
+            select: onSelect
         });
+        function onSelect(e) {
+            $.map(e.files, function (file) {
+                var info = file.name;
+                var obj = { text: file.name, value: file.name };
+                arrFiles.push(obj);
+            }).join(",");
+            $("#mainfilename").kendoDropDownList({
+                dataTextField: "text",
+                dataValueField: "value",
+                dataSource: arrFiles,
+                index: 0,
+                change: onChangeMainFile
+            });
+        }
+        function onChangeMainFile(e) {
+            var url = dataItem.ImageUrl + "/" + $("#mainfilename").val();
+            var ext = $("#mainfilename").val().split('.').pop();
+            if (ext == "jpg" || ext == "jpeg" || ext == "gif" || "png") {
+                $("#aimage").attr("src", "/Images/" + url);
+            }
+            console.log(dataItem.ImageUrl);
+        }
             $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh cho bài viết");
             $("#articlecategories").kendoMultiSelect({
                 placeholder: "Chọn hạng mục cho bài viết...",
@@ -297,8 +401,10 @@
                 dataSource: articleCategoryDataSource
             });
             var acmultiselect = $("#articlecategories").data("kendoMultiSelect");
-            console.log(dataItem.ArticleCategoryIDs.split(","));
-            acmultiselect.value(dataItem.ArticleCategoryIDs.split(","));
+            if (typeof dataItem.ArticleCategoryIDs == "string") {
+                dataItem.ArticleCategoryIDs = dataItem.ArticleCategoryIDs.split(',');
+            }
+            acmultiselect.value(dataItem.ArticleCategoryIDs);
             $("#ceditor").kendoEditor({
                 encoded: false,
                 tools: [
@@ -327,15 +433,15 @@
                     "viewHtml"
                 ]
             });
-            function onSaveContentWindow() {
-                var ceditor = $("#ceditor").data("kendoEditor");
-                dataItem.Content = $('<div/>').text(ceditor.value()).html();
-                console.log(dataItem.Content);
-                var articlecategories = $("#articlecategories").data("kendoMultiSelect");
-                $("#articlecategoryids").val(articlecategories.value());
-                dataItem.ArticleCategoryIDs = articlecategories.value();
-                console.log($("#articlecategoryids").val());
-            }
+            //function onSaveContentWindow() {
+            //    var ceditor = $("#ceditor").data("kendoEditor");
+            //    dataItem.Content = $('<div/>').text(ceditor.value()).html();
+            //    console.log(dataItem.Content);
+            //    var articlecategories = $("#articlecategories").data("kendoMultiSelect");
+            //    $("#articlecategoryids").val(articlecategories.value());
+            //    dataItem.ArticleCategoryIDs = articlecategories.value();
+            //    console.log($("#articlecategoryids").val());
+            //}
         wnd.center().open();
     }
     //function openContentEditor(container, options) {

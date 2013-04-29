@@ -23,26 +23,27 @@ namespace VietSovPetro.Domain.Handlers
         }
         public ICommandResult Execute(CreateOrUpdateArticleCommand command)
         {
-            var ID = Guid.Empty;
-            if (command.ArticleID == Guid.Empty)
+            Guid ID;
+            if (articleRepository.GetById(command.ArticleID) == null)
             {
                 var article = new Article
+                    {
+                        Author = command.Author,
+                        Content = command.Content,
+                        Description = command.Description,
+                        ImageUrl = command.ImageUrl,
+                        IsNew = command.IsNew,
+                        IsPublished = command.IsPublished,
+                        Title = command.Title,
+                        IsDeleted = false,
+                        ActicleNumber = 1,
+                        OrderID = command.OrderID,
+                        LanguageCode = command.LanguageCode, 
+                        ArticleCategories = new List<ArticleCategory>(), 
+                        ArticleID = command.ArticleID == Guid.Empty ? Guid.NewGuid() : command.ArticleID
+                    };
+                foreach (var articlecategory in command.ArticleCategoryIDs.Select(acID => articleCategoryRepository.GetById(acID)))
                 {
-                    ArticleID = Guid.NewGuid(),
-                    Author = command.Author,
-                    Content = command.Content,
-                    Description = command.Description,
-                    ImageUrl = command.ImageUrl,
-                    IsNew = command.IsNew,
-                    IsPublished = command.IsPublished,
-                    Title = command.Title,
-                    IsDeleted = false,
-                    ActicleNumber = 1
-                };
-                article.ArticleCategories = new List<ArticleCategory>();
-                foreach (Guid acID in command.ArticleCategoryIDs)
-                {
-                    var articlecategory = articleCategoryRepository.GetById(acID);
                     article.ArticleCategories.Add(articlecategory);
                 }
                 articleRepository.Add(article);
@@ -60,12 +61,9 @@ namespace VietSovPetro.Domain.Handlers
                 article.Title = command.Title;
                 article.IsDeleted = false;
                 article.ActicleNumber = 1;
-                var articlecategories = new List<ArticleCategory>();
-                foreach (Guid acID in command.ArticleCategoryIDs)
-                {
-                    var articlecategory = articleCategoryRepository.GetById(acID);
-                    articlecategories.Add(articlecategory);
-                }
+                article.OrderID = command.OrderID;
+                article.LanguageCode = command.LanguageCode;
+                var articlecategories = command.ArticleCategoryIDs.Select(acID => articleCategoryRepository.GetById(acID)).ToList();
                 var deleteCats = article.ArticleCategories.Where(ac => !command.ArticleCategoryIDs.Contains(ac.ArticleCategoryID)).ToList();
                 var addCats = articlecategories.Where(ac => !article.ArticleCategories.Select(a => a.ArticleCategoryID).Contains(ac.ArticleCategoryID)).ToList();
 

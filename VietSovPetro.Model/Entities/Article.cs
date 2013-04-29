@@ -44,6 +44,5 @@ namespace VietSovPetro.Model.Entities
         //public Guid UserID { get; set; }
         //public virtual User User { get; set; }
         public virtual ICollection<ArticleCategory> ArticleCategories { get; set; }
-        public virtual ICollection<Gallery> Galleries { get; set; }
     }
 }

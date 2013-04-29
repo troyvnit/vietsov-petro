@@ -16,5 +16,6 @@ namespace VietSovPetro.BO.ViewModels
         [Required]
         public string ArticleCategoryType { get; set; }
         public string Description { get; set; }
+        public string LanguageCode { get; set; }
     }
 }

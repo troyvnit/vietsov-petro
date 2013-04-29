@@ -35,9 +35,7 @@ namespace VietSovPetro.Model.Entities
         public Guid CreatedBy { get; set; }
         public DateTime UpdatedOn { get; set; }
         public Guid UpdatedBy { get; set; }
-        public virtual ICollection<Price> Prices { get; set; }
         public virtual ICollection<RoomType> RoomTypes { get; set; }
-        public virtual ICollection<RoomDetail> RoomDetails { get; set; }
         public virtual ICollection<RoomProperty> RoomProperties { get; set; }
     }
 }
