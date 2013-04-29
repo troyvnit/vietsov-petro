@@ -14,6 +14,7 @@ using VietSovPetro.Model.Entities;
 
 namespace VietSovPetro.BO.Controllers
 {
+    [Authorize]
     public class RoomController : Controller
     {
         //
@@ -31,7 +32,11 @@ namespace VietSovPetro.BO.Controllers
         }
         public ActionResult Index()
         {
-            return View("~/Views/Admin/Room/Index.cshtml");
+            if (Session["VietSovPetroAdmin"] != null)
+            {
+                return View("~/Views/Admin/Room/Index.cshtml");
+            }
+            return RedirectToAction("Login", "Account");
         }
         [HttpPost]
         public JsonResult GetRoomTypes()

@@ -12,6 +12,7 @@ using VietSovPetro.BO.ViewModels;
 
 namespace VietSovPetro.BO.Controllers
 {
+    [Authorize]
     public class ArticleController : Controller
     {
         //
@@ -27,7 +28,11 @@ namespace VietSovPetro.BO.Controllers
         }
         public ActionResult Index()
         {
-            return View("~/Views/Admin/Article/Index.cshtml");
+            if (Session["VietSovPetroAdmin"] != null)
+            {
+                return View("~/Views/Admin/Article/Index.cshtml");
+            }
+            return RedirectToAction("Login", "Account"); 
         }
         [HttpPost]
         public JsonResult GetArticleCategories()
