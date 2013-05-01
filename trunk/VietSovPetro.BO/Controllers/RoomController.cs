@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Newtonsoft.Json;
 using VietSovPetro.BO.ViewModels;
-using VietSovPetro.CommandProcessor.Commands;
 using VietSovPetro.CommandProcessor.Dispatcher;
 using VietSovPetro.Data.Repositories.IRepositories;
 using VietSovPetro.Domain.Commands;
@@ -41,26 +39,21 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public JsonResult GetRoomTypes()
         {
-            var roomtypes = new List<RoomTypeViewModel>();
-            foreach (RoomType roomtype in roomTypeRepository.GetAll().Where(a => a.IsDeleted != true))
-            {
-                roomtypes.Add(Mapper.Map<RoomType, RoomTypeViewModel>(roomtype));
-            }
+            var roomtypes = roomTypeRepository.GetAll().Where(a => a.IsDeleted != true).Select(Mapper.Map<RoomType, RoomTypeViewModel>).ToList();
             return Json(roomtypes.OrderBy(r => r.RoomGroup), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult CreateOrUpdateRoomTypes(string models)
         {
-            List<RoomTypeViewModel> roomTypes = JsonConvert.DeserializeObject<List<RoomTypeViewModel>>(models);
+            var roomTypes = JsonConvert.DeserializeObject<List<RoomTypeViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var roomType in roomTypes)
+                foreach (var command in roomTypes.Select(Mapper.Map<RoomTypeViewModel, CreateOrUpdateRoomTypeCommand>))
                 {
-                    var command = Mapper.Map<RoomTypeViewModel, CreateOrUpdateRoomTypeCommand>(roomType);
-                    IEnumerable<ValidationResult> errors = commandBus.Validate(command);
+                    commandBus.Validate(command);
                     if (ModelState.IsValid)
                     {
-                        var result = commandBus.Submit(command);
+                        commandBus.Submit(command);
                     }
                 }
                 return Json(roomTypes, JsonRequestBehavior.AllowGet);
@@ -70,13 +63,12 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public ActionResult DeleteRoomTypes(string models)
         {
-            List<RoomTypeViewModel> roomTypes = JsonConvert.DeserializeObject<List<RoomTypeViewModel>>(models);
+            var roomTypes = JsonConvert.DeserializeObject<List<RoomTypeViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var roomType in roomTypes)
+                foreach (var command in roomTypes.Select(Mapper.Map<RoomTypeViewModel, DeleteRoomTypeCommand>))
                 {
-                    var command = Mapper.Map<RoomTypeViewModel, DeleteRoomTypeCommand>(roomType);
-                    var result = commandBus.Submit(command);
+                    commandBus.Submit(command);
                 }
                 return Json(roomTypes, JsonRequestBehavior.AllowGet);
             }
@@ -86,7 +78,7 @@ namespace VietSovPetro.BO.Controllers
         public JsonResult GetRooms()
         {
             var rooms = new List<RoomViewModel>();
-            foreach (Room room in roomRepository.GetAll().Where(a => a.IsDeleted != true))
+            foreach (var room in roomRepository.GetAll().Where(a => a.IsDeleted != true))
             {
                 var roomvm = Mapper.Map<Room, RoomViewModel>(room);
                 roomvm.RoomTypeIDs = room.RoomTypes.Select(a => a.RoomTypeID).ToList();
@@ -97,16 +89,15 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public ActionResult CreateOrUpdateRooms(string models)
         {
-            List<RoomViewModel> rooms = JsonConvert.DeserializeObject<List<RoomViewModel>>(models);
+            var rooms = JsonConvert.DeserializeObject<List<RoomViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var room in rooms)
+                foreach (var command in rooms.Select(Mapper.Map<RoomViewModel, CreateOrUpdateRoomCommand>))
                 {
-                    var command = Mapper.Map<RoomViewModel, CreateOrUpdateRoomCommand>(room);
-                    IEnumerable<ValidationResult> errors = commandBus.Validate(command);
+                    commandBus.Validate(command);
                     if (ModelState.IsValid)
                     {
-                        var result = commandBus.Submit(command);
+                        commandBus.Submit(command);
                     }
                 }
                 return Json(rooms, JsonRequestBehavior.AllowGet);
@@ -116,13 +107,12 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public ActionResult DeleteRooms(string models)
         {
-            List<RoomViewModel> rooms = JsonConvert.DeserializeObject<List<RoomViewModel>>(models);
+            var rooms = JsonConvert.DeserializeObject<List<RoomViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var room in rooms)
+                foreach (var command in rooms.Select(Mapper.Map<RoomViewModel, DeleteRoomCommand>))
                 {
-                    var command = Mapper.Map<RoomViewModel, DeleteRoomCommand>(room);
-                    var result = commandBus.Submit(command);
+                    commandBus.Submit(command);
                 }
                 return Json(rooms, JsonRequestBehavior.AllowGet);
             }
@@ -131,26 +121,21 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public JsonResult GetRoomProperties(Guid? rID)
         {
-            var roomPropertys = new List<RoomPropertyViewModel>();
-            foreach (RoomProperty roomProperty in roomPropertyRepository.GetAll().Where(a => a.IsDeleted != true && a.RoomID == rID))
-            {
-                roomPropertys.Add(Mapper.Map<RoomProperty, RoomPropertyViewModel>(roomProperty));
-            }
+            var roomPropertys = roomPropertyRepository.GetAll().Where(a => a.IsDeleted != true && a.RoomID == rID).Select(Mapper.Map<RoomProperty, RoomPropertyViewModel>).ToList();
             return Json(roomPropertys.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult CreateOrUpdateRoomProperties(string models)
         {
-            List<RoomPropertyViewModel> roomProperties = JsonConvert.DeserializeObject<List<RoomPropertyViewModel>>(models);
+            var roomProperties = JsonConvert.DeserializeObject<List<RoomPropertyViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var roomProperty in roomProperties)
+                foreach (var command in roomProperties.Select(Mapper.Map<RoomPropertyViewModel, CreateOrUpdateRoomPropertyCommand>))
                 {
-                    var command = Mapper.Map<RoomPropertyViewModel, CreateOrUpdateRoomPropertyCommand>(roomProperty);
-                    IEnumerable<ValidationResult> errors = commandBus.Validate(command);
+                    commandBus.Validate(command);
                     if (ModelState.IsValid)
                     {
-                        var result = commandBus.Submit(command);
+                        commandBus.Submit(command);
                     }
                 }
                 return Json(roomProperties, JsonRequestBehavior.AllowGet);
@@ -160,13 +145,12 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public ActionResult DeleteRoomProperties(string models)
         {
-            List<RoomPropertyViewModel> roomProperties = JsonConvert.DeserializeObject<List<RoomPropertyViewModel>>(models);
+            var roomProperties = JsonConvert.DeserializeObject<List<RoomPropertyViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var roomProperty in roomProperties)
+                foreach (var command in roomProperties.Select(Mapper.Map<RoomPropertyViewModel, DeleteRoomPropertyCommand>))
                 {
-                    var command = Mapper.Map<RoomPropertyViewModel, DeleteRoomPropertyCommand>(roomProperty);
-                    var result = commandBus.Submit(command);
+                    commandBus.Submit(command);
                 }
                 return Json(roomProperties, JsonRequestBehavior.AllowGet);
             }

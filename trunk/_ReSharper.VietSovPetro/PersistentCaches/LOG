@@ -1,5 +1,5 @@
-2013/04/29-22:12:53.754 bd8 Recovering log #19
-2013/04/29-22:12:53.757 bd8 Level-0 table #21: started
-2013/04/29-22:12:53.959 bd8 Level-0 table #21: 686501 bytes OK
-2013/04/29-22:12:54.156 bd8 Delete type=0 #19
-2013/04/29-22:12:54.156 bd8 Delete type=3 #17
+2013/05/01-15:33:09.392 176c Recovering log #22
+2013/05/01-15:33:09.393 176c Level-0 table #24: started
+2013/05/01-15:33:09.506 176c Level-0 table #24: 49025 bytes OK
+2013/05/01-15:33:09.632 176c Delete type=0 #22
+2013/05/01-15:33:09.632 176c Delete type=3 #20

@@ -74,5 +74,9 @@ namespace VietSovPetro.BO.Controllers
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
             return View();
         }
+        public ActionResult Booking()
+        {
+            return View();
+        }
     }
 }
