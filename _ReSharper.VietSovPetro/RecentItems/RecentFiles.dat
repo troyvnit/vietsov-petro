@@ -3,37 +3,40 @@
     <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Handlers/f:CreateOrUpdateRoomHandler.cs" caret="1132" fromTop="21" />
     <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Commands/f:CreateOrUpdateRoomPropertyCommand.cs" caret="887" fromTop="18" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_LayoutFO.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:AccountController.cs" caret="869" fromTop="14" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Models/f:AccountModels.cs" caret="1701" fromTop="57" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:BaseController.cs" caret="392" fromTop="15" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:RoomController.cs" caret="6828" fromTop="11" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Introduction.cshtml" caret="184" fromTop="3" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:MeetingAndEvent.cshtml" caret="8970" fromTop="10" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:RoomAndPrice.cshtml" caret="3432" fromTop="20" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Restaurant.cshtml" caret="4368" fromTop="23" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="1744" fromTop="20" />
     <File id="631E4095-073A-44DF-8B96-B20D3E013D4A/d:Entities/f:Article.cs" caret="1587" fromTop="15" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:Index.cshtml" caret="21578" fromTop="7" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="10714" fromTop="8" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/f:Global.asax.cs" caret="960" fromTop="16" />
     <File id="F45FC798-CEE0-44B1-8FA3-DEE2B994E1B5/f:VietSovPetroDataContext.cs" caret="754" fromTop="18" />
     <File id="631E4095-073A-44DF-8B96-B20D3E013D4A/d:Entities/f:Room.cs" caret="1334" fromTop="16" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:CommonController.cs" caret="1365" fromTop="17" />
     <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Handlers/f:CreateOrUpdateArticleHandler.cs" caret="3371" fromTop="28" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="2023" fromTop="36" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:ArticleController.cs" caret="3774" fromTop="16" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:ViewModels/f:ArticleViewModel.cs" caret="953" fromTop="29" />
     <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Commands/f:CreateOrUpdateArticleCommand.cs" caret="1430" fromTop="31" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Models/f:AccountModels.cs" caret="1701" fromTop="16" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:CommonController.cs" caret="1365" fromTop="35" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Account/f:Login.cshtml" caret="1675" fromTop="23" />
+    <File id="631E4095-073A-44DF-8B96-B20D3E013D4A/d:Entities/f:User.cs" caret="777" fromTop="18" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/f:Web.config" caret="5018" fromTop="85" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:AccountController.cs" caret="672" fromTop="23" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:ArticleController.cs" caret="1088" fromTop="18" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:RoomController.cs" caret="1408" fromTop="24" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:App_Start/f:RouteConfig.cs" caret="553" fromTop="18" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Introduction.cshtml" caret="184" fromTop="3" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:RoomAndPrice.cshtml" caret="3432" fromTop="20" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Filters/f:InitializeSimpleMembershipAttribute.cs" caret="808" fromTop="11" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:Index.cshtml" caret="15203" fromTop="16" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:MeetingAndEvent.cshtml" caret="8970" fromTop="10" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Restaurant.cshtml" caret="4368" fromTop="23" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="260" fromTop="8" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="10714" fromTop="8" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="2023" fromTop="36" />
   </RecentFiles>
   <RecentEdits>
     <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Handlers/f:CreateOrUpdateRoomHandler.cs" caret="1132" fromTop="9" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:ArticleController.cs" caret="3618" fromTop="20" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:ViewModels/f:ArticleViewModel.cs" caret="953" fromTop="29" />
     <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Commands/f:CreateOrUpdateArticleCommand.cs" caret="1430" fromTop="31" />
     <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Handlers/f:CreateOrUpdateArticleHandler.cs" caret="3371" fromTop="28" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="2023" fromTop="9" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:CommonController.cs" caret="768" fromTop="6" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:RoomController.cs" caret="5447" fromTop="10" />
     <File id="631E4095-073A-44DF-8B96-B20D3E013D4A/d:Entities/f:Room.cs" caret="1334" fromTop="16" />
     <File id="631E4095-073A-44DF-8B96-B20D3E013D4A/d:Entities/f:Article.cs" caret="1587" fromTop="15" />
     <File id="F45FC798-CEE0-44B1-8FA3-DEE2B994E1B5/f:VietSovPetroDataContext.cs" caret="754" fromTop="18" />
@@ -44,5 +47,12 @@
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:RoomAndPrice.cshtml" caret="3432" fromTop="20" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Restaurant.cshtml" caret="4368" fromTop="23" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="1744" fromTop="20" />
+    <File id="631E4095-073A-44DF-8B96-B20D3E013D4A/d:Entities/f:User.cs" caret="777" fromTop="18" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:AccountController.cs" caret="1214" fromTop="26" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Account/f:Login.cshtml" caret="1675" fromTop="23" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/f:Web.config" caret="5018" fromTop="7" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:App_Start/f:RouteConfig.cs" caret="553" fromTop="18" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:ArticleController.cs" caret="1271" fromTop="22" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:RoomController.cs" caret="1408" fromTop="24" />
   </RecentEdits>
 </RecentFiles>

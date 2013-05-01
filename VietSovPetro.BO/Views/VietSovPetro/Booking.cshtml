@@ -1,0 +1,210 @@
+﻿@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/_LayoutFO.cshtml";
+}
+
+
+<div class="banner-G">
+    <div class="B-Left">
+        <div class="tt-B-Left">
+            <p>Phòng &amp; Giá phòng</p>
+        </div>
+        <div class="cc-B-Left">
+          <ul>
+              <li class="nut"><a href="@Url.Action("Booking", "VietSovPetro")">Đặt phòng nhanh</a></li>
+              <li class="tex"><p>Xin vui lòng gọi điện thoại hoặc gửi email cho chúng tôi để đặt phòng. Chúng tôi hân hạnh được phục vụ bạn.</p></li>
+              <li class="hot">
+                  <ul>
+                      <li><p>Điện thoại: (84.64) 3.782.256</p></li>
+                      <li><p>Fax: (84.64) 3.782.255</p></li>
+                  </ul>
+              </li>
+            </ul>
+        </div>
+    </div>
+    <div class="B-Right">
+        <iframe src="@Url.Content("~/virtualTour/mainRestaurant/mainRestaurant.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
+        <div class="fullscreen"><a href="#" style="display:block;"><img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
+    </div>
+</div>
+
+    	<div class="in-booking">
+            	<div class="in-booking-1">
+                	<div class="in-booking-2">
+                    	<div class="booking">
+                        	<div class="tit-booking"><p>VUI LÒNG ĐIỀN ĐẦY ĐỦ THÔNG TIN VÀO KHUNG DƯỚI ĐÂY</p></div><!--tit-booking-->
+                            <div class="bookTT">
+                            	<ul>
+                                	<li>
+                                    	<p>Check in:</p><p>2013-04-02</p>
+                                	</li>
+                                    <li>
+                                    	<p>Check out:</p><p>2013-04-05</p>
+                                	</li>
+                                    <li>
+                                    	<p>No.of rooms:</p>
+                                        <select onchange="GotoURL(this)"  class="form" name="cboWebLink" style=" float:left; width:80px; height:20px; border:1px solid white; color:#666;">
+                                            <option value="#">1</option>
+                                            <option value="#">2</option>
+                                            <option value="#">3</option>
+                                            <option value="#">4</option>
+                                            <option value="#">5</option>
+                                        </select>
+                                	</li>
+                                    <li>
+                                    	<p>No. of guests:</p>
+                                        <select onchange="GotoURL(this)"  class="form" name="cboWebLink" style=" float:left; width:80px; height:20px; border:1px solid white; color:#666;">
+                                            <option value="#">1</option>
+                                            <option value="#">2</option>
+                                            <option value="#">3</option>
+                                            <option value="#">4</option>
+                                            <option value="#">5</option>
+                                        </select>
+                                	</li>
+                                    <li>
+                                    	<p>Children:</p>
+                                        <select onchange="GotoURL(this)"  class="form" name="cboWebLink" style=" float:left; width:80px; height:20px; border:1px solid white; color:#666;">
+                                            <option value="#">0</option>
+                                            <option value="#">1</option>
+                                            <option value="#">2</option>
+                                            <option value="#">3</option>
+                                            <option value="#">4</option>
+                                            <option value="#">5</option>
+                                        </select>
+                                	</li>
+                                    <li>
+                                    	<p>Kind of bed:</p>
+                                        <select onchange="GotoURL(this)"  class="form" name="cboWebLink" style=" float:left; width:80px; height:20px; border:1px solid white; color:#666;">
+                                            <option value="#">single</option>
+                                            <option value="#">www.vnexpress.vn</option>
+                                            <option value="#">www.tuoitre.vn</option>
+                                            <option value="#">www.dantri.com.vn</option>
+                                            <option value="#">www.noithat.com.vn</option>
+                                        </select>
+                                	</li>
+                                    <li>
+                                    	<p>Executive Benefit:</p>
+                                        <form style=" width:200px; height:auto; float:left; color:white;">
+                                            <input type="radio" name="sex" value="1" style=" margin-top:10px;">Yes<br/>
+                                            <input type="radio" name="sex" value="2" style=" margin-top:10px;">No<br/>
+                                            <input type="radio" name="sex" value="3" style=" margin-top:10px;">Car<br/>
+                                            <input type="radio" name="sex" value="4" style=" margin-top:10px;">Mercedes<br/>
+                                            <input type="radio" name="sex" value="5" style=" margin-top:10px;">Van<br/>
+                                            <p style=" margin-top:20px;">Airline:</p><br/>
+                                            <input type="text" name="t"><br/>
+                                            <p style=" margin-top:20px;">Flight No:</p><br/>
+                                            <input type="text" name="t">                                       
+                                        </form>
+                                        <div class="Plus">
+                                        	<ul>
+                                            	<li><a href="#">- Plus: VND 416000 ++/Single</a></li>
+                                                <li><a href="#">- Plus: VND 624000 ++/Double</a></li>
+                                                <li><a href="#">- Hotel 4-seat car: Free</a></li>
+                                                <li><a href="#">- Hotel Mercedes: VND 1183000 net/way</a></li>
+                                                <li><a href="#">- Hotel Van: VND 1075000 net/way</a></li>
+                                            </ul>
+                                        </div><!--Plus-->
+                                	</li>
+                                    <li>
+                                    	<p>Estimated arrival time:</p>
+                                        <select onchange="GotoURL(this)"  class="form" name="cboWebLink" style=" float:left; width:80px; height:20px; border:1px solid white; color:#666;">
+                                            <option value="#">023</option>
+                                            <option value="#">2</option>
+                                            <option value="#">3</option>
+                                            <option value="#">4</option>
+                                            <option value="#">5</option>
+                                        </select>
+                                	</li>
+                                    <li>
+                                    	<p>Non-Smoking:</p>
+                                        <select onchange="GotoURL(this)"  class="form" name="cboWebLink" style=" float:left; width:80px; height:20px; border:1px solid white; color:#666;">
+                                            <option value="#">yes</option>
+                                            <option value="#">no</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                    	<p>Special request:</p>
+                                        <textarea name="message" rows="4" id="message" cols="" style=" width:370px; height:60px; background:white; border:none; float:left;"></textarea>
+                                	</li>
+                                </ul>
+                            </div><!--bookTT-->
+                            <div class="bookTTT">
+                            	<ul>
+                                	<li>
+                                    	<p>Guest First Name (*):</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                    <li>
+                                    	<p>Guest Last Name (*):</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                    <li>
+                                    	<p>Date of birth:</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                    <li>
+                                    	<p>Email (*):</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                    <li>
+                                    	<p>Tel:</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                    <li>
+                                    	<p>Fax:</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                    <li>
+                                    	<p>Card Type (*):</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                    <li>
+                                    	<p>Card Number (*):</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                    <li>
+                                    	<p>Card Holder Name (*):</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                    <li>
+                                    	<p>Expiry Date (*):</p>
+                                        <select onchange="GotoURL(this)"  class="form" name="cboWebLink" style=" float:left; width:75px; height:20px; border:1px solid white; color:#666;">
+                                            <option value="#">month</option>
+                                            <option value="#">1</option>
+                                            <option value="#">2</option>
+                                            <option value="#">3</option>
+                                            <option value="#">4</option>
+                                            <option value="#">5</option>
+                                        </select>
+                                        <select onchange="GotoURL(this)"  class="form" name="cboWebLink" style=" float:left; width:70px; height:20px; border:1px solid white; color:#666; margin-left:10px;">
+                                            <option value="#">year</option>
+                                            <option value="#">1</option>
+                                            <option value="#">2</option>
+                                            <option value="#">3</option>
+                                            <option value="#">4</option>
+                                            <option value="#">5</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                    	<p>CVC-Number (*):</p>
+                                        <form><input type="text" name="ttt"></form>
+                                    </li>
+                                </ul>
+                            </div><!--bookTTT-->
+                            <div class="bookTTTT">
+                            	<ul>
+                                	<li><a href="#">* Rates are quoted in Vietnam Dong, subjected to 5% service charge & 10% VAT.</a></li>
+                                    <li><a href="#">* Hotel local time applied:</a></li>
+                                    <li><a href="#">* Check in time: 14:00 hours and Check out time: 12:00 noon.</a></li>
+                                    <li><a href="#">* Any cancellation received within 1 day prior to arrival will incur the first 1 night charge.</a></li>
+                                    <li><a href="#">* Failure to arrive at the hotel will be treated as a No-Show and no refund will be given (Hotel policy).</a></li>
+                                    <li><a href="#">* A No-Show will be treated as a cancellation and you will be billed accordingly.</a></li>
+                                    <li><a href="#">* A request to shorten your stay after you have checked in to the hotel will be treated as a No-Show.</a></li>
+                                    <li><a href="#">* To cancle the booking, please mail to:  info@vietsovpetroresort.vietsov.com.vn</a></li>
+                                </ul>
+                            </div><!--bookTTTT-->
+                        </div><!--booking-->
+                    </div><!--in-booking-2-->
+                </div><!--in-booking-1-->
+            </div><!--in-booking-->
+    
