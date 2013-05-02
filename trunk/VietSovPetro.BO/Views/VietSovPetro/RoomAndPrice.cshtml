@@ -39,14 +39,14 @@
     <!--tt-boxHotel-->
     <div class="cc-boxHotel">
         <div class="picHotel">
-            @{ var fileInfo = new FileInfo(room.ImageUrl);
+            @{ var fileInfo = new FileInfo(room.ImageUrl == "" ? ".jpg" : room.ImageUrl);
                        if (fileInfo.Extension == ".html")
                        {
                            <iframe src="@Url.Content("~/Images/" + room.ImageUrl)" style="width:400px; height:199px; display:block; border:none;"></iframe>
                        }
                        else
                        {
-                           <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" />
+                           <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
                        }
                     }
         </div>

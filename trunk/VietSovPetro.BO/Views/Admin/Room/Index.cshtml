@@ -343,8 +343,11 @@
             }*@
         });
         function roomDetails(e) {
+            $("#grid").data("kendoGrid").saveChanges();
             e.preventDefault();
             dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+            if (dataItem.RoomName != "")
+            { wnd.center().open(); }
             wnd.content(detailsTemplate(dataItem));
             var arrFiles = [];
             $("#uploadimage").kendoUpload({
@@ -396,9 +399,6 @@
                 }
             });
             var rtmultiselect = $("#roomtypes").data("kendoMultiSelect");
-            if (typeof dataItem.RoomTypeIDs == "string") {
-                dataItem.RoomTypeIDs = dataItem.RoomTypeIDs.split(',');
-            }
             rtmultiselect.value(dataItem.RoomTypeIDs);
             var rID = dataItem.RoomID;
             if (rID != null) {
@@ -484,7 +484,6 @@
                             ]
                     });
             }
-            wnd.center().open();
         }
         function languageDropDownEditor(container, options) {
             $('<input required data-text-field="Language" data-value-field="LanguageCode" data-bind="value:' + options.field + '"/>')
