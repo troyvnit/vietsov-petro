@@ -6,6 +6,7 @@ using AutoMapper;
 using Newtonsoft.Json;
 using VietSovPetro.BO.ViewModels;
 using VietSovPetro.CommandProcessor.Dispatcher;
+using VietSovPetro.Data.Infrastructure;
 using VietSovPetro.Data.Repositories.IRepositories;
 using VietSovPetro.Domain.Commands;
 using VietSovPetro.Model.Entities;
@@ -20,13 +21,17 @@ namespace VietSovPetro.BO.Controllers
         private readonly IRoomRepository roomRepository;
         private readonly IRoomTypeRepository roomTypeRepository;
         private readonly IRoomPropertyRepository roomPropertyRepository;
+        private readonly IRoomPropertyRoomRepository roomPropertyRoomRepository;
         private readonly ICommandBus commandBus;
-        public RoomController(ICommandBus commandBus, IRoomRepository roomRepository, IRoomTypeRepository roomTypeRepository, IRoomPropertyRepository roomPropertyRepository)
+        private readonly IUnitOfWork unitOfWork;
+        public RoomController(ICommandBus commandBus, IRoomRepository roomRepository, IRoomTypeRepository roomTypeRepository, IRoomPropertyRepository roomPropertyRepository, IRoomPropertyRoomRepository roomPropertyRoomRepository, IUnitOfWork unitOfWork)
         {
             this.commandBus = commandBus;
             this.roomRepository = roomRepository;
             this.roomTypeRepository = roomTypeRepository;
             this.roomPropertyRepository = roomPropertyRepository;
+            this.roomPropertyRoomRepository = roomPropertyRoomRepository;
+            this.unitOfWork = unitOfWork;
         }
         public ActionResult Index()
         {
@@ -121,8 +126,27 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public JsonResult GetRoomProperties(Guid? rID)
         {
-            var roomPropertys = roomPropertyRepository.GetAll().Where(a => a.IsDeleted != true && a.RoomID == rID).Select(Mapper.Map<RoomProperty, RoomPropertyViewModel>).ToList();
-            return Json(roomPropertys.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
+            var roomPropertys = roomPropertyRepository.GetAll().ToList();
+            List<RoomPropertyViewModel> roomPropertyRooms = new List<RoomPropertyViewModel>();
+            foreach (var roomProperty in roomPropertys)
+            {
+                var roomPropertyRoom = roomPropertyRoomRepository.GetAll().Where(a => a.RoomID == (Guid)rID && a.RoomPropertyID == roomProperty.RoomPropertyID).FirstOrDefault();
+                roomPropertyRooms.Add(new RoomPropertyViewModel
+                {
+                    RoomPropertyID = roomProperty.RoomPropertyID,
+                    RoomID = (Guid)rID,
+                    RoomPropertyName = roomProperty.RoomPropertyName,
+                    RoomPropertyType = roomProperty.RoomPropertyType,
+                    OrderID = roomProperty.OrderID,
+                    LanguageCode = roomProperty.LanguageCode,
+                    Unit = roomProperty.Unit,
+                    RoomPropertyStringValue = roomPropertyRoom.RoomPropertyStringValue,
+                    RoomPropertyNumberValue = roomPropertyRoom.RoomPropertyNumberValue,
+                    IsNew = roomPropertyRoom.IsNew,
+                    IsPublished = roomPropertyRoom.IsPublished
+                });
+            }
+            return Json(roomPropertyRooms.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult CreateOrUpdateRoomProperties(string models)
@@ -130,12 +154,24 @@ namespace VietSovPetro.BO.Controllers
             var roomProperties = JsonConvert.DeserializeObject<List<RoomPropertyViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var command in roomProperties.Select(Mapper.Map<RoomPropertyViewModel, CreateOrUpdateRoomPropertyCommand>))
+                foreach (var roomProperty in roomProperties)
                 {
+                    var command = Mapper.Map<RoomPropertyViewModel, CreateOrUpdateRoomPropertyCommand>(roomProperty);
                     commandBus.Validate(command);
                     if (ModelState.IsValid)
                     {
-                        commandBus.Submit(command);
+                        var result = commandBus.Submit(command);
+                        var roomPropertyRoom = new RoomPropertyRooms { 
+                            RoomID = command.RoomID,
+                            RoomPropertyID = result.ID,
+                            RoomPropertyStringValue = command.RoomPropertyStringValue,
+                            RoomPropertyNumberValue = command.RoomPropertyNumberValue,
+                            IsNew = command.IsNew,
+                            IsPublished = command.IsPublished
+                        };
+                        roomPropertyRoomRepository.Add(roomPropertyRoom);
+                        unitOfWork.Commit();
+                        roomProperty.RoomPropertyID = result.ID;
                     }
                 }
                 return Json(roomProperties, JsonRequestBehavior.AllowGet);

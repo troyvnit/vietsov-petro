@@ -50,6 +50,7 @@
     <Compile Include="Entities\ArticleCategory.cs" />
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\RoomProperty.cs" />
+    <Compile Include="Entities\RoomPropertyRooms.cs" />
     <Compile Include="Entities\RoomType.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,0 +1,12 @@
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Release\VietSovPetro.Data.dll.config
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Release\VietSovPetro.Data.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Release\VietSovPetro.Data.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Release\EntityFramework.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Release\VietSovPetro.Model.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Release\VietSovPetro.Core.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Release\VietSovPetro.Model.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Release\EntityFramework.xml
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Release\VietSovPetro.Core.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Release\VietSovPetro.Data.csprojResolveAssemblyReference.cache
+D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Release\VietSovPetro.Data.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Release\VietSovPetro.Data.pdb

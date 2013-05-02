@@ -10,18 +10,6 @@ D:\VietSov_Petro\trunk\EFMVCPycoNet.Data\bin\Debug\EFMVCPycoNet.Core.pdb
 D:\VietSov_Petro\trunk\EFMVCPycoNet.Data\obj\Debug\VietSovPetro.Data.csprojResolveAssemblyReference.cache
 D:\VietSov_Petro\trunk\EFMVCPycoNet.Data\obj\Debug\EFMVCPycoNet.Data.dll
 D:\VietSov_Petro\trunk\EFMVCPycoNet.Data\obj\Debug\EFMVCPycoNet.Data.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.dll.config
-D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.dll
-D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\EntityFramework.dll
-D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Model.dll
-D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Core.dll
-D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Model.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\EntityFramework.xml
-D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Core.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.csprojResolveAssemblyReference.cache
-D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.dll
-D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.pdb
 E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.dll.config
 E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.dll
 E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.pdb
@@ -34,3 +22,15 @@ E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\bin\Debug\VietSovPet
 E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.csprojResolveAssemblyReference.cache
 E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.dll
 E:\Windows\Working\Projects\VietSov Petro\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.dll.config
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Data.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\EntityFramework.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Model.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Core.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Model.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\EntityFramework.xml
+D:\VietSov_Petro\trunk\VietSovPetro.Data\bin\Debug\VietSovPetro.Core.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.csprojResolveAssemblyReference.cache
+D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Data\obj\Debug\VietSovPetro.Data.pdb

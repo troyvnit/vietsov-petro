@@ -20,7 +20,6 @@ namespace VietSovPetro.Domain.Handlers
         {
             var ID = Guid.Empty;
             var roomProperty = roomPropertyRepository.GetById(command.RoomPropertyID);
-            roomProperty.IsDeleted = true;
             roomPropertyRepository.Update(roomProperty);
             ID = roomProperty.RoomPropertyID;
             unitOfWork.Commit();

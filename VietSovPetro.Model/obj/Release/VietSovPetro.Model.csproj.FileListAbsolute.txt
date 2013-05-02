@@ -1,0 +1,12 @@
+D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Release\VietSovPetro.Model.dll.config
+D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Release\VietSovPetro.Model.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Release\VietSovPetro.Model.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Release\EntityFramework.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Release\Newtonsoft.Json.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Release\VietSovPetro.Core.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Release\VietSovPetro.Core.pdb
+D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Release\EntityFramework.xml
+D:\VietSov_Petro\trunk\VietSovPetro.Model\bin\Release\Newtonsoft.Json.xml
+D:\VietSov_Petro\trunk\VietSovPetro.Model\obj\Release\VietSovPetro.Model.csprojResolveAssemblyReference.cache
+D:\VietSov_Petro\trunk\VietSovPetro.Model\obj\Release\VietSovPetro.Model.dll
+D:\VietSov_Petro\trunk\VietSovPetro.Model\obj\Release\VietSovPetro.Model.pdb

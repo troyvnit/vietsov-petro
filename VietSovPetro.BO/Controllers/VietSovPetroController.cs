@@ -14,11 +14,15 @@ namespace VietSovPetro.BO.Controllers
         // GET: /VietSovPetro/
         private readonly IArticleRepository articleRepository;
         private readonly IRoomRepository roomRepository;
+        private readonly IRoomPropertyRepository roomPropertyRepository;
+        private readonly IRoomPropertyRoomRepository roomPropertyRoomRepository;
 
-        public VietSovPetroController(IArticleRepository articleRepository, IRoomRepository roomRepository)
+        public VietSovPetroController(IArticleRepository articleRepository, IRoomRepository roomRepository, IRoomPropertyRepository roomPropertyRepository, IRoomPropertyRoomRepository roomPropertyRoomRepository)
         {
             this.articleRepository = articleRepository;
             this.roomRepository = roomRepository;
+            this.roomPropertyRepository = roomPropertyRepository;
+            this.roomPropertyRoomRepository = roomPropertyRoomRepository;
         }
         public ActionResult Index()
         {
@@ -50,6 +54,7 @@ namespace VietSovPetro.BO.Controllers
                         && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
                 }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
+            ViewBag.Properties = roomPropertyRoomRepository.GetAll();
             return View();
         }
         public ActionResult RoomAndPrice()
@@ -61,6 +66,7 @@ namespace VietSovPetro.BO.Controllers
                         && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
                 }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
+            ViewBag.Properties = roomPropertyRoomRepository.GetAll();
             return View();
         }
         public ActionResult Restaurant()
@@ -72,6 +78,7 @@ namespace VietSovPetro.BO.Controllers
                     && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
+            ViewBag.Properties = roomPropertyRoomRepository.GetAll();
             return View();
         }
         public ActionResult Booking()
