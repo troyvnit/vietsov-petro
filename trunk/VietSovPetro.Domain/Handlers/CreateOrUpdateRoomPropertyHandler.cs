@@ -24,12 +24,7 @@ namespace VietSovPetro.Domain.Handlers
             {
                 RoomPropertyID = command.RoomPropertyID,
                 RoomPropertyName = command.RoomPropertyName,
-                RoomPropertyStringValue = command.RoomPropertyStringValue,
-                RoomPropertyNumberValue = command.RoomPropertyNumberValue,
-                IsPublished = command.IsPublished,
-                IsNew = command.IsNew,
                 RoomPropertyType = command.RoomPropertyType,
-                RoomID = command.RoomID,
                 OrderID = command.OrderID,
                 LanguageCode = command.LanguageCode
             };
