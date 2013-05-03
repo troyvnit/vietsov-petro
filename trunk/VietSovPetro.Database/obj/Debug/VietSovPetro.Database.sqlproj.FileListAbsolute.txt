@@ -1,9 +1,0 @@
-D:\VietSov_Petro\trunk\VietSovPetro.Database\bin\Debug\VietSovPetro.Database.dacpac
-D:\VietSov_Petro\trunk\VietSovPetro.Database\bin\Debug\VietSovPetro.Database.dll
-D:\VietSov_Petro\trunk\VietSovPetro.Database\bin\Debug\VietSovPetro.Database.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.Database\obj\Debug\VietSovPetro.Database.dll
-D:\VietSov_Petro\trunk\VietSovPetro.Database\obj\Debug\VietSovPetro.Database.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.Database\obj\Debug\Model.xml
-D:\VietSov_Petro\trunk\VietSovPetro.Database\obj\Debug\refactor.xml
-D:\VietSov_Petro\trunk\VietSovPetro.Database\obj\Debug\postdeploy.sql
-D:\VietSov_Petro\trunk\VietSovPetro.Database\obj\Debug\predeploy.sql

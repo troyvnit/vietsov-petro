@@ -9,7 +9,7 @@ namespace VietSovPetro.Domain.Commands
     {
         public CreateOrUpdateRoomPropertyCommand(Guid RoomPropertyID, string RoomPropertyName, string RoomPropertyStringValue,
             int RoomPropertyNumberValue, string RoomPropertyType, bool IsNew, bool IsPublished, Guid RoomID, string Unit,
-            int OrderID, string LanguageCode)
+            int OrderID, string LanguageCode, Guid RoomPropertyRoomID)
         {
             this.RoomPropertyID = RoomPropertyID;
             this.RoomPropertyName = RoomPropertyName;
@@ -22,6 +22,7 @@ namespace VietSovPetro.Domain.Commands
             this.Unit = Unit;
             this.OrderID = OrderID;
             this.LanguageCode = LanguageCode;
+            this.RoomPropertyRoomID = RoomPropertyRoomID;
         }
         public Guid RoomPropertyID { get; set; }
         public string RoomPropertyName { get; set; }
@@ -34,5 +35,6 @@ namespace VietSovPetro.Domain.Commands
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
         public Guid RoomID { get; set; }
+        public Guid RoomPropertyRoomID { get; set; }
     }
 }
