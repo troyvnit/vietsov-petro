@@ -9,10 +9,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_GlobalResources/SR.en-US.resx">
-      <publishTime>04/25/2013 16:31:51</publishTime>
+      <publishTime>05/03/2013 08:37:27</publishTime>
     </File>
     <File Include="App_GlobalResources/SR.resx">
-      <publishTime>04/25/2013 16:31:52</publishTime>
+      <publishTime>05/03/2013 08:36:24</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>04/02/2013 10:21:12</publishTime>
@@ -168,7 +168,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/02/2013 10:21:05</publishTime>
     </File>
     <File Include="bin/VietSovPetro.BO.dll">
-      <publishTime>05/02/2013 17:30:12</publishTime>
+      <publishTime>05/03/2013 10:53:43</publishTime>
     </File>
     <File Include="bin/VietSovPetro.ComandProcessor.dll">
       <publishTime>05/02/2013 15:32:50</publishTime>
@@ -177,10 +177,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/02/2013 15:32:49</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Data.dll">
-      <publishTime>05/02/2013 15:32:50</publishTime>
+      <publishTime>05/03/2013 10:53:41</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Domain.dll">
-      <publishTime>05/02/2013 15:32:51</publishTime>
+      <publishTime>05/03/2013 10:53:41</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Model.dll">
       <publishTime>05/02/2013 15:32:49</publishTime>
@@ -4527,7 +4527,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/08/2013 16:55:00</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>05/02/2013 08:35:53</publishTime>
+      <publishTime>05/03/2013 10:48:31</publishTime>
     </File>
     <File Include="Views/Account/Manage.cshtml">
       <publishTime>04/09/2013 13:25:52</publishTime>
@@ -4548,10 +4548,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2013 13:25:52</publishTime>
     </File>
     <File Include="Views/Admin/Article/Index.cshtml">
-      <publishTime>05/02/2013 09:39:02</publishTime>
+      <publishTime>05/03/2013 10:52:23</publishTime>
     </File>
     <File Include="Views/Admin/Room/Index.cshtml">
-      <publishTime>05/02/2013 10:09:32</publishTime>
+      <publishTime>05/03/2013 10:51:23</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/08/2013 16:55:00</publishTime>
@@ -4560,7 +4560,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/02/2013 08:35:53</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutFO.cshtml">
-      <publishTime>04/25/2013 16:31:52</publishTime>
+      <publishTime>05/03/2013 08:39:14</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>04/08/2013 16:55:00</publishTime>

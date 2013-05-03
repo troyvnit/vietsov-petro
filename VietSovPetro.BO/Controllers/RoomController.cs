@@ -130,8 +130,7 @@ namespace VietSovPetro.BO.Controllers
             List<RoomPropertyViewModel> roomPropertyRooms = new List<RoomPropertyViewModel>();
             foreach (var roomProperty in roomPropertys)
             {
-                var roomPropertyRoom = roomPropertyRoomRepository.GetAll().Where(a => a.RoomID == (Guid)rID && a.RoomPropertyID == roomProperty.RoomPropertyID).FirstOrDefault();
-                roomPropertyRooms.Add(new RoomPropertyViewModel
+                var roomPropertyViewModel = new RoomPropertyViewModel
                 {
                     RoomPropertyID = roomProperty.RoomPropertyID,
                     RoomID = (Guid)rID,
@@ -139,12 +138,18 @@ namespace VietSovPetro.BO.Controllers
                     RoomPropertyType = roomProperty.RoomPropertyType,
                     OrderID = roomProperty.OrderID,
                     LanguageCode = roomProperty.LanguageCode,
-                    Unit = roomProperty.Unit,
-                    RoomPropertyStringValue = roomPropertyRoom.RoomPropertyStringValue,
-                    RoomPropertyNumberValue = roomPropertyRoom.RoomPropertyNumberValue,
-                    IsNew = roomPropertyRoom.IsNew,
-                    IsPublished = roomPropertyRoom.IsPublished
-                });
+                    Unit = roomProperty.Unit
+                };
+                var roomPropertyRoom = roomPropertyRoomRepository.GetAll().Where(a => a.RoomID == (Guid)rID && a.RoomPropertyID == roomProperty.RoomPropertyID).FirstOrDefault();
+                if (roomPropertyRoom != null)
+                {
+                    roomPropertyViewModel.RoomPropertyRoomID = roomPropertyRoom.RoomPropertyRoomID;
+                    roomPropertyViewModel.RoomPropertyStringValue = roomPropertyRoom.RoomPropertyStringValue;
+                    roomPropertyViewModel.RoomPropertyNumberValue = roomPropertyRoom.RoomPropertyNumberValue;
+                    roomPropertyViewModel.IsNew = roomPropertyRoom.IsNew;
+                    roomPropertyViewModel.IsPublished = roomPropertyRoom.IsPublished;
+                }
+                roomPropertyRooms.Add(roomPropertyViewModel);
             }
             return Json(roomPropertyRooms.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
         }
@@ -161,7 +166,8 @@ namespace VietSovPetro.BO.Controllers
                     if (ModelState.IsValid)
                     {
                         var result = commandBus.Submit(command);
-                        var roomPropertyRoom = new RoomPropertyRooms { 
+                        var roomPropertyRoom = new RoomPropertyRooms {
+                            RoomPropertyRoomID = command.RoomPropertyRoomID != Guid.Empty ? command.RoomPropertyRoomID : Guid.NewGuid(),
                             RoomID = command.RoomID,
                             RoomPropertyID = result.ID,
                             RoomPropertyStringValue = command.RoomPropertyStringValue,
@@ -169,7 +175,13 @@ namespace VietSovPetro.BO.Controllers
                             IsNew = command.IsNew,
                             IsPublished = command.IsPublished
                         };
-                        roomPropertyRoomRepository.Add(roomPropertyRoom);
+                        if (roomPropertyRoomRepository.GetAll().Any(r => r.RoomID == command.RoomID && r.RoomPropertyID == result.ID))
+                        {
+                            roomPropertyRoomRepository.Update(roomPropertyRoom);
+                        }
+                        else {
+                            roomPropertyRoomRepository.Add(roomPropertyRoom);
+                        }
                         unitOfWork.Commit();
                         roomProperty.RoomPropertyID = result.ID;
                     }

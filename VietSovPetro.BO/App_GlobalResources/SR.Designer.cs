@@ -61,11 +61,74 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hoạt động.
+        /// </summary>
+        internal static string Activity {
+            get {
+                return ResourceManager.GetString("Activity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Giới thiệu.
         /// </summary>
         internal static string Introduction {
             get {
                 return ResourceManager.GetString("Introduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phòng họp &amp; Sự kiện.
+        /// </summary>
+        internal static string Meeting_And_Event {
+            get {
+                return ResourceManager.GetString("Meeting_And_Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tin tức.
+        /// </summary>
+        internal static string News {
+            get {
+                return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nhà hàng &amp; Quán Bar.
+        /// </summary>
+        internal static string Restaurant_And_Bar {
+            get {
+                return ResourceManager.GetString("Restaurant_And_Bar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Khuyến mãi nhà hàng.
+        /// </summary>
+        internal static string Restaurant_Deal {
+            get {
+                return ResourceManager.GetString("Restaurant_Deal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phòng &amp; Giá phòng.
+        /// </summary>
+        internal static string Room_And_Price {
+            get {
+                return ResourceManager.GetString("Room_And_Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giá phòng khuyến mãi.
+        /// </summary>
+        internal static string Room_Deal {
+            get {
+                return ResourceManager.GetString("Room_Deal", resourceCulture);
             }
         }
     }

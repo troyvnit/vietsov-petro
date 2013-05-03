@@ -47,7 +47,7 @@
                 <dd>#:LanguageCode#</dd>
                 <dt>Mô tả</dt>
                 <dd>#:Description#</dd>
-                <dt>Công khai ?</dt>
+                <dt>Online ?</dt>
                 <dd>#:IsPublished#</dd>
                 <dt>Mới ?</dt>
                 <dd>#:IsNew#</dd>
@@ -92,7 +92,7 @@
                 <dd>
                     <input type="text" class="k-textbox" data-bind="value:Description" name="Description"/>
                 </dd>
-                <dt>Công khai ?</dt>
+                <dt>Online ?</dt>
                 <dd>
                     <input type="checkbox" data-bind="checked:IsPublished" name="IsPublished"/>
                 </dd>
@@ -252,7 +252,7 @@
                     { field: "BookedFrom", title: "Đặt từ", format: "{0:yyyy-MM-dd HH:mm}", editor: dateTimeEditor, hidden: true },
                     { field: "BookedTo", title: "Đặt đến", format: "{0:yyyy-MM-dd HH:mm}", editor: dateTimeEditor, hidden: true },
                     { field: "IsDeal", title: "Khuyến mãi ?", width: "100px" },
-                    { field: "IsPublished", title: "Công bố ?", width: "80px" },
+                    { field: "IsPublished", title: "Online ?", width: "80px" },
                     { field: "IsNew", title: "Mới ?", width: "50px" },
                    // { field: "Article", title: "Bài viết", editor: articleDropDownEditor, template: "#= Article.Title #" },
                     { command: [{ text: "Chi tiết", click: roomDetails }, "destroy"], title: " ", width: "160px" }],
@@ -437,6 +437,7 @@
                         model: {
                             id: "RoomPropertyID",
                             fields: {
+                                RoomPropertyRoomID: { editable: false, nullable: true },
                                 RoomPropertyID: { editable: false, nullable: true },
                                 RoomPropertyName: { validation: { required: true } },
                                 RoomPropertyStringValue: { type: "string" },
@@ -464,7 +465,7 @@
                         { field: "Unit", title: "Đơn vị", width: "60px" },
                         { field: "OrderID", title: "Thứ tự", width: "70px" },
                         { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
-                        { field: "IsPublished", title: "Công bố ?", width: "80px" },
+                        { field: "IsPublished", title: "Online ?", width: "80px" },
                         { field: "IsNew", title: "Mới ?", width: "50px" },
                         { field: "RoomPropertyType", title: "Loại thuộc tính", editor: roomPropertyTypeDropDownEditor, width: "100px" },
                         { command: ["destroy"], title: " ", width: "70px" }],

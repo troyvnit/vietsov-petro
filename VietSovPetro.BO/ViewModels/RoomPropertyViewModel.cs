@@ -24,5 +24,6 @@ namespace VietSovPetro.BO.ViewModels
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
         public Guid RoomID { get; set; }
+        public Guid RoomPropertyRoomID { get; set; }
     }
 }
