@@ -4,88 +4,106 @@
     var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.MeetingAndEventRooms;
     var language = ViewBag.Language;
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
-}
+}                
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#submitBooking").click(function () {
+            var frm = $('#bookingform');
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    });
+</script>
 <div class="banner-G">
     <div class="B-Left-1">
         <div class="tt-B-Left">
             <p>Đặt phòng nhanh</p>
-        </div>
+        </div>                   
+         <form id="bookingform" action="@Url.Action("QuickBook")" method="post" >
+   
         <!--tt-B-Left-->
         <div class="cc-B-Left-1">
-            <ul>
+          <ul>
                 <li>
                     <p>Họ Tên</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="t" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" name="Name" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                    </div>
                 </li>
                 <li>
                     <p>Email</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="t" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" name="Email" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                    </div>
                 </li>
                 <li>
                     <p>Phòng</p>
-                    <select onchange="GotoURL(this)" class="form" name="cboWebLink" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
-                        <option value="#">Conference Hall</option>
-                        <option value="#">Grant Hall</option>
-                        <option value="#">Conference</option>
-                        <option value="#">Bạch Dương</option>
+                    <select onchange="GotoURL(this)" class="form" name="Room" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
+                        <option value="1">Conference Hall</option>
+                        <option value="2">Grant Hall</option>
+                        <option value="3">Conference</option>
+                        <option value="4">Bạch Dương</option>
                     </select>
                 </li>
                 <li>
                     <p>Bắt đầu</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="ngay" name="t" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" id="ngay" name="Begin" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
+                    </div>
                 </li>
                 <li>
                     <p>Kết thúc</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="ngay1" name="t" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" id="ngay1" name="End" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
+                    </div>
                 </li>
                 <li>
                     <p>Thời gian</p>
-                    <select onchange="GotoURL(this)" class="form" name="cboWebLink" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
-                        <option value="#">Nguyên ngày</option>
-                        <option value="#">Nữa ngày</option>
+                    <select onchange="GotoURL(this)" class="form" name="Time" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
+                        <option value="0">Nguyên ngày</option>
+                        <option value="1">Nữa ngày</option>
                     </select>
                 </li>
                 <li>
                     <p>Số lượng khách</p>
-                    <select onchange="GotoURL(this)" class="form" name="cboWebLink" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
-                        <option value="#">500 - 1000</option>
-                        <option value="#">400 - 500</option>
-                        <option value="#">300 - 400</option>
-                        <option value="#">200 - 300</option>
-                        <option value="#">100 - 200</option>
-                        <option value="#">10 - 100</option>
+                    <select onchange="GotoURL(this)" class="form" name="GuestQuantity" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
+                        <option value="1">500 - 1000</option>
+                        <option value="2">400 - 500</option>
+                        <option value="3">300 - 400</option>
+                        <option value="4">200 - 300</option>
+                        <option value="5">100 - 200</option>
+                        <option value="6">10 - 100</option>
                     </select>
                 </li>
                 <li>
                     <p>Loại cuộc họp</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="t" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" name="MeetingType" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                    </div>
                 </li>
                 <li>
                     <p>Giá</p>
-                    <select onchange="GotoURL(this)" class="form" name="cboWebLink" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
-                        <option value="#">Giá trọn gói</option>
-                        <option value="#">1</option>
-                        <option value="#">2</option>
-                        <option value="#">3</option>
-                        <option value="#">4</option>
-                        <option value="#">5</option>
+                    <select onchange="GotoURL(this)" class="form" name="Price" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
+                        <option value="0">Giá trọn gói</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </li>
                 <li>
                     <p>Tin nhắn</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="t" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" name="Message" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                    </div>
                 </li>
             </ul>
             <div class="tt-C-Left">
@@ -95,32 +113,33 @@
             <ul>
                 <li>
                     <p>Tên chủ thẻ</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="t" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" name="UserCardName" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                    </div>
                 </li>
                 <li>
                     <p>Số thẻ</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="t" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" name="UserCardNumber" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                    </div>
                 </li>
                 <li>
                     <p>Loại thẻ</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="t" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" name="UserCardType" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                    </div>
                 </li>
                 <li>
                     <p>Ngày hết hạn</p>
-                    <form style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="t" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                        <input type="submit" value="" style="width: 64px; height: 22px; border: none; float: right; background: url(images/icon-5.png) no-repeat; margin-right: 1px; margin-top: 6px;" />
-                    </form>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" name="DueDate" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        <input type="button" id="submitBooking" value="" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" />
+                    </div>
                 </li>
             </ul>
         </div>
-        <!--cc-B-Left-1-->
+        <!--cc-B-Left-1-->    
+        </form>
     </div>
     <!--B-Left-1-->
     <div class="B-Right-1">

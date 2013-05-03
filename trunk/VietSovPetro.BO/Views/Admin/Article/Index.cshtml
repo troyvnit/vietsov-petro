@@ -72,12 +72,13 @@
                 <dt>Loại hạng mục</dt>
                 <dd>
                     <select data-role="dropdownlist" data-bind="value:ArticleCategoryType" name="ArticleCategoryType" required="required" validationMessage="không được trống">  
-                       <option value="Room">Phòng</option>
-                       <option value="Introduction">Giới thiệu</option>
+                       <option value="Introduction">Giới thiệu</option>  
+                       <option value="News">Tin tức</option>
+                       <option value="Activity">Hoạt động</option> 
+                       <option value="Room">Phòng</option> 
                        <option value="Contact">Liên hệ</option>
                        <option value="Notification">Thông báo</option>
                        <option value="Information">Thông tin</option>
-                       <option value="News">Tin tức</option>
                     </select>
                     <span data-for="ArticleCategoryType" class="k-invalid-msg"></span>
                 </dd>
@@ -237,7 +238,7 @@
                     { field: "ImageUrl", title: "ImageUrl", hidden: true },
                     { field: "OrderID", title: "Thứ tự", width: "70px" },
                     { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
-                    { field: "IsPublished", title: "Công bố ?", width: "80px" },
+                    { field: "IsPublished", title: "Online ?", width: "80px" },
                     { field: "IsNew", title: "Mới ?", width: "50px" },
                     { command: [{ text: "Nội dung", click: contentEditor }, "destroy"], title: " ", width: "180px" }],
                 editable: true,
@@ -363,7 +364,7 @@
         $("#uploadimage").kendoUpload({
             multiple: true,
             async: {
-                saveUrl: "/Common/SaveImages?folder=Article/" + dataItem.ArticleID
+                saveUrl: "/Common/SaveImages?folder=Article"
                 },
             success: function (e) {
                 var ImageUrl = e.response.Folder;

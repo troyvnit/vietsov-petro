@@ -2,9 +2,12 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
+using VietSovPetro.BO.Models;
 using VietSovPetro.BO.ViewModels;
 using VietSovPetro.Data.Repositories.IRepositories;
 using VietSovPetro.Model.Entities;
+using VietSovPetro.Core.Common;
+using System.Configuration;
 
 namespace VietSovPetro.BO.Controllers
 {
@@ -85,5 +88,21 @@ namespace VietSovPetro.BO.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult QuickBook(BookFormModels form)
+        {
+            string fromAddress = ConfigurationManager.AppSettings.Get("SendMailMessagesFromAddress").ToString();
+            string toAddress = ConfigurationManager.AppSettings.Get("SendMailSTMPHostAddress").ToString();
+            string username = ConfigurationManager.AppSettings.Get("SendMailSMTPUserName").ToString();
+            string password = ConfigurationManager.AppSettings.Get("SendMailSMTPUserPassword").ToString();
+            Email email = new Email(fromAddress, toAddress, username, password, "Thông tin đặt phòng VietSov Petro", form.Name);
+            bool success = email.send();
+            if (!success)
+            {
+                return Content("Hệ thông đang bảo trì, vui lòng thử lại vào dịp khác!", "text/html");
+            }
+            return Content("Thông tin đặt phòng của bạn đã được gửi, cảm ơn!", "text/html");
+        }
     }
 }
+
