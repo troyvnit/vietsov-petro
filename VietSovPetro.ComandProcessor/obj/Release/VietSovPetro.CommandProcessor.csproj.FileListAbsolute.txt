@@ -1,7 +1,0 @@
-D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\bin\Release\VietSovPetro.ComandProcessor.dll
-D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\bin\Release\VietSovPetro.ComandProcessor.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\bin\Release\VietSovPetro.Core.dll
-D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\bin\Release\VietSovPetro.Core.pdb
-D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\obj\Release\VietSovPetro.CommandProcessor.csprojResolveAssemblyReference.cache
-D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\obj\Release\VietSovPetro.ComandProcessor.dll
-D:\VietSov_Petro\trunk\VietSovPetro.ComandProcessor\obj\Release\VietSovPetro.ComandProcessor.pdb

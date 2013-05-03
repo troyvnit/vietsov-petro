@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Email.cs" />
     <Compile Include="Common\Encryption.cs" />
     <Compile Include="Common\Generator.cs" />
     <Compile Include="Common\SwitchLanguageHelper.cs" />
