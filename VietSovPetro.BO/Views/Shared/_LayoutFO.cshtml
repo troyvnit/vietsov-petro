@@ -26,7 +26,7 @@
             <div class="in-header">
                 <div class="header">
                     <div class="logo">
-                        <a href="@Url.Action("VietSovPetro")">
+                        <a href="@Url.Action("Index", "VietSovPetro")">
                             <img src="@Url.Content("~/images/logo.png")" alt="" /></a>
                     </div>
                     <div class="menu-A">
@@ -50,10 +50,10 @@
                             <li><a href="@Url.Action("MeetingAndEvent", "VietSovPetro")">@Resources.SR.Meeting_And_Event</a></li>
                             <li><a href="@Url.Action("RoomAndPrice", "VietSovPetro")">@Resources.SR.Room_And_Price</a></li>
                             <li><a href="@Url.Action("Restaurant", "VietSovPetro")">@Resources.SR.Restaurant_And_Bar</a></li>
-                            <li><a href="#">@Resources.SR.Room_Deal</a></li>
-                            <li><a href="#">@Resources.SR.Restaurant_Deal</a></li>
-                            <li><a href="#">@Resources.SR.Activity</a></li>
-                            <li><a href="#">@Resources.SR.News</a></li>
+                            <li><a href="@Url.Action("DealingRoom", "VietSovPetro")">@Resources.SR.Room_Deal</a></li>
+                            <li><a href="@Url.Action("DealingRestaurant", "VietSovPetro")">@Resources.SR.Restaurant_Deal</a></li>
+                            <li><a href="@Url.Action("Activity", "VietSovPetro")">@Resources.SR.Activity</a></li>
+                            <li><a href="@Url.Action("News", "VietSovPetro")">@Resources.SR.News</a></li>
                         </ul>
                     </div>
                 </div>

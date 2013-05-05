@@ -48,6 +48,40 @@ namespace VietSovPetro.BO.Controllers
             ViewBag.IntroductionArticles = articles;
             return View();
         }
+        public ActionResult Activity()
+        {
+            var articles = new List<ArticleViewModel>();
+            foreach (var article in articleRepository.GetAll().Where(a =>
+            {
+                var firstOrDefault = a.ArticleCategories.FirstOrDefault();
+                return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.ArticleCategoryType == "Activity"
+                    && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID))
+            {
+                var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+                articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                articles.Add(articlevm);
+            }
+            ViewBag.ActivityArticles = articles;
+            return View();
+        }
+        public ActionResult News()
+        {
+            var articles = new List<ArticleViewModel>();
+            foreach (var article in articleRepository.GetAll().Where(a =>
+            {
+                var firstOrDefault = a.ArticleCategories.FirstOrDefault();
+                return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.ArticleCategoryType == "News"
+                    && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID))
+            {
+                var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+                articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                articles.Add(articlevm);
+            }
+            ViewBag.NewsArticles = articles;
+            return View();
+        }
         public ActionResult MeetingAndEvent()
         {
             ViewBag.MeetingAndEventRooms = roomRepository.GetAll().Where(a =>
@@ -78,6 +112,30 @@ namespace VietSovPetro.BO.Controllers
             {
                 var firstOrDefault = a.RoomTypes.FirstOrDefault();
                 return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Restaurant" 
+                    && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID).ToList();
+            ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
+            ViewBag.Properties = roomPropertyRoomRepository.GetAll();
+            return View();
+        }
+        public ActionResult DealingRestaurant()
+        {
+            ViewBag.Restaurant = roomRepository.GetAll().Where(a =>
+            {
+                var firstOrDefault = a.RoomTypes.FirstOrDefault();
+                return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Restaurant" && a.IsDeal
+                    && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID).ToList();
+            ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
+            ViewBag.Properties = roomPropertyRoomRepository.GetAll();
+            return View();
+        }
+        public ActionResult DealingRoom()
+        {
+            ViewBag.DealingRoom = roomRepository.GetAll().Where(a =>
+            {
+                var firstOrDefault = a.RoomTypes.FirstOrDefault();
+                return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && (firstOrDefault.RoomGroup == "Room And Price" || firstOrDefault.RoomGroup == "Meeting Room") && a.IsDeal
                     && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();

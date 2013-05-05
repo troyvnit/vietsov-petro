@@ -6,6 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArQXY3ZwpWUqxVOLiV25G7gAAAAACAAAAAAADZgAAwAAAABAAAAB6LdqSqOBsKDOHuER+1cHpAAAAAASAAACgAAAAEAAAAFPx6dH+4xZ5A3/LX0Pw0QUgAAAASE2f9LBs0+lg6oVwz4Os5jehJX697fCeotgtBQm3iHAUAAAAOl7ycteSPSwi5+Ankzm5/AKn6ZY=</EncryptedPassword>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_GlobalResources/SR.en-US.resx">
@@ -168,22 +169,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/02/2013 10:21:05</publishTime>
     </File>
     <File Include="bin/VietSovPetro.BO.dll">
-      <publishTime>05/03/2013 10:53:43</publishTime>
+      <publishTime>05/05/2013 13:45:54</publishTime>
     </File>
     <File Include="bin/VietSovPetro.ComandProcessor.dll">
-      <publishTime>05/02/2013 15:32:50</publishTime>
+      <publishTime>05/03/2013 17:31:57</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Core.dll">
-      <publishTime>05/02/2013 15:32:49</publishTime>
+      <publishTime>05/03/2013 17:31:56</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Data.dll">
-      <publishTime>05/03/2013 10:53:41</publishTime>
+      <publishTime>05/03/2013 17:31:58</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Domain.dll">
-      <publishTime>05/03/2013 10:53:41</publishTime>
+      <publishTime>05/03/2013 17:31:58</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Model.dll">
-      <publishTime>05/02/2013 15:32:49</publishTime>
+      <publishTime>05/03/2013 17:31:57</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/02/2013 10:21:12</publishTime>
@@ -4548,7 +4549,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2013 13:25:52</publishTime>
     </File>
     <File Include="Views/Admin/Article/Index.cshtml">
-      <publishTime>05/03/2013 10:52:23</publishTime>
+      <publishTime>05/03/2013 13:11:54</publishTime>
     </File>
     <File Include="Views/Admin/Room/Index.cshtml">
       <publishTime>05/03/2013 10:51:23</publishTime>
@@ -4560,22 +4561,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/02/2013 08:35:53</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutFO.cshtml">
-      <publishTime>05/03/2013 08:39:14</publishTime>
+      <publishTime>05/05/2013 13:50:59</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>04/08/2013 16:55:00</publishTime>
     </File>
+    <File Include="Views/VietSovPetro/Activity.cshtml">
+      <publishTime>05/05/2013 13:38:32</publishTime>
+    </File>
     <File Include="Views/VietSovPetro/Booking.cshtml">
       <publishTime>05/02/2013 08:35:53</publishTime>
     </File>
+    <File Include="Views/VietSovPetro/DealingRestaurant.cshtml">
+      <publishTime>05/05/2013 13:41:31</publishTime>
+    </File>
+    <File Include="Views/VietSovPetro/DealingRoom.cshtml">
+      <publishTime>05/05/2013 13:36:30</publishTime>
+    </File>
     <File Include="Views/VietSovPetro/Index.cshtml">
-      <publishTime>04/25/2013 08:29:50</publishTime>
+      <publishTime>05/05/2013 13:52:54</publishTime>
     </File>
     <File Include="Views/VietSovPetro/Introduction.cshtml">
       <publishTime>05/02/2013 08:35:53</publishTime>
     </File>
     <File Include="Views/VietSovPetro/MeetingAndEvent.cshtml">
-      <publishTime>05/02/2013 17:29:22</publishTime>
+      <publishTime>05/03/2013 16:54:42</publishTime>
+    </File>
+    <File Include="Views/VietSovPetro/News.cshtml">
+      <publishTime>05/05/2013 13:39:05</publishTime>
     </File>
     <File Include="Views/VietSovPetro/Restaurant.cshtml">
       <publishTime>05/02/2013 17:29:13</publishTime>
@@ -4800,7 +4813,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2013 15:50:26</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/02/2013 15:32:56</publishTime>
+      <publishTime>05/03/2013 17:32:06</publishTime>
     </File>
   </ItemGroup>
 </Project>

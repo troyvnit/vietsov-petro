@@ -242,6 +242,9 @@
                     { field: "IsNew", title: "Mới ?", width: "50px" },
                     { command: [{ text: "Nội dung", click: contentEditor }, "destroy"], title: " ", width: "180px" }],
                 editable: true,
+                sortable: true,
+                filterable: true,
+                resizable: true,
                 saveChanges: function (e) {
                     console.log(e.sender);
                     for (var i = 0; i < e.sender._data.length; i++) {
