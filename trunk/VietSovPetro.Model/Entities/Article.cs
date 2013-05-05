@@ -21,16 +21,12 @@ namespace VietSovPetro.Model.Entities
         [Required]
         public int ActicleNumber { get; set; }
         [Required]
-        [MaxLength(100)]
         public string Title { get; set; }
-        [MaxLength(500)]
         public string Description { get; set; }
         [Required]
         public string Content { get; set; }
         [Required]
-        [MaxLength(50)]
         public string Author { get; set; }
-        [MaxLength(256)]
         public string ImageUrl { get; set; }
         public int OrderID { get; set; }
         public string LanguageCode { get; set; }

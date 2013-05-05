@@ -1829,6 +1829,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\VietSovPetro.pubxml" />
+    <Content Include="Views\VietSovPetro\DealingRoom.cshtml" />
+    <Content Include="Views\VietSovPetro\Activity.cshtml" />
+    <Content Include="Views\VietSovPetro\News.cshtml" />
+    <Content Include="Views\VietSovPetro\DealingRestaurant.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

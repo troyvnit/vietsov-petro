@@ -257,6 +257,9 @@
                    // { field: "Article", title: "Bài viết", editor: articleDropDownEditor, template: "#= Article.Title #" },
                     { command: [{ text: "Chi tiết", click: roomDetails }, "destroy"], title: " ", width: "160px" }],
                 editable: true,
+                sortable: true,
+                filterable: true,
+                resizable: true,
                 saveChanges: function (e) {
                     console.log(e.sender);
                     for (var i = 0; i < e.sender._data.length; i++) {
@@ -469,7 +472,10 @@
                         { field: "IsNew", title: "Mới ?", width: "50px" },
                         { field: "RoomPropertyType", title: "Loại thuộc tính", editor: roomPropertyTypeDropDownEditor, width: "100px" },
                         { command: ["destroy"], title: " ", width: "70px" }],
-                    editable: true
+                    editable: true,      
+                    sortable: true,
+                    filterable: true,
+                    resizable: true
                 });
             }
             function roomPropertyTypeDropDownEditor(container, options) {
