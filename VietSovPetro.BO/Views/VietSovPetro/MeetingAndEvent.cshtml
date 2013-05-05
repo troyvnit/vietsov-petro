@@ -176,7 +176,7 @@
                 <!--picHotel-->
                 <div class="conHotel-1">
                     <ul>
-                        @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished && r.RoomProperty.LanguageCode.ToLower() == language))
+                        @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished ))
                         {
                             <li>
                                 <p>@detail.RoomProperty.RoomPropertyName: @detail.RoomPropertyNumberValue @detail.RoomProperty.Unit</p>
@@ -187,13 +187,13 @@
                 <!--conHotel-1-->
                 <div class="conHotel-2">
                     <ul>
-                        @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished && r.RoomProperty.LanguageCode.ToLower() == language))
+                        @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished ))
                         {
                             <li>
                                 <p>@price.RoomProperty.RoomPropertyName: @price.RoomPropertyNumberValue @price.RoomProperty.Unit</p>
                             </li>
                         }
-                        @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished && r.RoomProperty.LanguageCode.ToLower() == language))
+                        @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished ))
                         {
                             <li>
                                 <p>@property.RoomProperty.RoomPropertyName: @property.RoomPropertyStringValue @property.RoomProperty.Unit</p>

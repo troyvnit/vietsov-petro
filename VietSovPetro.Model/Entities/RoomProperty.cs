@@ -17,7 +17,6 @@ namespace VietSovPetro.Model.Entities
         public string RoomPropertyType { get; set; }
         public string Unit { get; set; }
         public int OrderID { get; set; }
-        public string LanguageCode { get; set; }
         
         public virtual ICollection<RoomPropertyRooms> RoomPropertyRooms { get; set; }
     }

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+
 using Newtonsoft.Json;
-using VietSovPetro.Model.Entities;
 
 namespace VietSovPetro.BO.ViewModels
 {

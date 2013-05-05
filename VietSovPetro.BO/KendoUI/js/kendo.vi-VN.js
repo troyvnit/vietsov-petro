@@ -48,14 +48,14 @@ kendo.ui.FilterMenu.prototype.options.messages =
   
 /* FILTER MENU MESSAGES 
  ***************************************************************************/   
-  info: "Show items with value that:", // sets the text on top of the filter menu
-  isTrue: "is true",                   // sets the text for "isTrue" radio button
-  isFalse: "is false",                 // sets the text for "isFalse" radio button
-  filter: "Filter",                    // sets the text for the "Filter" button
-  clear: "Clear",                      // sets the text for the "Clear" button
-  and: "And",
-  or: "Or",
-  selectValue: "-Select value-"
+  info: "Hiển thị theo giá trị sau:", // sets the text on top of the filter menu
+  isTrue: "là true",                   // sets the text for "isTrue" radio button
+  isFalse: "là false",                 // sets the text for "isFalse" radio button
+  filter: "Lộc",                    // sets the text for the "Filter" button
+  clear: "Làm sạch",                      // sets the text for the "Clear" button
+  and: "Và",
+  or: "Hoặc",
+  selectValue: "-Chọn giá trị-"
  /***************************************************************************/   
 });
          
@@ -65,32 +65,32 @@ kendo.ui.FilterMenu.prototype.options.operators =
 /* FILTER MENU OPERATORS (for each supported data type) 
  ****************************************************************************/   
   string: {
-      eq: "Is equal to",
-      neq: "Is not equal to",
-      startswith: "Starts with",
-      contains: "Contains",
-      doesnotcontain: "Does not contain",
-      endswith: "Ends with"
+      eq: "Bằng chuỗi",
+      neq: "Khác chuỗi",
+      startswith: "Bắt đầu với",
+      contains: "Chứa",
+      doesnotcontain: "Không chứa",
+      endswith: "Kết thúc với"
   },
   number: {
-      eq: "Is equal to",
-      neq: "Is not equal to",
-      gte: "Is greater than or equal to",
-      gt: "Is greater than",
-      lte: "Is less than or equal to",
-      lt: "Is less than"
+      eq: "Bằng",
+      neq: "Không bằng",
+      gte: "Lớn hơn hoặc bằng",
+      gt: "Lớn hơn",
+      lte: "Nhỏ hơn hoặc bằng",
+      lt: "Nhỏ hơn"
   },
   date: {
-      eq: "Is equal to",
-      neq: "Is not equal to",
-      gte: "Is after or equal to",
-      gt: "Is after",
-      lte: "Is before or equal to",
-      lt: "Is before"
+      eq: "Đúng ngày",
+      neq: "Khác ngày",
+      gte: "Từ ngày này trở về sau",
+      gt: "Sau ngày",
+      lte: "Từ ngày này trở về trước",
+      lt: "Trước ngày"
   },
   enums: {
-      eq: "Is equal to",
-      neq: "Is not equal to"
+      eq: "Bằng",
+      neq: "Không bằng"
   }
  /***************************************************************************/   
 });

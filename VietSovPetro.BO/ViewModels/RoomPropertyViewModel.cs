@@ -12,6 +12,10 @@ namespace VietSovPetro.BO.ViewModels
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Guid RoomPropertyID { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Guid RoomID { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Guid RoomPropertyRoomID { get; set; }
         [Required]
         public string RoomPropertyName { get; set; }
         public string RoomPropertyStringValue { get; set; }
@@ -19,11 +23,8 @@ namespace VietSovPetro.BO.ViewModels
         public string RoomPropertyType { get; set; }
         public string Unit { get; set; }
         public int OrderID { get; set; }
-        public string LanguageCode { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
-        public Guid RoomID { get; set; }
-        public Guid RoomPropertyRoomID { get; set; }
     }
 }

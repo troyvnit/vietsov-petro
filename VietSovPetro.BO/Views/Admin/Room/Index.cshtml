@@ -9,7 +9,7 @@
             <div id="horizontal" style="height: 100%; width: 100%;">
                 <div id="left-pane">
                     <div class="pane-content">
-                        <p style="width: 100%; text-align: center">QUẢN LÝ LOẠI NHÀ HÀNG KHÁCH SẠN</p>
+                        <p style="width: 100%; text-align: center">PHÂN LOẠI NHÀ HÀNG KHÁCH SẠN</p>
                         <div class="room-category-list">
                             <a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span></a>
                         </div>
@@ -113,6 +113,8 @@
         <input type="file" id="uploadimage" name="files"/>
         <img src="/Images/#= ImageUrl #" id="aimage" alt="#= ImageUrl #"/>
         <span class="roomtypespan"><label>Loại phòng:</label> <select id="roomtypes"></select></span>
+        <p style="width: 100%; text-align: center; float: left">MÔ TẢ</p>
+        <textarea id="desc" style="width:100%;height:100px">#= Description # </textarea>
         <p style="width: 100%; text-align: center; float: left">QUẢN LÝ THUỘC TÍNH</p>
         <div id="detailgrid"></div>
     </script>
@@ -244,7 +246,7 @@
                 toolbar: ["create", "save", "cancel"],
                 columns: [
                     { field: "RoomName", title: "Tên phòng" },
-                    { field: "Description", title: "Mô tả", width: "100px" },
+                    { field: "Description", title: "Mô tả", width: "100px", hidden: true },
                     { field: "Quantity", title: "Số lượng", width: "80px" },
                     { field: "ImageUrl", title: "ImageUrl", hidden: true },
                     { field: "OrderID", title: "Thứ tự", width: "70px" },
@@ -300,12 +302,18 @@
                 e.preventDefault();
                 wnd.close();
             });
+            
+            wnd.wrapper.find(".k-i-close").click(function (e) {
+                e.preventDefault();
+                wnd.refresh();
+            });
 
             function onSaveDetailsWindow() {
                 var roomtypes = $("#roomtypes").data("kendoMultiSelect");
                 $("#roomtypes").val(roomtypes.value());
                 dataItem.RoomTypeIDs = roomtypes.value();
                 console.log(dataItem.toJSON());
+                dataItem.Description = $("#desc").val();
                 if ($("#mainfilename").val() != null && $("#mainfilename").val() != "") {
                     dataItem.ImageUrl = dataItem.ImageUrl + "/" + $("#mainfilename").val();
                 }
@@ -467,9 +475,7 @@
                         { field: "RoomPropertyNumberValue", title: "Giá trị số", width: "90px" },
                         { field: "Unit", title: "Đơn vị", width: "60px" },
                         { field: "OrderID", title: "Thứ tự", width: "70px" },
-                        { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
                         { field: "IsPublished", title: "Online ?", width: "80px" },
-                        { field: "IsNew", title: "Mới ?", width: "50px" },
                         { field: "RoomPropertyType", title: "Loại thuộc tính", editor: roomPropertyTypeDropDownEditor, width: "100px" },
                         { command: ["destroy"], title: " ", width: "70px" }],
                     editable: true,      

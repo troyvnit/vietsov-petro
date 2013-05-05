@@ -151,7 +151,6 @@ BEGIN
         ,[RoomPropertyType]
 		,[Unit]
 		,[OrderID]
-        ,[LanguageCode]
     )
     VALUES
     (
@@ -160,7 +159,6 @@ BEGIN
         ,'Detail'
 		,N'chỗ'
 		,0
-        ,'vi-VN'
     )
 END
 
@@ -173,7 +171,6 @@ BEGIN
         ,[RoomPropertyType]
 		,[Unit]
 		,[OrderID]
-        ,[LanguageCode]
     )
     VALUES
     (
@@ -182,7 +179,6 @@ BEGIN
         ,'Detail'
 		,N'm2'
 		,0
-        ,'vi-VN'
     )
 END
 
@@ -195,7 +191,6 @@ BEGIN
         ,[RoomPropertyType]
 		,[Unit]
 		,[OrderID]
-        ,[LanguageCode]
     )
     VALUES
     (
@@ -204,7 +199,6 @@ BEGIN
         ,'Detail'
 		,N'm'
 		,0
-        ,'vi-VN'
     )
 END
 
@@ -217,7 +211,6 @@ BEGIN
         ,[RoomPropertyType]
 		,[Unit]
 		,[OrderID]
-        ,[LanguageCode]
     )
     VALUES
     (
@@ -226,7 +219,6 @@ BEGIN
         ,'Detail'
 		,N'm'
 		,0
-        ,'vi-VN'
     )
 END
 
@@ -239,7 +231,6 @@ BEGIN
         ,[RoomPropertyType]
 		,[Unit]
 		,[OrderID]
-        ,[LanguageCode]
     )
     VALUES
     (
@@ -248,7 +239,6 @@ BEGIN
         ,'Price'
 		,N'Đ'
 		,0
-        ,'vi-VN'
     )
 END
 
@@ -261,7 +251,6 @@ BEGIN
         ,[RoomPropertyType]
 		,[Unit]
 		,[OrderID]
-        ,[LanguageCode]
     )
     VALUES
     (
@@ -270,7 +259,6 @@ BEGIN
         ,'Price'
 		,N'Đ'
 		,0
-        ,'vi-VN'
     )
 END
 
@@ -283,7 +271,6 @@ BEGIN
         ,[RoomPropertyType]
 		,[Unit]
 		,[OrderID]
-        ,[LanguageCode]
     )
     VALUES
     (
@@ -292,7 +279,6 @@ BEGIN
         ,'Property'
 		,''
 		,0
-        ,'vi-VN'
     )
 END
 
@@ -305,7 +291,6 @@ BEGIN
         ,[RoomPropertyType]
 		,[Unit]
 		,[OrderID]
-        ,[LanguageCode]
     )
     VALUES
     (
@@ -314,7 +299,6 @@ BEGIN
         ,'Property'
 		,''
 		,0
-        ,'vi-VN'
     )
 END
 
