@@ -26,8 +26,7 @@ namespace VietSovPetro.Domain.Handlers
                 RoomPropertyName = command.RoomPropertyName,
                 RoomPropertyType = command.RoomPropertyType,
                 Unit = command.Unit,
-                OrderID = command.OrderID,
-                LanguageCode = command.LanguageCode
+                OrderID = command.OrderID
             };
             if (roomProperty.RoomPropertyID == Guid.Empty)
             {

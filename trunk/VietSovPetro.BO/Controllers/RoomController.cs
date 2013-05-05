@@ -127,20 +127,19 @@ namespace VietSovPetro.BO.Controllers
         public JsonResult GetRoomProperties(Guid? rID)
         {
             var roomPropertys = roomPropertyRepository.GetAll().ToList();
-            List<RoomPropertyViewModel> roomPropertyRooms = new List<RoomPropertyViewModel>();
+            var roomPropertyRooms = new List<RoomPropertyViewModel>();
             foreach (var roomProperty in roomPropertys)
             {
                 var roomPropertyViewModel = new RoomPropertyViewModel
                 {
                     RoomPropertyID = roomProperty.RoomPropertyID,
-                    RoomID = (Guid)rID,
+                    RoomID = rID != null ? (Guid)rID : Guid.Empty,
                     RoomPropertyName = roomProperty.RoomPropertyName,
                     RoomPropertyType = roomProperty.RoomPropertyType,
                     OrderID = roomProperty.OrderID,
-                    LanguageCode = roomProperty.LanguageCode,
                     Unit = roomProperty.Unit
                 };
-                var roomPropertyRoom = roomPropertyRoomRepository.GetAll().Where(a => a.RoomID == (Guid)rID && a.RoomPropertyID == roomProperty.RoomPropertyID).FirstOrDefault();
+                var roomPropertyRoom = roomPropertyRoomRepository.GetAll().FirstOrDefault(a => a.RoomID == roomPropertyViewModel.RoomID && a.RoomPropertyID == roomProperty.RoomPropertyID);
                 if (roomPropertyRoom != null)
                 {
                     roomPropertyViewModel.RoomPropertyRoomID = roomPropertyRoom.RoomPropertyRoomID;

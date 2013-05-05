@@ -42,12 +42,5 @@ namespace VietSovPetro.Data
                 throw;  // You can also choose to handle the exception here...
             }
         }
-        public virtual ObjectResult<ArticleCategory> GetAllArticleCategoriesPaged(int page, int pageSize)
-        {
-            ((IObjectContextAdapter)this).ObjectContext.MetadataWorkspace.LoadFromAssembly(typeof(ArticleCategory).Assembly);
-            var pageParameter = new ObjectParameter("page", page);
-            var pageSizeParameter = new ObjectParameter("pageSize", pageSize);
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ArticleCategory>("GetAllArticleCategoriesPaged", pageParameter, pageSizeParameter);
-        }
     }
 }

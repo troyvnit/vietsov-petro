@@ -9,7 +9,7 @@
             <div id="horizontal" style="height: 100%; width: 100%;">
                 <div id="left-pane">
                     <div class="pane-content">
-                        <p style="width: 100%; text-align: center">QUẢN LÝ HẠNG MỤC</p>
+                        <p style="width: 100%; text-align: center">PHÂN LOẠI BÀI VIẾT</p>
                         <div class="article-category-list">
                             <a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span></a>
                         </div>
@@ -104,7 +104,9 @@
         <input type="file" id="uploadimage" name="files"/>
                             <img src="/Images/#= ImageUrl #" id="aimage" />
                             <span class="articlecategoryspan"><label>Hạng mục:</label> <select id="articlecategories"></select></span>
-        <p style="width: 100%; text-align: center; float: left">QUẢN LÝ THUỘC TÍNH</p>
+        <p style="width: 100%; text-align: center; float: left">MÔ TẢ</p>
+        <textarea id="desc" style="width:100%;height:100px">#= Description # </textarea>
+        <p style="width: 100%; text-align: center; float: left">NỘI DUNG</p>
                             <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">#= Content #
                     </textarea>
     </script>
@@ -232,7 +234,7 @@
                 toolbar: ["create", "save", "cancel"],
                 columns: [
                     { field: "Title", title: "Tiêu đề" },
-                    { field: "Description", title: "Mô tả", width: "70px" },
+                    { field: "Description", title: "Mô tả", width: "70px", hidden: true },
                     { field: "Author", title: "Tác giả", width: "70px" },
                     { field: "Content", title: "Nội dung", hidden: true },
                     { field: "ImageUrl", title: "ImageUrl", hidden: true },
@@ -307,10 +309,16 @@
                 wnd.close();
             });
             
+            wnd.wrapper.find(".k-i-close").click(function (e) {
+                e.preventDefault();
+                wnd.refresh();
+            });
+            
             function onSaveContentWindow() {
                 var ceditor = $("#ceditor").data("kendoEditor");
                 dataItem.Content = $('<div/>').text(ceditor.value()).html();
                 console.log(dataItem.Content);
+                dataItem.Description = $("#desc").val();
                 var articlecategories = $("#articlecategories").data("kendoMultiSelect");
                 $("#articlecategoryids").val(articlecategories.value());
                 dataItem.ArticleCategoryIDs = articlecategories.value();

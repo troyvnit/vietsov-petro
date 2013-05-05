@@ -65,13 +65,13 @@
                             <p><strong>Loại Phòng: @foreach (var roomtype in room.RoomTypes)
                                                    { @roomtype.RoomTypeName }</strong></p>
                         </li>
-                        @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished && r.RoomProperty.LanguageCode.ToLower() == language))
+                        @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished ))
                         {
                             <li>
                                 <p>@detail.RoomProperty.RoomPropertyName: @detail.RoomPropertyNumberValue @detail.RoomProperty.Unit</p>
                             </li>
                         }
-                        @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished && r.RoomProperty.LanguageCode.ToLower() == language))
+                        @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished ))
                         {
                             <li>
                                 <p>@price.RoomProperty.RoomPropertyName: @price.RoomPropertyNumberValue @price.RoomProperty.Unit</p>
@@ -85,7 +85,7 @@
                         <li>
                             <p style="font-weight: bold; text-decoration: underline;">Chi tiết:</p>
                         </li>
-                        @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished && r.RoomProperty.LanguageCode.ToLower() == language))
+                        @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished ))
                         {
                             <li>
                                 <p>@property.RoomProperty.RoomPropertyName: @property.RoomPropertyStringValue @property.RoomProperty.Unit</p>
