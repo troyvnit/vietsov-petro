@@ -51,8 +51,8 @@ kendo.ui.FilterMenu.prototype.options.messages =
   info: "Hiển thị theo giá trị sau:", // sets the text on top of the filter menu
   isTrue: "là true",                   // sets the text for "isTrue" radio button
   isFalse: "là false",                 // sets the text for "isFalse" radio button
-  filter: "Lộc",                    // sets the text for the "Filter" button
-  clear: "Làm sạch",                      // sets the text for the "Clear" button
+  filter: "Lọc",                    // sets the text for the "Filter" button
+  clear: "Xóa",                      // sets the text for the "Clear" button
   and: "Và",
   or: "Hoặc",
   selectValue: "-Chọn giá trị-"
