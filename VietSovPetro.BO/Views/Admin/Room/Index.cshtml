@@ -25,6 +25,12 @@
                         <p style="width: 100%; text-align: center">QUẢN LÝ NHÀ HÀNG KHÁCH SẠN</p>
                         <div id="room-type">
                         </div>
+                        <div class="k-toolbar k-grid-toolbar">
+                            <div class="toolbar">
+                                <label class="category-label" for="category">Show products by category:</label>
+                                <input type="search" id="category" style="width: 150px"/>
+                            </div>
+                        </div>
                         <div id="grid"></div>
                         <input type="hidden" id="roomtypeids" />
                     </div>
@@ -43,16 +49,6 @@
                 <dd>#:RoomTypeName#</dd>
                 <dt>Nhóm phòng</dt>
                 <dd>#:RoomGroup#</dd>
-                <dt>Ngôn ngữ</dt>
-                <dd>#:LanguageCode#</dd>
-                <dt>Mô tả</dt>
-                <dd>#:Description#</dd>
-                <dt>Online ?</dt>
-                <dd>#:IsPublished#</dd>
-                <dt>Mới ?</dt>
-                <dd>#:IsNew#</dd>
-                <dt>Khuyến mãi ?</dt>
-                <dd>#:IsDeal#</dd>
             </dl>
         </div>
     </script>
@@ -108,14 +104,19 @@
         </div>
     </script>
 
-    <script type="text/x-kendo-template" id="wtemplate">                       
-        <div style="float:left; width: 100%"><label style="margin-left:30%">Ảnh chính: </label><input type="text" style="display: none" name="mainfilename" id="mainfilename"/></div>
-        <input type="file" id="uploadimage" name="files"/>
-        <img src="/Images/#= ImageUrl #" id="aimage" alt="#= ImageUrl #"/>
-        <span class="roomtypespan"><label>Loại phòng:</label> <select id="roomtypes"></select></span>
-        <p style="width: 100%; text-align: center; float: left">MÔ TẢ</p>
-        <textarea id="desc" style="width:100%;height:100px">#= Description # </textarea>
-        <p style="width: 100%; text-align: center; float: left">QUẢN LÝ THUỘC TÍNH</p>
+    <script type="text/x-kendo-template" id="wtemplate">  
+        <div style="width: 60%; text-align: left; float: left">    
+            <span class="roomtypespan"><label>Loại phòng:</label> <select id="roomtypes"></select></span>
+            <p>MÔ TẢ</p>
+            <textarea id="desc" style="width:98%;height:200px">#= Description # </textarea>    
+        </div>       
+        <div style="float:left; width: 40%">  
+            <label>Ảnh chính: </label>
+            <input type="text" style="display: none; width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename"/>
+            <img src="/Images/#= ImageUrl #" id="aimage" /><label id="urlimage" style="width: 70%"></label>
+            <div style="width: 100%"><input type="file" id="uploadimage" name="files"/></div>
+        </div>     
+        <p style="width: 100%; text-align: left; float: left">QUẢN LÝ THUỘC TÍNH</p>
         <div id="detailgrid"></div>
     </script>
 
@@ -369,6 +370,8 @@
                 success: function (e) {
                     var ImageUrl = e.response.Folder;
                     dataItem.ImageUrl = ImageUrl;
+                    $(".k-upload-files.k-reset").css("height", "100px");
+                    $(".k-upload-files.k-reset").css("overflow", "scroll");
                 },
                 select: onSelect
             });
@@ -376,7 +379,10 @@
                 $.map(e.files, function (file) {
                     var info = file.name;
                     var obj = { text: file.name, value: file.name };
-                    arrFiles.push(obj);
+                    console.log($.inArray(obj, arrFiles));
+                    if ($.inArray(obj, arrFiles) === -1) {
+                        arrFiles.push(obj);
+                    }
                 }).join(",");
                 $("#mainfilename").kendoDropDownList({
                     dataTextField: "text",
@@ -393,6 +399,7 @@
                 if (ext == "jpg" || ext == "jpeg" || ext == "gif" || "png") {
                     $("#aimage").attr("src", "/Images/" + url);
                 }
+                $("#urlimage").text($('#aimage').prop('src'));
                 console.log(dataItem.ImageUrl);
             }
             $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh");
@@ -467,7 +474,7 @@
                 $("#detailgrid").kendoGrid({
                     dataSource: roomPropertyDataSource,
                     pageable: true,
-                    height: 740,
+                    height: 400,
                     toolbar: ["create", "save", "cancel"],
                     columns: [
                         { field: "RoomPropertyName", title: "Tên thuộc tính" },
@@ -651,15 +658,15 @@
         #room-type .k-upload
         {
             float: left;
-            width: 30%;
+            width: 100%;
             margin-right: 5px;
         }
 
         #room-type img
         {
             float: left;
-            max-width: 65%;
-            max-height: 220px;
+            max-width: 100px;
+            max-height: 100px;
             margin: 5px 0;
         }
 
@@ -673,15 +680,14 @@
         #room-type .k-multiselect
         {
             float: left;
-            width: 89%;
+            width: 98%;
             margin: 5px 0;
         }
 
         #room-type label
         {
             float: left;
-            width: 10%;
-            margin: 5px 0;
+            margin: 5px;
         }
 
         #room-type .k-upload-button

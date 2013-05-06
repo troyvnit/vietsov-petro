@@ -48,10 +48,6 @@
                 <dd>#:ArticleCategoryName#</dd>
                 <dt>Loại hạng mục</dt>
                 <dd>#:ArticleCategoryType#</dd>
-                <dt>Ngôn ngữ</dt>
-                <dd>#:LanguageCode#</dd>
-                <dt>Mô tả</dt>
-                <dd>#:Description#</dd>
             </dl>
         </div>
     </script>
@@ -100,15 +96,22 @@
     </script>
 
     <script type="text/x-kendo-template" id="wtemplate">
-                    <div style="float:left; width: 100%"><label style="margin-left:30%">Ảnh chính: </label><input type="text" style="display: none" name="mainfilename" id="mainfilename"/></div>
-        <input type="file" id="uploadimage" name="files"/>
-                            <img src="/Images/#= ImageUrl #" id="aimage" />
-                            <span class="articlecategoryspan"><label>Hạng mục:</label> <select id="articlecategories"></select></span>
-        <p style="width: 100%; text-align: center; float: left">MÔ TẢ</p>
-        <textarea id="desc" style="width:100%;height:100px">#= Description # </textarea>
-        <p style="width: 100%; text-align: center; float: left">NỘI DUNG</p>
-                            <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">#= Content #
-                    </textarea>
+                    
+        <div style="width: 60%; text-align: left; float: left">
+            <span class="articlecategoryspan"><label>Hạng mục:</label> <select id="articlecategories"></select></span>
+            <p>MÔ TẢ</p>
+            <textarea id="desc" style="width:98%;height:200px">#= Description # </textarea>
+        </div>
+        <div style="float:left; width: 40%">  
+            <label>Ảnh chính: </label>
+            <input type="text" style="display: none; width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename"/>
+            <img src="/Images/#= ImageUrl #" id="aimage" />
+            <label id="urlimage" style="width: 70%"></label>
+            <input type="button" value="Copy" onclick="$.copy("some text to copy");"/>
+            <div style="width: 100%"><input type="file" id="uploadimage" name="files"/></div>
+        </div>
+        <p style="width: 100%; text-align: left; float: left">NỘI DUNG</p>
+        <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">#= Content #</textarea>
     </script>
 
     <script>
@@ -380,6 +383,8 @@
             success: function (e) {
                 var ImageUrl = e.response.Folder;
                 dataItem.ImageUrl = ImageUrl;
+                $(".k-upload-files.k-reset").css("height", "100px");
+                $(".k-upload-files.k-reset").css("overflow", "scroll");
             },
             select: onSelect
         });
@@ -403,6 +408,7 @@
             if (ext == "jpg" || ext == "jpeg" || ext == "gif" || "png") {
                 $("#aimage").attr("src", "/Images/" + url);
             }
+            $("#urlimage").text($('#aimage').prop('src'));
             console.log(dataItem.ImageUrl);
         }
             $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh cho bài viết");
@@ -625,15 +631,14 @@
         #article-content .k-upload
         {
             float: left;
-            width: 30%;      
-            height: 220px;
+            width: 100%;     
             margin-right: 5px;
         }
         #article-content img
         {
             float: left;
-            max-width: 65%;
-            max-height: 220px;
+            max-width: 100px;
+            max-height: 100px;
             margin: 5px 0;
         }
         #article-content .articlecategoryspan
@@ -645,18 +650,21 @@
         #article-content .k-multiselect
         {
             float: left;
-            width: 89%;
+            width: 98%;
             margin: 5px 0;
         }
         #article-content label
         {
             float: left;
-            width: 10%;
-            margin: 5px 0;
+            margin: 5px;
         }
         #article-content .k-upload-button
         {
             width: 100%;
+        }
+        #article-content .k-upload-files .k-reset
+        {
+            display: none;
         }
     </style>
 </div>
