@@ -113,7 +113,7 @@
         <div style="float:left; width: 40%">  
             <label>Ảnh chính: </label>
             <input type="text" style="display: none; width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename"/>
-            <img src="/Images/#= ImageUrl #" id="aimage" /><label id="urlimage" style="width: 70%"></label>
+            <img src="/Images/#= ImageUrl #" id="aimage" /><textarea id="urlimage" style="width: 70%; height: 94px; margin: 5px 3px; display: none"/>
             <div style="width: 100%"><input type="file" id="uploadimage" name="files"/></div>
         </div>     
         <p style="width: 100%; text-align: left; float: left">QUẢN LÝ THUỘC TÍNH</p>
@@ -389,17 +389,19 @@
                     dataValueField: "value",
                     dataSource: arrFiles,
                     index: 0,
-                    change: onChangeMainFile
+                    select: onChangeMainFile
                 });
             }
             function onChangeMainFile(e) 
             {
-                var url = dataItem.ImageUrl + "/" + $("#mainfilename").val();
-                var ext = $("#mainfilename").val().split('.').pop();
+                var dItem = this.dataItem(e.item.index());
+                var url = dataItem.ImageUrl + "/" + dItem.value;
+                var ext = dItem.value.split('.').pop();
                 if (ext == "jpg" || ext == "jpeg" || ext == "gif" || "png") {
                     $("#aimage").attr("src", "/Images/" + url);
                 }
-                $("#urlimage").text($('#aimage').prop('src'));
+                $("#urlimage").val($('#aimage').prop('src'));
+                $("#urlimage").show();
                 console.log(dataItem.ImageUrl);
             }
             $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh");
