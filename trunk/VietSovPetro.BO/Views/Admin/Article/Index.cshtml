@@ -6,6 +6,15 @@
 <div id="example" class="k-content">
     <div id="vertical">
         <div id="top-pane">
+            
+                        <div class="k-toolbar k-grid-toolbar">
+                            <div class="toolbar">
+                                <label class="category-label" for="category">Ngôn ngữ:</label>
+                                <input type="search" id="language" style="width: 150px"/>
+                                <label class="category-label" for="category">Loại:</label>
+                                <input type="search" id="category" style="width: 150px"/>
+                            </div>
+                        </div>
             <div id="horizontal" style="height: 100%; width: 100%;">
                 <div id="left-pane">
                     <div class="pane-content">
@@ -105,9 +114,7 @@
         <div style="float:left; width: 40%">  
             <label>Ảnh chính: </label>
             <input type="text" style="display: none; width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename"/>
-            <img src="/Images/#= ImageUrl #" id="aimage" />
-            <label id="urlimage" style="width: 70%"></label>
-            <input type="button" value="Copy" onclick="$.copy("some text to copy");"/>
+            <img src="/Images/#= ImageUrl #" id="aimage" /><textarea id="urlimage" style="width: 70%; height: 94px; margin: 5px 3px; display: none"/>
             <div style="width: 100%"><input type="file" id="uploadimage" name="files"/></div>
         </div>
         <p style="width: 100%; text-align: left; float: left">NỘI DUNG</p>
@@ -229,7 +236,7 @@
                     }
                 }
             });
-            $("#grid").kendoGrid({
+            var grid = $("#grid").kendoGrid({
                 dataSource: articleDataSource,
                 //dataBound: articleDataBound,
                 pageable: true,
@@ -245,6 +252,7 @@
                     { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
                     { field: "IsPublished", title: "Online ?", width: "80px" },
                     { field: "IsNew", title: "Mới ?", width: "50px" },
+                    { field: "ArticleCategoryIDs", title: "ArticleCategoryIDs", hidden: true },
                     { command: [{ text: "Nội dung", click: contentEditor }, "destroy"], title: " ", width: "180px" }],
                 editable: true,
                 sortable: true,
@@ -331,45 +339,87 @@
                 }
                 wnd.refresh();
                 $("#grid").data("kendoGrid").saveChanges();
-                                @*if (dataItem.Title != "" && dataItem.Content != "") {
-                    $.ajax({
-                        url: '@Url.Action("CreateOrUpdateArticles", "Article")',
-                        type: 'POST',
-                        traditional: true,
-                        dataType: "json",
-                        contentType: "application/json",
-                        data: kendo.stringify({
-                            models: "[" + kendo.stringify(dataItem) + "]"
-                        }),
-                        success: function() { $("#grid").data("kendoGrid").dataSource.read(); }
-                    });
-                }*@
             }
-        });
 
-        @*function articleDataBound(e) {
-            var grid = this;
-            var img = this.tbody.find("img");
-            this.tbody.find("input[name=imageUrl]").kendoUpload({
-                multiple: false,
-                async: {
-                    saveUrl: '@Url.Action("SaveImages", "Common")',
-                    autoUpload: true
+            var cDropDown = $("#category").kendoDropDownList({
+                dataTextField: "ArticleCategoryType",
+                dataValueField: "ArticleCategoryID",
+                autoBind: false,
+                optionLabel: "Tất cả",
+                dataSource: {
+                    severFiltering: true,
+                    transport: {
+                        read: {
+                            url: '@Url.Action("GetArticleCategories", "Article")',
+                            type: "post",
+                            dataType: "json"
+                        }
+                    }
                 },
-                upload: function (e) {
-                    var item = grid.dataItem(this.element.closest("tr"));
-                    e.data = { id: item.id };
-                },
-                success: function (e) {
-                    var ImageUrl = e.response.ImageUrl;
-                    var item = grid.dataItem(this.element.closest("tr"));
-                    item.ImageUrl = ImageUrl;
-                    item.dirty = true;
-                    img.attr("src", ImageUrl);
-                    console.log(ImageUrl);
+                change: function () {
+                    var value = this.value();
+                    var text = this.text();
+                    console.log(lDropDown.data("kendoDropDownList").value());
+                    if (value) {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "ArticleCategoryIDs", operator: "contains", value: value }] });
+                        listView.dataSource.filter({ "logic": "and", "filters": [{ field: "ArticleCategoryType", operator: "eq", value: text }] });
+                        if(lDropDown.data("kendoDropDownList").value())
+                        {
+                            grid.data("kendoGrid").dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                            grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
+                            listView.dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                            listView.dataSource.filter(listView.dataSource._filter.filters);
+                        }
+                    } else {
+                        if (lDropDown.data("kendoDropDownList").value()) {
+                            grid.data("kendoGrid").dataSource.filter({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                            listView.dataSource.filter({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                        }
+                        else {
+                            grid.data("kendoGrid").dataSource.filter({});
+                            listView.dataSource.filter({});
+                        }
+                    }
                 }
             });
-    } *@
+            var lDropDown = $("#language").kendoDropDownList({
+                dataTextField: "Language",
+                dataValueField: "LanguageCode",
+                autoBind: false,
+                optionLabel: "Tất cả",
+                dataSource: [
+                                { Language: "Tiếng Việt", LanguageCode: "vi-VN" },
+                                { Language: "Tiếng Anh", LanguageCode: "en-US" },
+                                { Language: "Tiếng Nga", LanguageCode: "ru-RU" }
+                ],
+                change: function () {
+                    var value = this.value();
+                    if (value) {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
+                        listView.dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
+                        if ($("#category").data("kendoDropDownList").value())
+                        {
+                            grid.data("kendoGrid").dataSource._filter.filters.push({ field: "ArticleCategoryIDs", operator: "contains", value: $("#category").data("kendoDropDownList").value() });
+                            grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
+                            listView.dataSource._filter.filters.push({ field: "ArticleCategoryType", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
+                            listView.dataSource.filter(listView.dataSource._filter.filters);
+                        }
+                    } else {
+                        if ($("#category").data("kendoDropDownList").value()) {
+                            grid.data("kendoGrid").dataSource.filter({ field: "ArticleCategoryIDs", operator: "contains", value: $("#category").data("kendoDropDownList").value() });
+                            listView.dataSource.filter({ field: "ArticleCategoryType", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
+                        }
+                        else {
+                            grid.data("kendoGrid").dataSource.filter({});
+                            listView.dataSource.filter({});
+                            console.log(listView.dataSource);
+                        }
+                    }
+                }
+            });
+        });
+
+        
     function contentEditor(e) {
         e.preventDefault();
         dataItem = this.dataItem($(e.currentTarget).closest("tr"));
@@ -399,16 +449,18 @@
                 dataValueField: "value",
                 dataSource: arrFiles,
                 index: 0,
-                change: onChangeMainFile
+                select: onChangeMainFile
             });
         }
         function onChangeMainFile(e) {
-            var url = dataItem.ImageUrl + "/" + $("#mainfilename").val();
-            var ext = $("#mainfilename").val().split('.').pop();
+            var dItem = this.dataItem(e.item.index());
+            var url = dataItem.ImageUrl + "/" + dItem.value;
+            var ext = dItem.value.split('.').pop();
             if (ext == "jpg" || ext == "jpeg" || ext == "gif" || "png") {
                 $("#aimage").attr("src", "/Images/" + url);
             }
-            $("#urlimage").text($('#aimage').prop('src'));
+            $("#urlimage").val($('#aimage').prop('src'));
+            $("#urlimage").show();
             console.log(dataItem.ImageUrl);
         }
             $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh cho bài viết");
