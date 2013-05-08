@@ -38,7 +38,7 @@ namespace VietSovPetro.BO.Controllers
                 {
                     var firstOrDefault = a.ArticleCategories.FirstOrDefault();
                     return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.ArticleCategoryType == "Introduction" 
-                        && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+                        && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
                 }).OrderBy(a => a.OrderID))
             {
                 var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
@@ -55,7 +55,7 @@ namespace VietSovPetro.BO.Controllers
             {
                 var firstOrDefault = a.ArticleCategories.FirstOrDefault();
                 return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.ArticleCategoryType == "Activity"
-                    && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID))
             {
                 var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
@@ -72,7 +72,7 @@ namespace VietSovPetro.BO.Controllers
             {
                 var firstOrDefault = a.ArticleCategories.FirstOrDefault();
                 return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.ArticleCategoryType == "News"
-                    && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID))
             {
                 var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
@@ -88,7 +88,7 @@ namespace VietSovPetro.BO.Controllers
                 {
                     var firstOrDefault = a.RoomTypes.FirstOrDefault();
                     return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Meeting Room" 
-                        && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+                        && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
                 }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
             ViewBag.Properties = roomPropertyRoomRepository.GetAll();
@@ -100,7 +100,7 @@ namespace VietSovPetro.BO.Controllers
                 {
                     var firstOrDefault = a.RoomTypes.FirstOrDefault();
                     return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Room And Price" 
-                        && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+                        && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
                 }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
             ViewBag.Properties = roomPropertyRoomRepository.GetAll();
@@ -112,7 +112,7 @@ namespace VietSovPetro.BO.Controllers
             {
                 var firstOrDefault = a.RoomTypes.FirstOrDefault();
                 return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Restaurant" 
-                    && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
             ViewBag.Properties = roomPropertyRoomRepository.GetAll();
@@ -124,7 +124,7 @@ namespace VietSovPetro.BO.Controllers
             {
                 var firstOrDefault = a.RoomTypes.FirstOrDefault();
                 return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Restaurant" && a.IsDeal
-                    && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
             ViewBag.Properties = roomPropertyRoomRepository.GetAll();
@@ -136,7 +136,7 @@ namespace VietSovPetro.BO.Controllers
             {
                 var firstOrDefault = a.RoomTypes.FirstOrDefault();
                 return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && (firstOrDefault.RoomGroup == "Room And Price" || firstOrDefault.RoomGroup == "Meeting Room") && a.IsDeal
-                    && firstOrDefault.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
             ViewBag.Properties = roomPropertyRoomRepository.GetAll();
