@@ -6,6 +6,14 @@
 <div id="example" class="k-content">
     <div id="vertical">
         <div id="top-pane">
+            <div class="k-toolbar k-grid-toolbar">
+                            <div class="toolbar">
+                                <label class="category-label" for="category">Ngôn ngữ:</label>
+                                <input type="search" id="language" style="width: 150px"/>
+                                <label class="category-label" for="category">Loại:</label>
+                                <input type="search" id="category" style="width: 150px"/>
+                            </div>
+                        </div>
             <div id="horizontal" style="height: 100%; width: 100%;">
                 <div id="left-pane">
                     <div class="pane-content">
@@ -24,12 +32,6 @@
                     <div class="pane-content">
                         <p style="width: 100%; text-align: center">QUẢN LÝ NHÀ HÀNG KHÁCH SẠN</p>
                         <div id="room-type">
-                        </div>
-                        <div class="k-toolbar k-grid-toolbar">
-                            <div class="toolbar">
-                                <label class="category-label" for="category">Show products by category:</label>
-                                <input type="search" id="category" style="width: 150px"/>
-                            </div>
                         </div>
                         <div id="grid"></div>
                         <input type="hidden" id="roomtypeids" />
@@ -240,7 +242,7 @@
                     }
                 }
             });
-            $("#grid").kendoGrid({
+            var grid = $("#grid").kendoGrid({
                 dataSource: roomDataSource,
                 pageable: true,
                 height: 740,
@@ -320,39 +322,88 @@
                 }
                 wnd.refresh();
                 $("#grid").data("kendoGrid").saveChanges();
-                @*$.ajax({
-                    url: '@Url.Action("CreateOrUpdateRooms", "Room")',
-                    type: 'POST',
-                    traditional: true,
-                    dataType: "json",
-                    contentType: "application/json",
-                    data: kendo.stringify({
-                        models: "[" + kendo.stringify(dataItem) + "]"
-                    }),
-                    success: function () { $("#grid").data("kendoGrid").dataSource.read(); }
-        });*@
             }
+
+            var cDropDown = $("#category").kendoDropDownList({
+                dataTextField: "RoomGroup",
+                dataValueField: "RoomTypeID",
+                autoBind: false,
+                optionLabel: "Tất cả",
+                dataSource: {
+                    severFiltering: true,
+                    transport: {
+                        read: {
+                            url: '@Url.Action("GetRoomTypes", "Room")',
+                            type: "post",
+                            dataType: "json"
+                        }
+                    }
+                },
+                change: function () {
+                    var value = this.value();
+                    var text = this.text();
+                    console.log(lDropDown.data("kendoDropDownList").value());
+                    if (value) {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "RoomTypeIDs", operator: "contains", value: value }] });
+                        listView.dataSource.filter({ "logic": "and", "filters": [{ field: "RoomGroup", operator: "eq", value: text }] });
+                        if (lDropDown.data("kendoDropDownList").value()) {
+                            grid.data("kendoGrid").dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                            grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
+                            listView.dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                            listView.dataSource.filter(listView.dataSource._filter.filters);
+                        }
+                    } else {
+                        if (lDropDown.data("kendoDropDownList").value()) {
+                            grid.data("kendoGrid").dataSource.filter({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                            listView.dataSource.filter({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                        }
+                        else {
+                            grid.data("kendoGrid").dataSource.filter({});
+                            listView.dataSource.filter({});
+                        }
+                    }
+                }
+            });
+            var lDropDown = $("#language").kendoDropDownList({
+                dataTextField: "Language",
+                dataValueField: "LanguageCode",
+                autoBind: false,
+                optionLabel: "Tất cả",
+                dataSource: [
+                                { Language: "Tiếng Việt", LanguageCode: "vi-VN" },
+                                { Language: "Tiếng Anh", LanguageCode: "en-US" },
+                                { Language: "Tiếng Nga", LanguageCode: "ru-RU" }
+                ],
+                change: function () {
+                    var value = this.value();
+                    if (value) {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
+                        listView.dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
+                        if ($("#category").data("kendoDropDownList").value()) {
+                            grid.data("kendoGrid").dataSource._filter.filters.push({ field: "RoomTypeIDs", operator: "contains", value: $("#category").data("kendoDropDownList").value() });
+                            grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
+                            listView.dataSource._filter.filters.push({ field: "RoomGroup", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
+                            listView.dataSource.filter(listView.dataSource._filter.filters);
+                        }
+                    } else {
+                        if ($("#category").data("kendoDropDownList").value()) {
+                            grid.data("kendoGrid").dataSource.filter({ field: "ArticleCategoryIDs", operator: "contains", value: $("#category").data("kendoDropDownList").value() });
+                            listView.dataSource.filter({ field: "ArticleCategoryType", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
+                        }
+                        else {
+                            grid.data("kendoGrid").dataSource.filter({});
+                            listView.dataSource.filter({});
+                            console.log(listView.dataSource);
+                        }
+                    }
+                }
+            });
             function dateTimeEditor(container, options) {
                 $('<input data-text-field="' + options.field + '" data-value-field="' + options.field + '" data-bind="value:' + options.field + '" data-format="' + options.format + '"/>')
                         .appendTo(container)
                         .kendoDateTimePicker({});
             }
-            @*function articleDropDownEditor(container, options) {
-                $('<input required data-text-field="Title" data-value-field="ArticleID" data-bind="value:' + options.field + '"/>')
-                    .appendTo(container)
-                    .kendoDropDownList({
-                        autoBind: false,
-                        dataSource: {
-                            transport: {
-                                read: {
-                                    url: '@Url.Action("GetArticles", "Article")',
-                                    type: "post",
-                                    dataType: "json"
-                                }
-                            }
-                        }
-                    });
-            }*@
+            
         });
         function roomDetails(e) {
             $("#grid").data("kendoGrid").saveChanges();

@@ -48,6 +48,12 @@ namespace VietSovPetro.BO.Controllers
             return Json(roomtypes.OrderBy(r => r.RoomGroup), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
+        public JsonResult GetRoomGroups()
+        {
+            var roomtypes = from r in roomTypeRepository.GetAll() where r.IsDeleted != true select new { RoomGroup = r.RoomGroup.Distinct() }; //roomTypeRepository.GetAll().Where(a => a.IsDeleted != true).Select(Mapper.Map<RoomType, RoomTypeViewModel>).ToList();
+            return Json(roomtypes.OrderBy(r => r.RoomGroup), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
         public ActionResult CreateOrUpdateRoomTypes(string models)
         {
             var roomTypes = JsonConvert.DeserializeObject<List<RoomTypeViewModel>>(models);

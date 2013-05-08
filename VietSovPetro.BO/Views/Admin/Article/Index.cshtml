@@ -265,16 +265,12 @@
                             alert("Bài viết chưa có tiêu đề, vui lòng nhập tiêu đề trước khi lưu!");
                             e.preventDefault();
                         }
-                        else if (e.sender._data[i].Author == "") {
-                            alert("Bài viết chưa có tác giả, vui lòng nhập tác giả trước khi lưu!");
-                            e.preventDefault();
-                        }
                         else if (e.sender._data[i].Content == "") {
                             alert("Bài viết " + e.sender._data[i].Title + " chưa có nội dung, vui lòng nhập nội dung trước khi lưu!");
                             e.preventDefault();
                         } 
                         else {
-                            console.log(typeof e.sender._data[i].ArticleCategoryIDs);
+                            e.sender._data[i].Content = $('<div/>').text(e.sender._data[i].Content).html();
                             if (e.sender._data[i].ArticleCategoryIDs != null && e.sender._data[i].ArticleCategoryIDs.length != "" && typeof e.sender._data[i].ArticleCategoryIDs == "string") {
                                 try {
                                     e.sender._data[i].ArticleCategoryIDs = e.sender._data[i].ArticleCategoryIDs.split(',');
@@ -327,7 +323,7 @@
             
             function onSaveContentWindow() {
                 var ceditor = $("#ceditor").data("kendoEditor");
-                dataItem.Content = $('<div/>').text(ceditor.value()).html();
+                dataItem.Content = ceditor.value();
                 console.log(dataItem.Content);
                 dataItem.Description = $("#desc").val();
                 var articlecategories = $("#articlecategories").data("kendoMultiSelect");
