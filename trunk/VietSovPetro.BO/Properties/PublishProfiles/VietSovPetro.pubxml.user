@@ -235,7 +235,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/09/2012 00:40:10</publishTime>
     </File>
     <File Include="bin/VietSovPetro.BO.dll">
-      <publishTime>05/08/2013 16:58:58</publishTime>
+      <publishTime>05/09/2013 14:21:38</publishTime>
     </File>
     <File Include="bin/VietSovPetro.ComandProcessor.dll">
       <publishTime>05/03/2013 17:31:57</publishTime>
@@ -244,13 +244,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/03/2013 17:31:56</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Data.dll">
-      <publishTime>05/08/2013 10:00:49</publishTime>
+      <publishTime>05/09/2013 14:21:36</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Domain.dll">
-      <publishTime>05/08/2013 10:00:50</publishTime>
+      <publishTime>05/09/2013 14:21:37</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Model.dll">
-      <publishTime>05/08/2013 10:00:48</publishTime>
+      <publishTime>05/09/2013 14:21:36</publishTime>
     </File>
     <File Include="bin/WebActivator.dll">
       <publishTime>05/08/2013 09:22:07</publishTime>
@@ -4618,7 +4618,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2013 13:25:52</publishTime>
     </File>
     <File Include="Views/Admin/Article/Index.cshtml">
-      <publishTime>05/08/2013 08:10:03</publishTime>
+      <publishTime>05/09/2013 13:47:48</publishTime>
     </File>
     <File Include="Views/Admin/Room/Index.cshtml">
       <publishTime>05/08/2013 11:19:40</publishTime>

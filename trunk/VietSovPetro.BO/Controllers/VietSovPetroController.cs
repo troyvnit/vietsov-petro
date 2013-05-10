@@ -19,13 +19,17 @@ namespace VietSovPetro.BO.Controllers
         private readonly IRoomRepository roomRepository;
         private readonly IRoomPropertyRepository roomPropertyRepository;
         private readonly IRoomPropertyRoomRepository roomPropertyRoomRepository;
+        private readonly IBookRepository bookRepository;
 
-        public VietSovPetroController(IArticleRepository articleRepository, IRoomRepository roomRepository, IRoomPropertyRepository roomPropertyRepository, IRoomPropertyRoomRepository roomPropertyRoomRepository)
+        public VietSovPetroController(IArticleRepository articleRepository, 
+            IRoomRepository roomRepository, IRoomPropertyRepository roomPropertyRepository, IRoomPropertyRoomRepository roomPropertyRoomRepository, 
+            IBookRepository bookRepository)
         {
             this.articleRepository = articleRepository;
             this.roomRepository = roomRepository;
             this.roomPropertyRepository = roomPropertyRepository;
             this.roomPropertyRoomRepository = roomPropertyRoomRepository;
+            this.bookRepository = bookRepository;
         }
         public ActionResult Index()
         {
@@ -147,7 +151,7 @@ namespace VietSovPetro.BO.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult QuickBook(BookFormModels form)
+        public ActionResult QuickBook(Book form)
         {
             string fromAddress = ConfigurationManager.AppSettings.Get("SendMailMessagesFromAddress").ToString();
             string toAddress = ConfigurationManager.AppSettings.Get("SendMailSTMPHostAddress").ToString();
@@ -159,6 +163,7 @@ namespace VietSovPetro.BO.Controllers
             {
                 return Content("Hệ thông đang bảo trì, vui lòng thử lại vào dịp khác!", "text/html");
             }
+            bookRepository.Add(form);
             return Content("Thông tin đặt phòng của bạn đã được gửi, cảm ơn!", "text/html");
         }
     }

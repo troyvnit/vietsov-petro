@@ -681,3 +681,28 @@ BEGIN
 		,'11111111-1111-1111-1111-111111111111'
     )
 END
+GO
+CREATE PROCEDURE CreateOrUpdateRoomPropertyRooms
+@RoomID uniqueidentifier,
+@RoomPropertyID uniqueidentifier,
+@StringValue nvarchar(max),
+@NumberValue int,
+@IsNew bit,
+@IsPublished bit
+AS
+BEGIN
+	IF EXISTS(SELECT 1 FROM [dbo].[RoomPropertyRooms] rpr WHERE rpr.RoomID = @RoomID AND rpr.RoomPropertyID = @RoomPropertyID)
+	BEGIN
+		UPDATE [dbo].[RoomPropertyRooms]
+		SET [dbo].[RoomPropertyRooms].RoomPropertyStringValue = @StringValue,
+			[dbo].[RoomPropertyRooms].RoomPropertyNumberValue = @NumberValue,
+			[dbo].[RoomPropertyRooms].IsNew = @IsNew,
+			[dbo].[RoomPropertyRooms].IsPublished = @IsPublished
+		WHERE [dbo].[RoomPropertyRooms].RoomID = @RoomID AND [dbo].[RoomPropertyRooms].RoomPropertyID = @RoomPropertyID
+	END
+	ELSE
+	BEGIN
+		INSERT INTO [dbo].[RoomPropertyRooms] (RoomID, RoomPropertyID, RoomPropertyStringValue, RoomPropertyNumberValue, IsNew, IsPublished)
+		VALUES (@RoomID, @RoomPropertyID, @StringValue, @NumberValue, 0, @IsPublished)
+	END
+END

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using VietSovPetro.Core.Common;
+using System.Web.Mvc;
 
 namespace VietSovPetro.Model.Entities
 {
@@ -24,6 +25,7 @@ namespace VietSovPetro.Model.Entities
         public string Title { get; set; }
         public string Description { get; set; }
         [Required]
+        [AllowHtml]
         public string Content { get; set; }
         [Required]
         public string Author { get; set; }

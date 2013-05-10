@@ -56,8 +56,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArticleCategoryRepository.cs" />
     <Compile Include="Repositories\ArticleRepository.cs" />
+    <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\IRepositories\IArticleCategoryRepository.cs" />
     <Compile Include="Repositories\IRepositories\IArticleRepository.cs" />
+    <Compile Include="Repositories\IRepositories\IBookRepository.cs" />
     <Compile Include="Repositories\IRepositories\IRoomPropertyRepository.cs" />
     <Compile Include="Repositories\IRepositories\IRoomPropertyRoomRepository.cs" />
     <Compile Include="Repositories\IRepositories\IRoomRepository.cs" />
