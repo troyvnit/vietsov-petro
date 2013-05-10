@@ -270,7 +270,6 @@
                             e.preventDefault();
                         } 
                         else {
-                            e.sender._data[i].Content = $('<div/>').text(e.sender._data[i].Content).html();
                             if (e.sender._data[i].ArticleCategoryIDs != null && e.sender._data[i].ArticleCategoryIDs.length != "" && typeof e.sender._data[i].ArticleCategoryIDs == "string") {
                                 try {
                                     e.sender._data[i].ArticleCategoryIDs = e.sender._data[i].ArticleCategoryIDs.split(',');

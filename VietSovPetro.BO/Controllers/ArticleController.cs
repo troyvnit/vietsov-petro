@@ -85,7 +85,7 @@ namespace VietSovPetro.BO.Controllers
             }
             return Json(articles.OrderBy(a => a.OrderID), JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult CreateOrUpdateArticles(string models)
         {
             var articles = JsonConvert.DeserializeObject<List<ArticleViewModel>>(models);

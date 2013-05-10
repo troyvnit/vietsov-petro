@@ -148,7 +148,6 @@ namespace VietSovPetro.BO.Controllers
                 var roomPropertyRoom = roomPropertyRoomRepository.GetAll().FirstOrDefault(a => a.RoomID == roomPropertyViewModel.RoomID && a.RoomPropertyID == roomProperty.RoomPropertyID);
                 if (roomPropertyRoom != null)
                 {
-                    roomPropertyViewModel.RoomPropertyRoomID = roomPropertyRoom.RoomPropertyRoomID;
                     roomPropertyViewModel.RoomPropertyStringValue = roomPropertyRoom.RoomPropertyStringValue;
                     roomPropertyViewModel.RoomPropertyNumberValue = roomPropertyRoom.RoomPropertyNumberValue;
                     roomPropertyViewModel.IsNew = roomPropertyRoom.IsNew;
@@ -171,8 +170,8 @@ namespace VietSovPetro.BO.Controllers
                     if (ModelState.IsValid)
                     {
                         var result = commandBus.Submit(command);
-                        var roomPropertyRoom = new RoomPropertyRooms {
-                            RoomPropertyRoomID = command.RoomPropertyRoomID != Guid.Empty ? command.RoomPropertyRoomID : Guid.NewGuid(),
+                        var roomPropertyRoom = new RoomPropertyRooms
+                        {
                             RoomID = command.RoomID,
                             RoomPropertyID = result.ID,
                             RoomPropertyStringValue = command.RoomPropertyStringValue,
@@ -184,7 +183,8 @@ namespace VietSovPetro.BO.Controllers
                         {
                             roomPropertyRoomRepository.Update(roomPropertyRoom);
                         }
-                        else {
+                        else
+                        {
                             roomPropertyRoomRepository.Add(roomPropertyRoom);
                         }
                         unitOfWork.Commit();
