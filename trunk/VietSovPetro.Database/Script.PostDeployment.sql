@@ -706,3 +706,49 @@ BEGIN
 		VALUES (@RoomID, @RoomPropertyID, @StringValue, @NumberValue, 0, @IsPublished)
 	END
 END
+GO
+CREATE PROCEDURE CreateOrUpdateBooks
+@BookID uniqueidentifier,
+@Name nvarchar(max),
+@Email nvarchar(max),
+@Room int,
+@Begin datetime,
+@End datetime,
+@Time int,
+@GuestQuantity int,
+@MeetingType nvarchar(max),
+@Price int,
+@Message nvarchar(max),
+@UserCardName nvarchar(max),
+@UserCardNumber nvarchar(max),
+@UserCardType nvarchar(max),
+@DueDate datetime
+AS
+BEGIN
+	IF EXISTS(SELECT 1 FROM [dbo].[Books] b WHERE b.BookID = @BookID)
+	BEGIN
+		UPDATE [dbo].[Books]
+		SET [dbo].[Books].Name = @Name,
+			[dbo].[Books].Email = @Email,
+			[dbo].[Books].Room = @Room,
+			[dbo].[Books].[Begin] = @Begin,
+			[dbo].[Books].[End] = @End,
+			[dbo].[Books].[Time] = @Time,
+			[dbo].[Books].GuestQuantity = @GuestQuantity,
+			[dbo].[Books].MeetingType = @MeetingType,
+			[dbo].[Books].Price = @Price,
+			[dbo].[Books].[Message] = @Message,
+			[dbo].[Books].UserCardName = @UserCardName,
+			[dbo].[Books].UserCardNumber = @UserCardNumber,
+			[dbo].[Books].UserCardType = @UserCardType,
+			[dbo].[Books].DueDate = @DueDate
+		WHERE [dbo].[Books].BookID = @BookID
+	END
+	ELSE
+	BEGIN
+		INSERT INTO [dbo].[Books] (BookID, Name, Email, Room, [Begin], [End], [Time], GuestQuantity, MeetingType, Price, 
+		[Message], UserCardName, UserCardNumber, UserCardType, DueDate )
+		VALUES (@BookID, @Name, @Email, @Room, @Begin, @End, @Time, @GuestQuantity, @MeetingType, @Price, 
+		@Message, @UserCardName, @UserCardNumber, @UserCardType, @DueDate)
+	END
+END
