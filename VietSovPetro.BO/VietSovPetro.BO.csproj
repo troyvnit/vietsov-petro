@@ -266,6 +266,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ArticleCategoryViewModel.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="ViewModels\RoomPropertyRoomViewModel.cs" />
     <Compile Include="ViewModels\RoomPropertyViewModel.cs" />
     <Compile Include="ViewModels\RoomTypeViewModel.cs" />
@@ -1874,6 +1875,7 @@
     <Content Include="Views\VietSovPetro\Activity.cshtml" />
     <Content Include="Views\VietSovPetro\News.cshtml" />
     <Content Include="Views\VietSovPetro\DealingRestaurant.cshtml" />
+    <Content Include="Views\Room\Book.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

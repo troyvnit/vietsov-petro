@@ -20,6 +20,7 @@ namespace VietSovPetro.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
         public DbSet<RoomProperty> RoomProperties { get; set; }
+        public DbSet<Book> Books { get; set; }
         public virtual void Commit()
         {
             try

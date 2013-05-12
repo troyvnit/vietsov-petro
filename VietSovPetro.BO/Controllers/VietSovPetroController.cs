@@ -8,6 +8,8 @@ using VietSovPetro.Data.Repositories.IRepositories;
 using VietSovPetro.Model.Entities;
 using VietSovPetro.Core.Common;
 using System.Configuration;
+using VietSovPetro.Data.Infrastructure;
+using System;
 
 namespace VietSovPetro.BO.Controllers
 {
@@ -20,16 +22,18 @@ namespace VietSovPetro.BO.Controllers
         private readonly IRoomPropertyRepository roomPropertyRepository;
         private readonly IRoomPropertyRoomRepository roomPropertyRoomRepository;
         private readonly IBookRepository bookRepository;
+        private readonly IUnitOfWork unitOfWork;
 
         public VietSovPetroController(IArticleRepository articleRepository, 
-            IRoomRepository roomRepository, IRoomPropertyRepository roomPropertyRepository, IRoomPropertyRoomRepository roomPropertyRoomRepository, 
-            IBookRepository bookRepository)
+            IRoomRepository roomRepository, IRoomPropertyRepository roomPropertyRepository, IRoomPropertyRoomRepository roomPropertyRoomRepository,
+            IBookRepository bookRepository, IUnitOfWork unitOfWork)
         {
             this.articleRepository = articleRepository;
             this.roomRepository = roomRepository;
             this.roomPropertyRepository = roomPropertyRepository;
             this.roomPropertyRoomRepository = roomPropertyRoomRepository;
             this.bookRepository = bookRepository;
+            this.unitOfWork = unitOfWork;
         }
         public ActionResult Index()
         {
@@ -159,11 +163,13 @@ namespace VietSovPetro.BO.Controllers
             string password = ConfigurationManager.AppSettings.Get("SendMailSMTPUserPassword").ToString();
             Email email = new Email(fromAddress, toAddress, username, password, "Thông tin đặt phòng VietSov Petro", form.Name);
             bool success = email.send();
+            form.BookID = Guid.NewGuid();
+            bookRepository.Add(form);
+            unitOfWork.Commit();
             if (!success)
             {
-                return Content("Hệ thông đang bảo trì, vui lòng thử lại vào dịp khác!", "text/html");
+                return Content("Quá trình gửi thông tin qua email thất bại, thông tin được lưu vào cơ sở dữ liệu tạm!", "text/html");
             }
-            bookRepository.Add(form);
             return Content("Thông tin đặt phòng của bạn đã được gửi, cảm ơn!", "text/html");
         }
     }

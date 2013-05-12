@@ -22,9 +22,12 @@ namespace VietSovPetro.BO.Controllers
         private readonly IRoomTypeRepository roomTypeRepository;
         private readonly IRoomPropertyRepository roomPropertyRepository;
         private readonly IRoomPropertyRoomRepository roomPropertyRoomRepository;
+        private readonly IBookRepository bookRepository;
         private readonly ICommandBus commandBus;
         private readonly IUnitOfWork unitOfWork;
-        public RoomController(ICommandBus commandBus, IRoomRepository roomRepository, IRoomTypeRepository roomTypeRepository, IRoomPropertyRepository roomPropertyRepository, IRoomPropertyRoomRepository roomPropertyRoomRepository, IUnitOfWork unitOfWork)
+        public RoomController(ICommandBus commandBus, IRoomRepository roomRepository, IRoomTypeRepository roomTypeRepository, 
+            IRoomPropertyRepository roomPropertyRepository, IRoomPropertyRoomRepository roomPropertyRoomRepository,
+            IUnitOfWork unitOfWork, IBookRepository bookRepository)
         {
             this.commandBus = commandBus;
             this.roomRepository = roomRepository;
@@ -32,6 +35,7 @@ namespace VietSovPetro.BO.Controllers
             this.roomPropertyRepository = roomPropertyRepository;
             this.roomPropertyRoomRepository = roomPropertyRoomRepository;
             this.unitOfWork = unitOfWork;
+            this.bookRepository = bookRepository;
         }
         public ActionResult Index()
         {
@@ -206,6 +210,52 @@ namespace VietSovPetro.BO.Controllers
                     commandBus.Submit(command);
                 }
                 return Json(roomProperties, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Book()
+        {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult GetBooks()
+        {
+            return Json(bookRepository.GetAll(), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult CreateOrUpdateBooks(string models)
+        {
+            var books = JsonConvert.DeserializeObject<List<Book>>(models);
+            if (ModelState.IsValid)
+            {
+                foreach (var book in books)
+                {
+                    if (bookRepository.GetById(book.BookID) == null)
+                    {
+                        bookRepository.Add(book);
+                    }
+                    else
+                    {
+                        bookRepository.Update(book);
+                    }
+                }
+                unitOfWork.Commit();
+                return Json(books, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult DeleteBooks(string models)
+        {
+            var books = JsonConvert.DeserializeObject<List<Book>>(models);
+            if (ModelState.IsValid)
+            {
+                foreach (var book in books)
+                {
+                    bookRepository.Delete(book);
+                }
+                unitOfWork.Commit();
+                return Json(books, JsonRequestBehavior.AllowGet);
             }
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
