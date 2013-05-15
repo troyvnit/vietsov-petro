@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
-using VietSovPetro.BO.Models;
+
 using VietSovPetro.BO.ViewModels;
 using VietSovPetro.Data.Repositories.IRepositories;
 using VietSovPetro.Model.Entities;
@@ -211,8 +211,19 @@ namespace VietSovPetro.BO.Controllers
         {
             ViewBag.MeetingAndEventRooms = roomRepository.GetAll().Where(a =>
                 {
-                    var firstOrDefault = a.RoomTypes.FirstOrDefault();
-                    return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Meeting Room" 
+                    var roomTypes = a.RoomTypes;
+                    var checkRoomTypes = false;
+                    if(roomTypes != null)
+                    {
+                        foreach(var roomType in roomTypes)
+                        {
+                            if(roomType.RoomGroup == "Meeting Room")
+                            {
+                                checkRoomTypes = true;
+                            }
+                        }
+                    }
+                    return (a.IsDeleted != true && a.IsPublished && checkRoomTypes 
                         && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
                 }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
@@ -222,11 +233,22 @@ namespace VietSovPetro.BO.Controllers
         public ActionResult RoomAndPrice()
         {
             ViewBag.RoomAndPrices = roomRepository.GetAll().Where(a =>
+            {
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                if (roomTypes != null)
                 {
-                    var firstOrDefault = a.RoomTypes.FirstOrDefault();
-                    return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Room And Price" 
-                        && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
-                }).OrderBy(a => a.OrderID).ToList();
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomGroup == "Room And Price")
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
             ViewBag.Properties = roomPropertyRoomRepository.GetAll();
             return View();
@@ -235,8 +257,19 @@ namespace VietSovPetro.BO.Controllers
         {
             ViewBag.Restaurant = roomRepository.GetAll().Where(a =>
             {
-                var firstOrDefault = a.RoomTypes.FirstOrDefault();
-                return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Restaurant" 
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                if (roomTypes != null)
+                {
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomGroup == "Restaurant")
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
@@ -247,8 +280,19 @@ namespace VietSovPetro.BO.Controllers
         {
             ViewBag.Restaurant = roomRepository.GetAll().Where(a =>
             {
-                var firstOrDefault = a.RoomTypes.FirstOrDefault();
-                return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.RoomGroup == "Restaurant" && a.IsDeal
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                if (roomTypes != null)
+                {
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomGroup == "Restaurant")
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes && a.IsDeal
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
@@ -259,8 +303,19 @@ namespace VietSovPetro.BO.Controllers
         {
             ViewBag.DealingRoom = roomRepository.GetAll().Where(a =>
             {
-                var firstOrDefault = a.RoomTypes.FirstOrDefault();
-                return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && (firstOrDefault.RoomGroup == "Room And Price" || firstOrDefault.RoomGroup == "Meeting Room") && a.IsDeal
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                if (roomTypes != null)
+                {
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomGroup == "Meeting And Event" || roomType.RoomGroup == "Room And Price")
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes && a.IsDeal
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
@@ -274,20 +329,16 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public ActionResult QuickBook(Book form)
         {
-            string fromAddress = ConfigurationManager.AppSettings.Get("SendMailMessagesFromAddress").ToString();
-            string toAddress = ConfigurationManager.AppSettings.Get("SendMailSTMPHostAddress").ToString();
-            string username = ConfigurationManager.AppSettings.Get("SendMailSMTPUserName").ToString();
-            string password = ConfigurationManager.AppSettings.Get("SendMailSMTPUserPassword").ToString();
-            Email email = new Email(fromAddress, toAddress, username, password, "Thông tin đặt phòng VietSov Petro", form.Name);
-            bool success = email.send();
+            var fromAddress = ConfigurationManager.AppSettings.Get("SendMailMessagesFromAddress");
+            var toAddress = ConfigurationManager.AppSettings.Get("SendMailSTMPHostAddress");
+            var username = ConfigurationManager.AppSettings.Get("SendMailSMTPUserName");
+            var password = ConfigurationManager.AppSettings.Get("SendMailSMTPUserPassword");
+            var email = new Email(fromAddress, toAddress, username, password, "Thông tin đặt phòng VietSov Petro", form.Name);
+            var success = email.send();
             form.BookID = Guid.NewGuid();
             bookRepository.Add(form);
             unitOfWork.Commit();
-            if (!success)
-            {
-                return Content("Quá trình gửi thông tin qua email thất bại, thông tin được lưu vào cơ sở dữ liệu tạm!", "text/html");
-            }
-            return Content("Thông tin đặt phòng của bạn đã được gửi, cảm ơn!", "text/html");
+            return Content(!success ? "Quá trình gửi thông tin qua email thất bại, thông tin được lưu vào cơ sở dữ liệu tạm!" : "Thông tin đặt phòng của bạn đã được gửi, cảm ơn!", "text/html");
         }
         public ActionResult Contact()
         {

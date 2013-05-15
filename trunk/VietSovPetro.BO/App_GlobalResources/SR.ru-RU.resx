@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Activity" xml:space="preserve">
-    <value>Activity</value>
+    <value>деятельность</value>
   </data>
   <data name="Contact" xml:space="preserve">
-    <value>Contact Us</value>
+    <value>Связаться с Нами</value>
   </data>
   <data name="Destination" xml:space="preserve">
-    <value>Destination</value>
+    <value>назначение</value>
   </data>
   <data name="Feedback" xml:space="preserve">
-    <value>Feedback</value>
+    <value>Отзывы покупателей</value>
   </data>
   <data name="Introduction" xml:space="preserve">
-    <value>About us</value>
+    <value>введение</value>
   </data>
   <data name="Meeting_And_Event" xml:space="preserve">
-    <value>Meeting and Event</value>
+    <value>встреч и событий</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>News</value>
+    <value>новости</value>
   </data>
   <data name="Partner" xml:space="preserve">
-    <value>Partners</value>
+    <value>Партнеры</value>
   </data>
   <data name="Restaurant_And_Bar" xml:space="preserve">
-    <value>Restaurants and Bars</value>
+    <value>Pесторанов и баров</value>
   </data>
   <data name="Restaurant_Deal" xml:space="preserve">
-    <value>Restaurant Promotion</value>
+    <value>Ресторан Поощрение</value>
   </data>
   <data name="Room_And_Price" xml:space="preserve">
-    <value>Rooms and Rates</value>
+    <value>Номера и цены</value>
   </data>
   <data name="Room_Deal" xml:space="preserve">
-    <value>Room Promotion</value>
+    <value>Номер Поощрение</value>
   </data>
 </root>
