@@ -120,6 +120,15 @@
   <data name="Activity" xml:space="preserve">
     <value>Hoạt động</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Liên hệ</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Điểm đến</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Phản hồi của khách hàng</value>
+  </data>
   <data name="Introduction" xml:space="preserve">
     <value>Giới thiệu</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="News" xml:space="preserve">
     <value>Tin tức</value>
+  </data>
+  <data name="Partner" xml:space="preserve">
+    <value>Đối tác</value>
   </data>
   <data name="Restaurant_And_Bar" xml:space="preserve">
     <value>Nhà hàng &amp; Quán Bar</value>

@@ -70,6 +70,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Liên hệ.
+        /// </summary>
+        internal static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Điểm đến.
+        /// </summary>
+        internal static string Destination {
+            get {
+                return ResourceManager.GetString("Destination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phản hồi của khách hàng.
+        /// </summary>
+        internal static string Feedback {
+            get {
+                return ResourceManager.GetString("Feedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Giới thiệu.
         /// </summary>
         internal static string Introduction {
@@ -93,6 +120,15 @@ namespace Resources {
         internal static string News {
             get {
                 return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đối tác.
+        /// </summary>
+        internal static string Partner {
+            get {
+                return ResourceManager.GetString("Partner", resourceCulture);
             }
         }
         

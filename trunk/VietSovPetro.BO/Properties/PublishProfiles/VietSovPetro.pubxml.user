@@ -10,10 +10,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_GlobalResources/SR.en-US.resx">
-      <publishTime>05/03/2013 08:37:27</publishTime>
+      <publishTime>05/15/2013 08:17:34</publishTime>
     </File>
     <File Include="App_GlobalResources/SR.resx">
-      <publishTime>05/03/2013 08:36:24</publishTime>
+      <publishTime>05/15/2013 08:17:10</publishTime>
+    </File>
+    <File Include="App_Readme/Elmah.txt">
+      <publishTime>05/14/2013 10:28:51</publishTime>
     </File>
     <File Include="App_Start/EntityFrameworkProfilerBootstrapper.vb">
       <publishTime>05/08/2013 09:22:13</publishTime>
@@ -59,6 +62,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/DotNetOpenAuth.OpenId.RelyingParty.dll">
       <publishTime>04/02/2013 10:21:09</publishTime>
+    </File>
+    <File Include="bin/Elmah.dll">
+      <publishTime>05/14/2013 10:28:47</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/02/2013 10:20:58</publishTime>
@@ -235,22 +241,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/09/2012 00:40:10</publishTime>
     </File>
     <File Include="bin/VietSovPetro.BO.dll">
-      <publishTime>05/09/2013 14:21:38</publishTime>
+      <publishTime>05/15/2013 11:55:44</publishTime>
     </File>
     <File Include="bin/VietSovPetro.ComandProcessor.dll">
-      <publishTime>05/03/2013 17:31:57</publishTime>
+      <publishTime>05/15/2013 10:02:39</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Core.dll">
-      <publishTime>05/03/2013 17:31:56</publishTime>
+      <publishTime>05/15/2013 10:02:37</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Data.dll">
-      <publishTime>05/09/2013 14:21:36</publishTime>
+      <publishTime>05/15/2013 10:02:40</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Domain.dll">
-      <publishTime>05/09/2013 14:21:37</publishTime>
+      <publishTime>05/15/2013 10:02:41</publishTime>
     </File>
     <File Include="bin/VietSovPetro.Model.dll">
-      <publishTime>05/09/2013 14:21:36</publishTime>
+      <publishTime>05/15/2013 10:02:38</publishTime>
     </File>
     <File Include="bin/WebActivator.dll">
       <publishTime>05/08/2013 09:22:07</publishTime>
@@ -518,6 +524,216 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Images/tt-B-Left.jpg">
       <publishTime>05/06/2013 08:04:12</publishTime>
+    </File>
+    <File Include="Images/virtualTour/conferenceHall/Conference Hall_small_out.swf">
+      <publishTime>04/09/2013 15:30:43</publishTime>
+    </File>
+    <File Include="Images/virtualTour/conferenceHall/ConferenceHall.html">
+      <publishTime>04/09/2013 15:30:44</publishTime>
+    </File>
+    <File Include="Images/virtualTour/conferenceHall/images/Conference Hall_small_o_0.jpg">
+      <publishTime>04/09/2013 15:30:58</publishTime>
+    </File>
+    <File Include="Images/virtualTour/conferenceHall/images/Conference Hall_small_o_1.jpg">
+      <publishTime>04/09/2013 15:31:08</publishTime>
+    </File>
+    <File Include="Images/virtualTour/conferenceHall/images/Conference Hall_small_o_2.jpg">
+      <publishTime>04/09/2013 15:31:19</publishTime>
+    </File>
+    <File Include="Images/virtualTour/conferenceHall/images/Conference Hall_small_o_3.jpg">
+      <publishTime>04/09/2013 15:31:31</publishTime>
+    </File>
+    <File Include="Images/virtualTour/conferenceHall/images/Conference Hall_small_o_4.jpg">
+      <publishTime>04/09/2013 15:31:39</publishTime>
+    </File>
+    <File Include="Images/virtualTour/conferenceHall/images/Conference Hall_small_o_5.jpg">
+      <publishTime>04/09/2013 15:31:46</publishTime>
+    </File>
+    <File Include="Images/virtualTour/conferenceHall/swfobject.js">
+      <publishTime>03/27/2013 13:49:10</publishTime>
+    </File>
+    <File Include="Images/virtualTour/doubleRoom/bedRoom/bedRoom.html">
+      <publishTime>04/09/2013 15:33:36</publishTime>
+    </File>
+    <File Include="Images/virtualTour/doubleRoom/bedRoom/bedRoom_out.swf">
+      <publishTime>04/09/2013 15:33:38</publishTime>
+    </File>
+    <File Include="Images/virtualTour/doubleRoom/bedRoom/images/bedRoom_o_0.jpg">
+      <publishTime>04/09/2013 15:33:57</publishTime>
+    </File>
+    <File Include="Images/virtualTour/doubleRoom/bedRoom/images/bedRoom_o_1.jpg">
+      <publishTime>04/09/2013 15:34:12</publishTime>
+    </File>
+    <File Include="Images/virtualTour/doubleRoom/bedRoom/images/bedRoom_o_2.jpg">
+      <publishTime>04/09/2013 15:34:25</publishTime>
+    </File>
+    <File Include="Images/virtualTour/doubleRoom/bedRoom/images/bedRoom_o_3.jpg">
+      <publishTime>04/09/2013 15:34:44</publishTime>
+    </File>
+    <File Include="Images/virtualTour/doubleRoom/bedRoom/images/bedRoom_o_4.jpg">
+      <publishTime>04/09/2013 15:34:48</publishTime>
+    </File>
+    <File Include="Images/virtualTour/doubleRoom/bedRoom/images/bedRoom_o_5.jpg">
+      <publishTime>04/09/2013 15:35:00</publishTime>
+    </File>
+    <File Include="Images/virtualTour/doubleRoom/bedRoom/swfobject.js">
+      <publishTime>04/09/2013 15:35:01</publishTime>
+    </File>
+    <File Include="Images/virtualTour/honeyMoon/bedRoom/bedRoom.html">
+      <publishTime>04/09/2013 16:02:42</publishTime>
+    </File>
+    <File Include="Images/virtualTour/honeyMoon/bedRoom/images/bedRoom_o_0.jpg">
+      <publishTime>04/09/2013 16:02:54</publishTime>
+    </File>
+    <File Include="Images/virtualTour/honeyMoon/bedRoom/images/bedRoom_o_1.jpg">
+      <publishTime>04/09/2013 16:03:03</publishTime>
+    </File>
+    <File Include="Images/virtualTour/honeyMoon/bedRoom/images/bedRoom_o_2.jpg">
+      <publishTime>04/09/2013 16:03:12</publishTime>
+    </File>
+    <File Include="Images/virtualTour/honeyMoon/bedRoom/images/bedRoom_o_3.jpg">
+      <publishTime>04/09/2013 16:03:23</publishTime>
+    </File>
+    <File Include="Images/virtualTour/honeyMoon/bedRoom/images/bedRoom_o_4.jpg">
+      <publishTime>04/09/2013 16:03:28</publishTime>
+    </File>
+    <File Include="Images/virtualTour/honeyMoon/bedRoom/images/bedRoom_o_5.jpg">
+      <publishTime>04/09/2013 16:03:43</publishTime>
+    </File>
+    <File Include="Images/virtualTour/honeyMoon/bedRoom/IMG_6875 Panorama_out.swf">
+      <publishTime>04/09/2013 16:03:46</publishTime>
+    </File>
+    <File Include="Images/virtualTour/honeyMoon/bedRoom/swfobject.js">
+      <publishTime>04/09/2013 16:03:46</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_0.jpg">
+      <publishTime>04/09/2013 15:35:04</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_1.jpg">
+      <publishTime>04/09/2013 15:35:07</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_2.jpg">
+      <publishTime>04/09/2013 15:35:10</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_3.jpg">
+      <publishTime>04/09/2013 15:35:20</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_4.jpg">
+      <publishTime>04/09/2013 15:35:26</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_5.jpg">
+      <publishTime>04/09/2013 15:35:28</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_preview_0.jpg">
+      <publishTime>04/09/2013 15:35:28</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_preview_1.jpg">
+      <publishTime>04/09/2013 15:35:28</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_preview_2.jpg">
+      <publishTime>04/09/2013 15:35:28</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_preview_3.jpg">
+      <publishTime>04/09/2013 15:35:29</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_preview_4.jpg">
+      <publishTime>04/09/2013 15:35:29</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama1_o_preview_5.jpg">
+      <publishTime>04/09/2013 15:35:29</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama_small_o_0.jpg">
+      <publishTime>04/09/2013 15:35:34</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama_small_o_1.jpg">
+      <publishTime>04/09/2013 15:35:42</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama_small_o_2.jpg">
+      <publishTime>04/09/2013 15:35:47</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama_small_o_3.jpg">
+      <publishTime>04/09/2013 15:35:52</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama_small_o_4.jpg">
+      <publishTime>04/09/2013 15:35:59</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/images/IMG_5885 Panorama_small_o_5.jpg">
+      <publishTime>04/09/2013 15:36:04</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/IMG_5885 Panorama_small_out.swf">
+      <publishTime>04/09/2013 15:36:07</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/mainRestaurant.html">
+      <publishTime>04/09/2013 15:36:07</publishTime>
+    </File>
+    <File Include="Images/virtualTour/mainRestaurant/swfobject.js">
+      <publishTime>04/09/2013 15:36:08</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/bedRoom.html">
+      <publishTime>04/09/2013 15:36:08</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/bedRoom.jpg">
+      <publishTime>04/09/2013 15:37:53</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/bedRoom.p2vr">
+      <publishTime>04/09/2013 15:37:54</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/bedRoom.preview.jpg">
+      <publishTime>04/09/2013 15:37:57</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/bedRoom_out.swf">
+      <publishTime>04/09/2013 15:37:58</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/images/bedRoom_o_0.jpg">
+      <publishTime>04/09/2013 15:38:12</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/images/bedRoom_o_1.jpg">
+      <publishTime>04/09/2013 15:38:27</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/images/bedRoom_o_2.jpg">
+      <publishTime>04/09/2013 15:38:40</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/images/bedRoom_o_3.jpg">
+      <publishTime>04/09/2013 15:38:55</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/images/bedRoom_o_4.jpg">
+      <publishTime>04/09/2013 15:39:11</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/images/bedRoom_o_5.jpg">
+      <publishTime>04/09/2013 15:39:33</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/IMG_7040 Panorama.jpg">
+      <publishTime>04/09/2013 15:48:50</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/bedRoom/swfobject.js">
+      <publishTime>04/09/2013 15:48:50</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/entry/entry.html">
+      <publishTime>04/09/2013 15:48:51</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/entry/entry_out.swf">
+      <publishTime>04/09/2013 15:48:52</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/entry/images/entry_o_0.jpg">
+      <publishTime>04/09/2013 15:49:08</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/entry/images/entry_o_1.jpg">
+      <publishTime>04/09/2013 15:49:21</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/entry/images/entry_o_2.jpg">
+      <publishTime>04/09/2013 15:49:38</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/entry/images/entry_o_3.jpg">
+      <publishTime>04/09/2013 15:49:59</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/entry/images/entry_o_4.jpg">
+      <publishTime>04/09/2013 15:50:09</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/entry/images/entry_o_5.jpg">
+      <publishTime>04/09/2013 15:50:24</publishTime>
+    </File>
+    <File Include="Images/virtualTour/president/entry/swfobject.js">
+      <publishTime>04/09/2013 15:50:26</publishTime>
     </File>
     <File Include="Images/vn.jpg">
       <publishTime>05/06/2013 08:04:12</publishTime>
@@ -4590,6 +4806,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/_references.js">
       <publishTime>04/08/2013 16:55:07</publishTime>
     </File>
+    <File Include="Views/Account/ChangePassword.cshtml">
+      <publishTime>05/13/2013 15:53:11</publishTime>
+    </File>
     <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
       <publishTime>04/09/2013 13:25:52</publishTime>
     </File>
@@ -4603,7 +4822,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2013 13:25:52</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>04/09/2013 13:25:52</publishTime>
+      <publishTime>05/13/2013 15:38:13</publishTime>
     </File>
     <File Include="Views/Account/_ChangePasswordPartial.cshtml">
       <publishTime>04/09/2013 13:25:52</publishTime>
@@ -4618,52 +4837,67 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2013 13:25:52</publishTime>
     </File>
     <File Include="Views/Admin/Article/Index.cshtml">
-      <publishTime>05/09/2013 13:47:48</publishTime>
+      <publishTime>05/15/2013 11:34:54</publishTime>
     </File>
     <File Include="Views/Admin/Room/Index.cshtml">
-      <publishTime>05/08/2013 11:19:40</publishTime>
+      <publishTime>05/13/2013 09:58:57</publishTime>
+    </File>
+    <File Include="Views/Room/Book.cshtml">
+      <publishTime>05/12/2013 10:07:40</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/08/2013 16:55:00</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/06/2013 09:42:19</publishTime>
+      <publishTime>05/11/2013 17:14:04</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutFO.cshtml">
-      <publishTime>05/05/2013 13:50:59</publishTime>
+      <publishTime>05/15/2013 08:17:51</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>04/08/2013 16:55:00</publishTime>
     </File>
     <File Include="Views/VietSovPetro/Activity.cshtml">
-      <publishTime>05/05/2013 13:38:32</publishTime>
+      <publishTime>05/12/2013 12:58:31</publishTime>
     </File>
     <File Include="Views/VietSovPetro/Booking.cshtml">
       <publishTime>05/02/2013 08:35:53</publishTime>
     </File>
+    <File Include="Views/VietSovPetro/Contact.cshtml">
+      <publishTime>05/15/2013 09:20:25</publishTime>
+    </File>
     <File Include="Views/VietSovPetro/DealingRestaurant.cshtml">
-      <publishTime>05/06/2013 08:04:04</publishTime>
+      <publishTime>05/13/2013 09:11:21</publishTime>
     </File>
     <File Include="Views/VietSovPetro/DealingRoom.cshtml">
-      <publishTime>05/06/2013 08:04:04</publishTime>
+      <publishTime>05/13/2013 09:11:06</publishTime>
+    </File>
+    <File Include="Views/VietSovPetro/Destination.cshtml">
+      <publishTime>05/15/2013 08:10:12</publishTime>
+    </File>
+    <File Include="Views/VietSovPetro/Feedback.cshtml">
+      <publishTime>05/15/2013 08:11:32</publishTime>
     </File>
     <File Include="Views/VietSovPetro/Index.cshtml">
       <publishTime>05/05/2013 13:52:54</publishTime>
     </File>
     <File Include="Views/VietSovPetro/Introduction.cshtml">
-      <publishTime>05/02/2013 08:35:53</publishTime>
+      <publishTime>05/12/2013 12:57:13</publishTime>
     </File>
     <File Include="Views/VietSovPetro/MeetingAndEvent.cshtml">
-      <publishTime>05/06/2013 08:04:04</publishTime>
+      <publishTime>05/13/2013 09:10:05</publishTime>
     </File>
     <File Include="Views/VietSovPetro/News.cshtml">
-      <publishTime>05/05/2013 13:39:05</publishTime>
+      <publishTime>05/12/2013 12:58:43</publishTime>
+    </File>
+    <File Include="Views/VietSovPetro/Partner.cshtml">
+      <publishTime>05/15/2013 08:10:44</publishTime>
     </File>
     <File Include="Views/VietSovPetro/Restaurant.cshtml">
-      <publishTime>05/06/2013 08:04:04</publishTime>
+      <publishTime>05/13/2013 09:10:23</publishTime>
     </File>
     <File Include="Views/VietSovPetro/RoomAndPrice.cshtml">
-      <publishTime>05/06/2013 08:04:04</publishTime>
+      <publishTime>05/13/2013 11:10:41</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>04/08/2013 16:55:00</publishTime>
@@ -4882,7 +5116,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2013 15:50:26</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/08/2013 10:00:59</publishTime>
+      <publishTime>05/15/2013 10:02:49</publishTime>
     </File>
   </ItemGroup>
 </Project>

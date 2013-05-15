@@ -22,7 +22,7 @@ namespace VietSovPetro.Data.Repositories
         {
             var RoomIDParameter = new SqlParameter("RoomID", entity.RoomID);
             var RoomPropertyIDParameter = new SqlParameter("RoomPropertyID", entity.RoomPropertyID);
-            var StringValueParameter = new SqlParameter("StringValue", entity.RoomPropertyStringValue);
+            var StringValueParameter = new SqlParameter("StringValue", entity.RoomPropertyStringValue != null ? entity.RoomPropertyStringValue : "");
             var NumberValueParameter = new SqlParameter("NumberValue", entity.RoomPropertyNumberValue);
             var IsNewParameter = new SqlParameter("IsNew", entity.IsNew);
             var IsPublishedParameter = new SqlParameter("IsPublished", entity.IsPublished);

@@ -120,6 +120,15 @@
   <data name="Activity" xml:space="preserve">
     <value>Activity</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
   <data name="Introduction" xml:space="preserve">
     <value>Introduction</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="News" xml:space="preserve">
     <value>News</value>
+  </data>
+  <data name="Partner" xml:space="preserve">
+    <value>Partner</value>
   </data>
   <data name="Restaurant_And_Bar" xml:space="preserve">
     <value>Restaurant &amp; Bar</value>

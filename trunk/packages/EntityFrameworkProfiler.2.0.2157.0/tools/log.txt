@@ -1,0 +1,9 @@
+2013-05-08 09:22:17,703 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2157
+2013-05-08 09:22:19,290 [1] ERROR HibernatingRhinos.Profiler.Client.Startup.SilverlightGuiCommand [(null)] - An error occurred while starting the backend client service. Please send us the log.txt file to support@hibernatingrhinos.com
+System.Net.HttpListenerException (0x80004005): Failed to listen on prefix 'http://+:17560/' because it conflicts with an existing registration on the machine.
+   at System.Net.HttpListener.AddAllPrefixes()
+   at System.Net.HttpListener.Start()
+   at HibernatingRhinos.Profiler.Client.Host.NonAdminHttp.CanStartHttpListener(Int32 port)
+   at HibernatingRhinos.Profiler.Client.Host.NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(Int32 port)
+   at HibernatingRhinos.Profiler.Client.Host.OutOfProcessClientService.StartWithOutOfProcessListener(String contextFile)
+   at HibernatingRhinos.Profiler.Client.Startup.SilverlightGuiCommand.Execute()

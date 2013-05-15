@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="B-Right">
-        <iframe src="@Url.Content("~/virtualTour/mainRestaurant/mainRestaurant.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
+        <iframe src="@Url.Content("~/images/virtualTour/mainRestaurant/mainRestaurant.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
         <div class="fullscreen"><a href="#" style="display: block;">
             <img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
     </div>
@@ -68,19 +68,19 @@
                         <li class="tit"><a href="#">@room.RoomName</a></li>
                         <li class="con">
                             <ul>
-                                @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished ))
+                                @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
                                 {
                                     <li>
                                         <p>@detail.RoomProperty.RoomPropertyName: @detail.RoomPropertyNumberValue @detail.RoomProperty.Unit</p>
                                     </li>
                                 }
-                                @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished ))
+                                @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
                                 {
                                     <li>
                                         <p>@price.RoomProperty.RoomPropertyName: @price.RoomPropertyNumberValue @price.RoomProperty.Unit</p>
                                     </li>
                                 }
-                                @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished ))
+                                @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
                                 {
                                     <li>
                                         <p>@property.RoomProperty.RoomPropertyName: @property.RoomPropertyStringValue @property.RoomProperty.Unit</p>

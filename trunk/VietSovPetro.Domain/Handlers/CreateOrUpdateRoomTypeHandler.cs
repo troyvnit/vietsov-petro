@@ -23,7 +23,6 @@ namespace VietSovPetro.Domain.Handlers
             var roomType = new RoomType
             {
                 RoomTypeID = command.RoomTypeID,
-                RoomTypeName = command.RoomTypeName,
                 RoomGroup = command.RoomGroup,
                 Description = command.Description,
                 IsPublished = command.IsPublished,

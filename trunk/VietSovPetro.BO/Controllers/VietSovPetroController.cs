@@ -43,11 +43,22 @@ namespace VietSovPetro.BO.Controllers
         {
             var articles = new List<ArticleViewModel>();
             foreach (var article in articleRepository.GetAll().Where(a =>
+            {
+                var articleCategories = a.ArticleCategories;
+                var checkCategories = false;
+                if (articleCategories != null)
                 {
-                    var firstOrDefault = a.ArticleCategories.FirstOrDefault();
-                    return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.ArticleCategoryType == "Introduction" 
-                        && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
-                }).OrderBy(a => a.OrderID))
+                    foreach (var articleCategory in articleCategories)
+                    {
+                        if (articleCategory.ArticleCategoryType == "Introduction")
+                        {
+                            checkCategories = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkCategories
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID))
             {
                 var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
                 articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
@@ -61,8 +72,19 @@ namespace VietSovPetro.BO.Controllers
             var articles = new List<ArticleViewModel>();
             foreach (var article in articleRepository.GetAll().Where(a =>
             {
-                var firstOrDefault = a.ArticleCategories.FirstOrDefault();
-                return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.ArticleCategoryType == "Activity"
+                var articleCategories = a.ArticleCategories;
+                var checkCategories = false;
+                if (articleCategories != null)
+                {
+                    foreach (var articleCategory in articleCategories)
+                    {
+                        if (articleCategory.ArticleCategoryType == "Activity")
+                        {
+                            checkCategories = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkCategories
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID))
             {
@@ -78,8 +100,19 @@ namespace VietSovPetro.BO.Controllers
             var articles = new List<ArticleViewModel>();
             foreach (var article in articleRepository.GetAll().Where(a =>
             {
-                var firstOrDefault = a.ArticleCategories.FirstOrDefault();
-                return firstOrDefault != null && (a.IsDeleted != true && a.IsPublished && firstOrDefault.ArticleCategoryType == "News"
+                var articleCategories = a.ArticleCategories;
+                var checkCategories = false;
+                if (articleCategories != null)
+                {
+                    foreach (var articleCategory in articleCategories)
+                    {
+                        if (articleCategory.ArticleCategoryType == "News")
+                        {
+                            checkCategories = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkCategories
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID))
             {
@@ -88,6 +121,90 @@ namespace VietSovPetro.BO.Controllers
                 articles.Add(articlevm);
             }
             ViewBag.NewsArticles = articles;
+            return View();
+        }
+        public ActionResult Destination()
+        {
+            var articles = new List<ArticleViewModel>();
+            foreach (var article in articleRepository.GetAll().Where(a =>
+            {
+                var articleCategories = a.ArticleCategories;
+                var checkCategories = false;
+                if (articleCategories != null)
+                {
+                    foreach(var articleCategory in articleCategories)
+                    {
+                        if(articleCategory.ArticleCategoryType == "Destination")
+                        {
+                            checkCategories = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkCategories
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID))
+            {
+                var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+                articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                articles.Add(articlevm);
+            }
+            ViewBag.DestinationArticles = articles;
+            return View();
+        }
+        public ActionResult Partner()
+        {
+            var articles = new List<ArticleViewModel>();
+            foreach (var article in articleRepository.GetAll().Where(a =>
+            {
+                var articleCategories = a.ArticleCategories;
+                var checkCategories = false;
+                if (articleCategories != null)
+                {
+                    foreach (var articleCategory in articleCategories)
+                    {
+                        if (articleCategory.ArticleCategoryType == "Partner")
+                        {
+                            checkCategories = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkCategories
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID))
+            {
+                var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+                articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                articles.Add(articlevm);
+            }
+            ViewBag.PartnerArticles = articles;
+            return View();
+        }
+        public ActionResult Feedback()
+        {
+            var articles = new List<ArticleViewModel>();
+            foreach (var article in articleRepository.GetAll().Where(a =>
+            {
+                var articleCategories = a.ArticleCategories;
+                var checkCategories = false;
+                if (articleCategories != null)
+                {
+                    foreach (var articleCategory in articleCategories)
+                    {
+                        if (articleCategory.ArticleCategoryType == "Feedback")
+                        {
+                            checkCategories = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkCategories
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID))
+            {
+                var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+                articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                articles.Add(articlevm);
+            }
+            ViewBag.FeedbackArticles = articles;
             return View();
         }
         public ActionResult MeetingAndEvent()
@@ -171,6 +288,15 @@ namespace VietSovPetro.BO.Controllers
                 return Content("Quá trình gửi thông tin qua email thất bại, thông tin được lưu vào cơ sở dữ liệu tạm!", "text/html");
             }
             return Content("Thông tin đặt phòng của bạn đã được gửi, cảm ơn!", "text/html");
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Contact(FormCollection f)
+        {
+            return Content("Thông tin liên hệ của bạn đã được gửi, cảm ơn!", "text/html");
         }
     }
 }

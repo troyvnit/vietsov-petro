@@ -1,15 +1,25 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
+using System;
+using VietSovPetro.Data.Repositories.IRepositories;
+using VietSovPetro.Model.Entities;
+using VietSovPetro.Core.Common;
+using VietSovPetro.Data.Infrastructure;
 
 namespace VietSovPetro.BO.Controllers
 {
-    using System;
-
     [Authorize]
     public class AccountController : Controller
     {
         //
         // GET: /Account/Login
+        private readonly IUserRepository userRepository;
+        private readonly IUnitOfWork unitOfWork;
+        public AccountController(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        {
+            this.userRepository = userRepository;
+            this.unitOfWork = unitOfWork;
+        }
 
         [AllowAnonymous]
         public ActionResult Login(string status)
@@ -34,7 +44,8 @@ namespace VietSovPetro.BO.Controllers
             string username = f["UserName"];
             string password = f["Password"];
             bool remember = f["Remember"] != null;
-            if (username == "admin" && password == "admin")
+            var user = new User { UserName = username, Password = password };
+            if (userRepository.Get(a => a.UserName == user.UserName && a.PasswordHashed.Equals(user.PasswordHashed)) != null)
             {
                 FormsAuthentication.SetAuthCookie(username, remember);
                 Session["VietSovPetroAdmin"] = username;
@@ -48,6 +59,59 @@ namespace VietSovPetro.BO.Controllers
             FormsAuthentication.SignOut();
             Session["VietSovPetroAdmin"] = null;
             return RedirectToAction("Login");
+        }
+
+        public ActionResult Register(string status)
+        {
+            ViewBag.Status = status;
+
+            if (Session["VietSovPetroAdmin"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(FormCollection f)
+        {
+            string username = f["UserName"];
+            string password = f["Password"];
+            var user = new User { UserName = username, Password = password, Email = "admin@vipd.vn", FirstName = "VietSov Petro", LastName = "Administrator", UserID = Guid.NewGuid() };
+            if (userRepository.Get(a => a.UserName == user.UserName) == null)
+            {
+                userRepository.Add(user);
+                unitOfWork.Commit();
+                return RedirectToAction("Register", new { status = "Tạo tài khoản thành công!" });
+            }
+            return RedirectToAction("Register", new { status = "Tạo tài khoản thất bại, vui lòng thử lại sau!" });
+        }
+        public ActionResult ChangePassword(string status)
+        {
+            ViewBag.Status = status;
+
+            if (Session["VietSovPetroAdmin"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(FormCollection f)
+        {
+            string username = f["UserName"];
+            string password = f["Password"];
+            string oldpasswod = f["OldPassword"];
+            var user = new User { UserName = username, Password = oldpasswod };
+            var userget = userRepository.Get(a => a.UserName == user.UserName && a.PasswordHashed.Equals(user.PasswordHashed));
+            if (userget != null)
+            {
+                user.Password = password;
+                userget.PasswordHashed = user.PasswordHashed;
+                userRepository.Update(userget);
+                unitOfWork.Commit();
+                return RedirectToAction("ChangePassword", new { status = "Đổi mật khẩu thành công!" });
+            }
+            return RedirectToAction("ChangePassword", new { status = "Tài khoản hoặc mật khẩu không đúng!" });
         }
     }
 }

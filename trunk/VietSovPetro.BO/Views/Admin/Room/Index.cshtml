@@ -47,10 +47,10 @@
                 <a class="k-button k-button-icontext k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
             </div>
             <dl>
-                <dt>Tên loại phòng</dt>
-                <dd>#:RoomTypeName#</dd>
                 <dt>Nhóm phòng</dt>
                 <dd>#:RoomGroup#</dd>
+                <dt>Mô tả</dt>
+                <dd>#:Description#</dd>
             </dl>
         </div>
     </script>
@@ -63,17 +63,12 @@
             </div>
             <dl>
                 <input type="hidden" data-bind="value:RoomTypeID" name="RoomTypeID"/>
-                <dt>Tên loại phòng</dt>
-                <dd>
-                    <input type="text" class="k-textbox" data-bind="value:RoomTypeName" name="RoomTypeName" required="required" validationMessage="không được trống" />
-                    <span data-for="RoomTypeName" class="k-invalid-msg"></span>
-                </dd>
                 <dt>Nhóm phòng</dt>
                 <dd>
-                    <select data-role="dropdownlist" data-bind="value:RoomGroup" name="RoomGroup" required="required" validationMessage="không được trống">
+                    <select data-role="combobox" data-bind="value:RoomGroup" name="RoomGroup" required="required" validationMessage="không được trống">
                        <option value="Room And Price">Phòng nghỉ</option>
                        <option value="Meeting Room">Phòng họp</option>
-                        <option value="Restaurant">Nhà hàng</option>
+                       <option value="Restaurant">Nhà hàng</option>
                     </select>
                     <span data-for="RoomGroup" class="k-invalid-msg"></span>
                 </dd>
@@ -162,7 +157,6 @@
                         id: "RoomTypeID",
                         fields: {
                             RoomTypeID: { editable: false, nullable: true },
-                            RoomTypeName: { type: "string" },
                             RoomGroup: { defaultValue: "Room And Price" },
                             LanguageCode: { defaultValue: "vi-VN" },
                             Description: { type: "string" },
@@ -226,6 +220,7 @@
                         fields: {
                             RoomID: { editable: false, defaultValue: "@Guid.NewGuid()" },
                             RoomName: { validation: { required: true } },
+                            RoomTypeName: { validation: { required: true } },
                             Description: { type: "string" },
                             Quantity: { type: "number" },
                             BookedFrom: { type: "datetime", nullable: true },
@@ -249,6 +244,7 @@
                 toolbar: ["create", "save", "cancel"],
                 columns: [
                     { field: "RoomName", title: "Tên phòng" },
+                    { field: "RoomTypeName", title: "Loại phòng" },
                     { field: "Description", title: "Mô tả", width: "100px", hidden: true },
                     { field: "Quantity", title: "Số lượng", width: "80px" },
                     { field: "ImageUrl", title: "ImageUrl", hidden: true },
@@ -457,7 +453,7 @@
             }
             $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh");
             $("#roomtypes").kendoMultiSelect({
-                dataTextField: "RoomTypeName",
+                dataTextField: "RoomGroup",
                 dataValueField: "RoomTypeID",
                 dataSource: {
                     transport: {
@@ -512,7 +508,7 @@
                                 RoomPropertyID: { editable: false, nullable: true },
                                 RoomPropertyName: { validation: { required: true } },
                                 RoomPropertyStringValue: { type: "string" },
-                                RoomPropertyNumberValue: { type: "number" },
+                                RoomPropertyNumberValue: { type: "decimal" },
                                 Unit: { type: "string" },
                                 OrderID: { type: "number" },
                                 LanguageCode: { defaultValue: "vi-VN", template: "#= LanguageCode #" },

@@ -63,12 +63,14 @@ namespace VietSovPetro.BO.Controllers
             var roomTypes = JsonConvert.DeserializeObject<List<RoomTypeViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var command in roomTypes.Select(Mapper.Map<RoomTypeViewModel, CreateOrUpdateRoomTypeCommand>))
+                foreach (var roomType in roomTypes)
                 {
+                    var command = Mapper.Map<RoomTypeViewModel, CreateOrUpdateRoomTypeCommand>(roomType);
                     commandBus.Validate(command);
                     if (ModelState.IsValid)
                     {
-                        commandBus.Submit(command);
+                        var result = commandBus.Submit(command);
+                        roomType.RoomTypeID = result.ID;
                     }
                 }
                 return Json(roomTypes, JsonRequestBehavior.AllowGet);
@@ -107,12 +109,14 @@ namespace VietSovPetro.BO.Controllers
             var rooms = JsonConvert.DeserializeObject<List<RoomViewModel>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var command in rooms.Select(Mapper.Map<RoomViewModel, CreateOrUpdateRoomCommand>))
+                foreach (var room in rooms)
                 {
+                    var command = Mapper.Map<RoomViewModel, CreateOrUpdateRoomCommand>(room);
                     commandBus.Validate(command);
                     if (ModelState.IsValid)
                     {
-                        commandBus.Submit(command);
+                        var result = commandBus.Submit(command);
+                        room.RoomID = result.ID;
                     }
                 }
                 return Json(rooms, JsonRequestBehavior.AllowGet);

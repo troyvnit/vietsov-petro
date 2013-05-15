@@ -19,7 +19,7 @@ namespace VietSovPetro.BO.ViewModels
         [Required]
         public string RoomPropertyName { get; set; }
         public string RoomPropertyStringValue { get; set; }
-        public int RoomPropertyNumberValue { get; set; }
+        public decimal RoomPropertyNumberValue { get; set; }
         public string RoomPropertyType { get; set; }
         public string Unit { get; set; }
         public int OrderID { get; set; }

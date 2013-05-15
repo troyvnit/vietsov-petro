@@ -1,10 +1,30 @@
-﻿
+﻿IF NOT EXISTS (SELECT 1 FROM [dbo].[Users] WHERE [UserID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+INSERT INTO [dbo].[Users]
+           ([UserID]
+           ,[UserName]
+           ,[Email]
+           ,[FirstName]
+           ,[LastName]
+           ,[PasswordHashed]
+           ,[CreateOn]
+           ,[LastLoginOn])
+     VALUES
+           ('11111111-1111-1111-1111-111111111111'
+           ,'admin'
+           ,'admin@vipd.vn'
+           ,'VietSov Petro'
+           ,'Administrator'
+           ,CONVERT(NVARCHAR(32),HashBytes('MD5', 'admin'),2)
+           ,CURRENT_TIMESTAMP
+           ,CURRENT_TIMESTAMP)
+END
+
 IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypes] WHERE [RoomTypeID] = '11111111-1111-1111-1111-111111111111')
 BEGIN
     INSERT INTO [dbo].[RoomTypes]
     (
         [RoomTypeID]
-        ,[RoomTypeName]
         ,[RoomGroup]
         ,[LanguageCode]
 		,[Description]
@@ -16,7 +36,6 @@ BEGIN
     VALUES
     (
         '11111111-1111-1111-1111-111111111111'
-        ,N'Phòng Họp'
         ,'Meeting Room'
         ,'vi-VN'
 		,NULL
@@ -32,7 +51,6 @@ BEGIN
     INSERT INTO [dbo].[RoomTypes]
     (
         [RoomTypeID]
-        ,[RoomTypeName]
         ,[RoomGroup]
         ,[LanguageCode]
 		,[Description]
@@ -44,7 +62,6 @@ BEGIN
     VALUES
     (
         '22222222-2222-2222-2222-222222222222'
-        ,N'King Size'
         ,'Room And Price'
         ,'vi-VN'
 		,NULL
@@ -55,12 +72,12 @@ BEGIN
     )
 END
 
+
 IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypes] WHERE [RoomTypeID] = '33333333-3333-3333-3333-333333333333')
 BEGIN
     INSERT INTO [dbo].[RoomTypes]
     (
         [RoomTypeID]
-        ,[RoomTypeName]
         ,[RoomGroup]
         ,[LanguageCode]
 		,[Description]
@@ -72,63 +89,6 @@ BEGIN
     VALUES
     (
         '33333333-3333-3333-3333-333333333333'
-        ,N'King Size'
-        ,'Room And Price'
-        ,'vi-VN'
-		,NULL
-		,0
-		,1
-		,0
-		,0
-    )
-END
-
-IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypes] WHERE [RoomTypeID] = '44444444-4444-4444-4444-444444444444')
-BEGIN
-    INSERT INTO [dbo].[RoomTypes]
-    (
-        [RoomTypeID]
-        ,[RoomTypeName]
-        ,[RoomGroup]
-        ,[LanguageCode]
-		,[Description]
-		,[IsDeleted]
-		,[IsPublished]
-		,[IsNew]
-		,[IsDeal]
-    )
-    VALUES
-    (
-        '44444444-4444-4444-4444-444444444444'
-        ,N'Twin/Double'
-        ,'Room And Price'
-        ,'vi-VN'
-		,NULL
-		,0
-		,1
-		,0
-		,0
-    )
-END
-
-IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypes] WHERE [RoomTypeID] = '55555555-5555-5555-5555-555555555555')
-BEGIN
-    INSERT INTO [dbo].[RoomTypes]
-    (
-        [RoomTypeID]
-        ,[RoomTypeName]
-        ,[RoomGroup]
-        ,[LanguageCode]
-		,[Description]
-		,[IsDeleted]
-		,[IsPublished]
-		,[IsNew]
-		,[IsDeal]
-    )
-    VALUES
-    (
-        '55555555-5555-5555-5555-555555555555'
-        ,N'Restaurant'
         ,'Restaurant'
         ,'vi-VN'
 		,NULL
@@ -299,6 +259,226 @@ BEGIN
     )
 END
 
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '88888888-8888-8888-8888-888888889999')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '88888888-8888-8888-8888-888888889999'
+        ,N'Giá'
+        ,'Price'
+		,'$'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '99999999-9999-9999-9999-999999999999')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '99999999-9999-9999-9999-999999999999'
+        ,N'Giường phụ'
+        ,'Price'
+		,'$'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111112222')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111112222'
+        ,N'Phòng ngủ'
+        ,'Property'
+		,'m2'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111113333')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111113333'
+        ,N'Phòng tắm'
+        ,'Property'
+		,'m2'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111114444')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111114444'
+        ,N'Phòng làm việc'
+        ,'Property'
+		,'m2'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111115555')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111115555'
+        ,N'Phòng ăn + Bếp'
+        ,'Property'
+		,'m2'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111116666')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111116666'
+        ,N'Ban công'
+        ,'Property'
+		,'m2'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111117777')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111117777'
+        ,N'Phòng khách'
+        ,'Property'
+		,'m2'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111118888')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111118888'
+        ,N'Phòng tắm khách'
+        ,'Property'
+		,'m2'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111119999')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111119999'
+        ,N'Phòng ngủ + Phòng khách'
+        ,'Property'
+		,'m2'
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomProperties] WHERE [RoomPropertyID] = '88888888-8888-8888-8888-888888888888')
+BEGIN
+    INSERT INTO [dbo].[RoomProperties] 
+    (
+        [RoomPropertyID]
+        ,[RoomPropertyName]
+        ,[RoomPropertyType]
+		,[Unit]
+		,[OrderID]
+    )
+    VALUES
+    (
+        '88888888-8888-8888-8888-888888888888'
+        ,N'Dịch vụ thêm'
+        ,'Property'
+		,''
+		,0
+    )
+END
+
 IF NOT EXISTS (SELECT 1 FROM [dbo].[ArticleCategories] WHERE [ArticleCategoryID] = '11111111-1111-1111-1111-111111111111')
 BEGIN
     INSERT INTO [dbo].[ArticleCategories] 
@@ -371,6 +551,84 @@ BEGIN
         ,'News'
 		,'vi-VN'
 		,N'Dùng cho trang tin tức'
+        ,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[ArticleCategories] WHERE [ArticleCategoryID] = '44444444-4444-4444-4444-444444444444')
+BEGIN
+    INSERT INTO [dbo].[ArticleCategories] 
+    (
+        [ArticleCategoryID]
+        ,[ArticleCategoryName]
+        ,[ArticleCategoryType]
+		,[LanguageCode]
+		,[Description]
+		,[IsDeleted]
+		,[IsPublished]
+		,[IsNew]
+    )
+    VALUES
+    (
+        '44444444-4444-4444-4444-444444444444'
+        ,N'Điểm đến'
+        ,'Destination'
+		,'vi-VN'
+		,N'Dùng cho trang điểm đến'
+        ,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[ArticleCategories] WHERE [ArticleCategoryID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[ArticleCategories] 
+    (
+        [ArticleCategoryID]
+        ,[ArticleCategoryName]
+        ,[ArticleCategoryType]
+		,[LanguageCode]
+		,[Description]
+		,[IsDeleted]
+		,[IsPublished]
+		,[IsNew]
+    )
+    VALUES
+    (
+        '55555555-5555-5555-5555-555555555555'
+        ,N'Đối tác'
+        ,'Partner'
+		,'vi-VN'
+		,N'Dùng cho trang đối tác'
+        ,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[ArticleCategories] WHERE [ArticleCategoryID] = '66666666-6666-6666-6666-666666666666')
+BEGIN
+    INSERT INTO [dbo].[ArticleCategories] 
+    (
+        [ArticleCategoryID]
+        ,[ArticleCategoryName]
+        ,[ArticleCategoryType]
+		,[LanguageCode]
+		,[Description]
+		,[IsDeleted]
+		,[IsPublished]
+		,[IsNew]
+    )
+    VALUES
+    (
+        '66666666-6666-6666-6666-666666666666'
+        ,N'Phản hồi của khách hàng'
+        ,'Feedback'
+		,'vi-VN'
+		,N'Dùng cho trang phản hồi của khách hàng'
         ,0
 		,1
 		,0
@@ -499,8 +757,7 @@ BEGIN
     )
 END
 
-
-IF NOT EXISTS (SELECT 1 FROM [dbo].[Articles] WHERE [ArticleID] = '33333333-3333-3333-3333-333333333333')
+  IF NOT EXISTS (SELECT 1 FROM [dbo].[Articles] WHERE [ArticleID] = '33333333-3333-3333-3333-333333333333')
 BEGIN
     INSERT INTO [dbo].[Articles] 
     (
@@ -667,7 +924,7 @@ BEGIN
 		,'11111111-1111-1111-1111-111111111111'
     )
 END
-
+  
 IF NOT EXISTS (SELECT 1 FROM [dbo].[ArticleCategoryArticles] WHERE [ArticleCategory_ArticleCategoryID] = '11111111-1111-1111-1111-111111111111' AND [Article_ArticleID] = '44444444-4444-4444-4444-444444444444')
 BEGIN
     INSERT INTO [dbo].[ArticleCategoryArticles] 
@@ -681,12 +938,1292 @@ BEGIN
 		,'11111111-1111-1111-1111-111111111111'
     )
 END
+					 
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('11111111-1111-1111-1111-111111111111'
+           ,N'Phòng họp Conference Hall'
+           ,'Meeting Room'
+           ,NULL
+           ,NULL
+           ,''
+           ,1
+           ,'ban-ho-1.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+  
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '22222222-2222-2222-2222-222222222222')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('22222222-2222-2222-2222-222222222222'
+           ,N'Phòng họp Grant Hall'
+           ,'Meeting Room'
+           ,NULL
+           ,NULL
+           ,''
+           ,1
+           ,'ban-ho-2.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+			 
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '33333333-3333-3333-3333-333333333333')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('33333333-3333-3333-3333-333333333333'
+           ,N'Phòng họp Conference'
+           ,'Meeting Room'
+           ,NULL
+           ,NULL
+           ,''
+           ,3
+           ,'ban-ho-3.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+		  
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '44444444-4444-4444-4444-444444444444')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('44444444-4444-4444-4444-444444444444'
+           ,N'Bạch Dương'
+           ,'Meeting Room'
+           ,NULL
+           ,NULL
+           ,''
+           ,4
+           ,'ban-ho-4.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('55555555-5555-5555-5555-555555555555'
+           ,N'Phòng President'
+           ,N'King Size'
+           ,NULL
+           ,NULL
+           ,''
+           ,0
+           ,'/virtualTour/president/entry/entry.html'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+							  
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '66666666-6666-6666-6666-666666666666')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('66666666-6666-6666-6666-666666666666'
+           ,N'Phòng Grand Suite'
+           ,N'King Size'
+           ,NULL
+           ,NULL
+           ,''
+           ,0
+           ,'ho-2.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+													  
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '77777777-7777-7777-7777-777777777777')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('77777777-7777-7777-7777-777777777777'
+           ,N'Phòng Ocean View Suite'
+           ,N'King Size'
+           ,NULL
+           ,NULL
+           ,''
+           ,0
+           ,'/virtualTour/honeyMoon/bedRoom/bedRoom.html'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '88888888-8888-8888-8888-888888888888')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('88888888-8888-8888-8888-888888888888'
+           ,N'Phòng Ocean View Deluxe'
+           ,N'Twin/Double'
+           ,NULL
+           ,NULL
+           ,''
+           ,0
+           ,'/virtualTour/doubleRoom/bedRoom/bedRoom.html'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+																  
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '99999999-9999-9999-9999-999999999999')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('99999999-9999-9999-9999-999999999999'
+           ,N'Nhà hàng Allday Dinning Room'
+           ,'Restaurant'
+           ,NULL
+           ,NULL
+           ,''
+           ,0
+           ,'retau-1.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '11111111-1111-1111-1111-111111112222')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('11111111-1111-1111-1111-111111112222'
+           ,N'Nhà hàng Af.Lacart'
+           ,'Restaurant'
+           ,NULL
+           ,NULL
+           ,''
+           ,0
+           ,'retau-2.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '11111111-1111-1111-1111-111111113333')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('11111111-1111-1111-1111-111111113333'
+           ,N'Nhà hàng Outside'
+           ,'Restaurant'
+           ,NULL
+           ,NULL
+           ,''
+           ,0
+           ,'retau-3.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '11111111-1111-1111-1111-111111114444')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('11111111-1111-1111-1111-111111114444'
+           ,N'04 Phòng ăn VIP'
+           ,'Restaurant'
+           ,NULL
+           ,NULL
+           ,''
+           ,0
+           ,'retau-4.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[Rooms] WHERE [RoomID] = '11111111-1111-1111-1111-111111115555')
+BEGIN
+    INSERT INTO [vipd_vn_db].[dbo].[Rooms]
+           ([RoomID]
+           ,[RoomName]
+           ,[RoomTypeName]
+           ,[BookedFrom]
+           ,[BookedTo]
+           ,[Description]
+           ,[Quantity]
+           ,[ImageUrl]
+           ,[OrderID]
+           ,[LanguageCode]
+           ,[IsDeleted]
+           ,[IsPublished]
+           ,[IsNew]
+           ,[IsDeal]
+           ,[CreatedOn]
+           ,[CreatedBy]
+           ,[UpdatedOn]
+           ,[UpdatedBy])
+     VALUES
+           ('11111111-1111-1111-1111-111111115555'
+           ,N'Coffee Lounge & Executive Lounge'
+           ,'Restaurant'
+           ,NULL
+           ,NULL
+           ,''
+           ,0
+           ,'retau-5.jpg'
+           ,0
+           ,'vi-VN'
+           ,0
+           ,1
+           ,0
+           ,0
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+           ,'2013-05-12 10:45:46.817'
+           ,'00000000-0000-0000-0000-000000000000'
+		   )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '11111111-1111-1111-1111-111111111111' 
+	AND [Room_RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111111111'
+		,'11111111-1111-1111-1111-111111111111'
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '11111111-1111-1111-1111-111111111111' 
+	AND [Room_RoomID] = '22222222-2222-2222-2222-222222222222')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111111111'
+		,'22222222-2222-2222-2222-222222222222'
+    )
+END		
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '11111111-1111-1111-1111-111111111111' 
+	AND [Room_RoomID] = '33333333-3333-3333-3333-333333333333')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111111111'
+		,'33333333-3333-3333-3333-333333333333'
+    )
+END				 
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '11111111-1111-1111-1111-111111111111' 
+	AND [Room_RoomID] = '44444444-4444-4444-4444-444444444444')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111111111'
+		,'44444444-4444-4444-4444-444444444444'
+    )
+END		
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '22222222-2222-2222-2222-222222222222' 
+	AND [Room_RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '22222222-2222-2222-2222-222222222222'
+		,'55555555-5555-5555-5555-555555555555'
+    )
+END	
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '22222222-2222-2222-2222-222222222222' 
+	AND [Room_RoomID] = '66666666-6666-6666-6666-666666666666')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '22222222-2222-2222-2222-222222222222'
+		,'66666666-6666-6666-6666-666666666666'
+    )
+END	
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '22222222-2222-2222-2222-222222222222' 
+	AND [Room_RoomID] = '77777777-7777-7777-7777-777777777777')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '22222222-2222-2222-2222-222222222222'
+		,'77777777-7777-7777-7777-777777777777'
+    )
+END	
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '22222222-2222-2222-2222-222222222222' 
+	AND [Room_RoomID] = '88888888-8888-8888-8888-888888888888')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '22222222-2222-2222-2222-222222222222'
+		,'88888888-8888-8888-8888-888888888888'
+    )
+END	
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '33333333-3333-3333-3333-333333333333' 
+	AND [Room_RoomID] = '99999999-9999-9999-9999-999999999999')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '33333333-3333-3333-3333-333333333333'
+		,'99999999-9999-9999-9999-999999999999'
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '33333333-3333-3333-3333-333333333333' 
+	AND [Room_RoomID] = '11111111-1111-1111-1111-111111112222')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '33333333-3333-3333-3333-333333333333'
+		,'11111111-1111-1111-1111-111111112222'
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '33333333-3333-3333-3333-333333333333' 
+	AND [Room_RoomID] = '11111111-1111-1111-1111-111111113333')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '33333333-3333-3333-3333-333333333333'
+		,'11111111-1111-1111-1111-111111113333'
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '33333333-3333-3333-3333-333333333333' 
+	AND [Room_RoomID] = '11111111-1111-1111-1111-111111114444')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '33333333-3333-3333-3333-333333333333'
+		,'11111111-1111-1111-1111-111111114444'
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomTypeRooms] WHERE [RoomType_RoomTypeID] = '33333333-3333-3333-3333-333333333333' 
+	AND [Room_RoomID] = '11111111-1111-1111-1111-111111115555')
+BEGIN
+    INSERT INTO [dbo].[RoomTypeRooms] 
+    (
+        [RoomType_RoomTypeID]
+        ,[Room_RoomID]
+    )
+    VALUES
+    (
+        '33333333-3333-3333-3333-333333333333'
+		,'11111111-1111-1111-1111-111111115555'
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111111111' 
+	AND [RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111111111'
+		,'11111111-1111-1111-1111-111111111111'
+		,''
+		,580
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '22222222-2222-2222-2222-222222222222' 
+	AND [RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '22222222-2222-2222-2222-222222222222'
+		,'11111111-1111-1111-1111-111111111111'
+		,''
+		,762
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '33333333-3333-3333-3333-333333333333' 
+	AND [RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '33333333-3333-3333-3333-333333333333'
+		,'11111111-1111-1111-1111-111111111111'
+		,''
+		,21
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '44444444-4444-4444-4444-444444444444' 
+	AND [RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '44444444-4444-4444-4444-444444444444'
+		,'11111111-1111-1111-1111-111111111111'
+		,''
+		,36.3
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '55555555-5555-5555-5555-555555555555' 
+	AND [RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '55555555-5555-5555-5555-555555555555'
+		,'11111111-1111-1111-1111-111111111111'
+		,''
+		,25000000
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '66666666-6666-6666-6666-666666666666' 
+	AND [RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '66666666-6666-6666-6666-666666666666'
+		,'11111111-1111-1111-1111-111111111111'
+		,''
+		,32000000
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '77777777-7777-7777-7777-777777777777' 
+	AND [RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '77777777-7777-7777-7777-777777777777'
+		,'11111111-1111-1111-1111-111111111111'
+		,N'02 Máy Chiếu, 02 Màn Chiếu, Âm Thanh Ánh Sáng, Wifi, Bục Phát Biểu, Micro, Giấy Bút, Hoa Tươi, Nước Suối...'
+		,0
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '88888888-8888-8888-8888-888888888888' 
+	AND [RoomID] = '11111111-1111-1111-1111-111111111111')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '88888888-8888-8888-8888-888888888888'
+		,'11111111-1111-1111-1111-111111111111'
+		,N'Làm Backdrop (Cao: 3.7m, Dài: 06m), Bộ tai nghe phiên dịch không dây + Cabin phiên dịch.'
+		,0
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '22222222-2222-2222-2222-222222222222' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '22222222-2222-2222-2222-222222222222'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,225
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '88888888-8888-8888-8888-888888889999' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '88888888-8888-8888-8888-888888889999'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,400
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '99999999-9999-9999-9999-999999999999' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '99999999-9999-9999-9999-999999999999'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,25
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111112222' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111112222'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,77
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111113333' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111113333'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,15
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111114444' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111114444'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,25
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111115555' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111115555'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,60
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111116666' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111116666'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,24
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111117777' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111117777'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,18
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111118888' 
+	AND [RoomID] = '55555555-5555-5555-5555-555555555555')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111118888'
+		,'55555555-5555-5555-5555-555555555555'
+		,''
+		,6
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '11111111-1111-1111-1111-111111111111' 
+	AND [RoomID] = '99999999-9999-9999-9999-999999999999')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '11111111-1111-1111-1111-111111111111'
+		,'99999999-9999-9999-9999-999999999999'
+		,''
+		,765
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '22222222-2222-2222-2222-222222222222' 
+	AND [RoomID] = '99999999-9999-9999-9999-999999999999')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '22222222-2222-2222-2222-222222222222'
+		,'99999999-9999-9999-9999-999999999999'
+		,''
+		,27
+		,0
+		,1
+		,0
+    )
+END
+
+IF NOT EXISTS (SELECT 1 FROM [dbo].[RoomPropertyRooms] WHERE [RoomPropertyID] = '33333333-3333-3333-3333-333333333333' 
+	AND [RoomID] = '99999999-9999-9999-9999-999999999999')
+BEGIN
+    INSERT INTO [dbo].[RoomPropertyRooms] 
+    (
+        [RoomPropertyID]
+        ,[RoomID]
+        ,[RoomPropertyStringValue]
+        ,[RoomPropertyNumberValue]
+        ,[IsDeleted]
+        ,[IsPublished]
+        ,[IsNew]
+    )
+    VALUES
+    (
+        '33333333-3333-3333-3333-333333333333'
+		,'99999999-9999-9999-9999-999999999999'
+		,''
+		,28
+		,0
+		,1
+		,0
+    )
+END
+
 GO
 CREATE PROCEDURE CreateOrUpdateRoomPropertyRooms
 @RoomID uniqueidentifier,
 @RoomPropertyID uniqueidentifier,
 @StringValue nvarchar(max),
-@NumberValue int,
+@NumberValue decimal,
 @IsNew bit,
 @IsPublished bit
 AS
