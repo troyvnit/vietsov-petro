@@ -22,12 +22,12 @@ namespace VietSovPetro.Domain.Handlers
         {
             RoomType isRoomTypeExists = null;
             if (command.RoomTypeID == Guid.Empty)
-                isRoomTypeExists = roomTypeRepository.Get(c => c.RoomTypeName == command.RoomTypeName);
+                isRoomTypeExists = roomTypeRepository.Get(c => c.RoomGroup == command.RoomGroup);
             else
-                isRoomTypeExists = roomTypeRepository.Get(c => c.RoomTypeName == command.RoomTypeName && c.RoomTypeID != command.RoomTypeID);
+                isRoomTypeExists = roomTypeRepository.Get(c => c.RoomGroup == command.RoomGroup && c.RoomTypeID != command.RoomTypeID);
             if (isRoomTypeExists != null)
             {
-                yield return new ValidationResult("RoomTypeName", "Existed");
+                yield return new ValidationResult("RoomGroup", "Existed");
             }
         }
     }

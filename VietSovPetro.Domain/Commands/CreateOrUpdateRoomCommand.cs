@@ -7,12 +7,13 @@ namespace VietSovPetro.Domain.Commands
 {
     public class CreateOrUpdateRoomCommand : ICommand
     {
-        public CreateOrUpdateRoomCommand(Guid RoomID, string RoomName, DateTime? BookedFrom, DateTime? BookedTo, string Description,
+        public CreateOrUpdateRoomCommand(Guid RoomID, string RoomName, string RoomTypeName, DateTime? BookedFrom, DateTime? BookedTo, string Description,
             bool IsPublished, bool IsNew, bool IsDeal, Guid? ArticleID, List<Guid> RoomTypeIDs,
             int Quantity, string ImageUrl, int OrderID, string LanguageCode)
         {
             this.RoomID = RoomID;
             this.RoomName = RoomName;
+            this.RoomTypeName = RoomTypeName;
             this.BookedFrom = BookedFrom;
             this.BookedTo = BookedTo;
             this.Description = Description;
@@ -27,6 +28,7 @@ namespace VietSovPetro.Domain.Commands
         }
         public Guid RoomID { get; set; }
         public string RoomName { get; set; }
+        public string RoomTypeName { get; set; }
         public DateTime? BookedFrom { get; set; }
         public DateTime? BookedTo { get; set; }
         public string Description { get; set; }

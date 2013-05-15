@@ -13,8 +13,6 @@ namespace VietSovPetro.Model.Entities
         [Key]
         public Guid RoomTypeID { get; set; }
         [Required]
-        public string RoomTypeName { get; set; }
-        [Required]
         public string RoomGroup { get; set; }
         public string LanguageCode { get; set; }
         public string Description { get; set; }

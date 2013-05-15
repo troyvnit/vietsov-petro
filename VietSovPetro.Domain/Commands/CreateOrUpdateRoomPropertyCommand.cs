@@ -8,7 +8,7 @@ namespace VietSovPetro.Domain.Commands
     public class CreateOrUpdateRoomPropertyCommand : ICommand
     {
         public CreateOrUpdateRoomPropertyCommand(Guid RoomPropertyID, string RoomPropertyName, string RoomPropertyStringValue,
-            int RoomPropertyNumberValue, string RoomPropertyType, bool IsNew, bool IsPublished, Guid RoomID, string Unit,
+            decimal RoomPropertyNumberValue, string RoomPropertyType, bool IsNew, bool IsPublished, Guid RoomID, string Unit,
             int OrderID, Guid RoomPropertyRoomID)
         {
             this.RoomPropertyID = RoomPropertyID;
@@ -26,7 +26,7 @@ namespace VietSovPetro.Domain.Commands
         public Guid RoomPropertyID { get; set; }
         public string RoomPropertyName { get; set; }
         public string RoomPropertyStringValue { get; set; }
-        public int RoomPropertyNumberValue { get; set; }
+        public decimal RoomPropertyNumberValue { get; set; }
         public string RoomPropertyType { get; set; }
         public string Unit { get; set; }
         public int OrderID { get; set; }

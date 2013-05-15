@@ -11,10 +11,22 @@ namespace VietSovPetro.Core.Common
     {
         public static string MD5EncryptPassword(string password)
         {
-            var encoding = new ASCIIEncoding();
-            var bytes = encoding.GetBytes(password);
-            var hashed = MD5.Create().ComputeHash(bytes);
-            return Encoding.UTF8.GetString(hashed);
+            MD5CryptoServiceProvider x = new MD5CryptoServiceProvider();
+
+            byte[] bs = Encoding.UTF8.GetBytes(password);
+
+            bs = x.ComputeHash(bs);
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (byte b in bs)
+            {
+
+                sb.Append(b.ToString("x2").ToUpper());
+
+            }
+
+            return sb.ToString();
         }
     }
 }

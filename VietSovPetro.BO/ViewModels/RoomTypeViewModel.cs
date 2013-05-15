@@ -13,8 +13,6 @@ namespace VietSovPetro.BO.ViewModels
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Guid RoomTypeID { get; set; }
         [Required]
-        public string RoomTypeName { get; set; }
-        [Required]
         public string RoomGroup { get; set; }
         public string Description { get; set; }
         public string LanguageCode { get; set; }

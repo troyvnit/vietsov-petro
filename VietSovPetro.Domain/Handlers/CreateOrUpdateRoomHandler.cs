@@ -29,6 +29,7 @@ namespace VietSovPetro.Domain.Handlers
                 var room = new Room
                     {
                         RoomName = command.RoomName,
+                        RoomTypeName = command.RoomTypeName,
                         Description = command.Description,
                         BookedFrom = command.BookedFrom,
                         BookedTo = command.BookedTo,

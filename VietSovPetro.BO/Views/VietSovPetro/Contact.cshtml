@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LayoutFO.cshtml";
+}
+
+
+<div class="clearfix">&nbsp;</div>
+            <div id="leftbox" style="width:50%; float: left">
+                <form action="@Url.Action("Contact")" method="post" name="FormName" target="_parent" onsubmit="return CheckFormMail();">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td valign="top">
+                                    <table class="text_3" align="center" border="0" cellpadding="0" cellspacing="2" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td width="28%"></td>
+                                                <td width="2%">&nbsp;</td>
+                                                <td width="70%" style="color:white">Nội dung (<font color="#FF0000">*</font>) không được bỏ trống!</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td width="28%">
+                                                    <div align="right" style="color:white"><font color="#CC0000">(*)</font>Họ tên</div>
+                                                </td>
+                                                <td width="2%">&nbsp;</td>
+                                                <td width="70%">
+                                                    <input name="first_name" class="box_input" size="35" value=""></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td>
+                                                    <div align="right" style="color:white">Địa chỉ </div>
+                                                </td>
+                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <input name="address" class="box_input" size="35" value=""></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td>
+                                                    <div align="right" style="color:white">Điện thoại </div>
+                                                </td>
+                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <input name="tel" class="box_input" size="35" value=""></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td>
+                                                    <div align="right" style="color:white"><font color="#CC0000">(*)</font>Email </div>
+                                                </td>
+                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <input name="email" class="box_input" size="35" value=""></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td>
+                                                    <div align="right" style="color:white"><font color="#CC0000">(*)</font>Chủ đề </div>
+                                                </td>
+                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <input name="title" class="box_input" id="title" size="35" value=""></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td>
+                                                    <div align="right" style="color:white"><font color="#CC0000">(*)</font>Nội dung chi tiết</div>
+                                                </td>
+                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <textarea name="message" cols="35" rows="6" wrap="VIRTUAL" class="box_area"></textarea></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td height="65">&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <input name="B1" class="submitbutton" value="  Gửi đi  " type="submit">
+                                                    <input name="op" value="contactform" type="hidden">
+                                                    <input name="lang" value="vn" type="hidden">
+                                                    <input name="slug" value="email-cho-chung-toi" type="hidden">
+                                                    &nbsp;
+                                <input name="B2" class="submitbutton" value="  Nhập lại  " type="reset"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <p>&nbsp; </p>
+                             </tbody>
+
+                    </table>
+                </form>
+            </div>
+<div class="footer-1A" style="width:45%; float: left; margin-top: 20px">
+                        <ul>
+                            <li>
+                                <p>VIETSOVPETRO Resort</p>
+                            </li>
+                            <li><span>Địa chỉ: Xã Phước Thuận, Huyện Xuyên Mộc, Tỉnh Bà Rịa Vũng Tàu, Việt Nam</span></li>
+                            <li><span>ĐT: (84.64) 3.782.266 - 67 - 68 - 69   Fax: (84.64) 3.782.255</span></li>
+                            <li><span>Email: info@vietsovpetroresort.com</span></li>
+                            <li><span>Website: www.vietsovpetroresort.com; www.vietsovpetroresort.vn</span></li>
+                        </ul>
+                    </div>
+<div class="clearfix" style="height: 10px">&nbsp;</div>
+
+<script language="javascript">
+                                    function CheckFormMail()
+                                    {
+                                        with (document.FormName) {
+                                            if (first_name.value == "") {
+                                                alert("Mời bạn nhâp họ tên!");
+                                                first_name.focus();
+                                                return false;
+                                            }
+
+                                            if (email.value == "") {
+                                                alert("Mời bạn nhập địa chỉ Email!");
+                                                email.focus();
+                                                return false;
+                                            }
+                                            else {
+                                                if (email.value.indexOf("\@@") < 0 || email.value.indexOf(".") < 0) {
+                                                    alert("Địa chỉ Email không hợp lệ!");
+                                                    email.focus();
+                                                    return false;
+                                                }
+                                            }
+
+                                            if (title.value == "") {
+                                                alert("Mời bạn nhập tiêu đề");
+                                                title.focus();
+                                                return false;
+                                            }
+
+                                            if (comments.value == "") {
+                                                alert("Mời bạn nhập nội dung");
+                                                comments.focus();
+                                                return false;
+                                            }
+                                        }
+                                             
+                                            return true;
+                                    }
+                                    </script>

@@ -52,6 +52,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -273,6 +276,7 @@
     <Compile Include="ViewModels\RoomViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="css\jquery-ui-1.8.16.custom.css" />
     <Content Include="css\style-banner.css" />
     <Content Include="css\style.css" />
@@ -1664,76 +1668,78 @@
     <Content Include="KendoUI\styles\Uniform\slider-v.gif" />
     <Content Include="KendoUI\styles\Uniform\sprite%402x.png" />
     <Content Include="KendoUI\styles\Uniform\sprite.png" />
-    <Content Include="virtualTour\conferenceHall\Conference Hall_small_out.swf" />
-    <Content Include="virtualTour\conferenceHall\ConferenceHall.html" />
-    <Content Include="virtualTour\conferenceHall\images\Conference Hall_small_o_0.jpg" />
-    <Content Include="virtualTour\conferenceHall\images\Conference Hall_small_o_1.jpg" />
-    <Content Include="virtualTour\conferenceHall\images\Conference Hall_small_o_2.jpg" />
-    <Content Include="virtualTour\conferenceHall\images\Conference Hall_small_o_3.jpg" />
-    <Content Include="virtualTour\conferenceHall\images\Conference Hall_small_o_4.jpg" />
-    <Content Include="virtualTour\conferenceHall\images\Conference Hall_small_o_5.jpg" />
-    <Content Include="virtualTour\conferenceHall\swfobject.js" />
-    <Content Include="virtualTour\doubleRoom\bedRoom\bedRoom.html" />
-    <Content Include="virtualTour\doubleRoom\bedRoom\bedRoom_out.swf" />
-    <Content Include="virtualTour\doubleRoom\bedRoom\images\bedRoom_o_0.jpg" />
-    <Content Include="virtualTour\doubleRoom\bedRoom\images\bedRoom_o_1.jpg" />
-    <Content Include="virtualTour\doubleRoom\bedRoom\images\bedRoom_o_2.jpg" />
-    <Content Include="virtualTour\doubleRoom\bedRoom\images\bedRoom_o_3.jpg" />
-    <Content Include="virtualTour\doubleRoom\bedRoom\images\bedRoom_o_4.jpg" />
-    <Content Include="virtualTour\doubleRoom\bedRoom\images\bedRoom_o_5.jpg" />
-    <Content Include="virtualTour\doubleRoom\bedRoom\swfobject.js" />
-    <Content Include="virtualTour\honeyMoon\bedRoom\bedRoom.html" />
-    <Content Include="virtualTour\honeyMoon\bedRoom\images\bedRoom_o_0.jpg" />
-    <Content Include="virtualTour\honeyMoon\bedRoom\images\bedRoom_o_1.jpg" />
-    <Content Include="virtualTour\honeyMoon\bedRoom\images\bedRoom_o_2.jpg" />
-    <Content Include="virtualTour\honeyMoon\bedRoom\images\bedRoom_o_3.jpg" />
-    <Content Include="virtualTour\honeyMoon\bedRoom\images\bedRoom_o_4.jpg" />
-    <Content Include="virtualTour\honeyMoon\bedRoom\images\bedRoom_o_5.jpg" />
-    <Content Include="virtualTour\honeyMoon\bedRoom\IMG_6875 Panorama_out.swf" />
-    <Content Include="virtualTour\honeyMoon\bedRoom\swfobject.js" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_0.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_1.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_2.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_3.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_4.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_5.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_0.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_1.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_2.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_3.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_4.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_5.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_0.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_1.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_2.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_3.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_4.jpg" />
-    <Content Include="virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_5.jpg" />
-    <Content Include="virtualTour\mainRestaurant\IMG_5885 Panorama_small_out.swf" />
-    <Content Include="virtualTour\mainRestaurant\mainRestaurant.html" />
-    <Content Include="virtualTour\mainRestaurant\swfobject.js" />
-    <Content Include="virtualTour\president\bedRoom\bedRoom.html" />
-    <Content Include="virtualTour\president\bedRoom\bedRoom.jpg" />
-    <Content Include="virtualTour\president\bedRoom\bedRoom.preview.jpg" />
-    <Content Include="virtualTour\president\bedRoom\bedRoom_out.swf" />
-    <Content Include="virtualTour\president\bedRoom\images\bedRoom_o_0.jpg" />
-    <Content Include="virtualTour\president\bedRoom\images\bedRoom_o_1.jpg" />
-    <Content Include="virtualTour\president\bedRoom\images\bedRoom_o_2.jpg" />
-    <Content Include="virtualTour\president\bedRoom\images\bedRoom_o_3.jpg" />
-    <Content Include="virtualTour\president\bedRoom\images\bedRoom_o_4.jpg" />
-    <Content Include="virtualTour\president\bedRoom\images\bedRoom_o_5.jpg" />
-    <Content Include="virtualTour\president\bedRoom\IMG_7040 Panorama.jpg" />
-    <Content Include="virtualTour\president\bedRoom\swfobject.js" />
-    <Content Include="virtualTour\president\entry\entry.html" />
-    <Content Include="virtualTour\president\entry\entry_out.swf" />
-    <Content Include="virtualTour\president\entry\images\entry_o_0.jpg" />
-    <Content Include="virtualTour\president\entry\images\entry_o_1.jpg" />
-    <Content Include="virtualTour\president\entry\images\entry_o_2.jpg" />
-    <Content Include="virtualTour\president\entry\images\entry_o_3.jpg" />
-    <Content Include="virtualTour\president\entry\images\entry_o_4.jpg" />
-    <Content Include="virtualTour\president\entry\images\entry_o_5.jpg" />
-    <Content Include="virtualTour\president\entry\swfobject.js" />
-    <Content Include="Web.config" />
+    <Content Include="Images\virtualTour\conferenceHall\Conference Hall_small_out.swf" />
+    <Content Include="Images\virtualTour\conferenceHall\ConferenceHall.html" />
+    <Content Include="Images\virtualTour\conferenceHall\images\Conference Hall_small_o_0.jpg" />
+    <Content Include="Images\virtualTour\conferenceHall\images\Conference Hall_small_o_1.jpg" />
+    <Content Include="Images\virtualTour\conferenceHall\images\Conference Hall_small_o_2.jpg" />
+    <Content Include="Images\virtualTour\conferenceHall\images\Conference Hall_small_o_3.jpg" />
+    <Content Include="Images\virtualTour\conferenceHall\images\Conference Hall_small_o_4.jpg" />
+    <Content Include="Images\virtualTour\conferenceHall\images\Conference Hall_small_o_5.jpg" />
+    <Content Include="Images\virtualTour\conferenceHall\swfobject.js" />
+    <Content Include="Images\virtualTour\doubleRoom\bedRoom\bedRoom.html" />
+    <Content Include="Images\virtualTour\doubleRoom\bedRoom\bedRoom_out.swf" />
+    <Content Include="Images\virtualTour\doubleRoom\bedRoom\images\bedRoom_o_0.jpg" />
+    <Content Include="Images\virtualTour\doubleRoom\bedRoom\images\bedRoom_o_1.jpg" />
+    <Content Include="Images\virtualTour\doubleRoom\bedRoom\images\bedRoom_o_2.jpg" />
+    <Content Include="Images\virtualTour\doubleRoom\bedRoom\images\bedRoom_o_3.jpg" />
+    <Content Include="Images\virtualTour\doubleRoom\bedRoom\images\bedRoom_o_4.jpg" />
+    <Content Include="Images\virtualTour\doubleRoom\bedRoom\images\bedRoom_o_5.jpg" />
+    <Content Include="Images\virtualTour\doubleRoom\bedRoom\swfobject.js" />
+    <Content Include="Images\virtualTour\honeyMoon\bedRoom\bedRoom.html" />
+    <Content Include="Images\virtualTour\honeyMoon\bedRoom\images\bedRoom_o_0.jpg" />
+    <Content Include="Images\virtualTour\honeyMoon\bedRoom\images\bedRoom_o_1.jpg" />
+    <Content Include="Images\virtualTour\honeyMoon\bedRoom\images\bedRoom_o_2.jpg" />
+    <Content Include="Images\virtualTour\honeyMoon\bedRoom\images\bedRoom_o_3.jpg" />
+    <Content Include="Images\virtualTour\honeyMoon\bedRoom\images\bedRoom_o_4.jpg" />
+    <Content Include="Images\virtualTour\honeyMoon\bedRoom\images\bedRoom_o_5.jpg" />
+    <Content Include="Images\virtualTour\honeyMoon\bedRoom\IMG_6875 Panorama_out.swf" />
+    <Content Include="Images\virtualTour\honeyMoon\bedRoom\swfobject.js" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_0.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_1.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_2.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_3.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_4.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_5.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_0.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_1.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_2.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_3.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_4.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama1_o_preview_5.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_0.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_1.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_2.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_3.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_4.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\images\IMG_5885 Panorama_small_o_5.jpg" />
+    <Content Include="Images\virtualTour\mainRestaurant\IMG_5885 Panorama_small_out.swf" />
+    <Content Include="Images\virtualTour\mainRestaurant\mainRestaurant.html" />
+    <Content Include="Images\virtualTour\mainRestaurant\swfobject.js" />
+    <Content Include="Images\virtualTour\president\bedRoom\bedRoom.html" />
+    <Content Include="Images\virtualTour\president\bedRoom\bedRoom.jpg" />
+    <Content Include="Images\virtualTour\president\bedRoom\bedRoom.preview.jpg" />
+    <Content Include="Images\virtualTour\president\bedRoom\bedRoom_out.swf" />
+    <Content Include="Images\virtualTour\president\bedRoom\images\bedRoom_o_0.jpg" />
+    <Content Include="Images\virtualTour\president\bedRoom\images\bedRoom_o_1.jpg" />
+    <Content Include="Images\virtualTour\president\bedRoom\images\bedRoom_o_2.jpg" />
+    <Content Include="Images\virtualTour\president\bedRoom\images\bedRoom_o_3.jpg" />
+    <Content Include="Images\virtualTour\president\bedRoom\images\bedRoom_o_4.jpg" />
+    <Content Include="Images\virtualTour\president\bedRoom\images\bedRoom_o_5.jpg" />
+    <Content Include="Images\virtualTour\president\bedRoom\IMG_7040 Panorama.jpg" />
+    <Content Include="Images\virtualTour\president\bedRoom\swfobject.js" />
+    <Content Include="Images\virtualTour\president\entry\entry.html" />
+    <Content Include="Images\virtualTour\president\entry\entry_out.swf" />
+    <Content Include="Images\virtualTour\president\entry\images\entry_o_0.jpg" />
+    <Content Include="Images\virtualTour\president\entry\images\entry_o_1.jpg" />
+    <Content Include="Images\virtualTour\president\entry\images\entry_o_2.jpg" />
+    <Content Include="Images\virtualTour\president\entry\images\entry_o_3.jpg" />
+    <Content Include="Images\virtualTour\president\entry\images\entry_o_4.jpg" />
+    <Content Include="Images\virtualTour\president\entry\images\entry_o_5.jpg" />
+    <Content Include="Images\virtualTour\president\entry\swfobject.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1837,7 +1843,7 @@
     <Content Include="Views\Shared\_LayoutFO.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="virtualTour\president\bedRoom\bedRoom.p2vr" />
+    <Content Include="Images\virtualTour\president\bedRoom\bedRoom.p2vr" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\VietSovPetro\Index.cshtml" />
@@ -1876,6 +1882,11 @@
     <Content Include="Views\VietSovPetro\News.cshtml" />
     <Content Include="Views\VietSovPetro\DealingRestaurant.cshtml" />
     <Content Include="Views\Room\Book.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\VietSovPetro\Destination.cshtml" />
+    <Content Include="Views\VietSovPetro\Partner.cshtml" />
+    <Content Include="Views\VietSovPetro\Feedback.cshtml" />
+    <Content Include="Views\VietSovPetro\Contact.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
