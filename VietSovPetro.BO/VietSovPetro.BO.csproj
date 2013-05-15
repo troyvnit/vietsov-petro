@@ -244,6 +244,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SR.en-US.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\SR.ru-RU.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SR.ru-RU.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -1888,6 +1893,12 @@
     <Content Include="Views\VietSovPetro\Feedback.cshtml" />
     <Content Include="Views\VietSovPetro\Contact.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\SR.ru-RU.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>SR.ru-RU.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -1902,7 +1913,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>30825</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
