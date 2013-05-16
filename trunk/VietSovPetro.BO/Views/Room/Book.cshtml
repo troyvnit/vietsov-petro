@@ -59,7 +59,7 @@
                             BookID: { editable: false, defaultValue: "@Guid.NewGuid()" },
                             Name: { validation: { required: true } },
                             Email: { type: "string" },
-                            Room: { type: "number", defaultValue: "1", template: "#= Room #" },
+                            RoomID: { type: "string" },
                             Begin: { type: "date" },
                             End: { type: "date" },
                             Time: { type: "number", defaultValue: "0", template: "#= Time #" },
@@ -83,7 +83,7 @@
                 columns: [
                     { field: "Name", title: "Họ tên" },
                     { field: "Email", title: "Email" },
-                    { field: "Room", title: "Phòng", editor: roomDropDownEditor },
+                    { field: "RoomID", title: "Phòng", editor: roomDropDownEditor },
                     { field: "Begin", title: "Bắt đầu", format: "{0:dd/MM/yyyy}" },
                     { field: "End", title: "Kết thúc", format: "{0:dd/MM/yyyy}" },
                     { field: "Time", title: "Thời gian", editor: timeDropDownEditor },

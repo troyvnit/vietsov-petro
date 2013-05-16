@@ -39,5 +39,6 @@ namespace VietSovPetro.Model.Entities
         public Guid UpdatedBy { get; set; }
         public virtual ICollection<RoomType> RoomTypes { get; set; }
         public virtual ICollection<RoomPropertyRooms> RoomPropertyRooms { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }
