@@ -10,10 +10,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_GlobalResources/SR.en-US.resx">
-      <publishTime>05/15/2013 08:17:34</publishTime>
+      <publishTime>05/16/2013 00:19:06</publishTime>
     </File>
     <File Include="App_GlobalResources/SR.resx">
       <publishTime>05/15/2013 08:17:10</publishTime>
+    </File>
+    <File Include="App_GlobalResources/SR.ru-RU.resx">
+      <publishTime>05/16/2013 00:19:06</publishTime>
     </File>
     <File Include="App_Readme/Elmah.txt">
       <publishTime>05/14/2013 10:28:51</publishTime>
@@ -241,7 +244,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/09/2012 00:40:10</publishTime>
     </File>
     <File Include="bin/VietSovPetro.BO.dll">
-      <publishTime>05/15/2013 11:55:44</publishTime>
+      <publishTime>05/16/2013 00:23:54</publishTime>
     </File>
     <File Include="bin/VietSovPetro.ComandProcessor.dll">
       <publishTime>05/15/2013 10:02:39</publishTime>

@@ -5,7 +5,7 @@
     var language = ViewBag.Language;
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
 }                
-<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+@model VietSovPetro.BO.ViewModels.BookViewModel
 <script type="text/javascript">
     $(document).ready(function () {
         $("#submitBooking").click(function () {
@@ -16,6 +16,7 @@
                 data: frm.serialize(),
                 success: function (data) {
                     alert(data);
+                    frm.refresh();
                 }
             });
         });
@@ -26,120 +27,127 @@
         <div class="tt-B-Left">
             <p>Đặt phòng nhanh</p>
         </div>                   
-         <form id="bookingform" action="@Url.Action("QuickBook")" method="post" >
-   
+         @*<form id="bookingform" action="@Url.Action("QuickBook")" method="post" >*@
+    @using (Html.BeginForm("QuickBook", "VietSovPetro", FormMethod.Post, new { id = "bookingform" })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
         <!--tt-B-Left-->
         <div class="cc-B-Left-1">
           <ul>
                 <li>
-                    <p>Họ Tên</p>
+                    <p>@Resources.SR.Name</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="Name" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        @Html.ValidationMessageFor(m => m.Name)
                     </div>
                 </li>
                 <li>
-                    <p>Email</p>
+                    <p>@Resources.SR.Email</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="Email" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        @Html.ValidationMessageFor(m => m.Email)
                     </div>
                 </li>
                 <li>
-                    <p>Phòng</p>
-                    <select onchange="GotoURL(this)" class="form" name="Room" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
-                        <option value="1">Conference Hall</option>
-                        <option value="2">Grant Hall</option>
-                        <option value="3">Conference</option>
-                        <option value="4">Bạch Dương</option>
+                    <p>@Resources.SR.Room</p>
+                    <select onchange="GotoURL(this)" class="form" name="RoomID" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
+                        @foreach (var room in rooms)
+                        {
+                            <option value="@room.RoomID">@room.RoomName</option>
+                        }
                     </select>
+                    @Html.ValidationMessageFor(m => m.RoomID)
                 </li>
                 <li>
-                    <p>Bắt đầu</p>
+                    <p>@Resources.SR.Start_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" id="ngay" name="Begin" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
+                        @Html.ValidationMessageFor(m => m.Begin)
                     </div>
                 </li>
                 <li>
-                    <p>Kết thúc</p>
+                    <p>@Resources.SR.End_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" id="ngay1" name="End" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
+                        @Html.ValidationMessageFor(m => m.End)
                     </div>
                 </li>
                 <li>
-                    <p>Thời gian</p>
+                    <p>@Resources.SR.Duration</p>
                     <select onchange="GotoURL(this)" class="form" name="Time" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
-                        <option value="0">Nguyên ngày</option>
-                        <option value="1">Nữa ngày</option>
+                        <option value="Nguyên ngày">@Resources.SR.Full_Day</option>
+                        <option value="Nửa ngày">@Resources.SR.Half_Day</option>
                     </select>
+                    @Html.ValidationMessageFor(m => m.Time)
                 </li>
                 <li>
-                    <p>Số lượng khách</p>
+                    <p>@Resources.SR.Number_Of_Guest</p>
                     <select onchange="GotoURL(this)" class="form" name="GuestQuantity" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
-                        <option value="1">500 - 1000</option>
-                        <option value="2">400 - 500</option>
-                        <option value="3">300 - 400</option>
-                        <option value="4">200 - 300</option>
-                        <option value="5">100 - 200</option>
-                        <option value="6">10 - 100</option>
+                        <option value="500 - 1000">500 - 1000</option>
+                        <option value="400 - 500">400 - 500</option>
+                        <option value="300 - 400">300 - 400</option>
+                        <option value="200 - 300">200 - 300</option>
+                        <option value="100 - 200">100 - 200</option>
+                        <option value="10 - 100">10 - 100</option>
                     </select>
+                    @Html.ValidationMessageFor(m => m.GuestQuantity)
                 </li>
                 <li>
-                    <p>Loại cuộc họp</p>
+                    <p>@Resources.SR.Kind_Of_Meeting</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="MeetingType" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
-                    <p>Giá</p>
+                    <p>@Resources.SR.Price</p>
                     <select onchange="GotoURL(this)" class="form" name="Price" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
-                        <option value="0">Giá trọn gói</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                        <option value="Giá trọn gói">@Resources.SR.Package_Price</option>
+                        <option value="Giá sự cố">@Resources.SR.Breakdown_Price</option>
                     </select>
+                    @Html.ValidationMessageFor(m => m.Price)
                 </li>
                 <li>
-                    <p>Tin nhắn</p>
+                    <p>@Resources.SR.Message</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="Message" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
             </ul>
             <div class="tt-C-Left">
-                <p>Đặt phòng bằng thể tín dụng</p>
+                <p>@Resources.SR.Credit_Card_For_Booking</p>
             </div>
             <!--tt-C-Left-->
             <ul>
                 <li>
-                    <p>Tên chủ thẻ</p>
+                    <p>@Resources.SR.Card_Holder_Name</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="UserCardName" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
-                    <p>Số thẻ</p>
+                    <p>@Resources.SR.Card_Number</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="UserCardNumber" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
-                    <p>Loại thẻ</p>
+                    <p>@Resources.SR.Card_Type</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="UserCardType" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
-                    <p>Ngày hết hạn</p>
+                    <p>@Resources.SR.Expiry_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="DueDate" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                        <input type="button" id="submitBooking" value="" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" />
+                        <input type="submit" id="submitBooking" value="" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" />
                     </div>
                 </li>
             </ul>
         </div>
         <!--cc-B-Left-1-->    
-        </form>
+    }
+        @*</form>*@
     </div>
     <!--B-Left-1-->
     <div class="B-Right-1">

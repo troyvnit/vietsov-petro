@@ -15,33 +15,20 @@ namespace VietSovPetro.Model.Entities
         [Key]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Guid BookID { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string Email { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? Room { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? Begin { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? End { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? Time { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? GuestQuantity { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Guid RoomID { get; set; }
+        public DateTime Begin { get; set; }
+        public DateTime End { get; set; }
+        public string Time { get; set; }
+        public string GuestQuantity { get; set; }
         public string MeetingType { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? Price { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string Price { get; set; }
         public string Message { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string UserCardName { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string UserCardNumber { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string UserCardType { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? DueDate { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
     }
 }

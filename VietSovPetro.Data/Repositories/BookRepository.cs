@@ -21,7 +21,7 @@ namespace VietSovPetro.Data.Repositories
             var BookIDParameter = new SqlParameter("BookID", entity.BookID);
             var NameParameter = new SqlParameter("Name", entity.Name);
             var EmailParameter = new SqlParameter("Email", entity.Email);
-            var RoomParameter = new SqlParameter("Room", entity.Room);
+            var RoomParameter = new SqlParameter("RoomID", entity.RoomID);
             var BeginParameter = new SqlParameter("Begin", entity.Begin);
             var EndParameter = new SqlParameter("End", entity.End);
             var TimeParameter = new SqlParameter("Time", entity.Time);
@@ -33,7 +33,7 @@ namespace VietSovPetro.Data.Repositories
             var UserCardNumberParameter = new SqlParameter("UserCardNumber", entity.UserCardNumber);
             var UserCardTypeParameter = new SqlParameter("UserCardType", entity.UserCardType);
             var DueDateParameter = new SqlParameter("DueDate", entity.DueDate);
-            DataContext.Database.ExecuteSqlCommand("dbo.CreateOrUpdateBooks @BookID, @Name, @Email, @Room, @Begin, @End, @Time, @GuestQuantity, @MeetingType, @Price, @Message, @UserCardName, @UserCardNumber, @UserCardType, @DueDate",
+            DataContext.Database.ExecuteSqlCommand("dbo.CreateOrUpdateBooks @BookID, @Name, @Email, @RoomID, @Begin, @End, @Time, @GuestQuantity, @MeetingType, @Price, @Message, @UserCardName, @UserCardNumber, @UserCardType, @DueDate",
             BookIDParameter, NameParameter, EmailParameter, RoomParameter, BeginParameter, EndParameter, TimeParameter,
             GuestQuantityParameter, MeetingTypeParameter, PriceParameter, MessageParameter, UserCardNameParameter, UserCardNumberParameter,
             UserCardTypeParameter, DueDateParameter);

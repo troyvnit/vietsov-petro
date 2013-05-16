@@ -120,26 +120,89 @@
   <data name="Activity" xml:space="preserve">
     <value>Hoạt động</value>
   </data>
+  <data name="Address_Info" xml:space="preserve">
+    <value>Địa chỉ: Xã Phước Thuận, Huyện Xuyên Mộc, Tỉnh Bà Rịa Vũng Tàu, Việt Nam</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>Đặt</value>
+  </data>
+  <data name="Breakdown_Price" xml:space="preserve">
+    <value>Giá sự cố</value>
+  </data>
+  <data name="Card_Holder_Name" xml:space="preserve">
+    <value>Tên chủ thẻ</value>
+  </data>
+  <data name="Card_Number" xml:space="preserve">
+    <value>Số thẻ</value>
+  </data>
+  <data name="Card_Type" xml:space="preserve">
+    <value>Loại thẻ</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Liên hệ</value>
+  </data>
+  <data name="Credit_Card_For_Booking" xml:space="preserve">
+    <value>Đặt phòng bằng thẻ tín dụng</value>
   </data>
   <data name="Destination" xml:space="preserve">
     <value>Điểm đến</value>
   </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Thời gian</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="End_Date" xml:space="preserve">
+    <value>Kết thúc</value>
+  </data>
+  <data name="Expiry_Date" xml:space="preserve">
+    <value>Ngày hết hạn</value>
+  </data>
   <data name="Feedback" xml:space="preserve">
     <value>Phản hồi của khách hàng</value>
+  </data>
+  <data name="Follow_Us" xml:space="preserve">
+    <value>Dõi theo chúng tôi</value>
+  </data>
+  <data name="Full_Day" xml:space="preserve">
+    <value>Nguyên ngày</value>
+  </data>
+  <data name="Half_Day" xml:space="preserve">
+    <value>Nửa ngày</value>
   </data>
   <data name="Introduction" xml:space="preserve">
     <value>Giới thiệu</value>
   </data>
+  <data name="Kind_Of_Meeting" xml:space="preserve">
+    <value>Loại cuộc họp</value>
+  </data>
   <data name="Meeting_And_Event" xml:space="preserve">
     <value>Phòng họp &amp; Sự kiện</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Tin nhắn</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Họ tên</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>Tin tức</value>
   </data>
+  <data name="Number_Of_Guest" xml:space="preserve">
+    <value>Số lượng khách</value>
+  </data>
+  <data name="Package_Price" xml:space="preserve">
+    <value>Giá trọn gói</value>
+  </data>
   <data name="Partner" xml:space="preserve">
     <value>Đối tác</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Giá</value>
+  </data>
+  <data name="Quick_Reservation" xml:space="preserve">
+    <value>Đặt phòng nhanh</value>
   </data>
   <data name="Restaurant_And_Bar" xml:space="preserve">
     <value>Nhà hàng &amp; Quán Bar</value>
@@ -147,10 +210,16 @@
   <data name="Restaurant_Deal" xml:space="preserve">
     <value>Khuyến mãi nhà hàng</value>
   </data>
+  <data name="Room" xml:space="preserve">
+    <value>Phòng</value>
+  </data>
   <data name="Room_And_Price" xml:space="preserve">
     <value>Phòng &amp; Giá phòng</value>
   </data>
   <data name="Room_Deal" xml:space="preserve">
     <value>Giá phòng khuyến mãi</value>
+  </data>
+  <data name="Start_Date" xml:space="preserve">
+    <value>Bắt đầu</value>
   </data>
 </root>

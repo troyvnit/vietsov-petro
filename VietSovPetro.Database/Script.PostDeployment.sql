@@ -2248,13 +2248,13 @@ CREATE PROCEDURE CreateOrUpdateBooks
 @BookID uniqueidentifier,
 @Name nvarchar(max),
 @Email nvarchar(max),
-@Room int,
+@RoomID uniqueidentifier,
 @Begin datetime,
 @End datetime,
-@Time int,
-@GuestQuantity int,
+@Time nvarchar(max),
+@GuestQuantity nvarchar(max),
 @MeetingType nvarchar(max),
-@Price int,
+@Price nvarchar(max),
 @Message nvarchar(max),
 @UserCardName nvarchar(max),
 @UserCardNumber nvarchar(max),
@@ -2267,7 +2267,7 @@ BEGIN
 		UPDATE [dbo].[Books]
 		SET [dbo].[Books].Name = @Name,
 			[dbo].[Books].Email = @Email,
-			[dbo].[Books].Room = @Room,
+			[dbo].[Books].RoomID = @RoomID,
 			[dbo].[Books].[Begin] = @Begin,
 			[dbo].[Books].[End] = @End,
 			[dbo].[Books].[Time] = @Time,
@@ -2283,9 +2283,9 @@ BEGIN
 	END
 	ELSE
 	BEGIN
-		INSERT INTO [dbo].[Books] (BookID, Name, Email, Room, [Begin], [End], [Time], GuestQuantity, MeetingType, Price, 
+		INSERT INTO [dbo].[Books] (BookID, Name, Email, RoomID, [Begin], [End], [Time], GuestQuantity, MeetingType, Price, 
 		[Message], UserCardName, UserCardNumber, UserCardType, DueDate )
-		VALUES (@BookID, @Name, @Email, @Room, @Begin, @End, @Time, @GuestQuantity, @MeetingType, @Price, 
+		VALUES (@BookID, @Name, @Email, @RoomID, @Begin, @End, @Time, @GuestQuantity, @MeetingType, @Price, 
 		@Message, @UserCardName, @UserCardNumber, @UserCardType, @DueDate)
 	END
 END

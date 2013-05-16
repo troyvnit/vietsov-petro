@@ -10,6 +10,7 @@ using VietSovPetro.Core.Common;
 using System.Configuration;
 using VietSovPetro.Data.Infrastructure;
 using System;
+using VietSovPetro.BO.Models;
 
 namespace VietSovPetro.BO.Controllers
 {
@@ -327,8 +328,12 @@ namespace VietSovPetro.BO.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult QuickBook(Book form)
+        public ActionResult QuickBook(BookViewModel form)
         {
+            if (!ModelState.IsValid)
+            {
+                return Content("Thông tin nhập không hợp lệ!", "text/html");
+            }
             var fromAddress = ConfigurationManager.AppSettings.Get("SendMailMessagesFromAddress");
             var toAddress = ConfigurationManager.AppSettings.Get("SendMailSTMPHostAddress");
             var username = ConfigurationManager.AppSettings.Get("SendMailSMTPUserName");
@@ -336,7 +341,13 @@ namespace VietSovPetro.BO.Controllers
             var email = new Email(fromAddress, toAddress, username, password, "Thông tin đặt phòng VietSov Petro", form.Name);
             var success = email.send();
             form.BookID = Guid.NewGuid();
-            bookRepository.Add(form);
+            var room = roomRepository.GetById(form.RoomID);
+            room.Books.Add(new Book { BookID = Guid.NewGuid(), Name = form.Name, Email = form.Email, Begin = form.Begin, 
+                End = form.End, Time = form.Time, GuestQuantity = form.GuestQuantity, MeetingType = form.MeetingType,
+                Price = form.Price, Message = form.Message, UserCardName = form.UserCardName, UserCardNumber = form.UserCardNumber,
+                UserCardType = form.UserCardType, DueDate = form.DueDate, RoomID = form.RoomID
+            });
+            roomRepository.Update(room);
             unitOfWork.Commit();
             return Content(!success ? "Quá trình gửi thông tin qua email thất bại, thông tin được lưu vào cơ sở dữ liệu tạm!" : "Thông tin đặt phòng của bạn đã được gửi, cảm ơn!", "text/html");
         }

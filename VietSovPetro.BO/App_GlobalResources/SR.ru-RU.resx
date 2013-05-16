@@ -120,26 +120,89 @@
   <data name="Activity" xml:space="preserve">
     <value>деятельность</value>
   </data>
+  <data name="Address_Info" xml:space="preserve">
+    <value>Адрес: Phuoc Thuan Коммуны, Xuyen Moc района Ba Ria Vung Tau, Вьетнам</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>Книга</value>
+  </data>
+  <data name="Breakdown_Price" xml:space="preserve">
+    <value>Цена с разбивкой по позициям</value>
+  </data>
+  <data name="Card_Holder_Name" xml:space="preserve">
+    <value>Имя держателя карты</value>
+  </data>
+  <data name="Card_Number" xml:space="preserve">
+    <value>Номер карты</value>
+  </data>
+  <data name="Card_Type" xml:space="preserve">
+    <value>Тип карты</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Связаться с Нами</value>
+  </data>
+  <data name="Credit_Card_For_Booking" xml:space="preserve">
+    <value>Кредитная карта для бронирования</value>
   </data>
   <data name="Destination" xml:space="preserve">
     <value>назначение</value>
   </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Продолжительность</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="End_Date" xml:space="preserve">
+    <value>Дата окончания</value>
+  </data>
+  <data name="Expiry_Date" xml:space="preserve">
+    <value>Дата истечения срока действия</value>
+  </data>
   <data name="Feedback" xml:space="preserve">
     <value>Отзывы покупателей</value>
+  </data>
+  <data name="Follow_Us" xml:space="preserve">
+    <value>Следите за нами</value>
+  </data>
+  <data name="Full_Day" xml:space="preserve">
+    <value>Полный день</value>
+  </data>
+  <data name="Half_Day" xml:space="preserve">
+    <value>Полдня</value>
   </data>
   <data name="Introduction" xml:space="preserve">
     <value>введение</value>
   </data>
+  <data name="Kind_Of_Meeting" xml:space="preserve">
+    <value>Вид собрания</value>
+  </data>
   <data name="Meeting_And_Event" xml:space="preserve">
     <value>встреч и событий</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>новости</value>
   </data>
+  <data name="Number_Of_Guest" xml:space="preserve">
+    <value>Количество гостей</value>
+  </data>
+  <data name="Package_Price" xml:space="preserve">
+    <value>Стоимость пакета</value>
+  </data>
   <data name="Partner" xml:space="preserve">
     <value>Партнеры</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Quick_Reservation" xml:space="preserve">
+    <value>Быстрое бронирование</value>
   </data>
   <data name="Restaurant_And_Bar" xml:space="preserve">
     <value>Pесторанов и баров</value>
@@ -147,10 +210,16 @@
   <data name="Restaurant_Deal" xml:space="preserve">
     <value>Ресторан Поощрение</value>
   </data>
+  <data name="Room" xml:space="preserve">
+    <value>Комната</value>
+  </data>
   <data name="Room_And_Price" xml:space="preserve">
     <value>Номера и цены</value>
   </data>
   <data name="Room_Deal" xml:space="preserve">
     <value>Номер Поощрение</value>
+  </data>
+  <data name="Start_Date" xml:space="preserve">
+    <value>Дата начала</value>
   </data>
 </root>
