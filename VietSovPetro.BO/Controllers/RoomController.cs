@@ -219,12 +219,22 @@ namespace VietSovPetro.BO.Controllers
         }
         public ActionResult Book()
         {
-            return View();
+            if (Session["VietSovPetroAdmin"] != null)
+            {
+                return View("~/Views/Admin/Room/Book.cshtml");
+            }
+            return RedirectToAction("Login", "Account");
         }
         [HttpPost]
         public JsonResult GetBooks()
         {
-            return Json(bookRepository.GetAll(), JsonRequestBehavior.AllowGet);
+            var books = new List<BookViewModel>();
+            foreach (var book in bookRepository.GetAll())
+            {
+                var bookvm = Mapper.Map<Book, BookViewModel>(book);
+                books.Add(bookvm);
+            }
+            return Json(books, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult CreateOrUpdateBooks(string models)

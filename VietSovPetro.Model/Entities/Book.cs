@@ -29,6 +29,6 @@ namespace VietSovPetro.Model.Entities
         public string UserCardNumber { get; set; }
         public string UserCardType { get; set; }
         public DateTime? DueDate { get; set; }
-        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual Room Room { get; set; }
     }
 }
