@@ -328,11 +328,11 @@ namespace VietSovPetro.BO.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult QuickBook(BookViewModel form)
+        public JsonResult QuickBook(BookViewModel form)
         {
             if (!ModelState.IsValid)
             {
-                return Content("Thông tin nhập không hợp lệ!", "text/html");
+                return Json("Thông tin nhập không hợp lệ!");
             }
             var fromAddress = ConfigurationManager.AppSettings.Get("SendMailMessagesFromAddress");
             var toAddress = ConfigurationManager.AppSettings.Get("SendMailSTMPHostAddress");
@@ -349,7 +349,7 @@ namespace VietSovPetro.BO.Controllers
             });
             roomRepository.Update(room);
             unitOfWork.Commit();
-            return Content(!success ? "Quá trình gửi thông tin qua email thất bại, thông tin được lưu vào cơ sở dữ liệu tạm!" : "Thông tin đặt phòng của bạn đã được gửi, cảm ơn!", "text/html");
+            return Json(!success ? "Quá trình gửi thông tin qua email thất bại, thông tin được lưu vào cơ sở dữ liệu tạm!" : "Thông tin đặt phòng của bạn đã được gửi, cảm ơn!");
         }
         public ActionResult Contact()
         {
@@ -359,6 +359,40 @@ namespace VietSovPetro.BO.Controllers
         public ActionResult Contact(FormCollection f)
         {
             return Content("Thông tin liên hệ của bạn đã được gửi, cảm ơn!", "text/html");
+        }
+        public ActionResult _RoomFilter(DateTime begin, DateTime end, string roomGroup, bool IsDeal)
+        {
+            ViewBag.Rooms = roomRepository.GetAll().Where(a =>
+            {
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                var books = a.Books;
+                var checkDate = true;
+                if (roomTypes != null)
+                {
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomGroup == roomGroup)
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                if(books != null)
+                {
+                    foreach (var book in books)
+                    {
+                        if((book.End > begin && book.End < end)||(book.Begin > begin && book.Begin < end))
+                        {
+                            checkDate = false;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes && checkDate && a.IsDeal == IsDeal
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID).ToList();
+            ViewBag.Properties = roomPropertyRoomRepository.GetAll();
+            return View();
         }
     }
 }

@@ -5,7 +5,7 @@
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
 }                
 @model VietSovPetro.BO.ViewModels.BookViewModel
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#submitBooking").click(function () {
@@ -27,10 +27,7 @@
         <div class="tt-B-Left">
             <p>Đặt phòng nhanh</p>
         </div>                   
-         @*<form id="bookingform" action="@Url.Action("QuickBook")" method="post" >*@
-    @using (Html.BeginForm("QuickBook", "VietSovPetro", FormMethod.Post, new { id = "bookingform" })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+         <form id="bookingform" action="@Url.Action("QuickBook")" method="post" >
         <!--tt-B-Left-->
         <div class="cc-B-Left-1">
           <ul>
@@ -38,14 +35,12 @@
                     <p>@Resources.SR.Name</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="Name" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                        @Html.ValidationMessageFor(m => m.Name)
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.Email</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="Email" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                        @Html.ValidationMessageFor(m => m.Email)
                     </div>
                 </li>
                 <li>
@@ -56,20 +51,17 @@
                             <option value="@room.RoomID">@room.RoomName</option>
                         }
                     </select>
-                    @Html.ValidationMessageFor(m => m.RoomID)
                 </li>
                 <li>
                     <p>@Resources.SR.Start_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" id="ngay" name="Begin" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
-                        @Html.ValidationMessageFor(m => m.Begin)
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.End_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" id="ngay1" name="End" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
-                        @Html.ValidationMessageFor(m => m.End)
                     </div>
                 </li>
                 <li>
@@ -78,7 +70,6 @@
                         <option value="Nguyên ngày">@Resources.SR.Full_Day</option>
                         <option value="Nửa ngày">@Resources.SR.Half_Day</option>
                     </select>
-                    @Html.ValidationMessageFor(m => m.Time)
                 </li>
                 <li>
                     <p>@Resources.SR.Number_Of_Guest</p>
@@ -90,7 +81,6 @@
                         <option value="100 - 200">100 - 200</option>
                         <option value="10 - 100">10 - 100</option>
                     </select>
-                    @Html.ValidationMessageFor(m => m.GuestQuantity)
                 </li>
                 <li>
                     <p>@Resources.SR.Kind_Of_Meeting</p>
@@ -104,7 +94,6 @@
                         <option value="Giá trọn gói">@Resources.SR.Package_Price</option>
                         <option value="Giá sự cố">@Resources.SR.Breakdown_Price</option>
                     </select>
-                    @Html.ValidationMessageFor(m => m.Price)
                 </li>
                 <li>
                     <p>@Resources.SR.Message</p>
@@ -140,14 +129,14 @@
                     <p>@Resources.SR.Expiry_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="DueDate" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                        <button id="submitBooking" value="@Resources.SR.Book" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" ></button>
+                        <input type="button" id="submitBooking" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" ></input>
                     </div>
                 </li>
             </ul>
         </div>
         <!--cc-B-Left-1-->    
-    }
-        @*</form>*@
+
+        </form>
     </div>
     <!--B-Left-1-->
     <div class="B-Right-1">
