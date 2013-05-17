@@ -224,7 +224,7 @@
                             ArticleID: { editable: false, defaultValue: "@Guid.NewGuid()" },
                             Title: { validation: { required: true } },
                             Description: { type: "string" },
-                            Author: { validation: { required: true } },
+                            Author: { validation: { required: true }, defaultValue: "admin" },
                             Content: { validation: { required: true } },
                             ImageUrl: { type: "string" },
                             OrderID: { type: "number" },

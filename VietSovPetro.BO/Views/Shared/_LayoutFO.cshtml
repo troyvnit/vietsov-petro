@@ -1,102 +1,126 @@
 ﻿@using VietSovPetro.Core.Common;
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Vietsovpetro</title>
-<link href="@Url.Content("~/css/style.css")" rel="stylesheet" />
-<link href="@Url.Content("~/css/jquery-ui-1.8.16.custom.css")" rel="stylesheet" />
-<script src="@Url.Content("~/js/jquery-1.4.3.min.js")" type="text/javascript"></script> 
-<script src="@Url.Content("~/js/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script> 
-<script src="@Url.Content("~/js/jquery-ui-timepicker-addon.js")" type="text/javascript"></script> 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#ngay, #ngay1').datepicker({
-            dateFormat: "dd-mm-yy",
-            showOn: "button",
-            buttonImage: '@Url.Content("~/images/calendar.jpg")',
-            buttonImageOnly: true
-        });
-    })
-</script>
-</head>
-<body>
-    <div class="index">
-        <div class="in-content">
-            <div class="in-header">
-                <div class="header">
-                    <div class="logo">
-                        <a href="@Url.Action("Index", "VietSovPetro")">
-                            <img src="@Url.Content("~/images/logo.png")" alt="" /></a>
-                    </div>
-                    <div class="menu-A">
-                        <ul>
-                            <li>@Html.LanguageSelectorLink("vi-VN", Url.Content("~/images/vn.jpg"), null)</li>
-                            <li>@Html.LanguageSelectorLink("en-US", Url.Content("~/images/en.jpg"), null)</li>
-                            <li>@Html.LanguageSelectorLink("ru-RU", Url.Content("~/images/ru.jpg"), null)</li>
-                        </ul>
-                    </div>
-                    <div class="menu-B">
-                        <ul>
-                            <li><a href="@Url.Action("Destination", "VietSovPetro")">@Resources.SR.Destination</a></li>
-                            <li><a href="@Url.Action("Partner", "VietSovPetro")">@Resources.SR.Partner</a></li>
-                            <li><a href="@Url.Action("Feedback", "VietSovPetro")">@Resources.SR.Feedback</a></li>
-                            <li><a href="@Url.Action("Contact", "VietSovPetro")">@Resources.SR.Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="menu-C">
-                        <ul>
-                            <li class="first"><a href="@Url.Action("Introduction", "VietSovPetro")">@Resources.SR.Introduction</a></li>
-                            <li><a href="@Url.Action("MeetingAndEvent", "VietSovPetro")">@Resources.SR.Meeting_And_Event</a></li>
-                            <li><a href="@Url.Action("RoomAndPrice", "VietSovPetro")">@Resources.SR.Room_And_Price</a></li>
-                            <li><a href="@Url.Action("Restaurant", "VietSovPetro")">@Resources.SR.Restaurant_And_Bar</a></li>
-                            <li><a href="@Url.Action("DealingRoom", "VietSovPetro")">@Resources.SR.Room_Deal</a></li>
-                            <li><a href="@Url.Action("DealingRestaurant", "VietSovPetro")">@Resources.SR.Restaurant_Deal</a></li>
-                            <li><a href="@Url.Action("Activity", "VietSovPetro")">@Resources.SR.Activity</a></li>
-                            <li><a href="@Url.Action("News", "VietSovPetro")">@Resources.SR.News</a></li>
-                        </ul>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Vietsovpetro</title>
+        <link href="@Url.Content("~/css/style.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/css/jquery-ui-1.8.16.custom.css")" rel="stylesheet" />
+        <script src="@Url.Content("~/js/jquery-1.4.3.min.js")" type="text/javascript"></script> 
+        <script src="@Url.Content("~/js/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script> 
+        <script src="@Url.Content("~/js/jquery-ui-timepicker-addon.js")" type="text/javascript"></script> 
+        <script src="@Url.Content("~/js/livevalidation_standalone.js")" type="text/javascript"></script> 
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#ngay, #ngay1').datepicker({
+                    dateFormat: "dd-mm-yy",
+                    showOn: "button",
+                    buttonImage: '@Url.Content("~/images/calendar.jpg")',
+                    buttonImageOnly: true
+                });
+            })
+        </script>
+        <style type="text/css">
+            .LV_validation_message {
+                font-weight: bold;
+                margin: 0 0 0 5px;
+                display: none;
+            }
+
+            .LV_valid { color: #00CC00; }
+
+            .LV_invalid { color: #CC0000; }
+
+            .LV_valid_field,
+            input.LV_valid_field:hover,
+            input.LV_valid_field:active,
+            textarea.LV_valid_field:hover,
+            textarea.LV_valid_field:active { border-color: #00CC00 !important; }
+
+            .LV_invalid_field,
+            input.LV_invalid_field:hover,
+            input.LV_invalid_field:active,
+            textarea.LV_invalid_field:hover,
+            textarea.LV_invalid_field:active { border-color: #CC0000 !important; }
+        </style>
+    </head>
+    <body>
+        <div class="index">
+            <div class="in-content">
+                <div class="in-header">
+                    <div class="header">
+                        <div class="logo">
+                            <a href="@Url.Action("Index", "VietSovPetro")">
+                                <img src="@Url.Content("~/images/logo.png")" alt="" /></a>
+                        </div>
+                        <div class="menu-A">
+                            <ul>
+                                <li>@Html.LanguageSelectorLink("vi-VN", Url.Content("~/images/vn.jpg"), null)</li>
+                                <li>@Html.LanguageSelectorLink("en-US", Url.Content("~/images/en.jpg"), null)</li>
+                                <li>@Html.LanguageSelectorLink("ru-RU", Url.Content("~/images/ru.jpg"), null)</li>
+                            </ul>
+                        </div>
+                        <div class="menu-B">
+                            <ul>
+                                <li><a href="@Url.Action("Destination", "VietSovPetro")">@Resources.SR.Destination</a></li>
+                                <li><a href="@Url.Action("Partner", "VietSovPetro")">@Resources.SR.Partner</a></li>
+                                <li><a href="@Url.Action("Feedback", "VietSovPetro")">@Resources.SR.Feedback</a></li>
+                                <li><a href="@Url.Action("Contact", "VietSovPetro")">@Resources.SR.Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-C">
+                            <ul>
+                                <li class="first"><a href="@Url.Action("Introduction", "VietSovPetro")">@Resources.SR.Introduction</a></li>
+                                <li><a href="@Url.Action("MeetingAndEvent", "VietSovPetro")">@Resources.SR.Meeting_And_Event</a></li>
+                                <li><a href="@Url.Action("RoomAndPrice", "VietSovPetro")">@Resources.SR.Room_And_Price</a></li>
+                                <li><a href="@Url.Action("Restaurant", "VietSovPetro")">@Resources.SR.Restaurant_And_Bar</a></li>
+                                <li><a href="@Url.Action("DealingRoom", "VietSovPetro")">@Resources.SR.Room_Deal</a></li>
+                                <li><a href="@Url.Action("DealingRestaurant", "VietSovPetro")">@Resources.SR.Restaurant_Deal</a></li>
+                                <li><a href="@Url.Action("Activity", "VietSovPetro")">@Resources.SR.Activity</a></li>
+                                <li><a href="@Url.Action("News", "VietSovPetro")">@Resources.SR.News</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="content">
-                @RenderBody()
-            </div>
-            <div class="in-footer">
-                <div class="footer">
-                    <div class="footer-1A">
-                        <ul>
-                            <li>
-                                <p>2013 VIETSOVPETRO Resort. All rights reserved.</p>
-                            </li>
-                            <li><span>@Resources.SR.Address_Info</span></li>
-                            <li><span>Phone: (84.64) 3.782.266 - 67 - 68 - 69   Fax: (84.64) 3.782.255</span></li>
-                            <li><span>Email: info@vietsovpetroresort.com</span></li>
-                            <li><span>Website: www.vietsovpetroresort.com; www.vietsovpetroresort.vn</span></li>
-                        </ul>
-                    </div>
-                    <div class="footer-1B">
-                        <div class="fff">
-                            <p>@Resources.SR.Follow_Us</p>
+                <div class="content">
+                    @RenderBody()
+                </div>
+                <div class="in-footer">
+                    <div class="footer">
+                        <div class="footer-1A">
                             <ul>
-                                <li><a href="#">
-                                    <img src="@Url.Content("~/images/a-1.png")" alt="" /></a></li>
-                                <li><a href="#">
-                                    <img src="@Url.Content("~/images/a-2.png")" alt="" /></a></li>
-                                <li><a href="#">
-                                    <img src="@Url.Content("~/images/a-3.png")" alt="" /></a></li>
-                                <li><a href="#">
-                                    <img src="@Url.Content("~/images/a-4.png")" alt="" /></a></li>
-                                <li><a href="#">
-                                    <img src="@Url.Content("~/images/a-5.png")" alt="" /></a></li>
-                                <li><a href="#">
-                                    <img src="@Url.Content("~/images/a-6.png")" alt="" /></a></li>
+                                <li>
+                                    <p>2013 VIETSOVPETRO Resort. All rights reserved.</p>
+                                </li>
+                                <li><span>@Resources.SR.Address_Info</span></li>
+                                <li><span>Phone: (84.64) 3.782.266 - 67 - 68 - 69   Fax: (84.64) 3.782.255</span></li>
+                                <li><span>Email: info@vietsovpetroresort.com</span></li>
+                                <li><span>Website: www.vietsovpetroresort.com; www.vietsovpetroresort.vn</span></li>
                             </ul>
+                        </div>
+                        <div class="footer-1B">
+                            <div class="fff">
+                                <p>@Resources.SR.Follow_Us</p>
+                                <ul>
+                                    <li><a href="#">
+                                            <img src="@Url.Content("~/images/a-1.png")" alt="" /></a></li>
+                                    <li><a href="#">
+                                            <img src="@Url.Content("~/images/a-2.png")" alt="" /></a></li>
+                                    <li><a href="#">
+                                            <img src="@Url.Content("~/images/a-3.png")" alt="" /></a></li>
+                                    <li><a href="#">
+                                            <img src="@Url.Content("~/images/a-4.png")" alt="" /></a></li>
+                                    <li><a href="#">
+                                            <img src="@Url.Content("~/images/a-5.png")" alt="" /></a></li>
+                                    <li><a href="#">
+                                            <img src="@Url.Content("~/images/a-6.png")" alt="" /></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
 @RenderSection("Scripts", required: false)

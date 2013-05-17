@@ -346,6 +346,7 @@
     <Content Include="Images\retau-4.jpg" />
     <Content Include="Images\retau-5.jpg" />
     <Content Include="Images\ru.jpg" />
+    <Content Include="Images\sending.gif" />
     <Content Include="Images\tt-B-Left.jpg" />
     <Content Include="Images\vn.jpg" />
     <Content Include="js\danhmuc-menu-jquery.js" />
@@ -356,6 +357,7 @@
     <Content Include="js\jquery.jcarousel.min_call.js" />
     <Content Include="js\jquery.nivo.slider.pack.js" />
     <Content Include="js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="js\livevalidation_standalone.js" />
     <Content Include="js\taadv_floating.js" />
     <Content Include="KendoUI\content\dataviz\dashboards\area-chart.png" />
     <Content Include="KendoUI\content\dataviz\dashboards\car-dashboard.png" />
