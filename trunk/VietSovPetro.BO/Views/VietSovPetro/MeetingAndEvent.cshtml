@@ -8,24 +8,39 @@
 <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        var name = new LiveValidation("Name");
+        name.add(Validate.Presence, { failureMessage: "" });
+        var email = new LiveValidation("Email");
+        email.add(Validate.Presence, { failureMessage: "" });
+        email.add(Validate.Email);
+        var begin = new LiveValidation("ngay");
+        begin.add(Validate.Presence, { failureMessage: "" });
+        var end = new LiveValidation("ngay1");
+        end.add(Validate.Presence, { failureMessage: "" });
         $("#submitBooking").click(function () {
             var frm = $('#bookingform');
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                    alert(data);
-                    $('#bookingform')[0].reset();
-                }
-            });
+            if(LiveValidation.massValidate( [ name, email, begin, end ] )) {
+                $("#loading").show();
+                $("#submitBooking").hide();
+                $.ajax({
+                    type: frm.attr('method'),
+                    url: frm.attr('action'),
+                    data: frm.serialize(),
+                    success: function (data) {
+                        alert(data);
+                        $('#bookingform')[0].reset();
+                        $("#loading").hide();
+                        $("#submitBooking").show();
+                    }
+                });
+            }
         });
     });
 </script>
 <div class="banner-G">
     <div class="B-Left-1">
         <div class="tt-B-Left">
-            <p>Đặt phòng nhanh</p>
+            <p>@Resources.SR.Quick_Reservation</p>
         </div>                   
          <form id="bookingform" action="@Url.Action("QuickBook")" method="post" >
         <!--tt-B-Left-->
@@ -34,13 +49,13 @@
                 <li>
                     <p>@Resources.SR.Name</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="Name" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="Name" name="Name" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.Email</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="Email" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="Email" name="Email" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
@@ -55,13 +70,13 @@
                 <li>
                     <p>@Resources.SR.Start_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="ngay" name="Begin" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="ngay" name="Begin" style="border: 1px solid; width: 106px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.End_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="ngay1" name="End" style="border: none; width: 108px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="ngay1" name="End" style="border: 1px solid; width: 106px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
@@ -130,6 +145,7 @@
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="DueDate" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
                         <input type="button" id="submitBooking" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" ></input>
+                        <img id="loading" style="display: none; margin-top: 10px; width: 100%" src="@Url.Content("~/images/sending.gif")" alt="" />
                     </div>
                 </li>
             </ul>
