@@ -22,6 +22,7 @@ namespace VietSovPetro.BO.Mappers
             Mapper.CreateMap<Room, RoomViewModel>();
             Mapper.CreateMap<RoomType, RoomTypeViewModel>();
             Mapper.CreateMap<RoomProperty, RoomPropertyViewModel>();
+            Mapper.CreateMap<Book, BookViewModel>();
         }
     }
 }

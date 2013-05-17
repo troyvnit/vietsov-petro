@@ -2,10 +2,10 @@
     ViewBag.Title = "MeetingAndEvent";
     Layout = "~/Views/Shared/_LayoutFO.cshtml";
     var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.MeetingAndEventRooms;
-    var language = ViewBag.Language;
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
 }                
 @model VietSovPetro.BO.ViewModels.BookViewModel
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#submitBooking").click(function () {
@@ -16,7 +16,7 @@
                 data: frm.serialize(),
                 success: function (data) {
                     alert(data);
-                    frm.refresh();
+                    $('#bookingform')[0].reset();
                 }
             });
         });
@@ -140,7 +140,7 @@
                     <p>@Resources.SR.Expiry_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" name="DueDate" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                        <input type="submit" id="submitBooking" value="" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" />
+                        <button id="submitBooking" value="@Resources.SR.Book" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" ></button>
                     </div>
                 </li>
             </ul>
