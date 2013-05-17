@@ -239,6 +239,7 @@
             });
             var grid = $("#grid").kendoGrid({
                 dataSource: roomDataSource,
+                navigatable: true,
                 pageable: true,
                 height: 740,
                 toolbar: ["create", "save", "cancel"],
@@ -527,6 +528,7 @@
                 });
                 $("#detailgrid").kendoGrid({
                     dataSource: roomPropertyDataSource,
+                    navigatable: true,
                     pageable: true,
                     height: 400,
                     toolbar: ["create", "save", "cancel"],
