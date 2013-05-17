@@ -265,10 +265,14 @@
                             alert("Bài viết chưa có tiêu đề, vui lòng nhập tiêu đề trước khi lưu!");
                             e.preventDefault();
                         }
+                        else if (e.sender._data[i].Author == "") {
+                            alert("Bài viết " + e.sender._data[i].Title + " chưa có tác giả, vui lòng nhập tác giả trước khi lưu!");
+                            e.preventDefault();
+                        }
                         else if (e.sender._data[i].Content == "") {
                             alert("Bài viết " + e.sender._data[i].Title + " chưa có nội dung, vui lòng nhập nội dung trước khi lưu!");
                             e.preventDefault();
-                        } 
+                        }
                         else {
                             if (e.sender._data[i].ArticleCategoryIDs != null && e.sender._data[i].ArticleCategoryIDs.length != "" && typeof e.sender._data[i].ArticleCategoryIDs == "string") {
                                 try {
@@ -318,6 +322,11 @@
             wnd.wrapper.find(".k-i-close").click(function (e) {
                 e.preventDefault();
                 wnd.refresh();
+            });
+            
+            $(".k-grid-add").click(function (e) {
+                grid.data("kendoGrid").dataSource.filter({});
+                listView.dataSource.filter({});
             });
             
             function onSaveContentWindow() {

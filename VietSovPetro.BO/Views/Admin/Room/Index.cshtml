@@ -307,6 +307,11 @@
                 wnd.refresh();
             });
 
+            $(".k-grid-add").click(function (e) {
+                grid.data("kendoGrid").dataSource.filter({});
+                listView.dataSource.filter({});
+            });
+            
             function onSaveDetailsWindow() {
                 var roomtypes = $("#roomtypes").data("kendoMultiSelect");
                 $("#roomtypes").val(roomtypes.value());

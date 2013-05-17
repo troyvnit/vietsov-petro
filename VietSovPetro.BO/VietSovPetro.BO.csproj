@@ -355,6 +355,7 @@
     <Content Include="js\jquery.jcarousel.min.js" />
     <Content Include="js\jquery.jcarousel.min_call.js" />
     <Content Include="js\jquery.nivo.slider.pack.js" />
+    <Content Include="js\jquery.unobtrusive-ajax.min.js" />
     <Content Include="js\taadv_floating.js" />
     <Content Include="KendoUI\content\dataviz\dashboards\area-chart.png" />
     <Content Include="KendoUI\content\dataviz\dashboards\car-dashboard.png" />
@@ -1886,12 +1887,15 @@
     <Content Include="Views\VietSovPetro\Activity.cshtml" />
     <Content Include="Views\VietSovPetro\News.cshtml" />
     <Content Include="Views\VietSovPetro\DealingRestaurant.cshtml" />
-    <Content Include="Views\Room\Book.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\VietSovPetro\Destination.cshtml" />
     <Content Include="Views\VietSovPetro\Partner.cshtml" />
     <Content Include="Views\VietSovPetro\Feedback.cshtml" />
     <Content Include="Views\VietSovPetro\Contact.cshtml" />
+    <Content Include="Views\Admin\Room\Book.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\VietSovPetro\_RoomFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\SR.ru-RU.resx">
