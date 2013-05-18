@@ -334,12 +334,7 @@ namespace VietSovPetro.BO.Controllers
             {
                 return Json("Thông tin nhập không hợp lệ!");
             }
-            var fromAddress = ConfigurationManager.AppSettings.Get("SendMailMessagesFromAddress");
-            var toAddress = ConfigurationManager.AppSettings.Get("SendMailSTMPHostAddress");
-            var username = ConfigurationManager.AppSettings.Get("SendMailSMTPUserName");
-            var password = ConfigurationManager.AppSettings.Get("SendMailSMTPUserPassword");
-            var email = new Email(fromAddress, toAddress, username, password, "Thông tin đặt phòng VietSov Petro", form.Name);
-            var success = email.send();
+            
             form.BookID = Guid.NewGuid();
             var room = roomRepository.GetById(form.RoomID);
             room.Books.Add(new Book { BookID = Guid.NewGuid(), Name = form.Name, Email = form.Email, Begin = form.Begin, 
@@ -349,6 +344,28 @@ namespace VietSovPetro.BO.Controllers
             });
             roomRepository.Update(room);
             unitOfWork.Commit();
+            var fromAddress = ConfigurationManager.AppSettings.Get("SendMailMessagesFromAddress");
+            var toAddress = ConfigurationManager.AppSettings.Get("SendMailSTMPHostAddress");
+            var username = ConfigurationManager.AppSettings.Get("SendMailSMTPUserName");
+            var password = ConfigurationManager.AppSettings.Get("SendMailSMTPUserPassword");
+            var content = "THÔNG TIN KHÁCH HÀNG<br /><br />" +
+                          "Họ và tên: " + form.Name + "<br /><br />" +
+                          "Email: " + form.Email + "<br /><br />" +
+                          "Phòng: " + room.RoomName + "<br /><br />" +
+                          "Ngày bắt đầu: " + form.Begin + "<br /><br />" +
+                          "Ngày kết thúc: " + form.End + "<br /><br />" +
+                          "Thời gian: " + form.Time + "<br /><br />" +
+                          "Số lượng khách: " + form.GuestQuantity + "<br /><br />" +
+                          "Loại cuộc họp: " + form.MeetingType + "<br /><br />" +
+                          "Giá: " + form.Price + "<br /><br />" +
+                          "Tinh nhắn: " + form.Message + "<br /><br />" +
+                          "THÔNG TIN THẺ<br /><br />" +
+                          "Tên chủ thẻ: " + form.UserCardName + "<br /><br />" +
+                          "Số thẻ: " + form.UserCardNumber + "<br /><br />" +
+                          "Loại thẻ: " + form.UserCardType + "<br /><br />" +
+                          "Ngày hết hạn: " + form.DueDate + "<br /><br />";
+            var email = new Email(fromAddress, toAddress, username, password, "Thông tin đặt phòng VietSov Petro Resort", content);
+            var success = email.send();
             return Json(!success ? "Quá trình gửi thông tin qua email thất bại, thông tin được lưu vào cơ sở dữ liệu tạm!" : "Thông tin đặt phòng của bạn đã được gửi, cảm ơn!");
         }
         public ActionResult Contact()
@@ -358,7 +375,20 @@ namespace VietSovPetro.BO.Controllers
         [HttpPost]
         public ActionResult Contact(FormCollection f)
         {
-            return Content("Thông tin liên hệ của bạn đã được gửi, cảm ơn!", "text/html");
+            var fromAddress = ConfigurationManager.AppSettings.Get("SendMailMessagesFromAddress");
+            var toAddress = ConfigurationManager.AppSettings.Get("SendMailSTMPHostAddress");
+            var username = ConfigurationManager.AppSettings.Get("SendMailSMTPUserName");
+            var password = ConfigurationManager.AppSettings.Get("SendMailSMTPUserPassword");
+            var content = "THÔNG TIN<br /><br />" +
+                          "Họ và tên: " + f["first_name"] + "<br /><br />" +
+                          "Email: " + f["email"] + "<br /><br />" +
+                          "Địa chỉ: " + f["address"] + "<br /><br />" +
+                          "Điện thoại: " + f["tel"] + "<br /><br />" +
+                          "Chủ đề: " + f["title"] + "<br /><br />" +
+                          "Nội dung: " + f["message"] + "<br /><br />";
+            var email = new Email(fromAddress, toAddress, username, password, "Thông tin liên hệ VietSov Petro Resort", content);
+            var success = email.send();
+            return Json(!success ? "Gửi liên hệ thất bại, vui lòng thử lại sau!" : "Thông tin liên hệ của bạn đã được gửi, cảm ơn!");
         }
         public ActionResult _RoomFilter(DateTime begin, DateTime end, string roomGroup, bool IsDeal)
         {
