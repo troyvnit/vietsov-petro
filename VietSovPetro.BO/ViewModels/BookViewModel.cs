@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 
 namespace VietSovPetro.BO.ViewModels
 {
+    using VietSovPetro.Model.Entities;
+
     public class BookViewModel
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -18,7 +20,7 @@ namespace VietSovPetro.BO.ViewModels
         [Required]
         public string Email { get; set; }
         [Required]
-        public Guid RoomID { get; set; }
+        public RoomViewModel Room { get; set; }
         [Required]
         public DateTime Begin { get; set; }
         [Required]

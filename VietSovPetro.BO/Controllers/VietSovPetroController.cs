@@ -328,19 +328,16 @@ namespace VietSovPetro.BO.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult QuickBook(BookViewModel form)
+        public JsonResult QuickBook(BookViewModel form, Guid RoomID)
         {
-            if (!ModelState.IsValid)
-            {
-                return Json("Thông tin nhập không hợp lệ!");
-            }
-            
             form.BookID = Guid.NewGuid();
-            var room = roomRepository.GetById(form.RoomID);
+            var room = roomRepository.GetById(RoomID);
             room.Books.Add(new Book { BookID = Guid.NewGuid(), Name = form.Name, Email = form.Email, Begin = form.Begin, 
                 End = form.End, Time = form.Time, GuestQuantity = form.GuestQuantity, MeetingType = form.MeetingType,
                 Price = form.Price, Message = form.Message, UserCardName = form.UserCardName, UserCardNumber = form.UserCardNumber,
-                UserCardType = form.UserCardType, DueDate = form.DueDate, RoomID = form.RoomID
+                                      UserCardType = form.UserCardType,
+                                      DueDate = form.DueDate,
+                                      RoomID = RoomID
             });
             roomRepository.Update(room);
             unitOfWork.Commit();
