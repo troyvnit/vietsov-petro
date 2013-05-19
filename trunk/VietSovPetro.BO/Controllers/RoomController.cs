@@ -232,6 +232,7 @@ namespace VietSovPetro.BO.Controllers
             foreach (var book in bookRepository.GetAll())
             {
                 var bookvm = Mapper.Map<Book, BookViewModel>(book);
+                bookvm.Room = Mapper.Map<Room, RoomViewModel>(book.Room);
                 books.Add(bookvm);
             }
             return Json(books, JsonRequestBehavior.AllowGet);

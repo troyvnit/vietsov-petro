@@ -16,7 +16,10 @@
                     dateFormat: "dd-mm-yy",
                     showOn: "button",
                     buttonImage: '@Url.Content("~/images/calendar.jpg")',
-                    buttonImageOnly: true
+                    buttonImageOnly: true,
+                    onClose: function () {
+                        this.focus();
+                    }
                 });
             })
         </script>
