@@ -12,11 +12,64 @@
         <script src="@Url.Content("~/js/livevalidation_standalone.js")" type="text/javascript"></script> 
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#ngay, #ngay1').datepicker({
+                @*$('#ngay, #ngay1').datepicker({
                     dateFormat: "dd-mm-yy",
                     showOn: "button",
                     buttonImage: '@Url.Content("~/images/calendar.jpg")',
                     buttonImageOnly: true,
+                    onClose: function () {
+                        this.focus();
+                    }
+                });*@
+                @*$('#beginday, #endday').datepicker({
+                    showOn: "button",
+                    buttonImage: '@Url.Content("~/images/calendar.jpg")',
+                    buttonImageOnly: true,
+                    onClose: function () {
+                        this.focus();
+                    }
+                });*@
+                var onStartDateQB = function (date) {
+                    var minEndDate = (date !== '') ? date : null; // null means no minimum, the default min
+                    $('#ngay1').datepicker('option', 'minDate', minEndDate);
+                    this.focus();
+                };
+                var onEndDateQB = function (date) {
+                    var maxStartDate = (date !== '') ? date : null; // 0 means today, the default max
+                    $('#ngay').datepicker('option', 'maxDate', maxStartDate);
+                    this.focus();
+                };
+                $('#ngay').datepicker({
+                    maxDate: null, // nothing past today\
+                    dateFormat: "dd/mm/yy",
+                    onClose: onStartDateQB
+                });
+                $('#ngay1').datepicker({
+                    maxDate: null, // nothing past today\
+                    dateFormat: "dd/mm/yy",
+                    onClose: onEndDateQB
+                });
+                var onStartDate = function (date) {
+                    var minEndDate = (date !== '') ? date : null; // null means no minimum, the default min
+                    $('#endday').datepicker('option', 'minDate', minEndDate);
+                    this.focus();
+                };
+                var onEndDate = function (date) {
+                    var maxStartDate = (date !== '') ? date : null; // 0 means today, the default max
+                    $('#beginday').datepicker('option', 'maxDate', maxStartDate);
+                    this.focus();
+                };
+                $('#beginday').datepicker({
+                    maxDate: null, // nothing past today\
+                    dateFormat: "dd/mm/yy",
+                    onClose: onStartDate
+                });
+                $('#endday').datepicker({
+                    maxDate: null, // nothing past today\
+                    dateFormat: "dd/mm/yy",
+                    onClose: onEndDate
+                });
+                $('#duedate').datepicker({
                     onClose: function () {
                         this.focus();
                     }

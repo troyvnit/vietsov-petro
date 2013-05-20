@@ -5,7 +5,20 @@
     var language = ViewBag.Language;
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
 }
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#search").click(function(e) {
+            $.ajax({
+                type: 'POST',
+                url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&IsDeal=true',
+                success: function(data) {
+                    $(".boxHotel").remove();
+                    $("#boxs").append(data);
+                }
+            });
+        });
+    });
+</script>
 <div class="banner-G">
     <div class="B-Left">
         <div class="tt-B-Left">
@@ -40,6 +53,24 @@
     </div>
 </div>
 <div class="in-Hotel">
+    <div style="width: 100%;margin-bottom: 10px;height: 50px">
+        <table class="search">
+            <tr>
+                <td><p>@Resources.SR.Start_Date</p></td>
+                <td style="width: 140px">
+                    <input type="text" id="beginday" name="Begin" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                </td>
+                <td><p>@Resources.SR.End_Date</p></td>
+                <td style="width: 140px">
+                    <input type="text" id="endday" name="End" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                </td>
+                <td>
+                    <img id="search" src="~/Images/search.png" style="max-width: 25px"/>
+                </td>
+            </tr>
+        </table>
+        </div>
+    <div id="boxs">
     @foreach (var room in rooms)
     {            
         <div class="boxHotel">
@@ -48,14 +79,14 @@
             <div class="cc-boxHotel">
                 <div class="picHotel">
                     @{ var fileInfo = new FileInfo(room.ImageUrl == "" ? ".jpg" : room.ImageUrl);
-                       if (fileInfo.Extension == ".html")
-                       {
-                        <iframe src="@Url.Content("~/Images/" + room.ImageUrl)" style="width:400px; height:199px; display:block; border:none;"></iframe>
-                       }
-                       else
-                       {
-                        <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
-                       }
+                        if (fileInfo.Extension == ".html")
+                        {
+                            <iframe src="@Url.Content("~/Images/" + room.ImageUrl)" style="width:400px; height:199px; display:block; border:none;"></iframe>
+                        }
+                        else
+                        {
+                            <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
+                        }
                     }
                 </div>
                 <!--picHotel-->
@@ -98,6 +129,7 @@
             <!--cc-boxHotel-->
         </div>
     }
+        </div>
     <p>GIÁ PHÒNG ĐÃ BAO GỒM:</p>
     <span>-	10% VAT và 5% phí phục vụ. Buffet sáng, phòng tập thể thao đa năng, hồ bơi, thư viện.</span><span>-	Giờ nhận phòng: 14h00, trả phòng: 12h00.</span><span>-	Trả phòng trễ: Sau 12h00 phụ thu 10% giá phòng/giờ, sau 17h tính bằng 100% giá phòng.</span><span>-	Trẻ em từ 1-5 tuổi ở chung với ba mẹ miễn phí tiền phòng bao gồm ăn sáng (không yêu cầu thêm giường phụ).</span><span>-	Trẻ em từ 6-11 tuổi miễn phí tiền phòng (Không yêu cầu thêm giường phụ) tính 50% giá vé ăn sáng.</span><span>-	Trẻ em từ 12 tuổi trở lên tính như người lớn.</span><span style="padding-bottom: 10px;">-	Giá vé buffet sáng (khách mua thêm): 10.00 $/người lớn; 7.00 $/trẻ em.</span>
 </div>

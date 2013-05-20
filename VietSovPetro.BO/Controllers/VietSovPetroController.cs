@@ -14,6 +14,8 @@ using VietSovPetro.BO.Models;
 
 namespace VietSovPetro.BO.Controllers
 {
+    using System.Globalization;
+
     public class VietSovPetroController : BaseController
     {
         //
@@ -332,6 +334,22 @@ namespace VietSovPetro.BO.Controllers
         {
             form.BookID = Guid.NewGuid();
             var room = roomRepository.GetById(RoomID);
+            var books = room.Books;
+            var checkDate = true;
+            if (books != null)
+            {
+                foreach (var book in books)
+                {
+                    if ((book.End > form.Begin && book.End < form.End) || (book.Begin > form.Begin && book.Begin < form.End))
+                    {
+                        checkDate = false;
+                    }
+                }
+            }
+            if(checkDate == false)
+            {
+                return Json("Phòng đã được đặt, vui lòng chọn phòng hoặc thời gian khác!", JsonRequestBehavior.AllowGet);
+            }
             room.Books.Add(new Book { BookID = Guid.NewGuid(), Name = form.Name, Email = form.Email, Begin = form.Begin, 
                 End = form.End, Time = form.Time, GuestQuantity = form.GuestQuantity, MeetingType = form.MeetingType,
                 Price = form.Price, Message = form.Message, UserCardName = form.UserCardName, UserCardNumber = form.UserCardNumber,
@@ -387,21 +405,30 @@ namespace VietSovPetro.BO.Controllers
             var success = email.send();
             return Json(!success ? "Gửi liên hệ thất bại, vui lòng thử lại sau!" : "Thông tin liên hệ của bạn đã được gửi, cảm ơn!");
         }
-        public ActionResult _RoomFilter(DateTime begin, DateTime end, string roomGroup, bool IsDeal)
+        public ActionResult _RoomFilter(string begin, string end, string roomGroup, bool IsDeal = false)
         {
+            var begindt = DateTime.ParseExact(begin, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            var enddt = DateTime.ParseExact(end, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             ViewBag.Rooms = roomRepository.GetAll().Where(a =>
             {
                 var roomTypes = a.RoomTypes;
                 var checkRoomTypes = false;
                 var books = a.Books;
                 var checkDate = true;
-                if (roomTypes != null)
+                if(roomGroup == null)
                 {
-                    foreach (var roomType in roomTypes)
+                    checkRoomTypes = true;
+                }
+                else
+                {
+                    if (roomTypes != null)
                     {
-                        if (roomType.RoomGroup == roomGroup)
+                        foreach (var roomType in roomTypes)
                         {
-                            checkRoomTypes = true;
+                            if (roomType.RoomGroup == roomGroup)
+                            {
+                                checkRoomTypes = true;
+                            }
                         }
                     }
                 }
@@ -409,7 +436,7 @@ namespace VietSovPetro.BO.Controllers
                 {
                     foreach (var book in books)
                     {
-                        if((book.End > begin && book.End < end)||(book.Begin > begin && book.Begin < end))
+                        if((book.End > begindt && book.End < enddt)||(book.Begin > begindt && book.Begin < enddt))
                         {
                             checkDate = false;
                         }
@@ -419,7 +446,7 @@ namespace VietSovPetro.BO.Controllers
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ToList();
             ViewBag.Properties = roomPropertyRoomRepository.GetAll();
-            return View();
+            return PartialView();
         }
     }
 }
