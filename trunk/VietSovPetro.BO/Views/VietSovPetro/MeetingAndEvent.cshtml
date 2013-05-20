@@ -35,6 +35,16 @@
                 });
             }
         });
+        $("#search").click(function (e) {
+            $.ajax({
+                type: 'POST',
+                url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomGroup=Meeting%20Room&IsDeal=false',
+                success: function (data) {
+                    $(".boxHotel").remove();
+                    $("#boxs").append(data);
+                }
+            });
+        });
     });
 </script>
 <div class="banner-G">
@@ -70,13 +80,13 @@
                 <li>
                     <p>@Resources.SR.Start_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="ngay" name="Begin" style="border: 1px solid; width: 106px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="ngay" name="Begin" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.End_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="ngay1" name="End" style="border: 1px solid; width: 106px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="ngay1" name="End" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
                     </div>
                 </li>
                 <li>
@@ -143,9 +153,9 @@
                 <li>
                     <p>@Resources.SR.Expiry_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="DueDate" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="duedate" name="DueDate" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
                         <input type="button" id="submitBooking" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" ></input>
-                        <img id="loading" style="display: none; margin-top: 10px; width: 100%" src="@Url.Content("~/images/sending.gif")" alt="" />
+                        <img id="loading" style="display: none; margin-top: 10px;" src="@Url.Content("~/images/sending.gif")" alt="" />
                     </div>
                 </li>
             </ul>
@@ -166,6 +176,24 @@
 </div>
 <!--banner-G-->
 <div class="in-Hotel">
+    <div style="width: 100%;margin-bottom: 10px;height: 50px">
+        <table class="search">
+            <tr>
+                <td><p>@Resources.SR.Start_Date</p></td>
+                <td style="width: 140px">
+                    <input type="text" id="beginday" name="Begin" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                </td>
+                <td><p>@Resources.SR.End_Date</p></td>
+                <td style="width: 140px">
+                    <input type="text" id="endday" name="End" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                </td>
+                <td>
+                    <img id="search" src="~/Images/search.png" style="max-width: 25px"/>
+                </td>
+            </tr>
+        </table>
+        </div>
+    <div id="boxs">
     @foreach (var room in rooms)
     {   
         <div class="boxHotel">
@@ -219,5 +247,6 @@
             <!--cc-boxHotel-->
         </div>
     }
+        </div>
 </div>
 <!--in-Hotel-->

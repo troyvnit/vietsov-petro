@@ -2,6 +2,12 @@
     var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.Rooms;
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
 }  
+@if (rooms == null || rooms.Count == 0)
+{
+    <div class="boxHotel">
+    <p style="color: red; font-size: 12px;">Không phòng nào có thể đặt trong khoảng thời gian này...</p>
+        </div>
+}
 @foreach (var room in rooms)
     {   
         <div class="boxHotel">
