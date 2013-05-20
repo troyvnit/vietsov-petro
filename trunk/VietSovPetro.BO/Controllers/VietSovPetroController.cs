@@ -407,8 +407,15 @@ namespace VietSovPetro.BO.Controllers
         }
         public ActionResult _RoomFilter(string begin, string end, string roomGroup, bool IsDeal = false)
         {
-            var begindt = DateTime.ParseExact(begin, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            var enddt = DateTime.ParseExact(end, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime? begindt = null, enddt = null;
+            if(!String.IsNullOrEmpty(begin))
+            {
+                begindt = DateTime.ParseExact(begin, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            }
+            if(!String.IsNullOrEmpty(end))
+            {
+                enddt = DateTime.ParseExact(end, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            }
             ViewBag.Rooms = roomRepository.GetAll().Where(a =>
             {
                 var roomTypes = a.RoomTypes;
