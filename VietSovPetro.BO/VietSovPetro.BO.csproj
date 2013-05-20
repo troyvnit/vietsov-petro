@@ -1899,6 +1899,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\VietSovPetro\_RoomFilter.cshtml" />
+    <None Include="Properties\PublishProfiles\VSP.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\SR.ru-RU.resx">
