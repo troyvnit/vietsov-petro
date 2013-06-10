@@ -31,8 +31,7 @@ namespace VietSovPetro.Domain.Handlers
                         RoomName = command.RoomName,
                         RoomTypeName = command.RoomTypeName,
                         Description = command.Description,
-                        BookedFrom = command.BookedFrom,
-                        BookedTo = command.BookedTo,
+                        Detail = command.Detail,
                         IsDeal = command.IsDeal,
                         IsNew = command.IsNew,
                         IsPublished = command.IsPublished,
@@ -55,8 +54,7 @@ namespace VietSovPetro.Domain.Handlers
                 var room = roomRepository.GetById(command.RoomID);
                 room.RoomName = command.RoomName;
                 room.Description = command.Description;
-                room.BookedFrom = command.BookedFrom;
-                room.BookedTo = command.BookedTo;
+                room.Detail = command.Detail;
                 room.IsDeal = command.IsDeal;
                 room.IsNew = command.IsNew;
                 room.IsPublished = command.IsPublished;

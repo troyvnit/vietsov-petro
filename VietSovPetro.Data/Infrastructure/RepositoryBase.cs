@@ -70,7 +70,7 @@ namespace VietSovPetro.Data.Infrastructure
         }
         public T Get(Expression<Func<T, bool>> where)
         {
-            return dbset.Where(where).FirstOrDefault<T>();
+            return dbset.Where(where).FirstOrDefault();
         }
     }
 }

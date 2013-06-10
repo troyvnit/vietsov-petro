@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using VietSovPetro.Core.Common;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VietSovPetro.Model.Entities
 {
+    using System.Web.Mvc;
+
     public class Room
     {
         public Room()
@@ -22,9 +19,10 @@ namespace VietSovPetro.Model.Entities
         public string RoomName { get; set; }
         [Required]
         public string RoomTypeName { get; set; }
-        public DateTime? BookedFrom { get; set; }
-        public DateTime? BookedTo { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
+        [AllowHtml]
+        public string Detail { get; set; }
         public int Quantity { get; set; }
         public string ImageUrl { get; set; }
         public int OrderID { get; set; }

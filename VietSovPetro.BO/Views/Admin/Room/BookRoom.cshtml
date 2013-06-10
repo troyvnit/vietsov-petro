@@ -1,0 +1,362 @@
+﻿@{
+    ViewBag.Title = "BookRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="example" class="k-content">
+    <div id="vertical">
+        <div id="top-pane">
+            <div id="horizontal" style="height: 100%; width: 100%;">
+                <div id="right-pane">
+                    <div class="pane-content">
+                        <p style="width: 100%; text-align: center">THÔNG TIN ĐẶT PHÒNG</p>
+                        <div id="grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var dataItem;
+        $(document).ready(function () {
+            //room grid
+            var roomDataSource = new kendo.data.DataSource({
+                pageSize: 20,
+                transport: {
+                    read: {
+                        url: '@Url.Action("GetBooks", "Room", new { RoomTypeID = "22222222-2222-2222-2222-222222222222" })',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    update: {
+                        url: '@Url.Action("CreateOrUpdateBooks", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    destroy: {
+                        url: '@Url.Action("DeleteBooks", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    create: {
+                        url: '@Url.Action("CreateOrUpdateBooks", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    parameterMap: function (options, operation) {
+                        if (operation !== "read" && options.models) {
+                            return { models: kendo.stringify(options.models) };
+                        }
+                    }
+                },
+                batch: true,
+                schema: {
+                    model: {
+                        id: "BookID",
+                        fields: {
+                            BookID: { editable: false, defaultValue: "@Guid.NewGuid()" },
+                            Email: { type: "string" },
+                            FirstName: { type: "string" },
+                            LastName: { type: "string" },
+                            Room: { defaultValue: { RoomID: "@Guid.Empty", RoomName: "Chọn phòng" } },
+                            Begin: { type: "date" },
+                            End: { type: "date" },
+                            NoOfRoom: { type: "string" },
+                            NoOfGuest: { type: "string" },
+                            Children: { type: "string" },
+                            KindOfBed: { type: "string" },
+                            Airline: { type: "string" },
+                            FlightNo: { type: "string" },
+                            EstimatedArrivalTime: { type: "string" },
+                            NonSmoking: { type: "string" },
+                            DateOfBirth: { type: "string" },
+                            Tel: { type: "string" },
+                            Fax: { type: "string" },
+                            SpecialRequest: { type: "string" }
+                            //UserCardName: { type: "string" },
+                            //UserCardNumber: { type: "string" },
+                            //UserCardType: { type: "string" },
+                            //DueDate: { type: "date" }
+                        }
+                    }
+                }
+            });
+            var grid = $("#grid").kendoGrid({
+                dataSource: roomDataSource,
+                pageable: true,
+                height: 740,
+                //toolbar: ["create", "save", "cancel"],
+                columns: [
+                    { field: "FirstName", title: "Họ" },
+                    { field: "LastName", title: "Tên" },
+                    { field: "Email", title: "Email" },
+                    { field: "Room", title: "Phòng", editor: roomDropDownEditor, template: "#= Room.RoomName #" },
+                    { field: "Begin", title: "Bắt đầu", format: "{0:dd/MM/yyyy}" },
+                    { field: "End", title: "Kết thúc", format: "{0:dd/MM/yyyy}" },
+                    { field: "NoOfRoom", title: "SL phòng" },
+                    { field: "NoOfGuest", title: "SL khách", editor: quantityDropDownEditor, template: "#= GuestQuantity #", hidden: true },
+                    { field: "Children", title: "Trẻ em", hidden: true },
+                    { field: "KindOfBed", title: "Loại giường" },
+                    { field: "Airline", title: "Hãng HK" },
+                    { field: "FlightNo", title: "Số chuyến" },
+                    { field: "EstimatedArrivalTime", title: "Đón lúc" },
+                    { field: "NonSmoking", title: "Hút thuốc", hidden: true },
+                    { field: "DateOfBirth", title: "Ngày sinh", hidden: true },
+                    { field: "Tel", title: "Điện thoại", hidden: true },
+                    { field: "Fax", title: "Fax", hidden: true },
+                    { field: "SpecialRequest", title: "Yêu cầu ĐB" }],
+                    //{ field: "UserCardName", title: "Tên chủ thẻ" },
+                    //{ field: "UserCardNumber", title: "Số thẻ" },
+                    //{ field: "UserCardType", title: "Loại thẻ" },
+                    //{ field: "DueDate", title: "Ngày hết hạn", format: "{0:dd/MM/yyyy}" },
+                    //{ command: ["destroy"], title: " ", width: "70px" }],
+                //editable: true,
+                sortable: true,
+                filterable: true,
+                columnMenu: true,
+                resizable: true
+            });
+            function roomDropDownEditor(container, options) {
+                $('<input required data-text-field="RoomName" data-value-field="RoomID" data-bind="value:' + options.field + '"/>')
+                    .appendTo(container)
+                    .kendoDropDownList({
+                        autoBind: true,
+                        dataSource: {
+                            severFiltering: true,
+                            transport: {
+                                read: {
+                                    url: '@Url.Action("GetRooms", "Room")',
+                                    type: "post",
+                                    dataType: "json"
+                                }
+                            }
+                        }
+                    });
+            }
+            function timeDropDownEditor(container, options) {
+                $('<input required data-text-field="Text" data-value-field="Time" data-bind="value:' + options.field + '"/>')
+                    .appendTo(container)
+                    .kendoDropDownList({
+                        autoBind: false,
+                        dataSource:
+                            [
+                                { Text: "Nửa ngày", Time: "Nửa ngày" },
+                                { Text: "Nguyên ngày", Time: "Nguyên ngày" }
+                            ]
+                    });
+            }
+            function quantityDropDownEditor(container, options) {
+                $('<input required data-text-field="Text" data-value-field="GuestQuantity" data-bind="value:' + options.field + '"/>')
+                    .appendTo(container)
+                    .kendoDropDownList({
+                        autoBind: false,
+                        dataSource:
+                            [
+                                { Text: "500 - 1000", GuestQuantity: "500 - 1000" },
+                                { Text: "400 - 500", GuestQuantity: "400 - 500" },
+                                { Text: "300 - 400", GuestQuantity: "300 - 400" },
+                                { Text: "200 - 300", GuestQuantity: "200 - 300" },
+                                { Text: "100 - 200", GuestQuantity: "100 - 200" },
+                                { Text: "10 - 100", GuestQuantity: "10 - 100" }
+                            ]
+                    });
+            }
+            function priceDropDownEditor(container, options) {
+                $('<input required data-text-field="Text" data-value-field="Price" data-bind="value:' + options.field + '"/>')
+                    .appendTo(container)
+                    .kendoDropDownList({
+                        autoBind: false,
+                        dataSource:
+                            [
+                                { Text: "Giá trọn gói", Price: "Giá trọn gói" },
+                                { Text: "Giá sự cố", Price: "Giá sự cố" }
+                            ]
+                    });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#vertical").kendoSplitter({
+                orientation: "vertical",
+                panes: [
+                    { collapsible: false }
+                ]
+            });
+
+            $("#horizontal").kendoSplitter({
+                panes: [
+                    { collapsible: true, size: "26%" },
+                    { collapsible: true, size: "74%" }
+                ]
+            });
+        });
+    </script>
+
+    <style scoped>
+        #vertical
+        {
+            height: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        #middle-pane
+        {
+            background-color: rgba(60, 70, 80, 0.10);
+        }
+
+        #bottom-pane
+        {
+            background-color: rgba(60, 70, 80, 0.15);
+        }
+
+        #left-pane, #center-pane, #right-pane
+        {
+            background-color: rgba(60, 70, 80, 0.05);
+        }
+
+        .pane-content
+        {
+            padding: 0 10px;
+        }
+
+        .room-category-list
+        {
+            width: 100%;
+        }
+
+        .room-category-view
+        {
+            float: left;
+            position: relative;
+            width: 301px;
+            margin: -1px -1px 0 0;
+        }
+
+            .room-category-view dl
+            {
+                margin: 10px 0;
+                padding: 0;
+                min-width: 0;
+            }
+
+            .room-category-view dt, dd
+            {
+                float: left;
+                margin: 0;
+                padding: 3px;
+                height: 26px;
+                width: 160px;
+                line-height: 26px;
+                overflow: hidden;
+            }
+
+            .room-category-view dt
+            {
+                clear: left;
+                padding: 3px 5px 3px 0;
+                text-align: right;
+                opacity: 0.6;
+                width: 100px;
+            }
+
+        .k-listview
+        {
+            border: 0;
+            padding: 0;
+            min-height: 740px;
+        }
+
+            .k-listview:after, .product-view dl:after
+            {
+                content: ".";
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+
+        .edit-buttons
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 26px;
+            height: 146px;
+            padding: 2px 2px 0 3px;
+            background-color: rgba(0,0,0,0.1);
+        }
+
+            .edit-buttons .k-button
+            {
+                width: 26px;
+                margin-bottom: 1px;
+            }
+
+        .k-pager-wrap
+        {
+            border-top: 0;
+        }
+
+        span.k-invalid-msg
+        {
+            position: absolute;
+            margin-left: 6px;
+        }
+
+        .k-editor
+        {
+            width: 100% !important;
+        }
+
+        #room-type .k-upload
+        {
+            float: left;
+            width: 100%;
+            margin-right: 5px;
+        }
+
+        #room-type img
+        {
+            float: left;
+            max-width: 100px;
+            max-height: 100px;
+            margin: 5px 0;
+        }
+
+        #room-type .roomtypespan
+        {
+            float: left;
+            margin-right: 5px;
+            width: 100%;
+        }
+
+        #room-type .k-multiselect
+        {
+            float: left;
+            width: 98%;
+            margin: 5px 0;
+        }
+
+        #room-type label
+        {
+            float: left;
+            margin: 5px;
+        }
+
+        #room-type .k-upload-button
+        {
+            width: 100%;
+        }
+
+        #detailgrid
+        {
+            width: 100%;
+            float: left;
+        }
+    </style>
+</div>

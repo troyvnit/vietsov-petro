@@ -5,59 +5,44 @@
 @if (rooms == null || rooms.Count == 0)
 {
     <div class="boxHotel">
-    <p style="color: red; font-size: 12px;">Không phòng nào có thể đặt trong khoảng thời gian này...</p>
+    <p style="color: red; font-size: 14px;">Không phòng nào có thể đặt trong khoảng thời gian này...</p>
+        </div>
+}
+else
+{
+    <div class="boxHotel">
+    <p style="color: green; font-size: 14px;">Có @rooms.Count phòng có thể đặt trong khoảng thời gian này...</p>
         </div>
 }
 @foreach (var room in rooms)
-    {   
-        <div class="boxHotel">
-            <div class="tt-boxHotel"><a href="#">@room.RoomName (Số lượng: @room.Quantity)</a></div>
-            <!--tt-boxHotel-->
-            <div class="cc-boxHotel">
-                <div class="picHotel">
-                    <a href="#">
+        {            
+            <div class="boxHotel">
+                <div class="tt-boxHotel"><a href="#">@room.RoomName</a></div>
+                <!--tt-boxHotel-->
+                <div class="cc-boxHotel">
+                    <div class="picHotel">
                         @{ var fileInfo = new FileInfo(room.ImageUrl == "" ? ".jpg" : room.ImageUrl);
-                           if (fileInfo.Extension == ".html")
-                           {
-                            <iframe src="@Url.Content("~/Images/" + room.ImageUrl)"  style="width:400px; height:199px; display:block; border:none;"></iframe>
-                           }
-                           else
-                           {
-                            <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
-                           }
+                            if (fileInfo.Extension == ".html")
+                            {
+                                <iframe src="@Url.Content("~/Images/" + room.ImageUrl)" style="width:400px; height:199px; display:block; border:none;"></iframe>
+                            }
+                            else
+                            {
+                                <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
+                            }
                         }
-                    </a>
-                </div>
-                <!--picHotel-->
-                <div class="conHotel-1">
-                    <ul>
-                        @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                        {
-                            <li>
-                                <p>@detail.RoomProperty.RoomPropertyName: @detail.RoomPropertyNumberValue @detail.RoomProperty.Unit</p>
-                            </li>
-                        }
-                    </ul>
+                    </div>
+                    <!--picHotel-->
+                    <div class="conHotel-1">
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Description))
+                    <ul><li class="view"><a href="#" onclick="gotoBooking('@room.RoomID'); return false;">Booking</a></li></ul>
                 </div>
                 <!--conHotel-1-->
                 <div class="conHotel-2">
-                    <ul>
-                        @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                        {
-                            <li>
-                                <p>@price.RoomProperty.RoomPropertyName: @price.RoomPropertyNumberValue @price.RoomProperty.Unit</p>
-                            </li>
-                        }
-                        @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                        {
-                            <li>
-                                <p>@property.RoomProperty.RoomPropertyName: @property.RoomPropertyStringValue @property.RoomProperty.Unit</p>
-                            </li>
-                        }
-                    </ul>
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Detail))
                 </div>
                 <!--conHotel-2-->
+                </div>
+                <!--cc-boxHotel-->
             </div>
-            <!--cc-boxHotel-->
-        </div>
-    }
+        }

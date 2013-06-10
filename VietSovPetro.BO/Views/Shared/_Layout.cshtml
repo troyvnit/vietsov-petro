@@ -35,7 +35,24 @@
         <ul id="menu">
             <li><a href="@Url.Action("Index", "Article")">QUẢN LÝ BÀI VIẾT</a></li>
             <li><a href="@Url.Action("Index", "Room")">QUẢN LÝ NHÀ HÀNG KHÁCH SẠN</a></li>
-            <li><a href="@Url.Action("Book", "Room")">THÔNG TIN ĐẶT PHÒNG</a></li>
+            <li>THÔNG TIN ĐẶT PHÒNG
+                <ul>
+                    <li><a href="@Url.Action("BookMeeting", "Room")">PHÒNG HỌP</a></li>
+                    <li><a href="@Url.Action("BookRoom", "Room")">PHÒNG NGHỈ</a></li>
+                </ul>
+            </li>
+            @{if (Request.IsAuthenticated && Session["VietSovPetroAdmin"] != null)
+              {
+                <li style="float: right"><a href="@Url.Action("LogOff", "Account")">Thoát</a></li> 
+                <li style="float: right"><a href="@Url.Action("ChangePassword", "Account")">Đổi mật khẩu</a></li> 
+                <li style="float: right"><a href="@Url.Action("Register", "Account")">Tạo tài khoản</a></li> 
+                <li style="float: right">Welcome @User.Identity.Name</li> 
+              }
+              else
+              {
+                <li style="float: right"><a href="@Url.Action("Login", "Account")">Đăng nhập</a></li>
+              }
+            }
         </ul>
         <div id="content">
             @RenderBody()

@@ -4,39 +4,46 @@
     var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.RoomAndPrices;
     var language = ViewBag.Language;
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
+    List<VietSovPetro.BO.ViewModels.ArticleViewModel> articles = ViewBag.RoomArticles;
 }
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("#search").click(function(e) {
+    $(document).ready(function () {
+        $("#search").click(function (e) {
+            $("#loadingsearch").show();
+            $("#search").hide();
             $.ajax({
                 type: 'POST',
-                url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomGroup=Room%20And%20Price&IsDeal=false',
+                url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomTypeID=22222222-2222-2222-2222-222222222222',
                 success: function(data) {
                     $(".boxHotel").remove();
                     $("#boxs").append(data);
+                    $("#loadingsearch").hide();
+                    $("#search").show();
                 }
             });
         });
+        
     });
+    function gotoBooking(id)
+    {
+        var url = "/vietsovpetro/booking?RoomID=" + id + "&checkin=" + $("#beginday").val() + "&checkout=" + $("#endday").val();
+        window.open(url, '_blank');
+    }
 </script>
 <div class="banner-G">
-    <div class="B-Left">
+    <div class="B-Left-1">
         <div class="tt-B-Left">
-            <p>Phòng &amp; Giá phòng</p>
-        </div>
-        <div class="cc-B-Left">
+            <p>@Resources.SR.Quick_Reservation</p>
+        </div>           
+        <div class="cc-B-Left" style="height: 410px; background-size: 266px 410px;">>
             <ul>
-                <li class="nut"><a href="@Url.Action("Booking", "VietSovPetro")">Đặt phòng nhanh</a></li>
                 <li class="tex">
                     <p>Xin vui lòng gọi điện thoại hoặc gửi email cho chúng tôi để đặt phòng. Chúng tôi hân hạnh được phục vụ bạn.</p>
                 </li>
                 <li class="hot">
                     <ul>
                         <li>
-                            <p>
-                                Điện thoại: (84.64) 3.782.266<br />
-                                (84.64) 3.782.267<br />
-                            </p>
+                            <p>Điện thoại: (84.64) 3.782.256</p>
                         </li>
                         <li>
                             <p>Fax: (84.64) 3.782.255</p>
@@ -44,9 +51,10 @@
                     </ul>
                 </li>
             </ul>
-        </div>
+        </div>   
     </div>
-    <div class="B-Right">
+    <!--B-Left-1-->
+    <div class="B-Right-1">
         <iframe src="@Url.Content("~/images/virtualTour/president/bedRoom/bedRoom.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
         <div class="fullscreen"><a href="#" style="display: block;">
             <img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
@@ -65,7 +73,8 @@
                     <input type="text" id="endday" name="End" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
                 </td>
                 <td>
-                    <img id="search" src="~/Images/search.png" style="max-width: 25px"/>
+                    <img id="search" src="~/Images/search.png" style="max-width: 25px;cursor:pointer;"/>
+                    <img id="loadingsearch" style="max-width: 25px; margin-bottom: 3px; display: none" src="@Url.Content("~/images/sending.gif")" alt="" />
                 </td>
             </tr>
         </table>
@@ -91,46 +100,36 @@
                     </div>
                     <!--picHotel-->
                     <div class="conHotel-1">
-                        <ul>
-                            <li>
-                                <p><strong>Loại Phòng: @foreach (var roomtype in room.RoomTypes)
-                                                       { @room.RoomTypeName }</strong></p>
-                            </li>
-                            @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                            {
-                                <li>
-                                    <p>@detail.RoomProperty.RoomPropertyName: @detail.RoomPropertyNumberValue @detail.RoomProperty.Unit</p>
-                                </li>
-                            }
-                            @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                            {
-                                <li>
-                                    <p>- @price.RoomProperty.RoomPropertyName: @price.RoomPropertyNumberValue @price.RoomProperty.Unit</p>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                    <!--conHotel-1-->
-                    <div class="conHotel-2">
-                        <ul>
-                            <li>
-                                <p style="font-weight: bold; text-decoration: underline;">Chi tiết:</p>
-                            </li>
-                            @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                            {
-                                <li>
-                                    <p>- @property.RoomProperty.RoomPropertyName: @property.RoomPropertyStringValue @property.RoomProperty.Unit</p>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                    <!--conHotel-2-->
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Description))
+                    @*<ul><li class="view"><a href="#" onclick="gotoBooking('@room.RoomID'); return false;">Booking</a></li></ul>*@
+                </div>
+                <!--conHotel-1-->
+                <div class="conHotel-2">
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Detail))
+                </div>
+                <!--conHotel-2-->
                 </div>
                 <!--cc-boxHotel-->
             </div>
         }
     </div>
-    <p>GIÁ PHÒNG ĐÃ BAO GỒM:</p>
-    <span>-	10% VAT và 5% phí phục vụ. Buffet sáng, phòng tập thể thao đa năng, hồ bơi, thư viện.</span><span>-	Giờ nhận phòng: 14h00, trả phòng: 12h00.</span><span>-	Trả phòng trễ: Sau 12h00 phụ thu 10% giá phòng/giờ, sau 17h tính bằng 100% giá phòng.</span><span>-	Trẻ em từ 1-5 tuổi ở chung với ba mẹ miễn phí tiền phòng bao gồm ăn sáng (không yêu cầu thêm giường phụ).</span><span>-	Trẻ em từ 6-11 tuổi miễn phí tiền phòng (Không yêu cầu thêm giường phụ) tính 50% giá vé ăn sáng.</span><span>-	Trẻ em từ 12 tuổi trở lên tính như người lớn.</span><span style="padding-bottom: 10px;">-	Giá vé buffet sáng (khách mua thêm): 10.00 $/người lớn; 7.00 $/trẻ em.</span>
+    @*<p>GIÁ PHÒNG ĐÃ BAO GỒM:</p>
+    <span>-	10% VAT và 5% phí phục vụ. Buffet sáng, phòng tập thể thao đa năng, hồ bơi, thư viện.</span><span>-	Giờ nhận phòng: 14h00, trả phòng: 12h00.</span><span>-	Trả phòng trễ: Sau 12h00 phụ thu 10% giá phòng/giờ, sau 17h tính bằng 100% giá phòng.</span><span>-	Trẻ em từ 1-5 tuổi ở chung với ba mẹ miễn phí tiền phòng bao gồm ăn sáng (không yêu cầu thêm giường phụ).</span><span>-	Trẻ em từ 6-11 tuổi miễn phí tiền phòng (Không yêu cầu thêm giường phụ) tính 50% giá vé ăn sáng.</span><span>-	Trẻ em từ 12 tuổi trở lên tính như người lớn.</span><span style="padding-bottom: 10px;">-	Giá vé buffet sáng (khách mua thêm): 10.00 $/người lớn; 7.00 $/trẻ em.</span>*@
+   
 </div>
 <!--in-Hotel-->
+ @foreach (var article in articles)
+{
+    <div class="in-booking">
+            <div class="in-booking-1">
+                <div class="in-booking-2">
+                    <div class="booking">
+                        <div class="tit-booking"><span>@article.Title</span></div><!--tit-booking-->
+                        <div class="tett">
+                            @Html.Raw(HttpUtility.HtmlDecode(article.Content))
+                        </div><!--tett-->
+                    </div><!--booking-->
+                </div><!--in-booking-2-->
+            </div><!--in-booking-1-->
+        </div><!--in-booking-->   
+}

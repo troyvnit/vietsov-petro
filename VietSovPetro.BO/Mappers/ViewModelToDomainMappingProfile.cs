@@ -9,6 +9,8 @@ using VietSovPetro.BO.ViewModels;
 
 namespace VietSovPetro.BO.Mappers
 {
+    using VietSovPetro.BO.Controllers;
+
     class ViewModelToDomainMappingProfile : Profile
     {
         public override string ProfileName
@@ -21,9 +23,9 @@ namespace VietSovPetro.BO.Mappers
             Mapper.CreateMap<ArticleCategoryViewModel, CreateOrUpdateArticleCategoryCommand>();
             Mapper.CreateMap<ArticleCategoryViewModel, DeleteArticleCategoryCommand>();
             Mapper.CreateMap<ArticleViewModel, CreateOrUpdateArticleCommand>();
-            Mapper.CreateMap<ArticleViewModel, DeleteArticleCommand>();
+            Mapper.CreateMap<DeleteArticle, DeleteArticleCommand>();
             Mapper.CreateMap<RoomViewModel, CreateOrUpdateRoomCommand>();
-            Mapper.CreateMap<RoomViewModel, DeleteRoomCommand>();
+            Mapper.CreateMap<DeleteRoom, DeleteRoomCommand>();
             Mapper.CreateMap<RoomTypeViewModel, CreateOrUpdateRoomTypeCommand>();
             Mapper.CreateMap<RoomTypeViewModel, DeleteRoomTypeCommand>();
             Mapper.CreateMap<RoomPropertyViewModel, CreateOrUpdateRoomPropertyCommand>();

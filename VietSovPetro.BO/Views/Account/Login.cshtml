@@ -1,11 +1,13 @@
 ﻿@{
     ViewBag.Title = "Đăng nhập";
+    var url = ViewBag.ReturnURL;
 }
 
 <div style="margin-top:10px;width:100%">
     @using (Html.BeginForm("Login", "Account", FormMethod.Post))
     {
         @Html.ValidationSummary(true, "Đăng nhập không thành công, vui lòng kiểm tra các lỗi và thử lại!")
+        <input type="hidden" id="ReturnURL" name="ReturnURL" value="@url"/>
         <div class="loginform">
             <div class="bar">
                 Đăng nhập</div>

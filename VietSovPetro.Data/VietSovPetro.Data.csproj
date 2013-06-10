@@ -54,6 +54,10 @@
     <Compile Include="Infrastructure\PagedResult.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201305220638378_InitialCreate.cs" />
+    <Compile Include="Migrations\201305220638378_InitialCreate.Designer.cs">
+      <DependentUpon>201305220638378_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Initialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +91,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201305220638378_InitialCreate.resx">
+      <DependentUpon>201305220638378_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -123,8 +123,14 @@
   <data name="Address_Info" xml:space="preserve">
     <value>Địa chỉ: Xã Phước Thuận, Huyện Xuyên Mộc, Tỉnh Bà Rịa Vũng Tàu, Việt Nam</value>
   </data>
+  <data name="Airline" xml:space="preserve">
+    <value>Hãng hàng không</value>
+  </data>
+  <data name="AirportPickup" xml:space="preserve">
+    <value>Đón tại sân bay</value>
+  </data>
   <data name="Book" xml:space="preserve">
-    <value>Đặt</value>
+    <value>Gửi đặt phòng</value>
   </data>
   <data name="Breakdown_Price" xml:space="preserve">
     <value>Giá sự cố</value>
@@ -138,11 +144,26 @@
   <data name="Card_Type" xml:space="preserve">
     <value>Loại thẻ</value>
   </data>
+  <data name="Checkin" xml:space="preserve">
+    <value>Ngày vào</value>
+  </data>
+  <data name="Checkout" xml:space="preserve">
+    <value>Ngày ra</value>
+  </data>
+  <data name="Children" xml:space="preserve">
+    <value>Trẻ em</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Liên hệ</value>
   </data>
   <data name="Credit_Card_For_Booking" xml:space="preserve">
     <value>Đặt phòng bằng thẻ tín dụng</value>
+  </data>
+  <data name="CVCNumber" xml:space="preserve">
+    <value>Số CVC</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Ngày sinh</value>
   </data>
   <data name="Destination" xml:space="preserve">
     <value>Điểm đến</value>
@@ -156,11 +177,17 @@
   <data name="End_Date" xml:space="preserve">
     <value>Kết thúc</value>
   </data>
+  <data name="EstimatedArrivalTime" xml:space="preserve">
+    <value>Giờ đề nghị đón</value>
+  </data>
   <data name="Expiry_Date" xml:space="preserve">
     <value>Ngày hết hạn</value>
   </data>
   <data name="Feedback" xml:space="preserve">
     <value>Phản hồi của khách hàng</value>
+  </data>
+  <data name="FlightNo" xml:space="preserve">
+    <value>Chuyến bay</value>
   </data>
   <data name="Follow_Us" xml:space="preserve">
     <value>Dõi theo chúng tôi</value>
@@ -168,11 +195,20 @@
   <data name="Full_Day" xml:space="preserve">
     <value>Nguyên ngày</value>
   </data>
+  <data name="GuestFirstName" xml:space="preserve">
+    <value>Họ</value>
+  </data>
+  <data name="GuestLastName" xml:space="preserve">
+    <value>Tên</value>
+  </data>
   <data name="Half_Day" xml:space="preserve">
     <value>Nửa ngày</value>
   </data>
   <data name="Introduction" xml:space="preserve">
     <value>Giới thiệu</value>
+  </data>
+  <data name="KindOfBed" xml:space="preserve">
+    <value>Loại giường</value>
   </data>
   <data name="Kind_Of_Meeting" xml:space="preserve">
     <value>Loại cuộc họp</value>
@@ -188,6 +224,15 @@
   </data>
   <data name="News" xml:space="preserve">
     <value>Tin tức</value>
+  </data>
+  <data name="NonSmorking" xml:space="preserve">
+    <value>Không hút thuốc</value>
+  </data>
+  <data name="NoOfGuest" xml:space="preserve">
+    <value>Số lượng khách</value>
+  </data>
+  <data name="NoOfRoom" xml:space="preserve">
+    <value>Số lượng phòng</value>
   </data>
   <data name="Number_Of_Guest" xml:space="preserve">
     <value>Số lượng khách</value>
@@ -218,6 +263,9 @@
   </data>
   <data name="Room_Deal" xml:space="preserve">
     <value>Giá phòng khuyến mãi</value>
+  </data>
+  <data name="SpecialRequest" xml:space="preserve">
+    <value>Yêu cầu đặc biệt</value>
   </data>
   <data name="Start_Date" xml:space="preserve">
     <value>Bắt đầu</value>

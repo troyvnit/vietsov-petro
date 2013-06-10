@@ -6,21 +6,12 @@
 <div id="example" class="k-content">
     <div id="vertical">
         <div id="top-pane">
-            
-                        <div class="k-toolbar k-grid-toolbar">
-                            <div class="toolbar">
-                                <label class="category-label" for="category">Ngôn ngữ:</label>
-                                <input type="search" id="language" style="width: 150px"/>
-                                <label class="category-label" for="category">Loại:</label>
-                                <input type="search" id="category" style="width: 150px"/>
-                            </div>
-                        </div>
             <div id="horizontal" style="height: 100%; width: 100%;">
                 <div id="left-pane">
                     <div class="pane-content">
-                        <p style="width: 100%; text-align: center">PHÂN LOẠI BÀI VIẾT</p>
+                        <p style="width: 100%; text-align: center">MENU</p>
                         <div class="article-category-list">
-                            <a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span></a>
+                            @*<a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span></a>*@
                         </div>
 
                         <div class="article-category-list">
@@ -39,6 +30,14 @@
                             <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">
                             </textarea>*@
                         </div>
+                        <div class="k-toolbar k-grid-toolbar">
+                            <div class="toolbar" style="float: right">
+                                <label class="category-label" for="category">LỌC BÀI VIẾT THEO NGÔN NGỮ: </label>
+                                <input type="search" id="language" style="width: 150px"/>
+                                @*<label class="category-label" for="category">Loại:</label>
+                                <input type="search" id="category" style="width: 150px"/>*@
+                            </div>
+                        </div>
                         <div id="grid"></div>
                         <input type="hidden" id="articlecategoryids"/>
                     </div>
@@ -48,14 +47,11 @@
     </div>
     <script type="text/x-kendo-tmpl" id="template">
         <div class="article-category-view k-widget">
-            <div class="edit-buttons">
+            @*<div class="edit-buttons">
                 <a class="k-button k-button-icontext k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
                 <a class="k-button k-button-icontext k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
-            </div>
+            </div>*@
             <dl>
-                <dt>Tên hạng mục</dt>
-                <dd>#:ArticleCategoryName#</dd>
-                <dt>Loại hạng mục</dt>
                 <dd>#:ArticleCategoryType#</dd>
             </dl>
         </div>
@@ -63,27 +59,23 @@
 
     <script type="text/x-kendo-tmpl" id="editTemplate">
         <div class="article-category-view k-widget">
-            <div class="edit-buttons">
+            @*<div class="edit-buttons">
                 <a class="k-button k-button-icontext k-update-button" href="\\#"><span class="k-icon k-update"></span></a>
                 <a class="k-button k-button-icontext k-cancel-button" href="\\#"><span class="k-icon k-cancel"></span></a>
-            </div>
+            </div>*@
             <dl>
                 <input type="hidden" data-bind="value:ArticleCategoryID" name="ArticleCategoryID"/>
-                <dt>Tên hạng mục</dt>
-                <dd>
-                    <input type="text" class="k-textbox" data-bind="value:ArticleCategoryName" name="ArticleCategoryName" required="required" validationMessage="không được trống" />
-                    <span data-for="ArticleCategoryName" class="k-invalid-msg"></span>
-                </dd>
-                <dt>Loại hạng mục</dt>
+                <dt>Trang</dt>
                 <dd>
                     <select data-role="dropdownlist" data-bind="value:ArticleCategoryType" name="ArticleCategoryType" required="required" validationMessage="không được trống">  
-                       <option value="Introduction">Giới thiệu</option>  
-                       <option value="News">Tin tức</option>
-                       <option value="Activity">Hoạt động</option> 
-                       <option value="Destination">Điểm đến</option> 
-                       <option value="Partner">Đối tác</option> 
-                       <option value="Feedback">Phản hồi</option> 
-                       <option value="Contact">Liên hệ</option>
+                       <option value="Giới thiệu">Giới thiệu</option>  
+                       <option value="Tin tức">Tin tức</option>
+                       <option value="Hoạt động">Hoạt động</option> 
+                       <option value="Điểm đến">Điểm đến</option> 
+                       <option value="Đối tác">Đối tác</option> 
+                       <option value="Phản hồi">Phản hồi</option> 
+                       <option value="Tin tức phòng">Tin tức phòng</option>
+                       <option value="Tin tức nhà hàng">Tin tức nhà hàng</option>
                     </select>
                     <span data-for="ArticleCategoryType" class="k-invalid-msg"></span>
                 </dd>
@@ -178,6 +170,8 @@
 
             var listView = $("#listView").kendoListView({
                 dataSource: articleCategoryDataSource,
+                selectable: true,
+                change: onChangeListView,
                 template: kendo.template($("#template").html()),
                 editTemplate: kendo.template($("#editTemplate").html())
             }).data("kendoListView");
@@ -186,6 +180,26 @@
                 listView.add();
                 e.preventDefault();
             });
+            function onChangeListView() {
+                var data = articleCategoryDataSource.view(),
+                    value = data[this.select().index()].ArticleCategoryID;
+                if (value) {
+                    grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "ArticleCategoryIDs", operator: "contains", value: value }] });
+                    if(lDropDown.data("kendoDropDownList").value())
+                    {
+                        grid.data("kendoGrid").dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                        grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
+                    }
+                } else {
+                    if (lDropDown.data("kendoDropDownList").value()) {
+                        grid.data("kendoGrid").dataSource.filter({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                    }
+                    else {
+                        grid.data("kendoGrid").dataSource.filter({});
+                    }
+                }
+            
+            }
             //article grid
             var articleDataSource = new kendo.data.DataSource({
                 pageSize: 20,
@@ -241,7 +255,7 @@
                 //dataBound: articleDataBound,
                 navigatable: true,
                 pageable: true,
-                height: 740,
+                height: 720,
                 toolbar: ["create", "save", "cancel"],
                 columns: [
                     { field: "Title", title: "Tiêu đề" },
@@ -334,7 +348,8 @@
                 var ceditor = $("#ceditor").data("kendoEditor");
                 dataItem.Content = ceditor.value();
                 console.log(dataItem.Content);
-                dataItem.Description = $("#desc").val();
+                var desc = $("#desc").data("kendoEditor");
+                dataItem.Description = desc.value();
                 var articlecategories = $("#articlecategories").data("kendoMultiSelect");
                 $("#articlecategoryids").val(articlecategories.value());
                 dataItem.ArticleCategoryIDs = articlecategories.value();
@@ -346,7 +361,7 @@
                 $("#grid").data("kendoGrid").saveChanges();
             }
 
-            var cDropDown = $("#category").kendoDropDownList({
+            @*var cDropDown = $("#category").kendoDropDownList({
                 dataTextField: "ArticleCategoryType",
                 dataValueField: "ArticleCategoryID",
                 autoBind: false,
@@ -386,7 +401,7 @@
                         }
                     }
                 }
-            });
+            });*@
             var lDropDown = $("#language").kendoDropDownList({
                 dataTextField: "Language",
                 dataValueField: "LanguageCode",
@@ -401,23 +416,28 @@
                     var value = this.value();
                     if (value) {
                         grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
-                        listView.dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
-                        if ($("#category").data("kendoDropDownList").value())
+                        //listView.dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
+                        var lwdata = articleCategoryDataSource.view(),
+                        lwvalue = lwdata[listView.select().index()].ArticleCategoryID;
+                        if (lwvalue)
                         {
-                            grid.data("kendoGrid").dataSource._filter.filters.push({ field: "ArticleCategoryIDs", operator: "contains", value: $("#category").data("kendoDropDownList").value() });
+                            grid.data("kendoGrid").dataSource._filter.filters.push({ field: "ArticleCategoryIDs", operator: "contains", value: lwvalue });
                             grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
-                            listView.dataSource._filter.filters.push({ field: "ArticleCategoryType", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
-                            listView.dataSource.filter(listView.dataSource._filter.filters);
+                            //listView.dataSource._filter.filters.push({ field: "ArticleCategoryType", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
+                            //listView.dataSource.filter(listView.dataSource._filter.filters);
                         }
                     } else {
-                        if ($("#category").data("kendoDropDownList").value()) {
-                            grid.data("kendoGrid").dataSource.filter({ field: "ArticleCategoryIDs", operator: "contains", value: $("#category").data("kendoDropDownList").value() });
-                            listView.dataSource.filter({ field: "ArticleCategoryType", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
+                        var lwdata = articleCategoryDataSource.view(),
+                        lwvalue = lwdata[listView.select().index()].ArticleCategoryID;
+                        if (lwvalue)
+                        {
+                            grid.data("kendoGrid").dataSource.filter({ field: "ArticleCategoryIDs", operator: "contains", value: lwvalue });
+                            //listView.dataSource.filter({ field: "ArticleCategoryType", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
                         }
                         else {
                             grid.data("kendoGrid").dataSource.filter({});
-                            listView.dataSource.filter({});
-                            console.log(listView.dataSource);
+                            //listView.dataSource.filter({});
+                            //console.log(listView.dataSource);
                         }
                     }
                 }
@@ -508,6 +528,34 @@
                     "viewHtml"
                 ]
             });
+            $("#desc").kendoEditor({
+                encoded: false,
+                tools: [
+                    "bold",
+                    "italic",
+                    "underline",
+                    "strikethrough",
+                    "fontName",
+                    "fontSize",
+                    "foreColor",
+                    "backColor",
+                    "justifyLeft",
+                    "justifyCenter",
+                    "justifyRight",
+                    "justifyFull",
+                    "insertUnorderedList",
+                    "insertOrderedList",
+                    "indent",
+                    "outdent",
+                    "formatBlock",
+                    "createLink",
+                    "unlink",
+                    "insertImage",
+                    "subscript",
+                    "superscript",
+                    "viewHtml"
+                ]
+            });
             //function onSaveContentWindow() {
             //    var ceditor = $("#ceditor").data("kendoEditor");
             //    dataItem.Content = $('<div/>').text(ceditor.value()).html();
@@ -519,37 +567,6 @@
             //}
         wnd.center().open();
     }
-    //function openContentEditor(container, options) {
-    //    $("<textarea id='contenteditor' rows='10' cols='30' style='width:100%;height:400px' data-bind='value:" + options.field + "></textarea>").appendTo(container)
-    //    .kendoEditor({
-    //        encoded: false,
-    //        tools: [
-    //            "bold",
-    //            "italic",
-    //            "underline",
-    //            "strikethrough",
-    //            "fontName",
-    //            "fontSize",
-    //            "foreColor",
-    //            "backColor",
-    //            "justifyLeft",
-    //            "justifyCenter",
-    //            "justifyRight",
-    //            "justifyFull",
-    //            "insertUnorderedList",
-    //            "insertOrderedList",
-    //            "indent",
-    //            "outdent",
-    //            "formatBlock",
-    //            "createLink",
-    //            "unlink",
-    //            "insertImage",
-    //            "subscript",
-    //            "superscript",
-    //            "viewHtml"
-    //        ]
-    //    });
-    //}
     </script>
 
     <script>
@@ -609,6 +626,7 @@
             position: relative;
             width: 301px;
             margin: -1px -1px 0 0;
+            cursor: pointer;
         }
 
             .article-category-view dl
@@ -624,9 +642,9 @@
                 margin: 0;
                 padding: 3px;
                 height: 26px;
-                width: 160px;
                 line-height: 26px;
                 overflow: hidden;
+                font-size: 16px;
             }
 
             .article-category-view dt
@@ -642,7 +660,7 @@
         {
             border: 0;
             padding: 0;
-            min-height: 740px;
+            min-height: 720px;
         }
 
             .k-listview:after, .product-view dl:after

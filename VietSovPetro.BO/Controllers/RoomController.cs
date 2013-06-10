@@ -103,7 +103,7 @@ namespace VietSovPetro.BO.Controllers
             }
             return Json(rooms.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult CreateOrUpdateRooms(string models)
         {
             var rooms = JsonConvert.DeserializeObject<List<RoomViewModel>>(models);
@@ -123,13 +123,13 @@ namespace VietSovPetro.BO.Controllers
             }
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult DeleteRooms(string models)
         {
-            var rooms = JsonConvert.DeserializeObject<List<RoomViewModel>>(models);
+            var rooms = JsonConvert.DeserializeObject<List<DeleteRoom>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var command in rooms.Select(Mapper.Map<RoomViewModel, DeleteRoomCommand>))
+                foreach (var command in rooms.Select(Mapper.Map<DeleteRoom, DeleteRoomCommand>))
                 {
                     commandBus.Submit(command);
                 }
@@ -217,19 +217,27 @@ namespace VietSovPetro.BO.Controllers
             }
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Book()
+        public ActionResult BookMeeting()
         {
             if (Session["VietSovPetroAdmin"] != null)
             {
-                return View("~/Views/Admin/Room/Book.cshtml");
+                return View("~/Views/Admin/Room/BookMeeting.cshtml");
+            }
+            return RedirectToAction("Login", "Account");
+        }
+        public ActionResult BookRoom()
+        {
+            if (Session["VietSovPetroAdmin"] != null)
+            {
+                return View("~/Views/Admin/Room/BookRoom.cshtml");
             }
             return RedirectToAction("Login", "Account");
         }
         [HttpPost]
-        public JsonResult GetBooks()
+        public JsonResult GetBooks(Guid RoomTypeID)
         {
             var books = new List<BookViewModel>();
-            foreach (var book in bookRepository.GetAll())
+            foreach (var book in bookRepository.GetAll().Where(b => b.Room.RoomTypes.FirstOrDefault().RoomTypeID == RoomTypeID))
             {
                 var bookvm = Mapper.Map<Book, BookViewModel>(book);
                 bookvm.Room = Mapper.Map<Room, RoomViewModel>(book.Room);
@@ -274,5 +282,10 @@ namespace VietSovPetro.BO.Controllers
             }
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
+    }
+    public class DeleteRoom
+    {
+        public Guid RoomID;
+        public bool IsDeleted;
     }
 }

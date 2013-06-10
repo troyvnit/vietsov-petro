@@ -12,6 +12,8 @@ using VietSovPetro.BO.ViewModels;
 
 namespace VietSovPetro.BO.Controllers
 {
+    using System;
+
     [Authorize]
     public class ArticleController : Controller
     {
@@ -38,7 +40,7 @@ namespace VietSovPetro.BO.Controllers
         public JsonResult GetArticleCategories()
         {
             var articlecategories = articleCategoryRepository.GetAll().Where(a => a.IsDeleted != true).Select(Mapper.Map<ArticleCategory, ArticleCategoryViewModel>).ToList();
-            return Json(articlecategories.OrderBy(a => a.ArticleCategoryType), JsonRequestBehavior.AllowGet);
+            return Json(articlecategories.OrderBy(a => a.Description), JsonRequestBehavior.AllowGet);
         }    
         [HttpPost]
         public ActionResult CreateOrUpdateArticleCategories(string models)
@@ -106,13 +108,13 @@ namespace VietSovPetro.BO.Controllers
             }
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult DeleteArticles(string models)
         {
-            var articles = JsonConvert.DeserializeObject<List<ArticleViewModel>>(models);
+            var articles = JsonConvert.DeserializeObject<List<DeleteArticle>>(models);
             if (ModelState.IsValid)
             {
-                foreach (var command in articles.Select(Mapper.Map<ArticleViewModel, DeleteArticleCommand>))
+                foreach (var command in articles.Select(Mapper.Map<DeleteArticle, DeleteArticleCommand>))
                 {
                     commandBus.Submit(command);
                 }
@@ -120,5 +122,10 @@ namespace VietSovPetro.BO.Controllers
             }
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
+    }
+    public class DeleteArticle
+    {
+        public Guid ArticleID;
+        public bool IsDeleted;
     }
 }
