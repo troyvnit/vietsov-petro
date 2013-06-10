@@ -1895,11 +1895,12 @@
     <Content Include="Views\VietSovPetro\Partner.cshtml" />
     <Content Include="Views\VietSovPetro\Feedback.cshtml" />
     <Content Include="Views\VietSovPetro\Contact.cshtml" />
-    <Content Include="Views\Admin\Room\Book.cshtml">
+    <Content Include="Views\Admin\Room\BookMeeting.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\VietSovPetro\_RoomFilter.cshtml" />
     <None Include="Properties\PublishProfiles\VSP.pubxml" />
+    <Content Include="Views\Admin\Room\BookRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\SR.ru-RU.resx">

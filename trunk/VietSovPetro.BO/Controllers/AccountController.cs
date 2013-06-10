@@ -22,10 +22,17 @@ namespace VietSovPetro.BO.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Login(string status)
+        public ActionResult Login(string status, string ReturnUrl)
         {
             ViewBag.Status = status;
 
+            if (string.IsNullOrEmpty(ReturnUrl) && Request.UrlReferrer != null)
+                ReturnUrl = Server.UrlEncode(Request.UrlReferrer.PathAndQuery);
+
+            if (Url.IsLocalUrl(ReturnUrl) && !string.IsNullOrEmpty(ReturnUrl))
+            {
+                ViewBag.ReturnURL = ReturnUrl;
+            }
             if (Session["VietSovPetroAdmin"] != null)
             {
                 return RedirectToAction("Index", "Article");
@@ -37,6 +44,7 @@ namespace VietSovPetro.BO.Controllers
         [AllowAnonymous]
         public ActionResult Login(FormCollection f)
         {
+            string ReturnUrl = f["ReturnURL"];
             if (Session["VietSovPetroAdmin"] != null)
             {
                 return RedirectToAction("Index", "Article");
@@ -49,6 +57,16 @@ namespace VietSovPetro.BO.Controllers
             {
                 FormsAuthentication.SetAuthCookie(username, remember);
                 Session["VietSovPetroAdmin"] = username;
+                string decodedUrl = "";
+                if (!string.IsNullOrEmpty(ReturnUrl))
+                    decodedUrl = Server.UrlDecode(ReturnUrl);
+
+                //Login logic...
+
+                if (Url.IsLocalUrl(decodedUrl))
+                {
+                    return Redirect(decodedUrl);
+                }
                 return RedirectToAction("Index", "Article");
             }
             return RedirectToAction("Login", new { status = "Tài khoản hoặc mật khẩu không đúng!" });

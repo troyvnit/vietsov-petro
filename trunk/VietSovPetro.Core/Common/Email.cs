@@ -8,20 +8,20 @@ namespace VietSovPetro.Core.Common
     {
         private MailMessage m;
         private string fromAddress;
-        private string toAddress;
+        private string hostAddress;
         private string username;
         private string password;
 
-        public Email(string fromAddress, string toAddress, string username, string password, string subject, string body)
+        public Email(string fromAddress, string hostAddress, string toAddress, string username, string password, string subject, string body)
         {
             this.fromAddress = fromAddress;
-            this.toAddress = toAddress;
+            this.hostAddress = hostAddress;
             this.username = username;
             this.password = password;
 
             m = new MailMessage();
             this.from = fromAddress;
-            this.to = "troyuit@yahoo.com.vn";
+            this.to = toAddress;
             this.subject = subject;
             this.body = body;
             m.IsBodyHtml = true;
@@ -76,7 +76,7 @@ namespace VietSovPetro.Core.Common
             try
             {
                 SmtpClient sc = new SmtpClient();
-                sc.Host = toAddress;
+                sc.Host = hostAddress;
                 sc.DeliveryMethod = SmtpDeliveryMethod.Network;
                 sc.UseDefaultCredentials = false;
                 sc.Port = 587;

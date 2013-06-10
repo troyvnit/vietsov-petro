@@ -4,4 +4,5 @@
   <Module PersistentId="D14C20D7-F8FB-4795-829A-9421EB42E64B" ModuleId="VietSovPetro.Domain" />
   <Module PersistentId="F45FC798-CEE0-44B1-8FA3-DEE2B994E1B5" ModuleId="VietSovPetro.Data" />
   <Module PersistentId="49A40D5B-64A6-4579-8897-638585DAB966" ModuleId="VietSovPetro.CommandProcessor" />
+  <Module PersistentId="BA8DD8FC-9E92-46D0-835A-14DBAB29121E" ModuleId="VietSovPetro.Core" />
 </Modules>

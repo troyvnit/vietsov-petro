@@ -14,7 +14,7 @@
     </RootPath>
     <RootNamespace>VietSovPetro.Database</RootNamespace>
     <AssemblyName>VietSovPetro.Database</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -24,6 +24,7 @@
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
     <GenerateCreateScript>True</GenerateCreateScript>
+    <DefaultCollation>Latin1_General_CI_AS</DefaultCollation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -61,5 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Script.PostDeployment.sql" />
+    <None Include="Script1.sql" />
   </ItemGroup>
 </Project>

@@ -16,9 +16,8 @@ namespace VietSovPetro.BO.ViewModels
         public string RoomName { get; set; }
         [Required]
         public string RoomTypeName { get; set; }
-        public DateTime? BookedFrom { get; set; }
-        public DateTime? BookedTo { get; set; }
         public string Description { get; set; }
+        public string Detail { get; set; }
         public int Quantity { get; set; }
         public int OrderID { get; set; }
         public string LanguageCode { get; set; }

@@ -90,10 +90,12 @@ body { width:100%; background:white;}
 .Plus > ul > li { width:400px; height:auto; float:left; margin-top:11px;}
 .Plus > ul > li > a { color:white;}
 
-.bookTTT { width:630px; float:left; margin-top:10px; background:url(../images/icon-2.png) no-repeat bottom left; padding-bottom:20px;}
+.bookTTT { width:630px; float:left; margin-top:10px; padding-bottom:20px;}
 .bookTTT > ul { list-style:none;}
 .bookTTT > ul > li { width:200px; float:left; margin-right:10px; margin-top:10px;}
 .bookTTT > ul > li > p { color:white; width:200px;}
+.bookTTT > ul > li.view { width:103px; height:26px; float:left; background:url(../images/icon-3.png) no-repeat; margin-top:15px; margin-left: 227px;}
+.bookTTT > ul > li.view > a { color:#cf9b1f; font-weight:bold; text-align:center; display:block; line-height:24px;}
 
 .bookTTTT { width:800px; float:left; margin-top:10px;}
 .bookTTTT > ul { list-style:none;}
@@ -126,7 +128,7 @@ body { width:100%; background:white;}
 .B-Left-1 { width:266px; height:auto; float:left;}
 .cc-B-Left-1 { width:266px; height:411px; float:left; background:url(../images/cc-B-Left-1.jpg) no-repeat top left;}
 .cc-B-Left-1 > ul { list-style:none; width:236px; height:auto; padding:8px 15px;}
-.cc-B-Left-1 > ul > li { width:236px; float:left;}
+.cc-B-Left-1 > ul > li { width:236px; float:left;margin: 5px 0;}
 .cc-B-Left-1 > ul > li > p { width:106px; float:left; display:block; color:white; line-height:24px; font-size:12px; font-family:"arial"; font-weight:normal;}
 
 .tt-C-Left { width:266px; height:25px; float:left; background:url(../images/icon-4.png) no-repeat top left; margin-top:5px; padding-bottom:5px;}
@@ -149,6 +151,8 @@ body { width:100%; background:white;}
 .conHotel-1 > ul { list-style:none;}
 .conHotel-1 > ul > li { width:160px; float:left;}
 .conHotel-1 > ul > li > p { color:#8b5020; display:block; line-height:20px;}
+.conHotel-1 > ul > li.view { width:103px; height:26px; float:left; background:url(../images/icon-3.png) no-repeat; margin-top:15px;}
+.conHotel-1 > ul > li.view > a { color:#cf9b1f; font-weight:bold; text-align:center; display:block; line-height:24px;}
 
 .conHotel-2 { width:261px; height:137px; float:left; border:1px solid #80550f; border-left:none; padding:30px;}
 .conHotel-2 > ul { list-style:none;}

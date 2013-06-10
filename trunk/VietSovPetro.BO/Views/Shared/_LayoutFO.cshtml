@@ -69,6 +69,26 @@
                     dateFormat: "dd/mm/yy",
                     onClose: onEndDate
                 });
+                var onStartDateB = function (date) {
+                    var minEndDate = (date !== '') ? date : null; // null means no minimum, the default min
+                    $('#checkout').datepicker('option', 'minDate', minEndDate);
+                    this.focus();
+                };
+                var onEndDateB = function (date) {
+                    var maxStartDate = (date !== '') ? date : null; // 0 means today, the default max
+                    $('#checkin').datepicker('option', 'maxDate', maxStartDate);
+                    this.focus();
+                };
+                $('#checkin').datepicker({
+                    maxDate: null, // nothing past today\
+                    dateFormat: "dd/mm/yy",
+                    onClose: onStartDateB
+                });
+                $('#checkout').datepicker({
+                    maxDate: null, // nothing past today\
+                    dateFormat: "dd/mm/yy",
+                    onClose: onEndDateB
+                });
                 $('#duedate').datepicker({
                     onClose: function () {
                         this.focus();

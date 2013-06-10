@@ -38,7 +38,7 @@
         $("#search").click(function (e) {
             $.ajax({
                 type: 'POST',
-                url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomGroup=Meeting%20Room&IsDeal=false',
+                url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomTypeID=11111111-1111-1111-1111-111111111111',
                 success: function (data) {
                     $(".boxHotel").remove();
                     $("#boxs").append(data);
@@ -46,6 +46,11 @@
             });
         });
     });
+    function gotoBooking(id)
+    {
+        var url = "/vietsovpetro/booking?RoomID=" + id + "&checkin=" + $("#beginday").val() + "&checkout=" + $("#endday").val();
+        window.open(url, '_blank');
+    }
 </script>
 <div class="banner-G">
     <div class="B-Left-1">
@@ -59,18 +64,18 @@
                 <li>
                     <p>@Resources.SR.Name</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="Name" name="Name" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="Name" name="Name" style="border: 1px solid; width: 129px; float: left; height: 22px; font-size: 14px;">
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.Email</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="Email" name="Email" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="Email" name="Email" style="border: 1px solid; width: 129px; float: left; height: 22px; font-size: 14px;">
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.Room</p>
-                    <select onchange="GotoURL(this)" class="form" name="RoomID" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
+                    <select onchange="GotoURL(this)" class="form" name="RoomID" style="float: left; width: 130px; height: 22px; border: none; margin-top: 2px; font-size: 14px;">
                         @foreach (var room in rooms)
                         {
                             <option value="@room.RoomID">@room.RoomName</option>
@@ -80,25 +85,25 @@
                 <li>
                     <p>@Resources.SR.Start_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="ngay" name="Begin" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="ngay" name="Begin" style="border: 1px solid; width: 129px; float: left; height: 22px; font-size: 14px;">
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.End_Date</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="ngay1" name="End" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" id="ngay1" name="End" style="border: 1px solid; width: 129px; float: left; height: 22px; font-size: 14px;">
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.Duration</p>
-                    <select onchange="GotoURL(this)" class="form" name="Time" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
+                    <select onchange="GotoURL(this)" class="form" name="Time" style="float: left; width: 130px; height: 22px; border: none; margin-top: 2px; font-size: 14px;">
                         <option value="Nguyên ngày">@Resources.SR.Full_Day</option>
                         <option value="Nửa ngày">@Resources.SR.Half_Day</option>
                     </select>
                 </li>
                 <li>
                     <p>@Resources.SR.Number_Of_Guest</p>
-                    <select onchange="GotoURL(this)" class="form" name="GuestQuantity" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
+                    <select onchange="GotoURL(this)" class="form" name="GuestQuantity" style="float: left; width: 130px; height: 22px; border: none; margin-top: 2px; font-size: 14px;">
                         <option value="500 - 1000">500 - 1000</option>
                         <option value="400 - 500">400 - 500</option>
                         <option value="300 - 400">300 - 400</option>
@@ -110,54 +115,24 @@
                 <li>
                     <p>@Resources.SR.Kind_Of_Meeting</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="MeetingType" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
+                        <input type="text" name="MeetingType" style="border: none; width: 129px; float: left; height: 22px; font-size: 14px;">
                     </div>
                 </li>
                 <li>
                     <p>@Resources.SR.Price</p>
-                    <select onchange="GotoURL(this)" class="form" name="Price" style="float: left; width: 130px; height: 18px; border: none; margin-top: 2px; font-size: 11px;">
+                    <select onchange="GotoURL(this)" class="form" name="Price" style="float: left; width: 130px; height: 22px; border: none; margin-top: 2px; font-size: 14px;">
                         <option value="Giá trọn gói">@Resources.SR.Package_Price</option>
                         <option value="Giá sự cố">@Resources.SR.Breakdown_Price</option>
                     </select>
                 </li>
-                <li>
-                    <p>@Resources.SR.Message</p>
-                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="Message" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </div>
-                </li>
-            </ul>
-            <div class="tt-C-Left">
-                <p>@Resources.SR.Credit_Card_For_Booking</p>
-            </div>
-            <!--tt-C-Left-->
-            <ul>
-                <li>
-                    <p>@Resources.SR.Card_Holder_Name</p>
-                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="UserCardName" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </div>
-                </li>
-                <li>
-                    <p>@Resources.SR.Card_Number</p>
-                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="UserCardNumber" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </div>
-                </li>
-                <li>
-                    <p>@Resources.SR.Card_Type</p>
-                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" name="UserCardType" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                    </div>
-                </li>
-                <li>
-                    <p>@Resources.SR.Expiry_Date</p>
-                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
-                        <input type="text" id="duedate" name="DueDate" style="border: none; width: 129px; float: left; height: 16px; font-size: 11px;">
-                        <input type="button" id="submitBooking" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 6px;" ></input>
-                        <img id="loading" style="display: none; margin-top: 10px;" src="@Url.Content("~/images/sending.gif")" alt="" />
-                    </div>
-                </li>
+              <li>
+                  <p>@Resources.SR.Message</p>
+                  <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                      <input type="text" name="Message" style="border: none; width: 129px; float: left; height: 22px; font-size: 14px;">
+                      <input type="button" id="submitBooking" style="width: 64px; height: 22px; border: none; float: right; background: url(@Url.Content("~/images/icon-5.png")) no-repeat; margin-right: 1px; margin-top: 15px;cursor:pointer;" />
+                      <img id="loading" style="display: none; margin-top: 20px;" src="@Url.Content("~/images/sending.gif")" alt="" />
+                  </div>
+              </li>
             </ul>
         </div>
         <!--cc-B-Left-1-->    
@@ -176,7 +151,7 @@
 </div>
 <!--banner-G-->
 <div class="in-Hotel">
-    <div style="width: 100%;margin-bottom: 10px;height: 50px">
+    @*<div style="width: 100%;margin-bottom: 10px;height: 50px">
         <table class="search">
             <tr>
                 <td><p>@Resources.SR.Start_Date</p></td>
@@ -188,11 +163,11 @@
                     <input type="text" id="endday" name="End" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
                 </td>
                 <td>
-                    <img id="search" src="~/Images/search.png" style="max-width: 25px"/>
+                    <img id="search" src="~/Images/search.png" style="max-width: 25px;cursor:pointer;"/>
                 </td>
             </tr>
         </table>
-        </div>
+        </div>*@
     <div id="boxs">
     @foreach (var room in rooms)
     {   
@@ -216,31 +191,12 @@
                 </div>
                 <!--picHotel-->
                 <div class="conHotel-1">
-                    <ul>
-                        @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                        {
-                            <li>
-                                <p>@detail.RoomProperty.RoomPropertyName: @detail.RoomPropertyNumberValue @detail.RoomProperty.Unit</p>
-                            </li>
-                        }
-                    </ul>
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Description))
+                    @*<ul><li class="view"><a href="#" onclick="gotoBooking('@room.RoomID'); return false;">Booking</a></li></ul>*@
                 </div>
                 <!--conHotel-1-->
                 <div class="conHotel-2">
-                    <ul>
-                        @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                        {
-                            <li>
-                                <p>@price.RoomProperty.RoomPropertyName: @price.RoomPropertyNumberValue @price.RoomProperty.Unit</p>
-                            </li>
-                        }
-                        @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                        {
-                            <li>
-                                <p>@property.RoomProperty.RoomPropertyName: @property.RoomPropertyStringValue @property.RoomProperty.Unit</p>
-                            </li>
-                        }
-                    </ul>
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Detail))
                 </div>
                 <!--conHotel-2-->
             </div>

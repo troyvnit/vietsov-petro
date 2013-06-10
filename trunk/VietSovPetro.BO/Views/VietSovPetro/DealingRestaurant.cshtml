@@ -4,6 +4,7 @@
     var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.Restaurant;
     var language = ViewBag.Language;
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
+    List<VietSovPetro.BO.ViewModels.ArticleViewModel> articles = ViewBag.RestaurantArticles;
 }
 
 
@@ -33,14 +34,25 @@
     <div class="B-Right">
         <iframe src="@Url.Content("~/images/virtualTour/mainRestaurant/mainRestaurant.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
         <div class="fullscreen"><a href="#" style="display: block;">
-            <img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
+                                    <img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
     </div>
 </div>
+@foreach (var article in articles)
+{
+    <div class="in-booking">
+            <div class="in-booking-1">
+                <div class="in-booking-2">
+                    <div class="booking">
+                        <div class="tit-booking"><span>@article.Title</span></div><!--tit-booking-->
+                        <div class="tett">
+                            @Html.Raw(HttpUtility.HtmlDecode(article.Content))
+                        </div><!--tett-->
+                    </div><!--booking-->
+                </div><!--in-booking-2-->
+            </div><!--in-booking-1-->
+        </div><!--in-booking-->   
+}
 <div class="in-retau">
-    <div class="boxRetau">
-        <p style="display: block; color: #d99b75; line-height: 18px; text-align: justify;">Nhằm đáp ứng một cách hoàn hảo nhất cho nhu cầu ẩm thực, thư giãn của du khách, Khu nghỉ dưỡng Vietsovpetro có nhiều nhà hàng với hàng loạt các đầu bếp và chuyên gia pha chế giỏi, nhân viên phục vụ tận tình, chuyên nghiệp.</p>
-        <p style="display: block; color: #d99b75; line-height: 18px; text-align: justify; margin-top: 5px;">Không những thế, hầu hết các nhà hàng và quầy bar tại Khu nghỉ dưỡng Vietsovpetro đều có khung cảnh tuyệt đẹp nhìn ra biển và hồ bơi. Mỗi nhà hàng và quầy bar tại đây có một phong vị khác nhau nhằm đa dạng hóa sở thích và nhu cầu tìm hiểu ẩm thực cho du khách.</p>
-    </div>
     @foreach (var room in rooms)
     {
         <!--boxRetau-->
@@ -54,41 +66,27 @@
                     @{ var fileInfo = new FileInfo(room.ImageUrl == "" ? ".jpg" : room.ImageUrl);
                        if (fileInfo.Extension == ".html")
                        {
-                        <iframe src="@Url.Content("~/Images/" + room.ImageUrl)"  style="width:400px; height:199px; display:block; border:none;"></iframe>
+                        <iframe src="@Url.Content("~/Images/" + room.ImageUrl)"  style="width:584px; height:211px; display:block; border:none;"></iframe>
                        }
                        else
                        {
-                        <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
+                        <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:584px; height:211px; display:block; border:none;"/>
                        }
                     }
                 </div>
                 <!--picRetau-->
                 <div class="ttRetau">
                     <ul>
-                        <li class="tit"><a href="#">@room.RoomName</a></li>
-                        <li class="con">
-                            <ul>
-                                @foreach (var detail in properties.Where(r => r.RoomProperty.RoomPropertyType == "Detail" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                                {
-                                    <li>
-                                        <p>@detail.RoomProperty.RoomPropertyName: @detail.RoomPropertyNumberValue @detail.RoomProperty.Unit</p>
-                                    </li>
-                                }
-                                @foreach (var price in properties.Where(r => r.RoomProperty.RoomPropertyType == "Price" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                                {
-                                    <li>
-                                        <p>@price.RoomProperty.RoomPropertyName: @price.RoomPropertyNumberValue @price.RoomProperty.Unit</p>
-                                    </li>
-                                }
-                                @foreach (var property in properties.Where(r => r.RoomProperty.RoomPropertyType == "Property" && r.IsDeleted != true && r.IsPublished && r.RoomID == room.RoomID))
-                                {
-                                    <li>
-                                        <p>@property.RoomProperty.RoomPropertyName: @property.RoomPropertyStringValue @property.RoomProperty.Unit</p>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
-                        <li class="view"><a href="#">Xem Menu</a></li>
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Description))
+                    </ul>
+                      <ul>
+                          <li class="view" id="viewmenu_@room.RoomID"><a href="#" onclick="$('#menu_@room.RoomID').show(); $('#hidemenu_@room.RoomID').show(); $('#viewmenu_@room.RoomID').hide(); return false;">Xem Menu</a></li>
+                          <li class="view" id="hidemenu_@room.RoomID" style="display:none"><a href="#" onclick="$('#menu_@room.RoomID').hide(); $('#hidemenu_@room.RoomID').hide();  $('#viewmenu_@room.RoomID').show(); return false;">Ẩn Menu</a></li>
+                      </ul>
+                </div>
+                <div class="ttRetau" id="menu_@room.RoomID" style="display:none; width:880px; margin-left:0;">
+                    <ul>
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Detail))
                     </ul>
                 </div>
                 <!--ttRetau-->
@@ -99,4 +97,5 @@
     }
 </div>
 <!--in-retau-->
+
 
