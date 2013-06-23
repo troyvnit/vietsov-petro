@@ -105,11 +105,12 @@
         </div>
         <div style="float:left; width: 40%">  
             <label>Ảnh chính: </label>
-            <input type="text" style="display: none; width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename"/>
-            <img src="/Images/#= ImageUrl #" id="aimage" /><textarea id="urlimage" style="width: 70%; height: 94px; margin: 5px 3px; display: none"/>
+            <input type="text" style="width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename" value="#= ImageUrl.replace("Article/", "") #"/>
+            <img src="/Images/#= ImageUrl #" id="aimage" style="max-width:100%"/><textarea id="urlimage" style="width: 70%; height: 94px; margin: 5px 3px; display: none"/>
             <div style="width: 100%"><input type="file" id="uploadimage" name="files"/></div>
         </div>
         <p style="width: 100%; text-align: left; float: left">NỘI DUNG</p>
+        <div style="clear:both"></div>
         <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">#= Content #</textarea>
     </script>
 
@@ -345,8 +346,9 @@
             });
             
             function onSaveContentWindow() {
-                var ceditor = $("#ceditor").data("kendoEditor");
-                dataItem.Content = ceditor.value();
+                //var ceditor = $("#ceditor").data("kendoEditor");
+                //dataItem.Content = ceditor.value();
+                dataItem.Content = tinymce.activeEditor.getContent();
                 console.log(dataItem.Content);
                 var desc = $("#desc").data("kendoEditor");
                 dataItem.Description = desc.value();
@@ -355,7 +357,7 @@
                 dataItem.ArticleCategoryIDs = articlecategories.value();
                 console.log($("#mainfilename").val());
                 if ($("#mainfilename").val() != null && $("#mainfilename").val() != "") {
-                    dataItem.ImageUrl = dataItem.ImageUrl + "/" + $("#mainfilename").val();
+                    dataItem.ImageUrl = dataItem.ImageUrl.substring(0, 7) + "/" + $("#mainfilename").val();
                 }
                 wnd.refresh();
                 $("#grid").data("kendoGrid").saveChanges();
@@ -469,7 +471,7 @@
                 var obj = { text: file.name, value: file.name };
                 arrFiles.push(obj);
             }).join(",");
-            $("#mainfilename").kendoDropDownList({
+            $("#mainfilename").kendoComboBox({
                 dataTextField: "text",
                 dataValueField: "value",
                 dataSource: arrFiles,
@@ -488,7 +490,7 @@
             $("#urlimage").show();
             console.log(dataItem.ImageUrl);
         }
-            $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh cho bài viết");
+            $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh");
             $("#articlecategories").kendoMultiSelect({
                 placeholder: "Chọn hạng mục cho bài viết...",
                 dataTextField: "ArticleCategoryName",
@@ -500,34 +502,55 @@
                 dataItem.ArticleCategoryIDs = dataItem.ArticleCategoryIDs.split(',');
             }
             acmultiselect.value(dataItem.ArticleCategoryIDs);
-            $("#ceditor").kendoEditor({
-                encoded: false,
-                tools: [
-                    "bold",
-                    "italic",
-                    "underline",
-                    "strikethrough",
-                    "fontName",
-                    "fontSize",
-                    "foreColor",
-                    "backColor",
-                    "justifyLeft",
-                    "justifyCenter",
-                    "justifyRight",
-                    "justifyFull",
-                    "insertUnorderedList",
-                    "insertOrderedList",
-                    "indent",
-                    "outdent",
-                    "formatBlock",
-                    "createLink",
-                    "unlink",
-                    "insertImage",
-                    "subscript",
-                    "superscript",
-                    "viewHtml"
+            //$("#ceditor").kendoEditor({
+            //    encoded: false,
+            //    tools: [
+            //        "bold",
+            //        "italic",
+            //        "underline",
+            //        "strikethrough",
+            //        "fontName",
+            //        "fontSize",
+            //        "foreColor",
+            //        "backColor",
+            //        "justifyLeft",
+            //        "justifyCenter",
+            //        "justifyRight",
+            //        "justifyFull",
+            //        "insertUnorderedList",
+            //        "insertOrderedList",
+            //        "indent",
+            //        "outdent",
+            //        "formatBlock",
+            //        "createLink",
+            //        "unlink",
+            //        "insertImage",
+            //        "subscript",
+            //        "superscript",
+            //        "viewHtml"
+            //    ]
+            //});
+            //var ceditor = $("#ceditor").data("kendoEditor");
+            //ceditor.document.execCommand("2D-Position", true, true);
+            tinymce.init({
+                selector: "#ceditor",
+                theme: "modern",
+                relative_urls: false,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table contextmenu directionality moxiemanager",
+                    "emoticons template paste textcolor"
+                ],
+                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                toolbar2: "print preview media | forecolor backcolor emoticons",
+                image_advtab: true,
+                templates: [
+                    { title: 'Test template 1', content: 'Test 1' },
+                    { title: 'Test template 2', content: 'Test 2' }
                 ]
             });
+
             $("#desc").kendoEditor({
                 encoded: false,
                 tools: [
@@ -556,6 +579,8 @@
                     "viewHtml"
                 ]
             });
+            var desceditor = $("#desc").data("kendoEditor");
+            desceditor.document.execCommand("2D-Position", true, true);
             //function onSaveContentWindow() {
             //    var ceditor = $("#ceditor").data("kendoEditor");
             //    dataItem.Content = $('<div/>').text(ceditor.value()).html();

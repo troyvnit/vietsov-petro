@@ -30,12 +30,12 @@
                     }
                 });*@
                 var onStartDateQB = function (date) {
-                    var minEndDate = (date !== '') ? date : null; // null means no minimum, the default min
+                    var minEndDate = (date !== '') ? date + 1 : null; // null means no minimum, the default min
                     $('#ngay1').datepicker('option', 'minDate', minEndDate);
                     this.focus();
                 };
                 var onEndDateQB = function (date) {
-                    var maxStartDate = (date !== '') ? date : null; // 0 means today, the default max
+                    var maxStartDate = (date !== '') ? date - 1 : null; // 0 means today, the default max
                     $('#ngay').datepicker('option', 'maxDate', maxStartDate);
                     this.focus();
                 };
@@ -50,12 +50,12 @@
                     onClose: onEndDateQB
                 });
                 var onStartDate = function (date) {
-                    var minEndDate = (date !== '') ? date : null; // null means no minimum, the default min
+                    var minEndDate = (date !== '') ? date + 1 : null; // null means no minimum, the default min
                     $('#endday').datepicker('option', 'minDate', minEndDate);
                     this.focus();
                 };
                 var onEndDate = function (date) {
-                    var maxStartDate = (date !== '') ? date : null; // 0 means today, the default max
+                    var maxStartDate = (date !== '') ? date - 1 : null; // 0 means today, the default max
                     $('#beginday').datepicker('option', 'maxDate', maxStartDate);
                     this.focus();
                 };
@@ -70,12 +70,12 @@
                     onClose: onEndDate
                 });
                 var onStartDateB = function (date) {
-                    var minEndDate = (date !== '') ? date : null; // null means no minimum, the default min
+                    var minEndDate = (date !== '') ? date + 1 : null; // null means no minimum, the default min
                     $('#checkout').datepicker('option', 'minDate', minEndDate);
                     this.focus();
                 };
                 var onEndDateB = function (date) {
-                    var maxStartDate = (date !== '') ? date : null; // 0 means today, the default max
+                    var maxStartDate = (date !== '') ? date - 1 : null; // 0 means today, the default max
                     $('#checkin').datepicker('option', 'maxDate', maxStartDate);
                     this.focus();
                 };

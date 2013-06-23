@@ -8,19 +8,25 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
+        var begin = new LiveValidation("beginday");
+        begin.add(Validate.Presence, { failureMessage: "" });
+        var end = new LiveValidation("endday");
+        end.add(Validate.Presence, { failureMessage: "" });
         $("#search").click(function (e) {
-            $("#loadingsearch").show();
-            $("#search").hide();
-            $.ajax({
-                type: 'POST',
-                url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomTypeID=22222222-2222-2222-2222-222222222222',
-                success: function(data) {
-                    $(".boxHotel").remove();
-                    $("#boxs").append(data);
-                    $("#loadingsearch").hide();
-                    $("#search").show();
-                }
-            });
+            if (LiveValidation.massValidate([begin, end])) {
+                $("#loadingsearch").show();
+                $("#search").hide();
+                $.ajax({
+                    type: 'POST',
+                    url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomTypeID=22222222-2222-2222-2222-222222222222',
+                    success: function(data) {
+                        $(".boxHotel").remove();
+                        $("#boxs").append(data);
+                        $("#loadingsearch").hide();
+                        $("#search").show();
+                    }
+                });
+            }
         });
         
     });
@@ -35,18 +41,18 @@
         <div class="tt-B-Left">
             <p>@Resources.SR.Quick_Reservation</p>
         </div>           
-        <div class="cc-B-Left" style="height: 410px; background-size: 266px 410px;">>
+        <div class="cc-B-Left" style="height: 410px; background-size: 266px 410px;">
             <ul>
                 <li class="tex">
-                    <p>Xin vui lòng gọi điện thoại hoặc gửi email cho chúng tôi để đặt phòng. Chúng tôi hân hạnh được phục vụ bạn.</p>
+                    <p>@Resources.SR.Contact_Message_Banner</p>
                 </li>
                 <li class="hot">
                     <ul>
                         <li>
-                            <p>Điện thoại: (84.64) 3.782.256</p>
+                            <p>Điện thoại: @Resources.SR.ContactPhone</p>
                         </li>
                         <li>
-                            <p>Fax: (84.64) 3.782.255</p>
+                            <p>Fax: @Resources.SR.ContactFax</p>
                         </li>
                     </ul>
                 </li>
@@ -83,7 +89,7 @@
         @foreach (var room in rooms)
         {            
             <div class="boxHotel">
-                <div class="tt-boxHotel"><a href="#">@room.RoomName</a></div>
+                <div class="tt-boxHotel"><a href="#">@room.RoomName (Số lượng: @room.Quantity)</a></div>
                 <!--tt-boxHotel-->
                 <div class="cc-boxHotel">
                     <div class="picHotel">

@@ -334,23 +334,17 @@ namespace VietSovPetro.BO.Controllers
                 {
                     foreach (var roomType in roomTypes)
                     {
-                        if (roomType.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333333"))
+                        if (roomType.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333334"))
                         {
                             checkRoomTypes = true;
                         }
                     }
                 }
-                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes && a.IsDeal
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
             ViewBag.Properties = roomPropertyRoomRepository.GetAll();
-            var staticTitle = ConfigurationManager.AppSettings.Get("StaticPageDealingRestaurantIntroduction");
-            var staticArticle = articleRepository.GetAll().FirstOrDefault(a => a.Title == staticTitle);
-            if (staticArticle != null)
-            {
-                ViewBag.StaticArticle = staticArticle.Content;
-            }
             var articles = new List<ArticleViewModel>();
             foreach (var article in articleRepository.GetAll().Where(a =>
             {
@@ -379,7 +373,7 @@ namespace VietSovPetro.BO.Controllers
         }
         public ActionResult DealingRoom()
         {
-            ViewBag.DealingRoom = roomRepository.GetAll().Where(a =>
+            ViewBag.RoomAndPrices = roomRepository.GetAll().Where(a =>
             {
                 var roomTypes = a.RoomTypes;
                 var checkRoomTypes = false;
@@ -387,13 +381,13 @@ namespace VietSovPetro.BO.Controllers
                 {
                     foreach (var roomType in roomTypes)
                     {
-                        if (roomType.RoomTypeID == Guid.Parse("11111111-1111-1111-1111-111111111111") || roomType.RoomTypeID == Guid.Parse("22222222-2222-2222-2222-222222222222"))
+                        if (roomType.RoomTypeID == Guid.Parse("22222222-2222-2222-2222-222222222223"))
                         {
                             checkRoomTypes = true;
                         }
                     }
                 }
-                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes && a.IsDeal
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
@@ -472,9 +466,9 @@ namespace VietSovPetro.BO.Controllers
                 int bookTimes = 0;
                 foreach (var book in books)
                 {
-                    if ((book.End >= form.Begin && book.End <= form.End) || (book.Begin >= form.Begin && book.Begin <= form.End))
+                    if ((book.End.AddDays(-1) >= form.Begin && book.End.AddDays(-1) <= form.End) || (book.Begin >= form.Begin && book.Begin <= form.End))
                     {
-                        bookTimes += Int32.Parse(book.NoOfRoom);
+                        bookTimes += book.NoOfRoom != null ? Int32.Parse(book.NoOfRoom) : 1; 
                     }
                 }
                 if (bookTimes + Int32.Parse(form.NoOfRoom) > room.Quantity)
@@ -526,7 +520,7 @@ namespace VietSovPetro.BO.Controllers
             var username = ConfigurationManager.AppSettings.Get("SendMailSMTPUserName");
             var password = ConfigurationManager.AppSettings.Get("SendMailSMTPUserPassword");
             var content = room.RoomTypes.FirstOrDefault().RoomTypeID == Guid.Parse("11111111-1111-1111-1111-111111111111") ?
-                "THÔNG TIN KHÁCH HÀNG ĐẶT PHÒNG HỌP<br /><br />" +
+                "THÔNG TIN KHÁCH HÀNG ĐẶT PHÒNG<br /><br />" +
                           "Họ và tên: " + form.Name + "<br /><br />" +
                           "Email: " + form.Email + "<br /><br />" +
                           "Phòng: " + room.RoomName + "<br /><br />" +
@@ -539,20 +533,20 @@ namespace VietSovPetro.BO.Controllers
                           "Tin nhắn: " + form.Message + "<br /><br />" 
                           :
                           "THÔNG TIN KHÁCH HÀNG ĐẶT PHÒNG<br /><br />" +
-                          "Họ và tên: " + form.Name + "<br /><br />" +
+                          "Họ và tên: " + form.FirstName + " " + form.LastName + "<br /><br />" +
                           "Email: " + form.Email + "<br /><br />" +
                           "Phòng: " + room.RoomName + "<br /><br />" +
-                          "Ngày bắt đầu: " + form.Begin + "<br /><br />" +
-                          "Ngày kết thúc: " + form.End + "<br /><br />" +
+                          "Ngày bắt đầu: " + String.Format("{0:dd/MM/yyyy}", form.Begin) + "<br /><br />" +
+                          "Ngày kết thúc: " + String.Format("{0:dd/MM/yyyy}", form.End) + "<br /><br />" +
                           "Số lượng phòng: " + form.NoOfRoom + "<br /><br />" +
                           "Số lượng khách: " + form.NoOfGuest + "<br /><br />" +
                           "Trẻ em: " + form.Children + "<br /><br />" +
                           "Loại giường: " + form.KindOfBed + "<br /><br />" +
                           "Hãng hàng không: " + form.Airline + "<br /><br />" +
                           "Mã chuyến bay: " + form.FlightNo + "<br /><br />" +
-                          "Đón vào lúc: " + form.EstimatedArrivalTime + "<br /><br />" +
-                          "Hút thuốc: " + form.NonSmoking + "<br /><br />" +
-                          "Yêu cầu đặc việt: " + form.SpecialRequest + "<br /><br />" +
+                          (form.EstimatedArrivalTime != "0" ? "Đón vào lúc: " + form.EstimatedArrivalTime + "<br /><br />" : string.Empty) +
+                          "Không hút thuốc: " + form.NonSmoking + "<br /><br />" +
+                          "Yêu cầu đặc biệt: " + form.SpecialRequest + "<br /><br />" +
                           "Ngày sinh: " + form.DateOfBirth + "<br /><br />" +
                           "Điện thoại: " + form.Tel + "<br /><br />" +
                           "Fax: " + form.Fax + "<br /><br />";
@@ -564,33 +558,35 @@ namespace VietSovPetro.BO.Controllers
             var email = new Email(fromAddress, hostAddress, toAddress, username, password, "Thông tin đặt phòng VietSov Petro Resort", content);
             var success = email.send();
             var contenttocustomer = room.RoomTypes.FirstOrDefault().RoomTypeID == Guid.Parse("11111111-1111-1111-1111-111111111111") ?
-                "BẠN ĐÃ ĐẶT PHÒNG HỌP TẠI <a href='http://vipd.vn'>VIETSOV PETRO</a> VỚI THÔNG TIN<br /><br />" +
+                "<b>BẠN ĐÃ ĐẶT PHÒNG TẠI <a href='http://vipd.vn'>VIETSOV PETRO</a> VỚI THÔNG TIN</b><br /><br />" +
                           "Họ và tên: " + form.Name + "<br /><br />" +
                           "Email: " + form.Email + "<br /><br />" +
                           "Phòng: " + room.RoomName + "<br /><br />" +
-                          "Ngày bắt đầu: " + form.Begin + "<br /><br />" +
-                          "Ngày kết thúc: " + form.End + "<br /><br />" +
+                          "Thông tin phòng: " + room.Description + "<br /><br />" +
+                          "Ngày bắt đầu: " + String.Format("{0:dd/MM/yyyy}", form.Begin) + "<br /><br />" +
+                          "Ngày kết thúc: " + String.Format("{0:dd/MM/yyyy}", form.End) + "<br /><br />" +
                           "Thời gian: " + form.Time + "<br /><br />" +
                           "Số lượng khách: " + form.GuestQuantity + "<br /><br />" +
                           "Loại cuộc họp: " + form.MeetingType + "<br /><br />" +
                           "Giá: " + form.Price + "<br /><br />" +
                           "Tin nhắn: " + form.Message + "<br /><br />"
                           :
-                          "BẠN ĐÃ ĐẶT PHÒNG HỌP TẠI <a href='http://vipd.vn'>VIETSOV PETRO</a> VỚI THÔNG TIN<br /><br />" +
-                          "Họ và tên: " + form.Name + "<br /><br />" +
+                          "<b>BẠN ĐÃ ĐẶT PHÒNG TẠI <a href='http://vipd.vn'>VIETSOV PETRO</a> VỚI THÔNG TIN</b><br /><br />" +
+                          "Họ và tên: " + form.FirstName + " " + form.LastName + "<br /><br />" +
                           "Email: " + form.Email + "<br /><br />" +
                           "Phòng: " + room.RoomName + "<br /><br />" +
-                          "Ngày bắt đầu: " + form.Begin + "<br /><br />" +
-                          "Ngày kết thúc: " + form.End + "<br /><br />" +
+                          "Thông tin phòng: " + room.Description + "<br /><br />" +
+                          "Ngày bắt đầu: " + String.Format("{0:dd/MM/yyyy}", form.Begin) +"<br /><br />" +
+                          "Ngày kết thúc: " + String.Format("{0:dd/MM/yyyy}", form.End) + "<br /><br />" +
                           "Số lượng phòng: " + form.NoOfRoom + "<br /><br />" +
                           "Số lượng khách: " + form.NoOfGuest + "<br /><br />" +
                           "Trẻ em: " + form.Children + "<br /><br />" +
                           "Loại giường: " + form.KindOfBed + "<br /><br />" +
                           "Hãng hàng không: " + form.Airline + "<br /><br />" +
                           "Mã chuyến bay: " + form.FlightNo + "<br /><br />" +
-                          "Đón vào lúc: " + form.EstimatedArrivalTime + "<br /><br />" +
-                          "Hút thuốc: " + form.NonSmoking + "<br /><br />" +
-                          "Yêu cầu đặc việt: " + form.SpecialRequest + "<br /><br />" +
+                          (form.EstimatedArrivalTime != "0" ? "Đón vào lúc: " + form.EstimatedArrivalTime + "<br /><br />" : string.Empty) +
+                          "Không hút thuốc: " + form.NonSmoking + "<br /><br />" +
+                          "Yêu cầu đặc biệt: " + form.SpecialRequest + "<br /><br />" +
                           "Ngày sinh: " + form.DateOfBirth + "<br /><br />" +
                           "Điện thoại: " + form.Tel + "<br /><br />" +
                           "Fax: " + form.Fax + "<br /><br />";
@@ -656,17 +652,17 @@ namespace VietSovPetro.BO.Controllers
                         }
                     }
                 }
-                if (books != null && books.Count > 0)
+                if (books != null)
                 {
                     int bookTimes = 0;
                     foreach (var book in books)
                     {
-                        if ((book.End >= begindt && book.End <= enddt) || (book.Begin >= begindt && book.Begin <= enddt))
+                        if ((book.End.AddDays(-1) >= begindt && book.End.AddDays(-1) <= enddt) || (book.Begin >= begindt && book.Begin <= enddt))
                         {
-                            bookTimes += Int32.Parse(book.NoOfRoom);
+                            bookTimes += book.NoOfRoom != null ? Int32.Parse(book.NoOfRoom) : 1;
                         }
                     }
-                    if (bookTimes > a.Quantity)
+                    if (bookTimes >= a.Quantity)
                     {
                         checkDate = false;
                     }
