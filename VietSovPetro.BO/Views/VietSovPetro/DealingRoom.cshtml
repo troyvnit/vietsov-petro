@@ -1,30 +1,36 @@
 ﻿@{
     ViewBag.Title = "DealingRoom";
     Layout = "~/Views/Shared/_LayoutFO.cshtml";
-    var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.DealingRoom;
+    var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.RoomAndPrices;
     var language = ViewBag.Language;
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
     List<VietSovPetro.BO.ViewModels.ArticleViewModel> articles = ViewBag.RoomArticles;
 }
 <script type="text/javascript">
     $(document).ready(function () {
+        var begin = new LiveValidation("beginday");
+        begin.add(Validate.Presence, { failureMessage: "" });
+        var end = new LiveValidation("endday");
+        end.add(Validate.Presence, { failureMessage: "" });
         $("#search").click(function (e) {
-            $("#loadingsearch").show();
-            $("#search").hide();
-            $.ajax({
-                type: 'POST',
-                url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomTypeID=22222222-2222-2222-2222-222222222222' + '&IsDeal=true',
-                success: function(data) {
-                    $(".boxHotel").remove();
-                    $("#boxs").append(data);
-                    $("#loadingsearch").hide();
-                    $("#search").show();
-                }
-            });
+            if (LiveValidation.massValidate([begin, end])) {
+                $("#loadingsearch").show();
+                $("#search").hide();
+                $.ajax({
+                    type: 'POST',
+                    url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomTypeID=22222222-2222-2222-2222-222222222223',
+                    success: function (data) {
+                        $(".boxHotel").remove();
+                        $("#boxs").append(data);
+                        $("#loadingsearch").hide();
+                        $("#search").show();
+                    }
+                });
+            }
         });
+
     });
-    function gotoBooking(id)
-    {
+    function gotoBooking(id) {
         var url = "/vietsovpetro/booking?RoomID=" + id + "&checkin=" + $("#beginday").val() + "&checkout=" + $("#endday").val();
         window.open(url, '_blank');
     }
@@ -37,15 +43,15 @@
         <div class="cc-B-Left" style="height: 410px; background-size: 266px 410px;">
             <ul>
                 <li class="tex">
-                    <p>Xin vui lòng gọi điện thoại hoặc gửi email cho chúng tôi để đặt phòng. Chúng tôi hân hạnh được phục vụ bạn.</p>
+                    <p>@Resources.SR.Contact_Message_Banner</p>
                 </li>
                 <li class="hot">
                     <ul>
                         <li>
-                            <p>Điện thoại: (84.64) 3.782.256</p>
+                            <p>Điện thoại: @Resources.SR.ContactPhone</p>
                         </li>
                         <li>
-                            <p>Fax: (84.64) 3.782.255</p>
+                            <p>Fax: @Resources.SR.ContactFax</p>
                         </li>
                     </ul>
                 </li>
@@ -79,10 +85,10 @@
         </table>
         </div>
     <div id="boxs">
-    @foreach (var room in rooms)
+        @foreach (var room in rooms)
         {            
             <div class="boxHotel">
-                <div class="tt-boxHotel"><a href="#">@room.RoomName</a></div>
+                <div class="tt-boxHotel"><a href="#">@room.RoomName (Số lượng: @room.Quantity)</a></div>
                 <!--tt-boxHotel-->
                 <div class="cc-boxHotel">
                     <div class="picHotel">
@@ -111,11 +117,13 @@
                 <!--cc-boxHotel-->
             </div>
         }
-        </div>
-    
+    </div>
+    @*<p>GIÁ PHÒNG ĐÃ BAO GỒM:</p>
+    <span>-	10% VAT và 5% phí phục vụ. Buffet sáng, phòng tập thể thao đa năng, hồ bơi, thư viện.</span><span>-	Giờ nhận phòng: 14h00, trả phòng: 12h00.</span><span>-	Trả phòng trễ: Sau 12h00 phụ thu 10% giá phòng/giờ, sau 17h tính bằng 100% giá phòng.</span><span>-	Trẻ em từ 1-5 tuổi ở chung với ba mẹ miễn phí tiền phòng bao gồm ăn sáng (không yêu cầu thêm giường phụ).</span><span>-	Trẻ em từ 6-11 tuổi miễn phí tiền phòng (Không yêu cầu thêm giường phụ) tính 50% giá vé ăn sáng.</span><span>-	Trẻ em từ 12 tuổi trở lên tính như người lớn.</span><span style="padding-bottom: 10px;">-	Giá vé buffet sáng (khách mua thêm): 10.00 $/người lớn; 7.00 $/trẻ em.</span>*@
+   
 </div>
 <!--in-Hotel-->
-@foreach (var article in articles)
+ @foreach (var article in articles)
 {
     <div class="in-booking">
             <div class="in-booking-1">

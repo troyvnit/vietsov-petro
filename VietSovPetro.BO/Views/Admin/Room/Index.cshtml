@@ -109,13 +109,14 @@
         </div>       
         <div style="float:left; width: 40%">  
             <label>Ảnh chính: </label>
-            <input type="text" style="display: none; width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename"/>
-            <img src="/Images/#= ImageUrl #" id="aimage" /><textarea id="urlimage" style="width: 70%; height: 94px; margin: 5px 3px; display: none"/>
+            <input type="text" style="width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename" value="#= ImageUrl.replace("Room/", "").substring(37) #"/>
+            <img src="/Images/#= ImageUrl #" id="aimage" style="max-width:100%"/><textarea id="urlimage" style="width: 70%; height: 94px; margin: 5px 3px; display: none"/>
             <div style="width: 100%"><input type="file" id="uploadimage" name="files"/></div>
         </div>     
         @*<p style="width: 100%; text-align: left; float: left">QUẢN LÝ THUỘC TÍNH</p>*@
         @*<div id="detailgrid"></div>*@
         <p style="width: 100%; text-align: left; float: left">CHI TIẾT</p>
+        <div style="clear:both"></div>
         <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">#= Detail #</textarea>
     </script>
 
@@ -274,9 +275,9 @@
                     { field: "ImageUrl", title: "ImageUrl", hidden: true },
                     { field: "OrderID", title: "Thứ tự", width: "70px" },
                     { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
-                    { field: "IsDeal", title: "Khuyến mãi ?", width: "100px" },
+                    { field: "IsDeal", title: "Khuyến mãi ?", width: "100px", hidden: true },
                     { field: "IsPublished", title: "Online ?", width: "80px" },
-                    { field: "IsNew", title: "Mới ?", width: "50px" },
+                    { field: "IsNew", title: "Mới ?", width: "50px", hidden: true },
                    // { field: "Article", title: "Bài viết", editor: articleDropDownEditor, template: "#= Article.Title #" },
                     { command: [{ text: "Chi tiết", click: roomDetails }, "destroy"], title: " ", width: "160px" }],
                 editable: true,
@@ -335,8 +336,9 @@
             });
             
             function onSaveDetailsWindow() {
-                var ceditor = $("#ceditor").data("kendoEditor");
-                dataItem.Detail = ceditor.value();
+                //var ceditor = $("#ceditor").data("kendoEditor");
+                //dataItem.Detail = ceditor.value();
+                dataItem.Detail = tinymce.activeEditor.getContent();
                 var roomtypes = $("#roomtypes").data("kendoMultiSelect");
                 $("#roomtypes").val(roomtypes.value());
                 dataItem.RoomTypeIDs = roomtypes.value();
@@ -344,7 +346,9 @@
                 var desc = $("#desc").data("kendoEditor");
                 dataItem.Description = desc.value();
                 if ($("#mainfilename").val() != null && $("#mainfilename").val() != "") {
-                    dataItem.ImageUrl = dataItem.ImageUrl + "/" + $("#mainfilename").val();
+                    dataItem.ImageUrl = dataItem.ImageUrl.substring(0, 41) + "/" + $("#mainfilename").val();
+                } else {
+                    dataItem.ImageUrl = "";
                 }
                 wnd.refresh();
                 $("#grid").data("kendoGrid").saveChanges();
@@ -463,7 +467,7 @@
                         arrFiles.push(obj);
                     }
                 }).join(",");
-                $("#mainfilename").kendoDropDownList({
+                $("#mainfilename").kendoComboBox({
                     dataTextField: "text",
                     dataValueField: "value",
                     dataSource: arrFiles,
@@ -499,32 +503,52 @@
             });
             var rtmultiselect = $("#roomtypes").data("kendoMultiSelect");
             rtmultiselect.value(dataItem.RoomTypeIDs);
-            $("#ceditor").kendoEditor({
-                encoded: false,
-                tools: [
-                    "bold",
-                    "italic",
-                    "underline",
-                    "strikethrough",
-                    "fontName",
-                    "fontSize",
-                    "foreColor",
-                    "backColor",
-                    "justifyLeft",
-                    "justifyCenter",
-                    "justifyRight",
-                    "justifyFull",
-                    "insertUnorderedList",
-                    "insertOrderedList",
-                    "indent",
-                    "outdent",
-                    "formatBlock",
-                    "createLink",
-                    "unlink",
-                    "insertImage",
-                    "subscript",
-                    "superscript",
-                    "viewHtml"
+            //$("#ceditor").kendoEditor({
+            //    encoded: false,
+            //    tools: [
+            //        "bold",
+            //        "italic",
+            //        "underline",
+            //        "strikethrough",
+            //        "fontName",
+            //        "fontSize",
+            //        "foreColor",
+            //        "backColor",
+            //        "justifyLeft",
+            //        "justifyCenter",
+            //        "justifyRight",
+            //        "justifyFull",
+            //        "insertUnorderedList",
+            //        "insertOrderedList",
+            //        "indent",
+            //        "outdent",
+            //        "formatBlock",
+            //        "createLink",
+            //        "unlink",
+            //        "insertImage",
+            //        "subscript",
+            //        "superscript",
+            //        "viewHtml"
+            //    ]
+            //});
+            //var ceditor = $("#ceditor").data("kendoEditor");
+            //ceditor.document.execCommand("2D-Position", true, true);
+            tinymce.init({
+                selector: "#ceditor",
+                theme: "modern",
+                relative_urls: false,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table contextmenu directionality",
+                    "emoticons template paste textcolor"
+                ],
+                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                toolbar2: "print preview media | forecolor backcolor emoticons",
+                image_advtab: true,
+                templates: [
+                    { title: 'Test template 1', content: 'Test 1' },
+                    { title: 'Test template 2', content: 'Test 2' }
                 ]
             });
             $("#desc").kendoEditor({
@@ -555,6 +579,8 @@
                     "viewHtml"
                 ]
             });
+            var desceditor = $("#desc").data("kendoEditor");
+            desceditor.document.execCommand("2D-Position", true, true);
             //var rID = dataItem.RoomID;
             @*if (rID != null) {
                 //room property

@@ -359,7 +359,84 @@
     <Content Include="js\jquery.nivo.slider.pack.js" />
     <Content Include="js\jquery.unobtrusive-ajax.min.js" />
     <Content Include="js\livevalidation_standalone.js" />
+    <Content Include="js\plugins\advlist\plugin.min.js" />
+    <Content Include="js\plugins\anchor\plugin.min.js" />
+    <Content Include="js\plugins\autolink\plugin.min.js" />
+    <Content Include="js\plugins\autoresize\plugin.min.js" />
+    <Content Include="js\plugins\autosave\plugin.min.js" />
+    <Content Include="js\plugins\bbcode\plugin.min.js" />
+    <Content Include="js\plugins\charmap\plugin.min.js" />
+    <Content Include="js\plugins\code\plugin.min.js" />
+    <Content Include="js\plugins\compat3x\editable_selects.js" />
+    <Content Include="js\plugins\compat3x\form_utils.js" />
+    <Content Include="js\plugins\compat3x\mctabs.js" />
+    <Content Include="js\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="js\plugins\compat3x\validate.js" />
+    <Content Include="js\plugins\contextmenu\plugin.min.js" />
+    <Content Include="js\plugins\directionality\plugin.min.js" />
+    <Content Include="js\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="js\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="js\plugins\emoticons\plugin.min.js" />
+    <Content Include="js\plugins\example\plugin.min.js" />
+    <Content Include="js\plugins\example_dependency\plugin.min.js" />
+    <Content Include="js\plugins\fullpage\plugin.min.js" />
+    <Content Include="js\plugins\fullscreen\plugin.min.js" />
+    <Content Include="js\plugins\hr\plugin.min.js" />
+    <Content Include="js\plugins\image\plugin.min.js" />
+    <Content Include="js\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="js\plugins\layer\plugin.min.js" />
+    <Content Include="js\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="js\plugins\link\plugin.min.js" />
+    <Content Include="js\plugins\lists\plugin.min.js" />
+    <Content Include="js\plugins\media\moxieplayer.swf" />
+    <Content Include="js\plugins\media\plugin.min.js" />
+    <Content Include="js\plugins\moxiemanager\js\moxman.api.min.js" />
+    <Content Include="js\plugins\moxiemanager\plugin.min.js" />
+    <Content Include="js\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="js\plugins\noneditable\plugin.min.js" />
+    <Content Include="js\plugins\pagebreak\plugin.min.js" />
+    <Content Include="js\plugins\paste\plugin.min.js" />
+    <Content Include="js\plugins\preview\plugin.min.js" />
+    <Content Include="js\plugins\print\plugin.min.js" />
+    <Content Include="js\plugins\save\plugin.min.js" />
+    <Content Include="js\plugins\searchreplace\plugin.min.js" />
+    <Content Include="js\plugins\spellchecker\plugin.min.js" />
+    <Content Include="js\plugins\tabfocus\plugin.min.js" />
+    <Content Include="js\plugins\table\plugin.min.js" />
+    <Content Include="js\plugins\template\plugin.min.js" />
+    <Content Include="js\plugins\textcolor\plugin.min.js" />
+    <Content Include="js\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="js\plugins\visualblocks\plugin.min.js" />
+    <Content Include="js\plugins\visualchars\plugin.min.js" />
+    <Content Include="js\plugins\wordcount\plugin.min.js" />
+    <Content Include="js\skins\lightgray\content.min.css" />
+    <Content Include="js\skins\lightgray\fonts\icomoon-small.svg" />
+    <Content Include="js\skins\lightgray\fonts\icomoon.svg" />
+    <Content Include="js\skins\lightgray\img\anchor.gif" />
+    <Content Include="js\skins\lightgray\img\loader.gif" />
+    <Content Include="js\skins\lightgray\img\object.gif" />
+    <Content Include="js\skins\lightgray\img\trans.gif" />
+    <Content Include="js\skins\lightgray\img\wline.gif" />
+    <Content Include="js\skins\lightgray\skin.classic.min.css" />
+    <Content Include="js\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="js\skins\lightgray\skin.min.css" />
     <Content Include="js\taadv_floating.js" />
+    <Content Include="js\themes\modern\theme.min.js" />
+    <Content Include="js\tinymce.min.js" />
     <Content Include="KendoUI\content\dataviz\dashboards\area-chart.png" />
     <Content Include="KendoUI\content\dataviz\dashboards\car-dashboard.png" />
     <Content Include="KendoUI\content\dataviz\dashboards\car.gif" />
@@ -1867,6 +1944,7 @@
     <Content Include="App_GlobalResources\SR.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>SR.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -1885,6 +1963,13 @@
     <Content Include="Views\VietSovPetro\Booking.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\skins\lightgray\fonts\icomoon-small.eot" />
+    <Content Include="js\skins\lightgray\fonts\icomoon-small.ttf" />
+    <Content Include="js\skins\lightgray\fonts\icomoon-small.woff" />
+    <Content Include="js\skins\lightgray\fonts\icomoon.eot" />
+    <Content Include="js\skins\lightgray\fonts\icomoon.ttf" />
+    <Content Include="js\skins\lightgray\fonts\icomoon.woff" />
+    <Content Include="js\skins\lightgray\fonts\readme.md" />
     <None Include="Properties\PublishProfiles\VietSovPetro.pubxml" />
     <Content Include="Views\VietSovPetro\DealingRoom.cshtml" />
     <Content Include="Views\VietSovPetro\Activity.cshtml" />
