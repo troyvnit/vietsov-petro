@@ -18,7 +18,8 @@
             var frm = $('#contactform');
             if (LiveValidation.massValidate([name, email, title, message])) {
                 $("#loading").show();
-                $("#submitBooking").hide();
+                $("#submitBooking").hide(); 
+                $("#retypeBooking").hide();
                 $.ajax({
                     type: frm.attr('method'),
                     url: frm.attr('action'),
@@ -28,6 +29,7 @@
                         $('#contactform')[0].reset();
                         $("#loading").hide();
                         $("#submitBooking").show();
+                        $("#retypeBooking").show();
                     }
                 });
             }
@@ -110,9 +112,9 @@
                                                             <input name="op" value="contactform" type="hidden">
                                                             <input name="lang" value="vn" type="hidden">
                                                             <input name="slug" value="email-cho-chung-toi" type="hidden">
-                                                            <img id="loading" style="display: none; margin-top: 10px; width: 100%" src="@Url.Content("~/images/sending.gif")" alt="" />
+                                                            <img id="loading" style="display: none; margin-top: 16px; width: 10px" src="@Url.Content("~/images/sending.gif")" alt="" />
                                                             &nbsp;
-                                                            <input name="B2" class="submitbutton" value="  Nhập lại  " type="reset"></td>
+                                                            <input name="B2" id="retypeBooking" class="submitbutton" value="  Nhập lại  " type="reset"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

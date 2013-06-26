@@ -8,7 +8,7 @@ namespace VietSovPetro.Domain.Commands
     {
         public CreateOrUpdateArticleCommand(Guid ArticleID, string Title, string Description,
             string Content, string Author, string ImageUrl, bool IsPublished, bool IsNew, List<Guid> ArticleCategoryIDs,
-            int OrderID, string LanguageCode)
+            int OrderID, string LanguageCode, Guid? RoomID)
         {
             this.ArticleID = ArticleID;
             this.Author = Author;
@@ -21,6 +21,7 @@ namespace VietSovPetro.Domain.Commands
             this.ArticleCategoryIDs = ArticleCategoryIDs;
             this.OrderID = OrderID;
             this.LanguageCode = LanguageCode;
+            this.RoomID = RoomID;
         }
         public Guid ArticleID { get; set; }
         public string Title { get; set; }
@@ -33,5 +34,6 @@ namespace VietSovPetro.Domain.Commands
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
         public List<Guid> ArticleCategoryIDs { get; set; }
+        public Guid? RoomID { get; set; }
     }
 }

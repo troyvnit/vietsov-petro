@@ -1,66 +1,66 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:ViewModels/f:ArticleViewModel.cs" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:News.cshtml" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Feedback.cshtml" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Index.cshtml" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:RoomAndPrice.cshtml" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:_RoomFilter.cshtml" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Account/f:Login.cshtml" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="20945" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:css/f:style_mobile.css" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:css/f:style-banner.css" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:App_GlobalResources/f:SR.Designer.cs" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Mappers/f:DomainToViewModelMappingProfile.cs" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:css/f:style.css" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/f:Global.asax.cs" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Models/f:BookFormModels.cs" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:AccountController.cs" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:CommonController.cs" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Mappers/f:ViewModelToDomainMappingProfile.cs" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/f:Bootstrapper.cs" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:ViewModels/f:ArticleCategoryViewModel.cs" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:ViewModels/f:RoomViewModel.cs" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Content/f:Site.css" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:css/f:jquery-ui-1.8.16.custom.css" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:css/f:style-banner.css" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:KendoUI/d:content/d:integration/d:simulator/d:styles/f:styles.css" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:KendoUI/d:content/d:mobilethemebuilder/d:styles/f:builder.css" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Feedback.cshtml" caret="877" fromTop="24" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:News.cshtml" caret="869" fromTop="24" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Activity.cshtml" caret="877" fromTop="24" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Introduction.cshtml" caret="986" fromTop="25" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DealingRestaurant.cshtml" caret="1272" fromTop="16" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Restaurant.cshtml" caret="1114" fromTop="12" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Booking.cshtml" caret="2719" fromTop="16" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Partner.cshtml" caret="875" fromTop="24" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Destination.cshtml" caret="883" fromTop="24" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:RoomAndPrice.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DealingRoom.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:MeetingAndEvent.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:_RoomFilter.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Contact.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookMeeting.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookRoom.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Account/f:Login.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_LayoutFO.cshtml" caret="242" fromTop="6" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Content/f:Site.css" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:css/f:jquery-ui-1.8.16.custom.css" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:RoomController.cs" caret="3066" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="1717" fromTop="6" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="9464" fromTop="6" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:Index.cshtml" caret="16583" fromTop="21" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:RestaurantIndex.cshtml" caret="16650" fromTop="17" />
   </RecentFiles>
   <RecentEdits>
-    <File id="BA8DD8FC-9E92-46D0-835A-14DBAB29121E/d:Common/f:Email.cs" caret="745" fromTop="21" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:ViewModels/f:RoomViewModel.cs" caret="602" fromTop="16" />
-    <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Commands/f:CreateOrUpdateRoomCommand.cs" caret="1276" fromTop="15" />
-    <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Handlers/f:CreateOrUpdateRoomHandler.cs" caret="2567" fromTop="20" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:MeetingAndEvent.cshtml" caret="10031" fromTop="18" />
-    <File id="631E4095-073A-44DF-8B96-B20D3E013D4A/d:Entities/f:Room.cs" caret="48" fromTop="1" />
-    <File id="9F5922FD-15C2-4FBA-A476-E54E0E2392D4/f:Script1.sql" caret="5920" fromTop="20" />
-    <File id="F45FC798-CEE0-44B1-8FA3-DEE2B994E1B5/d:Infrastructure/f:RepositoryBase.cs" caret="2171" fromTop="22" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:ArticleController.cs" caret="5107" fromTop="17" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Mappers/f:ViewModelToDomainMappingProfile.cs" caret="957" fromTop="21" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:RoomController.cs" caret="12627" fromTop="7" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Contact.cshtml" caret="8940" fromTop="17" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:App_GlobalResources/f:SR.resx" caret="11012" fromTop="13" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="1072" fromTop="15" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/f:Web.config" caret="1568" fromTop="9" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="18650" fromTop="14" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:Index.cshtml" caret="13984" fromTop="24" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="15936" fromTop="3" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DealingRestaurant.cshtml" caret="32" fromTop="1" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:RoomAndPrice.cshtml" caret="4127" fromTop="22" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Partner.cshtml" caret="1698" fromTop="19" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DealingRoom.cshtml" caret="1695" fromTop="21" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Booking.cshtml" caret="2149" fromTop="2" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Introduction.cshtml" caret="567" fromTop="2" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Feedback.cshtml" caret="449" fromTop="6" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:News.cshtml" caret="441" fromTop="2" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Restaurant.cshtml" caret="529" fromTop="11" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Activity.cshtml" caret="309" fromTop="9" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Destination.cshtml" caret="825" fromTop="24" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_LayoutFO.cshtml" caret="242" fromTop="6" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:css/f:style_mobile.css" caret="7484" fromTop="16" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_LayoutFO.cshtml" caret="4143" fromTop="18" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookLimited.cshtml" caret="3229" fromTop="18" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookRoom.cshtml" caret="13718" fromTop="30" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookMeeting.cshtml" caret="1550" fromTop="14" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:MeetingAndEvent.cshtml" caret="3599" fromTop="6" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DetailPage.cshtml" caret="1787" fromTop="23" />
+    <File id="631E4095-073A-44DF-8B96-B20D3E013D4A/d:Entities/f:Room.cs" caret="1455" fromTop="25" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/f:Web.config" caret="1575" fromTop="15" />
+    <File id="631E4095-073A-44DF-8B96-B20D3E013D4A/d:Entities/f:Article.cs" caret="1421" fromTop="27" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:CategoryPage.cshtml" caret="2922" fromTop="23" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Restaurant.cshtml" caret="3460" fromTop="22" />
+    <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Handlers/f:CreateOrUpdateArticleHandler.cs" caret="3145" fromTop="22" />
+    <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Commands/f:CreateOrUpdateArticleCommand.cs" caret="1535" fromTop="30" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:ViewModels/f:ArticleViewModel.cs" caret="1198" fromTop="18" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:ArticleController.cs" caret="4507" fromTop="16" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Activity.cshtml" caret="1531" fromTop="5" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DealingRestaurant.cshtml" caret="186" fromTop="3" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Partner.cshtml" caret="3246" fromTop="14" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Destination.cshtml" caret="2990" fromTop="6" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="22960" fromTop="23" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Booking.cshtml" caret="6289" fromTop="12" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:RoomController.cs" caret="3066" fromTop="25" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="2182" fromTop="14" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="9464" fromTop="6" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:Index.cshtml" caret="16583" fromTop="21" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:RestaurantIndex.cshtml" caret="16650" fromTop="17" />
   </RecentEdits>
 </RecentFiles>

@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hoạt động.
+        ///   Looks up a localized string similar to Dịch vụ.
         /// </summary>
         internal static string Activity {
             get {
@@ -484,7 +484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nhà hàng &amp; Quán Bar.
+        ///   Looks up a localized string similar to Nhà hàng &amp; Bar.
         /// </summary>
         internal static string Restaurant_And_Bar {
             get {
@@ -543,6 +543,15 @@ namespace Resources {
         internal static string Start_Date {
             get {
                 return ResourceManager.GetString("Start_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Điện thoại.
+        /// </summary>
+        internal static string Tel {
+            get {
+                return ResourceManager.GetString("Tel", resourceCulture);
             }
         }
     }

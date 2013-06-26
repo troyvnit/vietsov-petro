@@ -273,4 +273,7 @@
   <data name="Contact_Message_Banner" xml:space="preserve">
     <value>Welcome to VietSov Petro. Please call or send email to book room.</value>
   </data>
+  <data name="Tel" xml:space="preserve">
+    <value>Tel</value>
+  </data>
 </root>

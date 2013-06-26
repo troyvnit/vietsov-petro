@@ -38,6 +38,7 @@ namespace VietSovPetro.Domain.Handlers
                         IsDeleted = false,
                         ActicleNumber = 1,
                         OrderID = command.OrderID,
+                        RoomID = command.RoomID,
                         LanguageCode = command.LanguageCode, 
                         ArticleCategories = new List<ArticleCategory>(), 
                         ArticleID = command.ArticleID == Guid.Empty ? Guid.NewGuid() : command.ArticleID
@@ -62,6 +63,7 @@ namespace VietSovPetro.Domain.Handlers
                 article.IsDeleted = false;
                 article.ActicleNumber = 1;
                 article.OrderID = command.OrderID;
+                article.RoomID = command.RoomID;
                 article.LanguageCode = command.LanguageCode;
                 var articlecategories = command.ArticleCategoryIDs.Select(acID => articleCategoryRepository.GetById(acID)).ToList();
                 var deleteCats = article.ArticleCategories.Where(ac => !command.ArticleCategoryIDs.Contains(ac.ArticleCategoryID)).ToList();

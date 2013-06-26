@@ -26,18 +26,46 @@
         <div class="fullscreen"><a href="#" style="display:block;"><img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
     </div>
 </div>
-@foreach (var article in articles)
-{
-    <div class="in-booking">
-            <div class="in-booking-1">
-                <div class="in-booking-2">
-                    <div class="booking">
-                        <div class="tit-booking"><span>@article.Title</span></div><!--tit-booking-->
-                        <div class="tett">
-                            @Html.Raw(HttpUtility.HtmlDecode(article.Content))
-                        </div><!--tett-->
-                    </div><!--booking-->
-                </div><!--in-booking-2-->
-            </div><!--in-booking-1-->
-        </div><!--in-booking-->   
-}
+<div class="in-retau">
+    @if(articles.Count > 0)
+    {
+        foreach (var article in articles)
+        {
+            <!--boxRetau-->
+            <div class="boxRetau">
+                <div class="tt-boxRetau">
+                    <p>@article.Title</p>
+                </div>
+                <!--tt-boxRetau-->
+                <div class="cc-boxRetau">
+                    <div class="picRetau">
+                        @{
+                            
+                            if (Path.GetExtension(article.ImageUrl) == ".html")
+                            {
+                                <iframe src="@article.ImageUrl"  style="width: 584px; height: 211px; display: block; border: none;"></iframe>
+                            }
+                            else
+                            {
+                                <img src="@article.ImageUrl" alt="" style="width: 584px; height: 211px; display: block; border: none;"/>
+                            }
+                        }
+                    </div>
+                    <!--picRetau-->
+                    <div class="ttRetau">
+                        <ul>
+                            @Html.Raw(HttpUtility.HtmlDecode(article.Description))
+                        </ul>
+                        <ul>
+                            <li class="view"><a href="@Url.Action("DetailPage", "VietSovPetro", new { articleID = article.ArticleID })" >Xem chi tiết</a></li>
+                        </ul>
+                    </div>
+                    <!--ttRetau-->
+                </div>
+                <!--cc-boxRetau-->
+            </div>
+            <!--boxRetau-->
+        }
+    }
+</div>
+<!--in-retau-->
