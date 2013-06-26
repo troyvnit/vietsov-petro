@@ -1,0 +1,861 @@
+﻿@{
+    ViewBag.Title = "RestaurantIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="example" class="k-content">
+    <div id="vertical">
+        <div id="top-pane">
+            <div id="horizontal" style="height: 100%; width: 100%;">
+                <div id="left-pane">
+                    <div class="pane-content">
+                        <p style="width: 100%; text-align: center">NHÓM</p>
+                        <div class="room-category-list">
+                            @*<a class="k-button k-button-icontext k-add-button" href="#"><span class="k-icon k-add"></span></a>*@
+                        </div>
+
+                        <div class="room-category-list">
+                            <div id="listView"></div>
+                            <div id="pager" class="k-pager-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="right-pane">
+                    <div class="pane-content">
+                        <p style="width: 100%; text-align: center">NHÓM NHÀ HÀNG & DỊCH VỤ</p>
+                        <div id="room-type">
+                        </div>
+                        
+            <div class="k-toolbar k-grid-toolbar">
+                            <div class="toolbar" style="float: right">
+                                <label class="category-label" for="category">LỌC PHÒNG THEO NGÔN NGỮ: </label>
+                                <input type="search" id="language" style="width: 150px"/>
+                                @*<label class="category-label" for="category">Loại:</label>
+                                <input type="search" id="category" style="width: 150px"/>*@
+                            </div>
+                        </div>
+                        <div id="grid"></div>
+                        <input type="hidden" id="roomtypeids" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-kendo-tmpl" id="template">
+        <div class="room-category-view k-widget">
+            @*<div class="edit-buttons">
+                <a class="k-button k-button-icontext k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
+                <a class="k-button k-button-icontext k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
+            </div>*@
+            <dl>
+                <dd>#:RoomGroup#</dd>
+                @*<dt>Mô tả</dt>
+                <dd>#:Description#</dd>*@
+            </dl>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-tmpl" id="editTemplate">
+        <div class="room-category-view k-widget">
+            @*<div class="edit-buttons">
+                <a class="k-button k-button-icontext k-update-button" href="\\#"><span class="k-icon k-update"></span></a>
+                <a class="k-button k-button-icontext k-cancel-button" href="\\#"><span class="k-icon k-cancel"></span></a>
+            </div>*@
+            <dl>
+                <input type="hidden" data-bind="value:RoomTypeID" name="RoomTypeID"/>
+                <dt>Menu</dt>
+                <dd>
+                    <select data-role="combobox" data-bind="value:RoomGroup" name="RoomGroup" required="required" validationMessage="không được trống">
+                       <option value="Phòng & Giá phòng">Phòng & Giá phòng</option>
+                       <option value="Phòng họp & Sự kiện">Phòng họp & Sự kiện</option>
+                       <option value="Nhà hàng">Nhà hàng</option>
+                    </select>
+                    <span data-for="RoomGroup" class="k-invalid-msg"></span>
+                </dd>
+                <dt>Ngôn ngữ</dt>
+                <dd>
+                    <select data-role="dropdownlist" data-bind="value:LanguageCode" name="LanguageCode" required="required" validationMessage="không được trống">  
+                       <option value="vi-VN">Tiếng Việt</option>
+                       <option value="en-US">Tiếng Anh</option>
+                       <option value="ru-RU">Tiếng Nga</option>
+                    </select>
+                    <span data-for="RoomGroup" class="k-invalid-msg"></span>
+                </dd>
+                <dt>Mô tả</dt>
+                <dd>
+                    <input type="text" class="k-textbox" data-bind="value:Description" name="Description"/>
+                </dd>
+                <dt>Online ?</dt>
+                <dd>
+                    <input type="checkbox" data-bind="checked:IsPublished" name="IsPublished"/>
+                </dd>
+                <dt>Mới ?</dt>
+                <dd>
+                    <input type="checkbox" data-bind="checked:IsNew" name="IsNew"/>
+                </dd>
+                <dt>Khuyến mãi</dt>
+                <dd>
+                    <input type="checkbox" data-bind="checked:IsDeal" name="IsDeal"/>
+                </dd>
+            </dl>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="wtemplate">  
+        <div style="width: 60%; text-align: left; float: left">    
+            <span class="roomtypespan"><label>Loại phòng:</label> <select id="roomtypes"></select></span>
+            <p>MÔ TẢ</p>
+            <textarea id="desc" style="width:98%;height:200px">#= Description # </textarea>    
+        </div>       
+        <div style="float:left; width: 40%">  
+            <label>Ảnh chính: </label>
+            <input type="text" style="width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename" value="#= ImageUrl.replace("Room/", "").substring(37) #"/>
+            <img src="#= ImageUrl #" id="aimage" style="max-width: 100%"/><textarea id="urlimage" style="width: 70%; height: 94px; margin: 5px 3px; display: none"/>
+            <div style="width: 100%"><input type="file" id="uploadimage" name="files"/></div>
+        </div>     
+        @*<p style="width: 100%; text-align: left; float: left">QUẢN LÝ THUỘC TÍNH</p>*@
+        @*<div id="detailgrid"></div>*@
+        <p style="width: 100%; text-align: left; float: left">CHI TIẾT</p>
+        <div style="clear:both"></div>
+        <textarea id="ceditor" rows="10" cols="30" style="width:100%;height:400px">#= Detail #</textarea>
+    </script>
+
+    <script>
+        var wnd, dataItem, roomCategoryDataSource;
+        $(document).ready(function () {
+            //room category list view
+            roomCategoryDataSource = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: '@Url.Action("GetRoomTypesRestaurant", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    update: {
+                        url: '@Url.Action("CreateOrUpdateRoomTypes", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    destroy: {
+                        url: '@Url.Action("DeleteRoomTypes", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    create: {
+                        url: '@Url.Action("CreateOrUpdateRoomTypes", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    parameterMap: function (options, operation) {
+                        if (operation !== "read" && options.models) {
+                            return { models: kendo.stringify(options.models), page: options.page, pageSize: 6 };
+                        }
+                    }
+                },
+                batch: true,
+                serverPaging: true,
+                pageSize: 6,
+                schema: {
+                    model: {
+                        id: "RoomTypeID",
+                        fields: {
+                            RoomTypeID: { editable: false, nullable: true },
+                            RoomGroup: { defaultValue: "Room And Price" },
+                            LanguageCode: { defaultValue: "vi-VN" },
+                            Description: { type: "string" },
+                            IsPublished: { type: "boolean" },
+                            IsNew: { type: "boolean" },
+                            IsDeal: { type: "boolean" }
+                        }
+                    }
+                }
+            });
+
+
+            $("#pager").kendoPager({
+                dataSource: roomCategoryDataSource
+            });
+
+            var listView = $("#listView").kendoListView({
+                dataSource: roomCategoryDataSource,
+                selectable: true,
+                change: onChangeListView,
+                template: kendo.template($("#template").html()),
+                editTemplate: kendo.template($("#editTemplate").html())
+            }).data("kendoListView");
+
+            $(".k-add-button").click(function (e) {
+                listView.add();
+                e.preventDefault();
+            });
+            function onChangeListView() {
+                var data = roomCategoryDataSource.view(),
+                    value = data[this.select().index()].RoomTypeID;
+                if (value) {
+                    grid.data("kendoGrid").dataSource.filter({ "logic": "or", "filters": [{ field: "RoomTypeIDs", operator: "contains", value: value }, { field: "RoomTypeIDs", operator: "eq", value: "" }] });
+                    if (lDropDown.data("kendoDropDownList").value()) {
+                        grid.data("kendoGrid").dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                        grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
+                    }
+                } else {
+                    if (lDropDown.data("kendoDropDownList").value()) {
+                        grid.data("kendoGrid").dataSource.filter({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                    }
+                    else {
+                        grid.data("kendoGrid").dataSource.filter({});
+                    }
+                }
+
+            }
+            //room grid
+            var roomDataSource = new kendo.data.DataSource({
+                pageSize: 20,
+                transport: {
+                    read: {
+                        url: '@Url.Action("GetRoomsRestaurant", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    update: {
+                        url: '@Url.Action("CreateOrUpdateRooms", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    destroy: {
+                        url: '@Url.Action("DeleteRooms", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    create: {
+                        url: '@Url.Action("CreateOrUpdateRooms", "Room")',
+                        type: "post",
+                        dataType: "json"
+                    },
+                    parameterMap: function (options, operation) {
+                        if (operation !== "read" && options.models) {
+                            return { models: kendo.stringify(options.models) };
+                        }
+                    }
+                },
+                batch: true,
+                schema: {
+                    model: {
+                        id: "RoomID",
+                        fields: {
+                            RoomID: { editable: false, defaultValue: "@Guid.NewGuid()" },
+                            RoomName: { validation: { required: true } },
+                            RoomTypeName: { validation: { required: true }, defaultValue: "Restaurant and Service" },
+                            Description: { type: "string" },
+                            Detail: { validation: { required: true } },
+                            Quantity: { type: "number" },
+                            IsPublished: { type: "boolean" },
+                            IsNew: { type: "boolean" },
+                            IsDeal: { type: "boolean" },
+                            ImageUrl: { type: "string" },
+                            OrderID: { type: "number" },
+                            LanguageCode: { defaultValue: "vi-VN", template: "#= LanguageCode #" },
+                            //Article: { defaultValue: { ArticleID: '@Guid.Empty', Title: "Chọn bài viết" } },
+                            RoomTypeIDs: { type: "string" }
+                        }
+                    }
+                }
+            });
+            var grid = $("#grid").kendoGrid({
+                dataSource: roomDataSource,
+                navigatable: true,
+                pageable: true,
+                height: 720,
+                toolbar: ["create", "save", "cancel"],
+                columns: [
+                    { field: "RoomName", title: "Tên nhà hàng hoặc dịch vụ" },
+                    { field: "RoomTypeName", title: "Loại", hidden: true },
+                    { field: "Description", title: "Mô tả", width: "100px", hidden: true },
+                    { field: "Detail", title: "Chi tiết", hidden: true },
+                    { field: "Quantity", title: "Số lượng", width: "80px", hidden: true },
+                    { field: "ImageUrl", title: "ImageUrl", hidden: true },
+                    { field: "OrderID", title: "Thứ tự", width: "70px" },
+                    { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
+                    { field: "IsDeal", title: "Khuyến mãi ?", width: "100px", hidden: true },
+                    { field: "IsPublished", title: "Online ?", width: "80px" },
+                    { field: "IsNew", title: "Mới ?", width: "50px", hidden: true },
+                   // { field: "Article", title: "Bài viết", editor: articleDropDownEditor, template: "#= Article.Title #" },
+                    { command: [{ text: "Chi tiết", click: roomDetails }, "destroy"], title: " ", width: "160px" }],
+                editable: true,
+                sortable: true,
+                filterable: true,
+                resizable: true,
+                saveChanges: function (e) {
+                    console.log(e.sender);
+                    for (var i = 0; i < e.sender._data.length; i++) {
+                        if (e.sender._data[i].RoomName == "") {
+                            alert("Chưa có tên phòng, vui lòng nhập tên phòng trước khi lưu!");
+                            e.preventDefault();
+                        }
+                        else {
+                            console.log(typeof e.sender._data[i].RoomTypeIDs);
+                            if (e.sender._data[i].RoomTypeIDs != null && e.sender._data[i].RoomTypeIDs.length != "" && typeof e.sender._data[i].RoomTypeIDs == "string") {
+                                try {
+                                    e.sender._data[i].RoomTypeIDs = e.sender._data[i].RoomTypeIDs.split(',');
+                                } catch (ex) {
+                                    var arr = [];
+                                    arr.push(e.sender._data[i].RoomTypeIDs);
+                                    e.sender._data[i].RoomTypeIDs = arr.toString();
+                                }
+                            }
+                            e.sender._data[i].dirty = true;
+                        }
+                    }
+                }
+            });
+            wnd = $("#room-type")
+                        .kendoWindow({
+                            title: "Chi tiết",
+                            actions: ["Tick", "Minimize", "Maximize", "Close"],
+                            modal: true,
+                            visible: false,
+                            resizable: false,
+                            width: 960
+                        }).data("kendoWindow");
+
+            detailsTemplate = kendo.template($("#wtemplate").html());
+
+            wnd.wrapper.find(".k-i-tick").click(function (e) {
+                onSaveDetailsWindow();
+                e.preventDefault();
+                wnd.close();
+            });
+            
+            wnd.wrapper.find(".k-i-close").click(function (e) {
+                e.preventDefault();
+                wnd.refresh();
+            });
+
+            //$(".k-grid-add").click(function (e) {
+            //    grid.data("kendoGrid").dataSource.filter({});
+            //    listView.dataSource.filter({});
+            //});
+            
+            function onSaveDetailsWindow() {
+                //var ceditor = $("#ceditor").data("kendoEditor");
+                //dataItem.Detail = ceditor.value();
+                dataItem.Detail = tinymce.activeEditor.getContent();
+                var roomtypes = $("#roomtypes").data("kendoMultiSelect");
+                $("#roomtypes").val(roomtypes.value());
+                dataItem.RoomTypeIDs = roomtypes.value();
+                console.log(dataItem.toJSON());
+                var desc = $("#desc").data("kendoEditor");
+                dataItem.Description = desc.value();
+                wnd.refresh();
+                $("#grid").data("kendoGrid").saveChanges();
+            }
+
+            @*var cDropDown = $("#category").kendoDropDownList({
+                dataTextField: "RoomGroup",
+                dataValueField: "RoomTypeID",
+                autoBind: false,
+                optionLabel: "Tất cả",
+                dataSource: {
+                    severFiltering: true,
+                    transport: {
+                        read: {
+                            url: '@Url.Action("GetRoomTypes", "Room")',
+                            type: "post",
+                            dataType: "json"
+                        }
+                    }
+                },
+                change: function () {
+                    var value = this.value();
+                    var text = this.text();
+                    console.log(lDropDown.data("kendoDropDownList").value());
+                    if (value) {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "RoomTypeIDs", operator: "contains", value: value }] });
+                        listView.dataSource.filter({ "logic": "and", "filters": [{ field: "RoomGroup", operator: "eq", value: text }] });
+                        if (lDropDown.data("kendoDropDownList").value()) {
+                            grid.data("kendoGrid").dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                            grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
+                            listView.dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                            listView.dataSource.filter(listView.dataSource._filter.filters);
+                        }
+                    } else {
+                        if (lDropDown.data("kendoDropDownList").value()) {
+                            grid.data("kendoGrid").dataSource.filter({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                            listView.dataSource.filter({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                        }
+                        else {
+                            grid.data("kendoGrid").dataSource.filter({});
+                            listView.dataSource.filter({});
+                        }
+                    }
+                }
+            });*@
+            var lDropDown = $("#language").kendoDropDownList({
+                dataTextField: "Language",
+                dataValueField: "LanguageCode",
+                autoBind: false,
+                optionLabel: "Tất cả",
+                dataSource: [
+                                { Language: "Tiếng Việt", LanguageCode: "vi-VN" },
+                                { Language: "Tiếng Anh", LanguageCode: "en-US" },
+                                { Language: "Tiếng Nga", LanguageCode: "ru-RU" }
+                ],
+                change: function () {
+                    var value = this.value();
+                    if (value) {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
+                        //listView.dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
+                        var lwdata = roomCategoryDataSource.view(),
+                        lwvalue = lwdata[listView.select().index()].RoomTypeID;
+                        if (lwvalue) {
+                            grid.data("kendoGrid").dataSource._filter.filters.push({ field: "RoomTypeIDs", operator: "contains", value: lwvalue });
+                            grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
+                            //listView.dataSource._filter.filters.push({ field: "RoomGroup", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
+                            //listView.dataSource.filter(listView.dataSource._filter.filters);
+                        }
+                    } else {
+                        var lwdata = roomCategoryDataSource.view(),
+                        lwvalue = lwdata[listView.select().index()].RoomTypeID;
+                        if (lwvalue) {
+                            grid.data("kendoGrid").dataSource.filter({ field: "RoomTypeIDs", operator: "contains", value: lwvalue });
+                            //listView.dataSource.filter({ field: "ArticleCategoryType", operator: "eq", value: $("#category").data("kendoDropDownList").text() });
+                        }
+                        else {
+                            grid.data("kendoGrid").dataSource.filter({});
+                            //listView.dataSource.filter({});
+                        }
+                    }
+                }
+            });
+            function dateTimeEditor(container, options) {
+                $('<input data-text-field="' + options.field + '" data-value-field="' + options.field + '" data-bind="value:' + options.field + '" data-format="' + options.format + '"/>')
+                        .appendTo(container)
+                        .kendoDateTimePicker({});
+            }
+            
+        });
+        function roomDetails(e) {
+            e.preventDefault();
+            dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+            if (dataItem.RoomName != "")
+            { wnd.center().open(); }
+            wnd.content(detailsTemplate(dataItem));
+            var arrFiles = [];
+            $("#uploadimage").kendoUpload({
+                multiple: true,
+                async: {
+                    saveUrl: "/Common/SaveImages?folder=Room/" + dataItem.RoomID
+                },
+                success: function (e) {
+                    $(".k-upload-files.k-reset").css("height", "100px");
+                    $(".k-upload-files.k-reset").css("overflow", "scroll");
+                },
+                select: onSelect
+            });
+            function onSelect(e) {
+                $.map(e.files, function (file) {
+                    var info = file.name;
+                    var obj = { text: file.name, value: "/Images/Room/" + dataItem.RoomID };
+                    console.log($.inArray(obj, arrFiles));
+                    if ($.inArray(obj, arrFiles) === -1) {
+                        arrFiles.push(obj);
+                    }
+                }).join(",");
+                $("#mainfilename").kendoComboBox({
+                    dataTextField: "text",
+                    dataValueField: "value",
+                    dataSource: arrFiles,
+                    index: 0,
+                    select: onChangeMainFile
+                });
+            }
+            function onChangeMainFile(e) {
+                var dItem = this.dataItem(e.item.index());
+                var url = dItem.value + "/" + dItem.text;
+                var ext = dItem.text.split('.').pop();
+                if (ext == "jpg" || ext == "jpeg" || ext == "gif" || "png") {
+                    $("#aimage").attr("src", url);
+                }
+                $("#urlimage").val($('#aimage').prop('src'));
+                $("#urlimage").show();
+                dataItem.ImageUrl = $('#aimage').prop('src');
+            }
+            $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh");
+            $("#roomtypes").kendoMultiSelect({
+                dataTextField: "RoomGroup",
+                dataValueField: "RoomTypeID",
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: '@Url.Action("GetRoomTypesRestaurant", "Room")',
+                            type: "post",
+                            dataType: "json"
+                        }
+                    }
+                }
+            });
+            var rtmultiselect = $("#roomtypes").data("kendoMultiSelect");
+            rtmultiselect.value(dataItem.RoomTypeIDs);
+            //$("#ceditor").kendoEditor({
+            //    encoded: false,
+            //    tools: [
+            //        "bold",
+            //        "italic",
+            //        "underline",
+            //        "strikethrough",
+            //        "fontName",
+            //        "fontSize",
+            //        "foreColor",
+            //        "backColor",
+            //        "justifyLeft",
+            //        "justifyCenter",
+            //        "justifyRight",
+            //        "justifyFull",
+            //        "insertUnorderedList",
+            //        "insertOrderedList",
+            //        "indent",
+            //        "outdent",
+            //        "formatBlock",
+            //        "createLink",
+            //        "unlink",
+            //        "insertImage",
+            //        "subscript",
+            //        "superscript",
+            //        "viewHtml"
+            //    ]
+            //});
+            //var ceditor = $("#ceditor").data("kendoEditor");
+            //ceditor.document.execCommand("2D-Position", true, true);
+            tinymce.init({
+                selector: "#ceditor",
+                theme: "modern",
+                relative_urls: false,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table contextmenu directionality",
+                    "emoticons template paste textcolor"
+                ],
+                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                toolbar2: "print preview media | forecolor backcolor emoticons",
+                image_advtab: true,
+                templates: [
+                    { title: 'Test template 1', content: 'Test 1' },
+                    { title: 'Test template 2', content: 'Test 2' }
+                ]
+            });
+            $("#desc").kendoEditor({
+                encoded: false,
+                tools: [
+                    "bold",
+                    "italic",
+                    "underline",
+                    "strikethrough",
+                    "fontName",
+                    "fontSize",
+                    "foreColor",
+                    "backColor",
+                    "justifyLeft",
+                    "justifyCenter",
+                    "justifyRight",
+                    "justifyFull",
+                    "insertUnorderedList",
+                    "insertOrderedList",
+                    "indent",
+                    "outdent",
+                    "formatBlock",
+                    "createLink",
+                    "unlink",
+                    "insertImage",
+                    "subscript",
+                    "superscript",
+                    "viewHtml"
+                ]
+            });
+            var desceditor = $("#desc").data("kendoEditor");
+            desceditor.document.execCommand("2D-Position", true, true);
+            //var rID = dataItem.RoomID;
+            @*if (rID != null) {
+                //room property
+                var roomPropertyDataSource = new kendo.data.DataSource({
+                    pageSize: 20,
+                    transport: {
+                        read: {
+                            url: '/Room/GetRoomProperties?rID=' + rID,
+                            type: "post",
+                            dataType: "json"
+                        },
+                        update: {
+                            url: '@Url.Action("CreateOrUpdateRoomProperties", "Room")',
+                            type: "post",
+                            dataType: "json"
+                        },
+                        destroy: {
+                            url: '@Url.Action("DeleteRoomProperties", "Room")',
+                            type: "post",
+                            dataType: "json"
+                        },
+                        create: {
+                            url: '@Url.Action("CreateOrUpdateRoomProperties", "Room")',
+                            type: "post",
+                            dataType: "json"
+                        },
+                        parameterMap: function (options, operation) {
+                            if (operation !== "read" && options.models) {
+                                return { models: kendo.stringify(options.models) };
+                            }
+                        }
+                    },
+                    batch: true,
+                    schema: {
+                        model: {
+                            id: "RoomPropertyID",
+                            fields: {
+                                RoomPropertyRoomID: { editable: false, nullable: true },
+                                RoomPropertyID: { editable: false, nullable: true },
+                                RoomPropertyName: { validation: { required: true } },
+                                RoomPropertyStringValue: { type: "string" },
+                                RoomPropertyNumberValue: { type: "decimal" },
+                                Unit: { type: "string" },
+                                OrderID: { type: "number" },
+                                LanguageCode: { defaultValue: "vi-VN", template: "#= LanguageCode #" },
+                                IsPublished: { type: "boolean" },
+                                IsNew: { type: "boolean" },
+                                RoomPropertyType: { defaultValue: "Property", template: "#= RoomPropertyType #" },
+                                RoomID: { defaultValue: rID }
+                            }
+                        }
+                    }
+                });
+                $("#detailgrid").kendoGrid({
+                    dataSource: roomPropertyDataSource,
+                    navigatable: true,
+                    pageable: true,
+                    height: 400,
+                    toolbar: ["create", "save", "cancel"],
+                    columns: [
+                        { field: "RoomPropertyName", title: "Tên thuộc tính" },
+                        { field: "RoomPropertyStringValue", title: "Giá trị chuỗi", width: "100px" },
+                        { field: "RoomPropertyNumberValue", title: "Giá trị số", width: "90px" },
+                        { field: "Unit", title: "Đơn vị", width: "60px" },
+                        { field: "OrderID", title: "Thứ tự", width: "70px" },
+                        { field: "IsPublished", title: "Online ?", width: "80px" },
+                        { field: "RoomPropertyType", title: "Loại thuộc tính", editor: roomPropertyTypeDropDownEditor, width: "100px" },
+                        { command: ["destroy"], title: " ", width: "70px" }],
+                    editable: true,      
+                    sortable: true,
+                    filterable: true,
+                    resizable: true
+                });
+            }*@
+            //function roomPropertyTypeDropDownEditor(container, options) {
+            //    $('<input required data-text-field="TypeName" data-value-field="RoomPropertyType" data-bind="value:' + options.field + '"/>')
+            //        .appendTo(container)
+            //        .kendoDropDownList({
+            //            autoBind: false,
+            //            dataSource:
+            //                [
+            //                    { TypeName: "Giá", RoomPropertyType: "Price" },
+            //                    { TypeName: "Chi tiết", RoomPropertyType: "Detail" },
+            //                    { TypeName: "Thuộc tính", RoomPropertyType: "Property" }
+            //                ]
+            //        });
+            //}
+        }
+        function languageDropDownEditor(container, options) {
+            $('<input required data-text-field="Language" data-value-field="LanguageCode" data-bind="value:' + options.field + '"/>')
+                .appendTo(container)
+                .kendoDropDownList({
+                    autoBind: false,
+                    dataSource:
+                        [
+                            { Language: "Tiếng Việt", LanguageCode: "vi-VN" },
+                            { Language: "Tiếng Anh", LanguageCode: "en-US" },
+                            { Language: "Tiếng Nga", LanguageCode: "ru-RU" }
+                        ]
+                });
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#vertical").kendoSplitter({
+                orientation: "vertical",
+                panes: [
+                    { collapsible: false }
+                ]
+            });
+
+            $("#horizontal").kendoSplitter({
+                panes: [
+                    { collapsible: true, size: "26%" },
+                    { collapsible: true, size: "74%" }
+                ]
+            });
+        });
+    </script>
+
+    <style scoped>
+        #vertical
+        {
+            height: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        #middle-pane
+        {
+            background-color: rgba(60, 70, 80, 0.10);
+        }
+
+        #bottom-pane
+        {
+            background-color: rgba(60, 70, 80, 0.15);
+        }
+
+        #left-pane, #center-pane, #right-pane
+        {
+            background-color: rgba(60, 70, 80, 0.05);
+        }
+
+        .pane-content
+        {
+            padding: 0 10px;
+        }
+
+        .room-category-list
+        {
+            width: 100%;
+        }
+
+        .room-category-view
+        {
+            float: left;
+            position: relative;
+            width: 301px;
+            margin: -1px -1px 0 0;
+            cursor: pointer;
+        }
+
+            .room-category-view dl
+            {
+                margin: 10px 0;
+                padding: 0;
+                min-width: 0;
+            }
+
+            .room-category-view dt, dd
+            {
+                float: left;
+                margin: 0;
+                padding: 3px;
+                height: 26px;
+                line-height: 26px;
+                overflow: hidden;
+                font-size: 16px;
+            }
+
+            .room-category-view dt
+            {
+                clear: left;
+                padding: 3px 5px 3px 0;
+                text-align: right;
+                opacity: 0.6;
+                width: 100px;
+            }
+
+        .k-listview
+        {
+            border: 0;
+            padding: 0;
+            min-height: 720px;
+        }
+
+            .k-listview:after, .product-view dl:after
+            {
+                content: ".";
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+
+        .edit-buttons
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 26px;
+            height: 146px;
+            padding: 2px 2px 0 3px;
+            background-color: rgba(0,0,0,0.1);
+        }
+
+            .edit-buttons .k-button
+            {
+                width: 26px;
+                margin-bottom: 1px;
+            }
+
+        .k-pager-wrap
+        {
+            border-top: 0;
+        }
+
+        span.k-invalid-msg
+        {
+            position: absolute;
+            margin-left: 6px;
+        }
+
+        .k-editor
+        {
+            width: 100% !important;
+        }
+
+        #room-type .k-upload
+        {
+            float: left;
+            width: 100%;
+            margin-right: 5px;
+        }
+
+        #room-type img
+        {
+            float: left;
+            max-width: 100px;
+            max-height: 100px;
+            margin: 5px 0;
+        }
+
+        #room-type .roomtypespan
+        {
+            float: left;
+            margin-right: 5px;
+            width: 100%;
+        }
+
+        #room-type .k-multiselect
+        {
+            float: left;
+            width: 98%;
+            margin: 5px 0;
+        }
+
+        #room-type label
+        {
+            float: left;
+            margin: 5px;
+        }
+
+        #room-type .k-upload-button
+        {
+            width: 100%;
+        }
+
+        #detailgrid
+        {
+            width: 100%;
+            float: left;
+        }
+    </style>
+</div>

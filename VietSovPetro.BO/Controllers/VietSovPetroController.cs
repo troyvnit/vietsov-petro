@@ -67,8 +67,47 @@ namespace VietSovPetro.BO.Controllers
             ViewBag.IntroductionArticles = articles;
             return View();
         }
+        public ActionResult DetailPage(Guid articleID)
+        {
+            var article = articleRepository.GetById(articleID);
+            var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+            ViewBag.Article = articlevm;
+            return View();
+        }
+        public ActionResult CategoryPage(Guid categoryID)
+        {
+            var articles = new List<ArticleViewModel>();
+            foreach (var article in articleRepository.GetAll().Where(a => a.IsDeleted != true && a.IsPublished && a.RoomID == categoryID && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower())
+                .OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn))
+            {
+                var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+                articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                articles.Add(articlevm);
+            }
+            ViewBag.Articles = articles;
+            return View();
+        }
         public ActionResult Activity()
         {
+            ViewBag.Restaurant = roomRepository.GetAll().Where(a =>
+            {
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                if (roomTypes != null)
+                {
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333335"))
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn).ToList();
+            ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
+            ViewBag.Properties = roomPropertyRoomRepository.GetAll();
             var articles = new List<ArticleViewModel>();
             foreach (var article in articleRepository.GetAll().Where(a =>
             {
@@ -78,13 +117,13 @@ namespace VietSovPetro.BO.Controllers
                 {
                     foreach (var articleCategory in articleCategories)
                     {
-                        if (articleCategory.ArticleCategoryID == Guid.Parse("22222222-2222-2222-2222-222222222222"))
+                        if (articleCategory.ArticleCategoryID == Guid.Parse("11111111-1111-1111-1111-111111111112"))
                         {
                             checkCategories = true;
                         }
                     }
                 }
-                return (a.IsDeleted != true && a.IsPublished && checkCategories
+                return (a.IsDeleted != true && a.IsPublished && checkCategories && a.RoomID == null
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn))
             {
@@ -92,7 +131,7 @@ namespace VietSovPetro.BO.Controllers
                 articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
                 articles.Add(articlevm);
             }
-            ViewBag.ActivityArticles = articles;
+            ViewBag.RestaurantArticles = articles;
             return View();
         }
         public ActionResult News()
@@ -123,8 +162,9 @@ namespace VietSovPetro.BO.Controllers
             ViewBag.NewsArticles = articles;
             return View();
         }
-        public ActionResult Destination()
+        public ActionResult Destination(int page = 1)
         {
+            var pageSize = Int32.Parse(ConfigurationManager.AppSettings.Get("DestinationPageSize"));
             var articles = new List<ArticleViewModel>();
             foreach (var article in articleRepository.GetAll().Where(a =>
             {
@@ -142,17 +182,20 @@ namespace VietSovPetro.BO.Controllers
                 }
                 return (a.IsDeleted != true && a.IsPublished && checkCategories
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
-            }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn))
+            }).Skip((page - 1) * pageSize).Take(pageSize).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn))
             {
                 var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
                 articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
                 articles.Add(articlevm);
             }
             ViewBag.DestinationArticles = articles;
+            ViewBag.Page = page;
+            ViewBag.Count = articles.Count;
             return View();
         }
-        public ActionResult Partner()
+        public ActionResult Partner(int page = 1)
         {
+            var pageSize = Int32.Parse(ConfigurationManager.AppSettings.Get("PartnerPageSize"));
             var articles = new List<ArticleViewModel>();
             foreach (var article in articleRepository.GetAll().Where(a =>
             {
@@ -170,13 +213,15 @@ namespace VietSovPetro.BO.Controllers
                 }
                 return (a.IsDeleted != true && a.IsPublished && checkCategories
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
-            }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn))
+            }).Skip((page - 1) * pageSize).Take(pageSize).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn))
             {
                 var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
                 articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
                 articles.Add(articlevm);
             }
             ViewBag.PartnerArticles = articles;
+            ViewBag.Page = page;
+            ViewBag.Count = articles.Count;
             return View();
         }
         public ActionResult Feedback()
@@ -313,7 +358,7 @@ namespace VietSovPetro.BO.Controllers
                         }
                     }
                 }
-                return (a.IsDeleted != true && a.IsPublished && checkCategories
+                return (a.IsDeleted != true && a.IsPublished && checkCategories && a.RoomID == null
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn))
             {
@@ -326,25 +371,6 @@ namespace VietSovPetro.BO.Controllers
         }
         public ActionResult DealingRestaurant()
         {
-            ViewBag.Restaurant = roomRepository.GetAll().Where(a =>
-            {
-                var roomTypes = a.RoomTypes;
-                var checkRoomTypes = false;
-                if (roomTypes != null)
-                {
-                    foreach (var roomType in roomTypes)
-                    {
-                        if (roomType.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333334"))
-                        {
-                            checkRoomTypes = true;
-                        }
-                    }
-                }
-                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes
-                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
-            }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn).ToList();
-            ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
-            ViewBag.Properties = roomPropertyRoomRepository.GetAll();
             var articles = new List<ArticleViewModel>();
             foreach (var article in articleRepository.GetAll().Where(a =>
             {
@@ -368,7 +394,7 @@ namespace VietSovPetro.BO.Controllers
                 articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
                 articles.Add(articlevm);
             }
-            ViewBag.RestaurantArticles = articles;
+            ViewBag.DealingRestaurantArticles = articles;
             return View();
         }
         public ActionResult DealingRoom()
@@ -422,8 +448,31 @@ namespace VietSovPetro.BO.Controllers
         {
             if (RoomID != null)
             {
-                var room = Mapper.Map<Room, RoomViewModel>(roomRepository.GetById((Guid)RoomID));
-                ViewBag.Room = room;
+                var room = roomRepository.GetById((Guid)RoomID);
+                var books = room.Books;
+                var roomvm = Mapper.Map<Room, RoomViewModel>(room);
+                ViewBag.Room = roomvm;
+                DateTime? begindt = null, enddt = null;
+                if (!String.IsNullOrEmpty(checkin))
+                {
+                    begindt = DateTime.ParseExact(checkin, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (!String.IsNullOrEmpty(checkout))
+                {
+                    enddt = DateTime.ParseExact(checkout, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (books != null)
+                {
+                    int bookTimes = 0;
+                    foreach (var book in books)
+                    {
+                        if ((book.End.AddDays(-1) >= begindt && book.End.AddDays(-1) <= enddt) || (book.Begin >= begindt && book.Begin <= enddt))
+                        {
+                            bookTimes += book.NoOfRoom != null ? Int32.Parse(book.NoOfRoom) : 1;
+                        }
+                    }
+                    ViewBag.BookAvailable = room.Quantity - bookTimes;
+                }
             }
             ViewBag.Checkin = checkin;
             ViewBag.Checkout = checkout;
@@ -523,6 +572,7 @@ namespace VietSovPetro.BO.Controllers
                 "THÔNG TIN KHÁCH HÀNG ĐẶT PHÒNG<br /><br />" +
                           "Họ và tên: " + form.Name + "<br /><br />" +
                           "Email: " + form.Email + "<br /><br />" +
+                          "Điện thoại: " + form.Tel + "<br /><br />" +
                           "Phòng: " + room.RoomName + "<br /><br />" +
                           "Ngày bắt đầu: " + form.Begin + "<br /><br />" +
                           "Ngày kết thúc: " + form.End + "<br /><br />" +
@@ -561,6 +611,7 @@ namespace VietSovPetro.BO.Controllers
                 "<b>BẠN ĐÃ ĐẶT PHÒNG TẠI <a href='http://vipd.vn'>VIETSOV PETRO</a> VỚI THÔNG TIN</b><br /><br />" +
                           "Họ và tên: " + form.Name + "<br /><br />" +
                           "Email: " + form.Email + "<br /><br />" +
+                          "Điện thoại: " + form.Tel + "<br /><br />" +
                           "Phòng: " + room.RoomName + "<br /><br />" +
                           "Thông tin phòng: " + room.Description + "<br /><br />" +
                           "Ngày bắt đầu: " + String.Format("{0:dd/MM/yyyy}", form.Begin) + "<br /><br />" +

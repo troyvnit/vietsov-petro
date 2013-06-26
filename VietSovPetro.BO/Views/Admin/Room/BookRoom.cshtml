@@ -1,6 +1,18 @@
 ﻿@{
     ViewBag.Title = "BookRoom";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var firstDateOfMonth = String.Format("{0:dd/MM/yyyy}", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1));
+    var lastDateOfMonth = String.Format("{0:dd/MM/yyyy}", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1));
+    var firstDateOfYear = String.Format("{0:dd/MM/yyyy}", new DateTime(DateTime.Now.Year, 1, 1));
+    var lastDateOfYear = String.Format("{0:dd/MM/yyyy}", new DateTime(DateTime.Now.Year, 12, 31));
+    var firstDateOfWeek = String.Format("{0:dd/MM/yyyy}", DateTime.Now.AddDays(DayOfWeek.Sunday - DateTime.Now.DayOfWeek + 1));
+    var lastDateOfWeek = String.Format("{0:dd/MM/yyyy}", DateTime.Now.AddDays(DayOfWeek.Saturday - DateTime.Now.DayOfWeek + 1));
+    var firstDateOfMonthP = String.Format("{0:dd/MM/yyyy}", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-1));
+    var lastDateOfMonthP = String.Format("{0:dd/MM/yyyy}", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddDays(-1));
+    var firstDateOfYearP = String.Format("{0:dd/MM/yyyy}", new DateTime(DateTime.Now.Year, 1, 1).AddYears(-1));
+    var lastDateOfYearP = String.Format("{0:dd/MM/yyyy}", new DateTime(DateTime.Now.Year, 12, 31).AddYears(-1));
+    var firstDateOfWeekP = String.Format("{0:dd/MM/yyyy}", DateTime.Now.AddDays(DayOfWeek.Sunday - DateTime.Now.DayOfWeek - 6));
+    var lastDateOfWeekP = String.Format("{0:dd/MM/yyyy}", DateTime.Now.AddDays(DayOfWeek.Saturday - DateTime.Now.DayOfWeek - 6));
 }
 
 
@@ -11,6 +23,14 @@
                 <div id="right-pane">
                     <div class="pane-content">
                         <p style="width: 100%; text-align: center">THÔNG TIN ĐẶT PHÒNG</p>
+                        <div class="k-toolbar k-grid-toolbar">
+                            <div class="toolbar" style="float: right">
+                                <label class="category-label" for="category">LỌC PHÒNG THEO: </label>
+                                <input type="search" id="timeSearch" style="width: 150px"/>
+                                @*<label class="category-label" for="category">Loại:</label>
+                                <input type="search" id="category" style="width: 150px"/>*@
+                            </div>
+                        </div>
                         <div id="grid"></div>
                     </div>
                 </div>
@@ -175,6 +195,37 @@
                             ]
                     });
             }
+            $("#timeSearch").kendoDropDownList({
+                dataTextField: "Text",
+                dataValueField: "Value",
+                autoBind: false,
+                optionLabel: "Tất cả",
+                dataSource: [
+                                { Text: "Tuần này", Value: "week" },
+                                { Text: "Tháng này", Value: "month" },
+                                { Text: "Năm này", Value: "year" },
+                                { Text: "Tuần trước", Value: "weekp" },
+                                { Text: "Tháng trước", Value: "monthp" },
+                                { Text: "Năm trước", Value: "yearp" }
+                ],
+                change: function () {
+                    var value = this.value();
+                    if (value == "week") {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "Begin", operator: "gte", value: kendo.parseDate("@firstDateOfWeek", "dd/MM/yyyy") }, { field: "Begin", operator: "lte", value: kendo.parseDate("@lastDateOfWeek", "dd/MM/yyyy") }] });
+                    } else if (value == "month") {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "Begin", operator: "gte", value: kendo.parseDate("@firstDateOfMonth", "dd/MM/yyyy") }, { field: "Begin", operator: "lte", value: kendo.parseDate("@lastDateOfMonth", "dd/MM/yyyy") }] });
+                    } else if (value == "year") {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "Begin", operator: "gte", value: kendo.parseDate("@firstDateOfYear", "dd/MM/yyyy") }, { field: "Begin", operator: "lte", value: kendo.parseDate("@lastDateOfYear", "dd/MM/yyyy") }] });
+                    }else if (value == "weekp") {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "Begin", operator: "gte", value: kendo.parseDate("@firstDateOfWeekP", "dd/MM/yyyy") }, { field: "Begin", operator: "lte", value: kendo.parseDate("@lastDateOfWeekP", "dd/MM/yyyy") }] });
+                    } else if (value == "monthp") {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "Begin", operator: "gte", value: kendo.parseDate("@firstDateOfMonthP", "dd/MM/yyyy") }, { field: "Begin", operator: "lte", value: kendo.parseDate("@lastDateOfMonthP", "dd/MM/yyyy") }] });
+                    } else if (value == "yearp") {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "Begin", operator: "gte", value: kendo.parseDate("@firstDateOfYearP", "dd/MM/yyyy") }, { field: "Begin", operator: "lte", value: kendo.parseDate("@lastDateOfYearP", "dd/MM/yyyy") }] });
+                    }
+                    else grid.data("kendoGrid").dataSource.filter({});
+                }
+            });
         });
     </script>
 

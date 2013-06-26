@@ -285,6 +285,7 @@
     <Content Include="css\jquery-ui-1.8.16.custom.css" />
     <Content Include="css\style-banner.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\style_mobile.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\a-1.png" />
@@ -1823,6 +1824,64 @@
     <Content Include="Images\virtualTour\president\entry\images\entry_o_4.jpg" />
     <Content Include="Images\virtualTour\president\entry\images\entry_o_5.jpg" />
     <Content Include="Images\virtualTour\president\entry\swfobject.js" />
+    <Content Include="Images\Mobile\a-1.png" />
+    <Content Include="Images\Mobile\a-2.png" />
+    <Content Include="Images\Mobile\a-3.png" />
+    <Content Include="Images\Mobile\a-4.png" />
+    <Content Include="Images\Mobile\a-5.png" />
+    <Content Include="Images\Mobile\a-6.png" />
+    <Content Include="Images\Mobile\B-Right-1.jpg" />
+    <Content Include="Images\Mobile\ban-ho-1.jpg" />
+    <Content Include="Images\Mobile\ban-ho-2.jpg" />
+    <Content Include="Images\Mobile\ban-ho-3.jpg" />
+    <Content Include="Images\Mobile\ban-ho-4.jpg" />
+    <Content Include="Images\Mobile\ban1-1.jpg" />
+    <Content Include="Images\Mobile\bg-tit-booking.png" />
+    <Content Include="Images\Mobile\body.jpg" />
+    <Content Include="Images\Mobile\calendar.jpg" />
+    <Content Include="Images\Mobile\calendar_1.jpg" />
+    <Content Include="Images\Mobile\cc-B-Left-1.jpg" />
+    <Content Include="Images\Mobile\cc-B-Left.jpg" />
+    <Content Include="Images\Mobile\en.jpg" />
+    <Content Include="Images\Mobile\footer.jpg" />
+    <Content Include="Images\Mobile\fullsceen.png" />
+    <Content Include="Images\Mobile\header.jpg" />
+    <Content Include="Images\Mobile\header_1.jpg" />
+    <Content Include="Images\Mobile\icon-1.png" />
+    <Content Include="Images\Mobile\icon-2.png" />
+    <Content Include="Images\Mobile\icon-3.png" />
+    <Content Include="Images\Mobile\icon-31.png" />
+    <Content Include="Images\Mobile\icon-4.png" />
+    <Content Include="Images\Mobile\icon-5.png" />
+    <Content Include="Images\Mobile\in-booking-1.jpg" />
+    <Content Include="Images\Mobile\in-booking-2.jpg" />
+    <Content Include="Images\Mobile\in-booking.jpg" />
+    <Content Include="Images\Mobile\logo.png" />
+    <Content Include="Images\Mobile\mainviewatday_small_o_0.jpg" />
+    <Content Include="Images\Mobile\mainviewatday_small_o_0.preview.jpg" />
+    <Content Include="Images\Mobile\mainviewatday_small_o_1.jpg" />
+    <Content Include="Images\Mobile\mainviewatday_small_o_2.jpg" />
+    <Content Include="Images\Mobile\mainviewatday_small_o_3.jpg" />
+    <Content Include="Images\Mobile\mainviewatday_small_o_4.jpg" />
+    <Content Include="Images\Mobile\mainviewatday_small_o_5.jpg" />
+    <Content Include="Images\Mobile\mainviewatnight_o_0.jpg" />
+    <Content Include="Images\Mobile\mainviewatnight_o_1.jpg" />
+    <Content Include="Images\Mobile\mainviewatnight_o_2.jpg" />
+    <Content Include="Images\Mobile\mainviewatnight_o_3.jpg" />
+    <Content Include="Images\Mobile\mainviewatnight_o_4.jpg" />
+    <Content Include="Images\Mobile\mainviewatnight_o_5.jpg" />
+    <Content Include="Images\Mobile\menu_mobile.jpg" />
+    <Content Include="Images\Mobile\nut-1.png" />
+    <Content Include="Images\Mobile\nut-2.png" />
+    <Content Include="Images\Mobile\retau-1.jpg" />
+    <Content Include="Images\Mobile\retau-2.jpg" />
+    <Content Include="Images\Mobile\retau-3.jpg" />
+    <Content Include="Images\Mobile\retau-4.jpg" />
+    <Content Include="Images\Mobile\retau-5.jpg" />
+    <Content Include="Images\Mobile\ru.jpg" />
+    <Content Include="Images\Mobile\tt-B-Left.jpg" />
+    <Content Include="Images\Mobile\tt-B-Left_1.jpg" />
+    <Content Include="Images\Mobile\vn.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1860,7 +1919,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1986,6 +2047,10 @@
     <Content Include="Views\VietSovPetro\_RoomFilter.cshtml" />
     <None Include="Properties\PublishProfiles\VSP.pubxml" />
     <Content Include="Views\Admin\Room\BookRoom.cshtml" />
+    <Content Include="Views\Admin\Room\BookLimited.cshtml" />
+    <Content Include="Views\VietSovPetro\DetailPage.cshtml" />
+    <Content Include="Views\VietSovPetro\CategoryPage.cshtml" />
+    <Content Include="Views\Admin\Room\RestaurantIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\SR.ru-RU.resx">

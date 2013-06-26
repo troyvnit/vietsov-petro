@@ -93,14 +93,14 @@
                 <!--tt-boxHotel-->
                 <div class="cc-boxHotel">
                     <div class="picHotel">
-                        @{ var fileInfo = new FileInfo(room.ImageUrl == "" ? ".jpg" : room.ImageUrl);
-                            if (fileInfo.Extension == ".html")
+                        @{ 
+                            if (Path.GetExtension(room.ImageUrl) == ".html")
                             {
-                                <iframe src="@Url.Content("~/Images/" + room.ImageUrl)" style="width:400px; height:199px; display:block; border:none;"></iframe>
+                                <iframe src="@room.ImageUrl" style="width:400px; height:199px; display:block; border:none;"></iframe>
                             }
                             else
                             {
-                                <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
+                                <img src="@room.ImageUrl" alt="" style="width:400px; height:199px; display:block; border:none;"/>
                             }
                         }
                     </div>

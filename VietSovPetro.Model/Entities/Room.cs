@@ -38,5 +38,6 @@ namespace VietSovPetro.Model.Entities
         public virtual ICollection<RoomType> RoomTypes { get; set; }
         public virtual ICollection<RoomPropertyRooms> RoomPropertyRooms { get; set; }
         public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

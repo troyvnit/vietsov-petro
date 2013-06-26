@@ -22,7 +22,7 @@
                 </div>
                 <div id="right-pane">
                     <div class="pane-content">
-                        <p style="width: 100%; text-align: center">QUẢN LÝ NHÀ HÀNG KHÁCH SẠN</p>
+                        <p style="width: 100%; text-align: center">QUẢN LÝ PHÒNG</p>
                         <div id="room-type">
                         </div>
                         
@@ -110,7 +110,7 @@
         <div style="float:left; width: 40%">  
             <label>Ảnh chính: </label>
             <input type="text" style="width: 300px; margin-left: 5px" name="mainfilename" id="mainfilename" value="#= ImageUrl.replace("Room/", "").substring(37) #"/>
-            <img src="/Images/#= ImageUrl #" id="aimage" style="max-width:100%"/><textarea id="urlimage" style="width: 70%; height: 94px; margin: 5px 3px; display: none"/>
+            <img src="#= ImageUrl #" id="aimage" style="max-width: 100%"/><textarea id="urlimage" style="width: 70%; height: 94px; margin: 5px 3px; display: none"/>
             <div style="width: 100%"><input type="file" id="uploadimage" name="files"/></div>
         </div>     
         @*<p style="width: 100%; text-align: left; float: left">QUẢN LÝ THUỘC TÍNH</p>*@
@@ -192,7 +192,7 @@
                 var data = roomCategoryDataSource.view(),
                     value = data[this.select().index()].RoomTypeID;
                 if (value) {
-                    grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "RoomTypeIDs", operator: "contains", value: value }] });
+                    grid.data("kendoGrid").dataSource.filter({ "logic": "or", "filters": [{ field: "RoomTypeIDs", operator: "contains", value: value }, { field: "RoomTypeIDs", operator: "eq", value: "" }] });
                     if (lDropDown.data("kendoDropDownList").value()) {
                         grid.data("kendoGrid").dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
                         grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
@@ -330,10 +330,10 @@
                 wnd.refresh();
             });
 
-            $(".k-grid-add").click(function (e) {
-                grid.data("kendoGrid").dataSource.filter({});
-                listView.dataSource.filter({});
-            });
+            //$(".k-grid-add").click(function (e) {
+            //    grid.data("kendoGrid").dataSource.filter({});
+            //    listView.dataSource.filter({});
+            //});
             
             function onSaveDetailsWindow() {
                 //var ceditor = $("#ceditor").data("kendoEditor");
@@ -345,11 +345,6 @@
                 console.log(dataItem.toJSON());
                 var desc = $("#desc").data("kendoEditor");
                 dataItem.Description = desc.value();
-                if ($("#mainfilename").val() != null && $("#mainfilename").val() != "") {
-                    dataItem.ImageUrl = dataItem.ImageUrl.substring(0, 41) + "/" + $("#mainfilename").val();
-                } else {
-                    dataItem.ImageUrl = "";
-                }
                 wnd.refresh();
                 $("#grid").data("kendoGrid").saveChanges();
             }
@@ -451,8 +446,6 @@
                     saveUrl: "/Common/SaveImages?folder=Room/" + dataItem.RoomID
                 },
                 success: function (e) {
-                    var ImageUrl = e.response.Folder;
-                    dataItem.ImageUrl = ImageUrl;
                     $(".k-upload-files.k-reset").css("height", "100px");
                     $(".k-upload-files.k-reset").css("overflow", "scroll");
                 },
@@ -461,7 +454,7 @@
             function onSelect(e) {
                 $.map(e.files, function (file) {
                     var info = file.name;
-                    var obj = { text: file.name, value: file.name };
+                    var obj = { text: file.name, value: "/Images/Room/" + dataItem.RoomID };
                     console.log($.inArray(obj, arrFiles));
                     if ($.inArray(obj, arrFiles) === -1) {
                         arrFiles.push(obj);
@@ -475,17 +468,16 @@
                     select: onChangeMainFile
                 });
             }
-            function onChangeMainFile(e) 
-            {
+            function onChangeMainFile(e) {
                 var dItem = this.dataItem(e.item.index());
-                var url = dataItem.ImageUrl + "/" + dItem.value;
-                var ext = dItem.value.split('.').pop();
+                var url = dItem.value + "/" + dItem.text;
+                var ext = dItem.text.split('.').pop();
                 if (ext == "jpg" || ext == "jpeg" || ext == "gif" || "png") {
-                    $("#aimage").attr("src", "/Images/" + url);
+                    $("#aimage").attr("src", url);
                 }
                 $("#urlimage").val($('#aimage').prop('src'));
                 $("#urlimage").show();
-                console.log(dataItem.ImageUrl);
+                dataItem.ImageUrl = $('#aimage').prop('src');
             }
             $("#uploadimage").closest(".k-upload").find("span").text("Chọn ảnh");
             $("#roomtypes").kendoMultiSelect({

@@ -63,37 +63,31 @@
             <!--tt-boxRetau-->
             <div class="cc-boxRetau">
                 <div class="picRetau">
-                    @{ var fileInfo = new FileInfo(room.ImageUrl == "" ? ".jpg" : room.ImageUrl);
-                       if (fileInfo.Extension == ".html")
+                    @{ 
+                       if (Path.GetExtension(room.ImageUrl) == ".html")
                        {
-                        <iframe src="@Url.Content("~/Images/" + room.ImageUrl)"  style="width:584px; height:211px; display:block; border:none;"></iframe>
+                        <iframe src="@room.ImageUrl"  style="width:584px; height:211px; display:block; border:none;"></iframe>
                        }
                        else
                        {
-                        <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:584px; height:211px; display:block; border:none;"/>
+                        <img src="@room.ImageUrl" alt="" style="width:584px; height:211px; display:block; border:none;"/>
                        }
                     }
                 </div>
                 <!--picRetau-->
-                <div class="ttRetau">
-                    <ul>
-                    @Html.Raw(HttpUtility.HtmlDecode(room.Description))
-                    </ul>
-                      <ul>
-                          <li class="view" id="viewmenu_@room.RoomID"><a href="#" onclick="$('#menu_@room.RoomID').show(); $('#hidemenu_@room.RoomID').show(); $('#viewmenu_@room.RoomID').hide(); return false;">Xem Menu</a></li>
-                          <li class="view" id="hidemenu_@room.RoomID" style="display:none"><a href="#" onclick="$('#menu_@room.RoomID').hide(); $('#hidemenu_@room.RoomID').hide();  $('#viewmenu_@room.RoomID').show(); return false;">Ẩn Menu</a></li>
-                      </ul>
+                    <div class="ttRetau">
+                        <ul>
+                            @Html.Raw(HttpUtility.HtmlDecode(room.Description))
+                        </ul>
+                        <ul>
+                            <li class="view"><a href="@Url.Action("CategoryPage", "VietSovPetro", new { categoryID = room.RoomID })" >Xem thông tin</a></li>
+                        </ul>
+                    </div>
+                    <!--ttRetau-->
                 </div>
-                <div class="ttRetau" id="menu_@room.RoomID" style="display:none; width:880px; margin-left:0;">
-                    <ul>
-                    @Html.Raw(HttpUtility.HtmlDecode(room.Detail))
-                    </ul>
-                </div>
-                <!--ttRetau-->
+                <!--cc-boxRetau-->
             </div>
-            <!--cc-boxRetau-->
-        </div>
-        <!--boxRetau-->
+            <!--boxRetau-->
     }
 </div>
 <!--in-retau-->

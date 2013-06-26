@@ -83,9 +83,10 @@ namespace VietSovPetro.BO.Controllers
             {
                 var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
                 articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                articlevm.Room = Mapper.Map<Room, RoomViewModel>(article.Room) ?? new RoomViewModel();
                 articles.Add(articlevm);
             }
-            return Json(articles.OrderBy(a => a.OrderID), JsonRequestBehavior.AllowGet);
+            return Json(articles, JsonRequestBehavior.AllowGet);
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult CreateOrUpdateArticles(string models)
@@ -95,7 +96,9 @@ namespace VietSovPetro.BO.Controllers
             {
                 foreach (var article in articles)
                 {
+                    article.RoomID = article.Room.RoomID;
                     var command = Mapper.Map<ArticleViewModel, CreateOrUpdateArticleCommand>(article);
+                    command.RoomID = command.RoomID == Guid.Empty ? null : command.RoomID;
                     commandBus.Validate(command);
                     if (!ModelState.IsValid)
                     {

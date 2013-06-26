@@ -13,6 +13,8 @@ using VietSovPetro.Model.Entities;
 
 namespace VietSovPetro.BO.Controllers
 {
+    using System.Globalization;
+
     [Authorize]
     public class RoomController : Controller
     {
@@ -45,10 +47,24 @@ namespace VietSovPetro.BO.Controllers
             }
             return RedirectToAction("Login", "Account");
         }
+        public ActionResult RestaurantIndex()
+        {
+            if (Session["VietSovPetroAdmin"] != null)
+            {
+                return View("~/Views/Admin/Room/RestaurantIndex.cshtml");
+            }
+            return RedirectToAction("Login", "Account");
+        }
         [HttpPost]
         public JsonResult GetRoomTypes()
         {
-            var roomtypes = roomTypeRepository.GetAll().Where(a => a.IsDeleted != true).Select(Mapper.Map<RoomType, RoomTypeViewModel>).ToList();
+            var roomtypes = roomTypeRepository.GetAll().Where(a => a.IsDeleted != true && a.RoomTypeID != Guid.Parse("33333333-3333-3333-3333-333333333333") && a.RoomTypeID != Guid.Parse("33333333-3333-3333-3333-333333333334") && a.RoomTypeID != Guid.Parse("33333333-3333-3333-3333-333333333335")).Select(Mapper.Map<RoomType, RoomTypeViewModel>).ToList();
+            return Json(roomtypes.OrderBy(r => r.RoomGroup), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetRoomTypesRestaurant()
+        {
+            var roomtypes = roomTypeRepository.GetAll().Where(a => a.IsDeleted != true && a.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333333") || a.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333335")).Select(Mapper.Map<RoomType, RoomTypeViewModel>).ToList();
             return Json(roomtypes.OrderBy(r => r.RoomGroup), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -95,12 +111,82 @@ namespace VietSovPetro.BO.Controllers
         public JsonResult GetRooms()
         {
             var rooms = new List<RoomViewModel>();
-            foreach (var room in roomRepository.GetAll().Where(a => a.IsDeleted != true))
+            foreach (var room in roomRepository.GetAll().Where(a =>
+            {
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                if (roomTypes != null)
+                {
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomTypeID != Guid.Parse("33333333-3333-3333-3333-333333333333") && roomType.RoomTypeID != Guid.Parse("33333333-3333-3333-3333-333333333334") && roomType.RoomTypeID != Guid.Parse("33333333-3333-3333-3333-333333333335"))
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes);
+            }))
             {
                 var roomvm = Mapper.Map<Room, RoomViewModel>(room);
                 roomvm.RoomTypeIDs = room.RoomTypes.Select(a => a.RoomTypeID).ToList();
                 rooms.Add(roomvm);
             }
+            return Json(rooms.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetRoomsRestaurant()
+        {
+            var rooms = new List<RoomViewModel>();
+            foreach (var room in roomRepository.GetAll().Where(a =>
+            {
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                if (roomTypes != null)
+                {
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333333") || roomType.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333335"))
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes);
+            }))
+            {
+                var roomvm = Mapper.Map<Room, RoomViewModel>(room);
+                roomvm.RoomTypeIDs = room.RoomTypes.Select(a => a.RoomTypeID).ToList();
+                rooms.Add(roomvm);
+            }
+            return Json(rooms.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetRoomsRestaurantForDropDown()
+        {
+            var rooms = new List<RoomViewModel>();
+            foreach (var room in roomRepository.GetAll().Where(a =>
+            {
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                if (roomTypes != null)
+                {
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333333") || roomType.RoomTypeID == Guid.Parse("33333333-3333-3333-3333-333333333335"))
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes);
+            }))
+            {
+                var roomvm = Mapper.Map<Room, RoomViewModel>(room);
+                roomvm.RoomTypeIDs = room.RoomTypes.Select(a => a.RoomTypeID).ToList();
+                rooms.Add(roomvm);
+            }
+            rooms.Add(new RoomViewModel{RoomID = Guid.Empty, RoomName = "null"});
             return Json(rooms.OrderBy(r => r.OrderID), JsonRequestBehavior.AllowGet);
         }
         [HttpPost, ValidateInput(false)]
@@ -233,11 +319,19 @@ namespace VietSovPetro.BO.Controllers
             }
             return RedirectToAction("Login", "Account");
         }
+        public ActionResult BookLimited()
+        {
+            if (Session["VietSovPetroAdmin"] != null)
+            {
+                return View("~/Views/Admin/Room/BookLimited.cshtml");
+            }
+            return RedirectToAction("Login", "Account");
+        }
         [HttpPost]
         public JsonResult GetBooks(Guid RoomTypeID)
         {
             var books = new List<BookViewModel>();
-            foreach (var book in bookRepository.GetAll().Where(b => b.Room.RoomTypes.FirstOrDefault().RoomTypeID == RoomTypeID))
+            foreach (var book in bookRepository.GetAll().Where(b => b.Room.RoomTypes.FirstOrDefault().RoomTypeID == RoomTypeID && b.Time != "Limited"))
             {
                 var bookvm = Mapper.Map<Book, BookViewModel>(book);
                 bookvm.Room = Mapper.Map<Room, RoomViewModel>(book.Room);
@@ -246,6 +340,19 @@ namespace VietSovPetro.BO.Controllers
             return Json(books, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
+        public JsonResult GetBooksLimited()
+        {
+            var books = new List<BookViewModel>();
+            foreach (var book in bookRepository.GetAll().Where(b => b.Time == "Limited"))
+            {
+                var bookvm = Mapper.Map<Book, BookViewModel>(book);
+                bookvm.Room = Mapper.Map<Room, RoomViewModel>(book.Room);
+                bookvm.NoOfRoom = (bookvm.Room.Quantity - Int32.Parse(bookvm.NoOfRoom)).ToString(CultureInfo.InvariantCulture);
+                books.Add(bookvm);
+            }
+            return Json(books, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost, ValidateInput(false)]
         public ActionResult CreateOrUpdateBooks(string models)
         {
             var books = JsonConvert.DeserializeObject<List<Book>>(models);
@@ -253,13 +360,33 @@ namespace VietSovPetro.BO.Controllers
             {
                 foreach (var book in books)
                 {
-                    if (bookRepository.GetById(book.BookID) == null)
+                    var room = roomRepository.GetById(book.Room.RoomID);
+                    var existBook = bookRepository.GetById(book.BookID);
+                    if (existBook == null)
                     {
-                        bookRepository.Add(book);
+                        room.Books.Add(new Book
+                            {
+                                BookID = book.BookID,
+                                Begin = book.Begin,
+                                End = book.Begin.AddDays(1),
+                                NoOfRoom = (book.Room.Quantity - Int32.Parse(book.NoOfRoom)).ToString(CultureInfo.InvariantCulture),
+                                Time = "Limited"
+                            });
+                        roomRepository.Update(room);
                     }
                     else
                     {
-                        bookRepository.Update(book);
+                        bookRepository.Delete(existBook);
+                        unitOfWork.Commit();
+                        room.Books.Add(new Book
+                        {
+                            BookID = book.BookID,
+                            Begin = book.Begin,
+                            End = book.Begin.AddDays(1),
+                            NoOfRoom = (book.Room.Quantity - Int32.Parse(book.NoOfRoom)).ToString(CultureInfo.InvariantCulture),
+                            Time = "Limited"
+                        });
+                        roomRepository.Update(room);
                     }
                 }
                 unitOfWork.Commit();
@@ -267,7 +394,7 @@ namespace VietSovPetro.BO.Controllers
             }
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult DeleteBooks(string models)
         {
             var books = JsonConvert.DeserializeObject<List<Book>>(models);
@@ -275,7 +402,8 @@ namespace VietSovPetro.BO.Controllers
             {
                 foreach (var book in books)
                 {
-                    bookRepository.Delete(book);
+                    var existBook = bookRepository.GetById(book.BookID);
+                    bookRepository.Delete(existBook);
                 }
                 unitOfWork.Commit();
                 return Json(books, JsonRequestBehavior.AllowGet);

@@ -82,14 +82,14 @@
             <div class="cc-boxHotel">
                 <div class="picHotel">
                     <a href="#">
-                        @{ var fileInfo = new FileInfo(room.ImageUrl == "" ? ".jpg" : room.ImageUrl);
-                           if (fileInfo.Extension == ".html")
+                        @{ 
+                           if (Path.GetExtension(room.ImageUrl) == ".html")
                            {
-                            <iframe src="@Url.Content("~/Images/" + room.ImageUrl)"  style="width:400px; height:199px; display:block; border:none;"></iframe>
+                            <iframe src="@room.ImageUrl"  style="width:400px; height:199px; display:block; border:none;"></iframe>
                            }
                            else
                            {
-                            <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
+                            <img src="@room.ImageUrl" alt="" style="width:400px; height:199px; display:block; border:none;"/>
                            }
                         }
                     </a>
@@ -131,11 +131,10 @@
                             <li>
                                 <p>@Resources.SR.NoOfRoom:</p>
                                 <select onchange="GotoURL(this)" class="form" name="NoOfRoom" style="float: left; width: 80px; height: 20px; border: 1px solid white; color: #666;">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+                                    @for (int i = 1; i <= (int)ViewBag.BookAvailable && i <= 5; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
                                 </select>
                             </li>
                             <li>
@@ -309,7 +308,7 @@
 
 <!--in-Hotel-->
  @foreach (var article in articles)
-{
+ {
     <div class="in-booking">
             <div class="in-booking-1">
                 <div class="in-booking-2">

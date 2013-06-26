@@ -28,5 +28,9 @@ namespace VietSovPetro.BO.ViewModels
         public bool IsPublished { get; set; }
         public bool IsNew { get; set; }
         public List<Guid> ArticleCategoryIDs { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public RoomViewModel Room { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public Guid? RoomID { get; set; }
     }
 }

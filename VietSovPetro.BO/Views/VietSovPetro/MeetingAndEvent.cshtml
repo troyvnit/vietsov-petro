@@ -10,6 +10,8 @@
     $(document).ready(function () {
         var name = new LiveValidation("Name");
         name.add(Validate.Presence, { failureMessage: "" });
+        var tel = new LiveValidation("Tel");
+        tel.add(Validate.Presence, { failureMessage: "" });
         var email = new LiveValidation("Email");
         email.add(Validate.Presence, { failureMessage: "" });
         email.add(Validate.Email);
@@ -19,7 +21,7 @@
         end.add(Validate.Presence, { failureMessage: "" });
         $("#submitBooking").click(function () {
             var frm = $('#bookingform');
-            if(LiveValidation.massValidate( [ name, email, begin, end ] )) {
+            if(LiveValidation.massValidate( [ name, email, begin, end, tel ] )) {
                 $("#loading").show();
                 $("#submitBooking").hide();
                 $.ajax({
@@ -71,6 +73,12 @@
                     <p>@Resources.SR.Email</p>
                     <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
                         <input type="text" id="Email" name="Email" style="border: 1px solid; width: 129px; float: left; height: 22px; font-size: 14px;">
+                    </div>
+                </li>
+                <li>
+                    <p>@Resources.SR.Tel</p>
+                    <div style="width: 130px; height: auto; float: left; margin-top: 2px;">
+                        <input type="text" id="Tel" name="Tel" style="border: 1px solid; width: 129px; float: left; height: 22px; font-size: 14px;">
                     </div>
                 </li>
                 <li>
@@ -177,14 +185,14 @@
             <div class="cc-boxHotel">
                 <div class="picHotel">
                     <a href="#">
-                        @{ var fileInfo = new FileInfo(room.ImageUrl == "" ? ".jpg" : room.ImageUrl);
-                           if (fileInfo.Extension == ".html")
+                        @{ 
+                           if (Path.GetExtension(room.ImageUrl) == ".html")
                            {
-                            <iframe src="@Url.Content("~/Images/" + room.ImageUrl)"  style="width:400px; height:199px; display:block; border:none;"></iframe>
+                            <iframe src="@room.ImageUrl"  style="width:400px; height:199px; display:block; border:none;"></iframe>
                            }
                            else
                            {
-                            <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
+                            <img src="@room.ImageUrl" alt="" style="width:400px; height:199px; display:block; border:none;"/>
                            }
                         }
                     </a>

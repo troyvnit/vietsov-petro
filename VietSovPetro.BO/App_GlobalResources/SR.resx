@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Activity" xml:space="preserve">
-    <value>Hoạt động</value>
+    <value>Dịch vụ</value>
   </data>
   <data name="Address_Info" xml:space="preserve">
     <value>Địa chỉ: Xã Phước Thuận, Huyện Xuyên Mộc, Tỉnh Bà Rịa Vũng Tàu, Việt Nam</value>
@@ -250,7 +250,7 @@
     <value>Đặt phòng nhanh</value>
   </data>
   <data name="Restaurant_And_Bar" xml:space="preserve">
-    <value>Nhà hàng &amp; Quán Bar</value>
+    <value>Nhà hàng &amp; Bar</value>
   </data>
   <data name="Restaurant_Deal" xml:space="preserve">
     <value>Khuyến mãi nhà hàng</value>
@@ -278,5 +278,8 @@
   </data>
   <data name="Contact_Message_Banner" xml:space="preserve">
     <value>Xin vui lòng gọi điện thoại hoặc gửi email cho chúng tôi để đặt phòng. Chúng tôi hân hạnh được phục vụ bạn.</value>
+  </data>
+  <data name="Tel" xml:space="preserve">
+    <value>Điện thoại</value>
   </data>
 </root>
