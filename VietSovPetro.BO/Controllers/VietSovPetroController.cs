@@ -37,6 +37,48 @@ namespace VietSovPetro.BO.Controllers
         }
         public ActionResult Index()
         {
+            ViewBag.RoomAndPrices = roomRepository.GetAll().Where(a =>
+            {
+                var roomTypes = a.RoomTypes;
+                var checkRoomTypes = false;
+                if (roomTypes != null)
+                {
+                    foreach (var roomType in roomTypes)
+                    {
+                        if (roomType.RoomTypeID == Guid.Parse("22222222-2222-2222-2222-222222222223"))
+                        {
+                            checkRoomTypes = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkRoomTypes && a.IsNew
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn).ToList();
+            ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
+            var rarticles = new List<ArticleViewModel>();
+            foreach (var article in articleRepository.GetAll().Where(a =>
+            {
+                var articleCategories = a.ArticleCategories;
+                var checkCategories = false;
+                if (articleCategories != null)
+                {
+                    foreach (var articleCategory in articleCategories)
+                    {
+                        if (articleCategory.ArticleCategoryID == Guid.Parse("99999999-9999-9999-9999-999999999100"))
+                        {
+                            checkCategories = true;
+                        }
+                    }
+                }
+                return (a.IsDeleted != true && a.IsPublished && checkCategories && a.IsNew
+                    && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
+            }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn))
+            {
+                var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+                articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                rarticles.Add(articlevm);
+            }
+            ViewBag.DealingRestaurantArticles = rarticles;
             return View();
         }
         public ActionResult Introduction()
@@ -417,7 +459,6 @@ namespace VietSovPetro.BO.Controllers
                     && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower());
             }).OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn).ToList();
             ViewBag.Language = RouteData.Values["lang"].ToString().ToLower();
-            ViewBag.Properties = roomPropertyRoomRepository.GetAll();
             var articles = new List<ArticleViewModel>();
             foreach (var article in articleRepository.GetAll().Where(a =>
             {

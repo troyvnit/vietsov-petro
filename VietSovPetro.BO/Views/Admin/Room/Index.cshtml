@@ -190,16 +190,17 @@
             });
             function onChangeListView() {
                 var data = roomCategoryDataSource.view(),
-                    value = data[this.select().index()].RoomTypeID;
-                if (value) {
-                    grid.data("kendoGrid").dataSource.filter({ "logic": "or", "filters": [{ field: "RoomTypeIDs", operator: "contains", value: value }, { field: "RoomTypeIDs", operator: "eq", value: "" }] });
-                    if (lDropDown.data("kendoDropDownList").value()) {
-                        grid.data("kendoGrid").dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                    rtvalue = data[this.select().index()].RoomTypeID,
+                    languagevalue = $("#language").data("kendoDropDownList").value();
+                if (rtvalue) {
+                    grid.data("kendoGrid").dataSource.filter({ "logic": "or", "filters": [{ field: "RoomTypeIDs", operator: "contains", value: rtvalue }, { field: "RoomTypeIDs", operator: "eq", value: "" }] });
+                    if (languagevalue) {
+                        grid.data("kendoGrid").dataSource._filter.filters.push({ field: "LanguageCode", operator: "eq", value: languagevalue });
                         grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
                     }
                 } else {
-                    if (lDropDown.data("kendoDropDownList").value()) {
-                        grid.data("kendoGrid").dataSource.filter({ field: "LanguageCode", operator: "eq", value: lDropDown.data("kendoDropDownList").value() });
+                    if (languagevalue) {
+                        grid.data("kendoGrid").dataSource.filter({ field: "LanguageCode", operator: "eq", value: languagevalue });
                     }
                     else {
                         grid.data("kendoGrid").dataSource.filter({});
@@ -277,7 +278,7 @@
                     { field: "LanguageCode", title: "Ngôn ngữ", editor: languageDropDownEditor, width: "80px" },
                     { field: "IsDeal", title: "Khuyến mãi ?", width: "100px", hidden: true },
                     { field: "IsPublished", title: "Online ?", width: "80px" },
-                    { field: "IsNew", title: "Mới ?", width: "50px", hidden: true },
+                    { field: "IsNew", title: "Trang chủ", width: "50px" },
                    // { field: "Article", title: "Bài viết", editor: articleDropDownEditor, template: "#= Article.Title #" },
                     { command: [{ text: "Chi tiết", click: roomDetails }, "destroy"], title: " ", width: "160px" }],
                 editable: true,
@@ -400,12 +401,13 @@
                                 { Language: "Tiếng Nga", LanguageCode: "ru-RU" }
                 ],
                 change: function () {
-                    var value = this.value();
-                    if (value) {
-                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
-                        //listView.dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
-                        var lwdata = roomCategoryDataSource.view(),
+                    var languagevalue = this.value();
+                    var lwdata = roomCategoryDataSource.view(),
                         lwvalue = lwdata[listView.select().index()].RoomTypeID;
+                    if (languagevalue) {
+                        grid.data("kendoGrid").dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: languagevalue }] });
+                        //listView.dataSource.filter({ "logic": "and", "filters": [{ field: "LanguageCode", operator: "eq", value: value }] });
+                        
                         if (lwvalue) {
                             grid.data("kendoGrid").dataSource._filter.filters.push({ field: "RoomTypeIDs", operator: "contains", value: lwvalue });
                             grid.data("kendoGrid").dataSource.filter(grid.data("kendoGrid").dataSource._filter.filters);
@@ -413,8 +415,6 @@
                             //listView.dataSource.filter(listView.dataSource._filter.filters);
                         }
                     } else {
-                        var lwdata = roomCategoryDataSource.view(),
-                        lwvalue = lwdata[listView.select().index()].RoomTypeID;
                         if (lwvalue) {
                             grid.data("kendoGrid").dataSource.filter({ field: "RoomTypeIDs", operator: "contains", value: lwvalue });
                             //listView.dataSource.filter({ field: "ArticleCategoryType", operator: "eq", value: $("#category").data("kendoDropDownList").text() });

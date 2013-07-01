@@ -341,6 +341,12 @@
     <Content Include="Images\mainviewatnight_o_5.jpg" />
     <Content Include="Images\nut-1.png" />
     <Content Include="Images\nut-2.png" />
+    <Content Include="Images\pages\01.jpg" />
+    <Content Include="Images\pages\02.jpg" />
+    <Content Include="Images\pages\03.jpg" />
+    <Content Include="Images\pages\04.jpg" />
+    <Content Include="Images\pages\05.jpg" />
+    <Content Include="Images\pages\06.jpg" />
     <Content Include="Images\retau-1.jpg" />
     <Content Include="Images\retau-2.jpg" />
     <Content Include="Images\retau-3.jpg" />
@@ -438,6 +444,7 @@
     <Content Include="js\taadv_floating.js" />
     <Content Include="js\themes\modern\theme.min.js" />
     <Content Include="js\tinymce.min.js" />
+    <Content Include="js\turn.min.js" />
     <Content Include="KendoUI\content\dataviz\dashboards\area-chart.png" />
     <Content Include="KendoUI\content\dataviz\dashboards\car-dashboard.png" />
     <Content Include="KendoUI\content\dataviz\dashboards\car.gif" />

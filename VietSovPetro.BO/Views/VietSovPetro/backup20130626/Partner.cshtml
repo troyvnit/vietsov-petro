@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Partner";
+    Layout = "~/Views/Shared/_LayoutFO.cshtml";
+    List<VietSovPetro.BO.ViewModels.ArticleViewModel> articles = ViewBag.PartnerArticles;
+    var currentpage = (int)ViewBag.Page;
+    var count = (int)ViewBag.Count;
+}
+
+<div class="banner-G">
+    <div class="B-Left">
+        <div class="tt-B-Left">
+            <p>@Resources.SR.Room_And_Price</p>
+        </div>
+        <div class="cc-B-Left">
+          <ul>
+              <li class="tex"><p>@Resources.SR.Contact_Message_Banner</p></li>
+              <li class="hot">
+                  <ul>
+                      <li><p>Điện thoại: @Resources.SR.ContactPhone</p></li>
+                      <li><p>Fax: @Resources.SR.ContactFax</p></li>
+                  </ul>
+              </li>
+            </ul>
+        </div>
+    </div>
+    <div class="B-Right">
+        <iframe src="@Url.Content("/Images/virtualTour/HomePage/Vietsovptro_homepage.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
+    </div>
+</div>
+<div class="in-retau">
+    @if(articles.Count > 0)
+    {
+        foreach (var article in articles)
+        {
+            <!--boxRetau-->
+            <div class="boxRetau">
+                <div class="tt-boxRetau">
+                    <p>@article.Title</p>
+                </div>
+                <!--tt-boxRetau-->
+                <div class="cc-boxRetau">
+                    <div class="picRetau">
+                        @{
+                            
+                            if (Path.GetExtension(article.ImageUrl) == ".html")
+                            {
+                                <iframe src="@article.ImageUrl"  style="width: 584px; height: 211px; display: block; border: none;"></iframe>
+                            }
+                            else
+                            {
+                                <img src="@article.ImageUrl" alt="" style="width: 584px; height: 211px; display: block; border: none;"/>
+                            }
+                        }
+                    </div>
+                    <!--picRetau-->
+                    <div class="ttRetau">
+                        <ul>
+                            @Html.Raw(HttpUtility.HtmlDecode(article.Description))
+                        </ul>
+                        <ul>
+                            <li class="view"><a href="@Url.Action("DetailPage", "VietSovPetro", new { articleID = article.ArticleID })" >Xem chi tiết</a></li>
+                        </ul>
+                    </div>
+                    <!--ttRetau-->
+                </div>
+                <!--cc-boxRetau-->
+            </div>
+            <!--boxRetau-->
+        }
+    }
+<div id="slide-nav">
+    @if(currentpage > 1)
+    {
+        <a href="@Url.Action("Partner", "VietSovPetro", new {page = @currentpage - 1})" class="">@(currentpage - 1)</a>
+    }
+    <a class="activeSlide" href="#">@currentpage</a>
+    @if(currentpage * 5 < count)
+    {
+        <a href="@Url.Action("Partner", "VietSovPetro", new { page = @currentpage + 1 })" class="">@(currentpage + 1)</a>
+    }
+</div>
+</div>
+<!--in-retau-->
+<style type="text/css">
+    #slide-nav {
+    float: right;
+    height: 21px;
+    position: inherit;
+    right: 15px;
+    top: 45px;
+    z-index: 10;
+}
+#slide-nav a {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 2px solid #5A3A0D;
+    color: #5A3A0D;
+    margin-right: 4px;
+    padding: 1px 5px;
+    text-decoration: none;
+}
+#slide-nav a.activeSlide {
+    background: none repeat scroll 0 0 #5A3A0D;
+    color: #FFFFFF;
+}
+</style>

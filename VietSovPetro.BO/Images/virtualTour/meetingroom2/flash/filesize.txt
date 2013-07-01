@@ -1,0 +1,18 @@
+autorun.inf|43
+config_MeetingRoom3.bin|4622
+images_MeetingRoom3.zip|4125
+MeetingRoom3.html|1269
+multilanguage\english.zip|22
+multilanguage\france.zip|22
+multilanguage\german.zip|22
+multilanguage\italy.zip|22
+multilanguage\japanese.zip|22
+multilanguage\spanish.zip|22
+resources\youtube.swf|2045
+resources_MeetingRoom3.zip|22
+res_tmp\youtube.swf|2045
+scene\img_5255 panorama.cubic.jpg|2358866
+swfobject.js|6880
+thumb.jpg|77257
+twviewer.swf|369396
+Vietsovptro Resort_MeetingRoom3.html|2382

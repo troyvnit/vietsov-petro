@@ -1,11 +1,94 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "VietSov Petro";
     Layout = "~/Views/Shared/_LayoutFO.cshtml";
+    var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.RoomAndPrices;
+    List<VietSovPetro.BO.ViewModels.ArticleViewModel> rarticles = ViewBag.DealingRestaurantArticles;
 }
 
 <div class="homeFlash" style=" height:559px;">
-            <table width="100%" cellspacing="0" cellpadding="0"><tbody>
-                <tr><td></td></tr><tr><td>
-                    <embed width="1024" height="564" wmode="transparent" flashvars="externalinterface=1&panorama=%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Ctour%20start%3D%22node2%22%20hideabout%3D%221%22%3E%20%20%3Cpanorama%20id%3D%22node1%22%20hideabout%3D%221%22%3E%20%20%20%20%3Cview%20fovmode%3D%220%22%20pannorth%3D%220%22%3E%20%20%20%20%20%20%3Cstart%20pan%3D%220%22%20fov%3D%2270%22%20tilt%3D%220%22/%3E%20%20%20%20%20%20%3Cmin%20pan%3D%220%22%20fov%3D%225%22%20tilt%3D%22-90%22/%3E%20%20%20%20%20%20%3Cmax%20pan%3D%22360%22%20fov%3D%22120%22%20tilt%3D%2290%22/%3E%20%20%20%20%3C/view%3E%20%20%20%20%3Cuserdata%20title%3D%22%22%20datetime%3D%222013%3A03%3A28%2010%3A48%3A17%22%20description%3D%22%22%20copyright%3D%22%22%20tags%3D%22%22%20author%3D%22%22%20source%3D%22%22%20comment%3D%22%22%20info%3D%22%22%20longitude%3D%22%22%20latitude%3D%22%22/%3E%20%20%20%20%3Chotspots%20width%3D%22180%22%20height%3D%2220%22%20wordwrap%3D%221%22%3E%20%20%20%20%20%20%3Clabel%20width%3D%22180%22%20backgroundalpha%3D%221%22%20enabled%3D%221%22%20height%3D%2220%22%20backgroundcolor%3D%220xffffff%22%20bordercolor%3D%220x000000%22%20border%3D%221%22%20textcolor%3D%220x000000%22%20background%3D%221%22%20borderalpha%3D%221%22%20borderradius%3D%221%22%20wordwrap%3D%221%22%20textalpha%3D%221%22/%3E%20%20%20%20%20%20%3Cpolystyle%20mode%3D%220%22%20backgroundalpha%3D%220.2509803921568627%22%20backgroundcolor%3D%220x0000ff%22%20bordercolor%3D%220x0000ff%22%20borderalpha%3D%221%22/%3E%20%20%20%20%3C/hotspots%3E%20%20%20%20%3Cqthotspots%3E%20%20%20%20%20%20%3Clabel%20width%3D%22180%22%20movement%3D%221%22%20enabled%3D%221%22%20height%3D%2220%22%20backgroundcolor%3D%220xffffff%22%20bordercolor%3D%220x000000%22%20border%3D%221%22%20textcolor%3D%220x000000%22%20background%3D%221%22%20wordwrap%3D%221%22/%3E%20%20%20%20%3C/qthotspots%3E%20%20%20%20%3Cmedia/%3E%20%20%20%20%3Cinput%20tile0url%3D%22images/mainViewAtNight_o_0.jpg%22%20tile5url%3D%22images/mainViewAtNight_o_5.jpg%22%20tile4url%3D%22images/mainViewAtNight_o_4.jpg%22%20tilesize%3D%221000%22%20tile3url%3D%22images/mainViewAtNight_o_3.jpg%22%20tile2url%3D%22images/mainViewAtNight_o_2.jpg%22%20tile1url%3D%22images/mainViewAtNight_o_1.jpg%22%3E%20%20%20%20%20%20%3Cpreview%20images%3D%220%22%20color%3D%220x808080%22/%3E%20%20%20%20%3C/input%3E%20%20%20%20%3Cautorotate%20speed%3D%220.100%22%20nodedelay%3D%2224.00%22%20onlyinfocus%3D%220%22%20startloaded%3D%221%22%20returntohorizon%3D%220.000%22%20delay%3D%223.00%22/%3E%20%20%20%20%3Ccontrol%20simulatemass%3D%221%22%20lockedmouse%3D%220%22%20lockedkeyboard%3D%220%22%20invertwheel%3D%220%22%20lockedkeyboardzoom%3D%220%22%20trapwheel%3D%221%22%20lockedwheel%3D%220%22%20invertcontrol%3D%220%22%20speedwheel%3D%221%22%20sensitivity%3D%228%22/%3E%20%20%20%20%3Ccursor%20ownonmovement%3D%221%22%20ownondefault%3D%221%22/%3E%20%20%20%20%3Cdisplay%20width%3D%221024%22%20scalemode%3D%22stage%22%20scaletofit%3D%221%22%20height%3D%22564%22%20custommenulink%3D%22%22%20changestagequality%3D%220%22%20custommenutext%3D%22%22%20fullscreenmenu%3D%221%22%20smoothing%3D%220%22/%3E%20%20%20%20%3Ctransition%20blendcolor%3D%220xffffff%22%20enabled%3D%221%22%20blendtime%3D%221%22%20zoomin%3D%220%22%20zoomfov%3D%225%22%20type%3D%22diptocolor%22%20zoomoutpause%3D%221%22%20zoomspeed%3D%222%22%20zoomout%3D%220%22/%3E%20%20%3C/panorama%3E%20%20%3Cpanorama%20id%3D%22node2%22%20hideabout%3D%221%22%3E%20%20%20%20%3Cview%20fovmode%3D%220%22%20pannorth%3D%220%22%3E%20%20%20%20%20%20%3Cstart%20pan%3D%220%22%20fov%3D%2270%22%20tilt%3D%220%22/%3E%20%20%20%20%20%20%3Cmin%20pan%3D%220%22%20fov%3D%225%22%20tilt%3D%22-90%22/%3E%20%20%20%20%20%20%3Cmax%20pan%3D%22360%22%20fov%3D%22120%22%20tilt%3D%2290%22/%3E%20%20%20%20%3C/view%3E%20%20%20%20%3Cuserdata%20title%3D%22%22%20datetime%3D%222013%3A03%3A28%2011%3A48%3A00%22%20description%3D%22%22%20copyright%3D%22%22%20tags%3D%22%22%20author%3D%22%22%20source%3D%22%22%20comment%3D%22%22%20info%3D%22%22%20longitude%3D%22%22%20latitude%3D%22%22/%3E%20%20%20%20%3Chotspots%20width%3D%22180%22%20height%3D%2220%22%20wordwrap%3D%221%22%3E%20%20%20%20%20%20%3Clabel%20width%3D%22180%22%20backgroundalpha%3D%221%22%20enabled%3D%221%22%20height%3D%2220%22%20backgroundcolor%3D%220xffffff%22%20bordercolor%3D%220x000000%22%20border%3D%221%22%20textcolor%3D%220x000000%22%20background%3D%221%22%20borderalpha%3D%221%22%20borderradius%3D%221%22%20wordwrap%3D%221%22%20textalpha%3D%221%22/%3E%20%20%20%20%20%20%3Cpolystyle%20mode%3D%220%22%20backgroundalpha%3D%220.2509803921568627%22%20backgroundcolor%3D%220x0000ff%22%20bordercolor%3D%220x0000ff%22%20borderalpha%3D%221%22/%3E%20%20%20%20%3C/hotspots%3E%20%20%20%20%3Cqthotspots%3E%20%20%20%20%20%20%3Clabel%20width%3D%22180%22%20movement%3D%221%22%20enabled%3D%221%22%20height%3D%2220%22%20backgroundcolor%3D%220xffffff%22%20bordercolor%3D%220x000000%22%20border%3D%221%22%20textcolor%3D%220x000000%22%20background%3D%221%22%20wordwrap%3D%221%22/%3E%20%20%20%20%3C/qthotspots%3E%20%20%20%20%3Cmedia/%3E%20%20%20%20%3Cinput%20tile0url%3D%22images/mainViewAtDay_small_o_0.jpg%22%20tile5url%3D%22images/mainViewAtDay_small_o_5.jpg%22%20tile4url%3D%22images/mainViewAtDay_small_o_4.jpg%22%20tilesize%3D%221000%22%20tile3url%3D%22images/mainViewAtDay_small_o_3.jpg%22%20tile2url%3D%22images/mainViewAtDay_small_o_2.jpg%22%20tile1url%3D%22images/mainViewAtDay_small_o_1.jpg%22%3E%20%20%20%20%20%20%3Cpreview%20images%3D%220%22%20color%3D%220x808080%22/%3E%20%20%20%20%3C/input%3E%20%20%20%20%3Cautorotate%20speed%3D%220.100%22%20nodedelay%3D%2224.00%22%20onlyinfocus%3D%220%22%20startloaded%3D%221%22%20returntohorizon%3D%220.000%22%20delay%3D%223.00%22/%3E%20%20%20%20%3Ccontrol%20simulatemass%3D%221%22%20lockedmouse%3D%220%22%20lockedkeyboard%3D%220%22%20invertwheel%3D%220%22%20lockedkeyboardzoom%3D%220%22%20trapwheel%3D%221%22%20lockedwheel%3D%220%22%20invertcontrol%3D%220%22%20speedwheel%3D%221%22%20sensitivity%3D%228%22/%3E%20%20%20%20%3Ccursor%20ownonmovement%3D%221%22%20ownondefault%3D%221%22/%3E%20%20%20%20%3Cdisplay%20width%3D%221024%22%20scalemode%3D%22stage%22%20scaletofit%3D%221%22%20height%3D%22564%22%20custommenulink%3D%22%22%20changestagequality%3D%220%22%20custommenutext%3D%22%22%20fullscreenmenu%3D%221%22%20smoothing%3D%220%22/%3E%20%20%20%20%3Ctransition%20blendcolor%3D%220xffffff%22%20enabled%3D%221%22%20blendtime%3D%221%22%20zoomin%3D%220%22%20zoomfov%3D%225%22%20type%3D%22diptocolor%22%20zoomoutpause%3D%221%22%20zoomspeed%3D%222%22%20zoomout%3D%220%22/%3E%20%20%3C/panorama%3E%3C/tour%3E" src="@Url.Content("~/images/mainviewatnight_out.swf")" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash"></td>
-            </tr></tbody></table>
+            <iframe src="@Url.Content("/Images/virtualTour/HomePage/intro.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
 </div>
+
+<div class="in-retau">
+    @if(rarticles.Count > 0)
+    {
+        foreach (var article in rarticles)
+        {
+            <!--boxRetau-->
+            <div class="boxRetau">
+                <div class="tt-boxRetau">
+                    <p>@article.Title</p>
+                </div>
+                <!--tt-boxRetau-->
+                <div class="cc-boxRetau">
+                    <div class="picRetau">
+                        @{
+                            
+                            if (Path.GetExtension(article.ImageUrl) == ".html")
+                            {
+                                <iframe src="@article.ImageUrl"  style="width: 584px; height: 211px; display: block; border: none;"></iframe>
+                            }
+                            else
+                            {
+                                <img src="@article.ImageUrl" alt="" style="width: 584px; height: 211px; display: block; border: none;"/>
+                            }
+                        }
+                    </div>
+                    <!--picRetau-->
+                    <div class="ttRetau">
+                        <ul>
+                            @Html.Raw(HttpUtility.HtmlDecode(article.Description))
+                        </ul>
+                        <ul>
+                            <li class="view"><a href="@Url.Action("DetailPage", "VietSovPetro", new { articleID = article.ArticleID })" >Xem chi tiết</a></li>
+                        </ul>
+                    </div>
+                    <!--ttRetau-->
+                </div>
+                <!--cc-boxRetau-->
+            </div>
+            <!--boxRetau-->
+        }
+    }
+</div>
+<!--in-retau-->
+<div class="in-Hotel">
+    <div id="boxs">
+        @foreach (var room in rooms)
+        {            
+            <div class="boxHotel">
+                <div class="tt-boxHotel"><a href="#">@room.RoomName (Số lượng: @room.Quantity)</a></div>
+                <!--tt-boxHotel-->
+                <div class="cc-boxHotel">
+                    <div class="picHotel">
+                        @{ 
+                            if (Path.GetExtension(room.ImageUrl) == ".html")
+                            {
+                                <iframe src="@room.ImageUrl" style="width:400px; height:199px; display:block; border:none;"></iframe>
+                            }
+                            else
+                            {
+                                <img src="@room.ImageUrl" alt="" style="width:400px; height:199px; display:block; border:none;"/>
+                            }
+                        }
+                    </div>
+                    <!--picHotel-->
+                    <div class="conHotel-1">
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Description))
+                    @*<ul><li class="view"><a href="#" onclick="gotoBooking('@room.RoomID'); return false;">Booking</a></li></ul>*@
+                </div>
+                <!--conHotel-1-->
+                <div class="conHotel-2">
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Detail))
+                </div>
+                <!--conHotel-2-->
+                </div>
+                <!--cc-boxHotel-->
+            </div>
+        }
+    </div>
+    @*<p>GIÁ PHÒNG ĐÃ BAO GỒM:</p>
+    <span>-	10% VAT và 5% phí phục vụ. Buffet sáng, phòng tập thể thao đa năng, hồ bơi, thư viện.</span><span>-	Giờ nhận phòng: 14h00, trả phòng: 12h00.</span><span>-	Trả phòng trễ: Sau 12h00 phụ thu 10% giá phòng/giờ, sau 17h tính bằng 100% giá phòng.</span><span>-	Trẻ em từ 1-5 tuổi ở chung với ba mẹ miễn phí tiền phòng bao gồm ăn sáng (không yêu cầu thêm giường phụ).</span><span>-	Trẻ em từ 6-11 tuổi miễn phí tiền phòng (Không yêu cầu thêm giường phụ) tính 50% giá vé ăn sáng.</span><span>-	Trẻ em từ 12 tuổi trở lên tính như người lớn.</span><span style="padding-bottom: 10px;">-	Giá vé buffet sáng (khách mua thêm): 10.00 $/người lớn; 7.00 $/trẻ em.</span>*@
+   
+</div>
+<!--in-Hotel-->

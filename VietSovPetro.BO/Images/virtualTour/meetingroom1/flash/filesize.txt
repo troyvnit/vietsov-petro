@@ -1,0 +1,18 @@
+autorun.inf|43
+config_MeetingRoom2.bin|4610
+images_MeetingRoom2.zip|4125
+MeetingRoom2.html|1230
+MeetingRoom_MeetingRoom2.html|2382
+multilanguage\english.zip|22
+multilanguage\france.zip|22
+multilanguage\german.zip|22
+multilanguage\italy.zip|22
+multilanguage\japanese.zip|22
+multilanguage\spanish.zip|22
+resources\youtube.swf|2045
+resources_MeetingRoom2.zip|22
+res_tmp\youtube.swf|2045
+scene\meeting room 2.cubic.jpg|1565582
+swfobject.js|6880
+thumb.jpg|70651
+twviewer.swf|369396

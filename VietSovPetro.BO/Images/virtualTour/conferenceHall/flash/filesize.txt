@@ -1,0 +1,18 @@
+autorun.inf|45
+Conference Hall_ConferenceHall.html|2384
+ConferenceHall.html|1268
+config_ConferenceHall.bin|4641
+images_ConferenceHall.zip|4125
+multilanguage\english.zip|22
+multilanguage\france.zip|22
+multilanguage\german.zip|22
+multilanguage\italy.zip|22
+multilanguage\japanese.zip|22
+multilanguage\spanish.zip|22
+resources\youtube.swf|2045
+resources_ConferenceHall.zip|22
+res_tmp\youtube.swf|2045
+scene\1_conferencehall.jpg|4504350
+swfobject.js|6880
+thumb.jpg|102569
+twviewer.swf|369396

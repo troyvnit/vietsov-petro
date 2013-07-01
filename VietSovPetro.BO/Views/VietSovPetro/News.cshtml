@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "News";
+    ViewBag.Title = Resources.SR.News;
     Layout = "~/Views/Shared/_LayoutFO.cshtml";
     List<VietSovPetro.BO.ViewModels.ArticleViewModel> articles = ViewBag.NewsArticles;
 }
@@ -22,8 +22,7 @@
         </div>
     </div>
     <div class="B-Right">
-        <iframe src="@Url.Content("~/images/virtualTour/RestaurantMain_2/RestaurantMain.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
-        <div class="fullscreen"><a href="#" style="display:block;"><img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
+        <iframe src="@Url.Content("/Images/virtualTour/HomePage/Vietsovptro_homepage.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
     </div>
 </div>
 <div class="in-retau">
@@ -38,7 +37,7 @@
                 </div>
                 <!--tt-boxRetau-->
                 <div class="cc-boxRetau">
-                    <div class="picRetau">
+                    <div class="thumbnailtintuc">
                         @{
                             
                             if (Path.GetExtension(article.ImageUrl) == ".html")
@@ -47,12 +46,12 @@
                             }
                             else
                             {
-                                <img src="@article.ImageUrl" alt="" style="width: 584px; height: 211px; display: block; border: none;"/>
+                                <img src="@article.ImageUrl" alt="" style="width: 200px; display: block; border: none;"/>
                             }
                         }
                     </div>
-                    <!--picRetau-->
-                    <div class="ttRetau">
+                    <!--thumbnailtintuc-->
+                    <div class="soluoctintuc">
                         <ul>
                             @Html.Raw(HttpUtility.HtmlDecode(article.Description))
                         </ul>

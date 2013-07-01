@@ -1,0 +1,18 @@
+autorun.inf|46
+config_Restaurant Vip1.bin|4655
+images_Restaurant Vip1.zip|4127
+multilanguage\english.zip|22
+multilanguage\france.zip|22
+multilanguage\german.zip|22
+multilanguage\italy.zip|22
+multilanguage\japanese.zip|22
+multilanguage\spanish.zip|22
+resources\youtube.swf|2045
+resources_Restaurant Vip1.zip|22
+Restaurant Vip1.html|1288
+Restaurant Vip_Restaurant Vip1.html|2399
+res_tmp\youtube.swf|2045
+scene\restaurant vip.jpg|2163077
+swfobject.js|6880
+thumb.jpg|71840
+twviewer.swf|369396
