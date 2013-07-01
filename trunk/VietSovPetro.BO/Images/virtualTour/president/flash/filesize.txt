@@ -1,0 +1,47 @@
+autorun.inf|45
+config_President Room.bin|20941
+images_President Room.zip|4125
+multilanguage\english.zip|22
+multilanguage\france.zip|22
+multilanguage\german.zip|22
+multilanguage\italy.zip|22
+multilanguage\japanese.zip|22
+multilanguage\spanish.zip|22
+President Room.html|1241
+resources\bath room_flash_1.swf|65631
+resources\bed room_flash_1.swf|65631
+resources\bed room_flash_3.swf|65631
+resources\dinning room_flash_1.swf|65631
+resources\dinning room_flash_3.swf|65631
+resources\entry_flash_0.swf|65631
+resources\entry_flash_1.swf|65631
+resources\entry_flash_2.swf|65631
+resources\living room_flash_1.swf|65631
+resources\living room_flash_3.swf|65631
+resources\youtube.swf|2045
+resources_President Room.zip|22
+res_tmp\bath room_flash_1.swf|65631
+res_tmp\bed room_flash_1.swf|65631
+res_tmp\bed room_flash_3.swf|65631
+res_tmp\dinning room_flash_1.swf|65631
+res_tmp\dinning room_flash_3.swf|65631
+res_tmp\entry_flash_0.swf|65631
+res_tmp\entry_flash_1.swf|65631
+res_tmp\entry_flash_2.swf|65631
+res_tmp\living room_flash_1.swf|65631
+res_tmp\living room_flash_3.swf|65631
+res_tmp\youtube.swf|2045
+scene\bath room.jpg|13352535
+scene\bath room.zip|1040
+scene\bed room.jpg|13246182
+scene\bed room.zip|1516
+scene\dinning room.jpg|13982971
+scene\dinning room.zip|2034
+scene\entry.jpg|17230260
+scene\entry.zip|1679
+scene\living room.jpg|14221624
+scene\living room.zip|2039
+swfobject.js|6880
+thumb.jpg|76317
+twviewer.swf|369396
+Vietsovptro_President Room.html|2377

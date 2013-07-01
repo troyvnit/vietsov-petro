@@ -1,8 +1,8 @@
 ﻿@using VietSovPetro.BO.ViewModels
 @{
-    ViewBag.Title = "DetailPage";
-    Layout = "~/Views/Shared/_LayoutFO.cshtml";
     ArticleViewModel article = ViewBag.Article;
+    ViewBag.Title = article.Title;
+    Layout = "~/Views/Shared/_LayoutFO.cshtml";
 }
 
 <div class="banner-G">
@@ -24,8 +24,7 @@
         </div>
     </div>
     <div class="B-Right">
-        <iframe src="@Url.Content("~/images/virtualTour/RestaurantMain_2/RestaurantMain.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
-        <div class="fullscreen"><a href="#" style="display:block;"><img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
+        <iframe src="@Url.Content("/Images/virtualTour/HomePage/Vietsovptro_homepage.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
     </div>
 </div>
     <div class="in-booking">

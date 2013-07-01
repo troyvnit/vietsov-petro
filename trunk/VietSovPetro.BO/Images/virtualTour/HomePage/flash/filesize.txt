@@ -1,0 +1,40 @@
+autorun.inf|39
+config_homepage.bin|17797
+homepage.html|1202
+images_homepage.zip|4125
+multilanguage\english.zip|22
+multilanguage\france.zip|22
+multilanguage\german.zip|22
+multilanguage\italy.zip|22
+multilanguage\japanese.zip|22
+multilanguage\spanish.zip|22
+resources\day_flash_0.swf|65631
+resources\front_view_flash_1.swf|65631
+resources\gift shop_flash_1.swf|65631
+resources\lobby_flash_1.swf|65631
+resources\lobby_flash_3.swf|65631
+resources\lobby_flash_5.swf|65631
+resources\night_flash_1.swf|65631
+resources\youtube.swf|2045
+resources_homepage.zip|22
+res_tmp\day_flash_0.swf|65631
+res_tmp\front_view_flash_1.swf|65631
+res_tmp\gift shop_flash_1.swf|65631
+res_tmp\lobby_flash_1.swf|65631
+res_tmp\lobby_flash_3.swf|65631
+res_tmp\lobby_flash_5.swf|65631
+res_tmp\night_flash_1.swf|65631
+res_tmp\youtube.swf|2045
+scene\day.jpg|1542196
+scene\day.zip|459
+scene\front_view.jpg|3751391
+scene\front_view.zip|487
+scene\img_6959 panorama.cubic.jpg|1860752
+scene\lobby.jpg|2984853
+scene\lobby.zip|1507
+scene\night.jpg|2078795
+scene\night.zip|467
+swfobject.js|6880
+thumb.jpg|76652
+twviewer.swf|369396
+Vietsovptro_homepage.html|2378

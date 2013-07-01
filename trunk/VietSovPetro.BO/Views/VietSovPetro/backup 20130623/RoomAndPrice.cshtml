@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "RoomAndPrice";
+    Layout = "~/Views/Shared/_LayoutFO.cshtml";
+    var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.RoomAndPrices;
+    var language = ViewBag.Language;
+    var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
+    List<VietSovPetro.BO.ViewModels.ArticleViewModel> articles = ViewBag.RoomArticles;
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var begin = new LiveValidation("beginday");
+        begin.add(Validate.Presence, { failureMessage: "" });
+        var end = new LiveValidation("endday");
+        end.add(Validate.Presence, { failureMessage: "" });
+        $("#search").click(function (e) {
+            if (LiveValidation.massValidate([begin, end])) {
+                $("#loadingsearch").show();
+                $("#search").hide();
+                $.ajax({
+                    type: 'POST',
+                    url: '/vietsovpetro/_RoomFilter?begin=' + $("#beginday").val() + '&end=' + $("#endday").val() + '&roomTypeID=22222222-2222-2222-2222-222222222222',
+                    success: function(data) {
+                        $(".boxHotel").remove();
+                        $("#boxs").append(data);
+                        $("#loadingsearch").hide();
+                        $("#search").show();
+                    }
+                });
+            }
+        });
+        
+    });
+    function gotoBooking(id)
+    {
+        var url = "/vietsovpetro/booking?RoomID=" + id + "&checkin=" + $("#beginday").val() + "&checkout=" + $("#endday").val();
+        window.open(url, '_blank');
+    }
+</script>
+<div class="banner-G">
+    <div class="B-Left-1">
+        <div class="tt-B-Left">
+            <p>@Resources.SR.Quick_Reservation</p>
+        </div>           
+        <div class="cc-B-Left" style="height: 410px; background-size: 266px 410px;">
+            <ul>
+                <li class="tex">
+                    <p>@Resources.SR.Contact_Message_Banner</p>
+                </li>
+                <li class="hot">
+                    <ul>
+                        <li>
+                            <p>Điện thoại: @Resources.SR.ContactPhone</p>
+                        </li>
+                        <li>
+                            <p>Fax: @Resources.SR.ContactFax</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>   
+    </div>
+    <!--B-Left-1-->
+    <div class="B-Right-1">
+        <iframe src="@Url.Content("~/images/virtualTour/president/bedRoom/bedRoom.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
+        <div class="fullscreen"><a href="#" style="display: block;">
+            <img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
+    </div>
+</div>
+<div class="in-Hotel">
+    <div style="width: 100%;margin-bottom: 10px;height: 50px">
+        <table class="search">
+            <tr>
+                <td><p>@Resources.SR.Start_Date</p></td>
+                <td style="width: 140px">
+                    <input type="text" id="beginday" name="Begin" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                </td>
+                <td><p>@Resources.SR.End_Date</p></td>
+                <td style="width: 140px">
+                    <input type="text" id="endday" name="End" style="border: 1px solid; width: 129px; float: left; height: 16px; font-size: 11px;">
+                </td>
+                <td>
+                    <img id="search" src="~/Images/search.png" style="max-width: 25px;cursor:pointer;"/>
+                    <img id="loadingsearch" style="max-width: 25px; margin-bottom: 3px; display: none" src="@Url.Content("~/images/sending.gif")" alt="" />
+                </td>
+            </tr>
+        </table>
+        </div>
+    <div id="boxs">
+        @foreach (var room in rooms)
+        {            
+            <div class="boxHotel">
+                <div class="tt-boxHotel"><a href="#">@room.RoomName (Số lượng: @room.Quantity)</a></div>
+                <!--tt-boxHotel-->
+                <div class="cc-boxHotel">
+                    <div class="picHotel">
+                        @{ var fileInfo = new FileInfo(room.ImageUrl == "" ? ".jpg" : room.ImageUrl);
+                            if (fileInfo.Extension == ".html")
+                            {
+                                <iframe src="@Url.Content("~/Images/" + room.ImageUrl)" style="width:400px; height:199px; display:block; border:none;"></iframe>
+                            }
+                            else
+                            {
+                                <img src="@Url.Content("~/Images/" + room.ImageUrl)" alt="" style="width:400px; height:199px; display:block; border:none;"/>
+                            }
+                        }
+                    </div>
+                    <!--picHotel-->
+                    <div class="conHotel-1">
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Description))
+                    @*<ul><li class="view"><a href="#" onclick="gotoBooking('@room.RoomID'); return false;">Booking</a></li></ul>*@
+                </div>
+                <!--conHotel-1-->
+                <div class="conHotel-2">
+                    @Html.Raw(HttpUtility.HtmlDecode(room.Detail))
+                </div>
+                <!--conHotel-2-->
+                </div>
+                <!--cc-boxHotel-->
+            </div>
+        }
+    </div>
+    @*<p>GIÁ PHÒNG ĐÃ BAO GỒM:</p>
+    <span>-	10% VAT và 5% phí phục vụ. Buffet sáng, phòng tập thể thao đa năng, hồ bơi, thư viện.</span><span>-	Giờ nhận phòng: 14h00, trả phòng: 12h00.</span><span>-	Trả phòng trễ: Sau 12h00 phụ thu 10% giá phòng/giờ, sau 17h tính bằng 100% giá phòng.</span><span>-	Trẻ em từ 1-5 tuổi ở chung với ba mẹ miễn phí tiền phòng bao gồm ăn sáng (không yêu cầu thêm giường phụ).</span><span>-	Trẻ em từ 6-11 tuổi miễn phí tiền phòng (Không yêu cầu thêm giường phụ) tính 50% giá vé ăn sáng.</span><span>-	Trẻ em từ 12 tuổi trở lên tính như người lớn.</span><span style="padding-bottom: 10px;">-	Giá vé buffet sáng (khách mua thêm): 10.00 $/người lớn; 7.00 $/trẻ em.</span>*@
+   
+</div>
+<!--in-Hotel-->
+ @foreach (var article in articles)
+{
+    <div class="in-booking">
+            <div class="in-booking-1">
+                <div class="in-booking-2">
+                    <div class="booking">
+                        <div class="tit-booking"><span>@article.Title</span></div><!--tit-booking-->
+                        <div class="tett">
+                            @Html.Raw(HttpUtility.HtmlDecode(article.Content))
+                        </div><!--tett-->
+                    </div><!--booking-->
+                </div><!--in-booking-2-->
+            </div><!--in-booking-1-->
+        </div><!--in-booking-->   
+}

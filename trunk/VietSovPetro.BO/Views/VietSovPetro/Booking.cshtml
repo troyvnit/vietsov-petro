@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Booking";
+    ViewBag.Title = Resources.SR.Book;
     Layout = "~/Views/Shared/_LayoutFO.cshtml";
     var room = (VietSovPetro.BO.ViewModels.RoomViewModel)ViewBag.Room;
     var checkin = ViewBag.Checkin;
@@ -77,20 +77,20 @@
     <div id="boxs">
         <div class="boxHotel">
             <div class="tt-boxHotel"><a href="#">@room.RoomName @if (room.Quantity != null)
-                                                                    {  <p style="display:inline">(Số lượng: @room.Quantity)</p> }</a></div>
+                                                                {  <p style="display:inline">(Số lượng: @room.Quantity)</p> }</a></div>
             <!--tt-boxHotel-->
             <div class="cc-boxHotel">
                 <div class="picHotel">
                     <a href="#">
                         @{ 
-                           if (Path.GetExtension(room.ImageUrl) == ".html")
-                           {
+                            if (Path.GetExtension(room.ImageUrl) == ".html")
+                            {
                             <iframe src="@room.ImageUrl"  style="width:400px; height:199px; display:block; border:none;"></iframe>
-                           }
-                           else
-                           {
+                            }
+                            else
+                            {
                             <img src="@room.ImageUrl" alt="" style="width:400px; height:199px; display:block; border:none;"/>
-                           }
+                            }
                         }
                     </a>
                 </div>
@@ -321,4 +321,4 @@
                 </div><!--in-booking-2-->
             </div><!--in-booking-1-->
         </div><!--in-booking-->   
-}
+ }

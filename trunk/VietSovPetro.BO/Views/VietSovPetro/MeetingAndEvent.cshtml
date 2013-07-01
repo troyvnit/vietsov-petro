@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "MeetingAndEvent";
+    ViewBag.Title = Resources.SR.Meeting_And_Event;
     Layout = "~/Views/Shared/_LayoutFO.cshtml";
     var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.MeetingAndEventRooms;
     var properties = (List<VietSovPetro.Model.Entities.RoomPropertyRooms>)ViewBag.Properties;
@@ -150,10 +150,6 @@
     <!--B-Left-1-->
     <div class="B-Right-1">
         <iframe src="@Url.Content("~/images/virtualTour/conferenceHall/ConferenceHall.html")" style="width:100%; height:100%; display:block; padding:0; border:none;"></iframe>
-        <div class="fullscreen">
-            <a href="#" style="display: block;">
-                <img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a>
-        </div>
     </div>
     <!--B-Right-1-->
 </div>

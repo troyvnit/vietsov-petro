@@ -1,0 +1,18 @@
+autorun.inf|42
+config_DoubleTween.bin|4615
+Double Tween_DoubleTween.html|2381
+DoubleTween.html|1232
+images_DoubleTween.zip|4125
+multilanguage\english.zip|22
+multilanguage\france.zip|22
+multilanguage\german.zip|22
+multilanguage\italy.zip|22
+multilanguage\japanese.zip|22
+multilanguage\spanish.zip|22
+resources\youtube.swf|2045
+resources_DoubleTween.zip|22
+res_tmp\youtube.swf|2045
+scene\double tween.jpg|1806518
+swfobject.js|6880
+thumb.jpg|67371
+twviewer.swf|369396

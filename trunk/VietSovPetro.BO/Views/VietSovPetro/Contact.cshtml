@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = Resources.SR.Contact;
     Layout = "~/Views/Shared/_LayoutFO.cshtml";
 }
 <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
@@ -40,10 +40,12 @@
     <div class="in-booking-1">
         <div class="in-booking-2">
             <div class="booking">
+			<div class="book626">
                 <div class="tett">
-                            
+                    <div class="tit-booking"><span>Liên hệ VietSov Petro Resort</span></div>              
                     <div class="clearfix">&nbsp;</div>
                     <div id="leftbox" style="width: 50%; float: left">
+						
                         <form id="contactform" action="@Url.Action("Contact")" method="post" name="FormName" target="_parent">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tbody>
@@ -58,51 +60,51 @@
                                                     </tr>
                                                     <tr valign="top">
                                                         <td width="28%">
-                                                            <div align="right" style="color: white"><font color="#CC0000">(*)</font>Họ tên</div>
+                                                            <div class="nho626" align="right" style="color: white"><font color="#CC0000">(*)</font>Họ tên</div>
                                                         </td>
                                                         <td width="2%">&nbsp;</td>
                                                         <td width="70%">
-                                                            <input id="name" name="first_name" class="box_input" size="35" value=""></td>
+                                                            <input id="name" name="first_name" class="box_input" size="20" value="" style="height:30px; font-size:25px;"></td>
                                                     </tr>
                                                     <tr valign="top">
                                                         <td>
-                                                            <div align="right" style="color: white">Địa chỉ </div>
+                                                            <div class="nho626" align="right" style="color: white">Địa chỉ </div>
                                                         </td>
                                                         <td>&nbsp;</td>
                                                         <td>
-                                                            <input name="address" class="box_input" size="35" value=""></td>
+                                                            <input name="address" class="box_input" size="20" value="" style="height:30px; font-size:25px;"></td>
                                                     </tr>
                                                     <tr valign="top">
                                                         <td>
-                                                            <div align="right" style="color: white">Điện thoại </div>
+                                                            <div class="nho626" align="right" style="color: white">Điện thoại </div>
                                                         </td>
                                                         <td>&nbsp;</td>
                                                         <td>
-                                                            <input name="tel" class="box_input" size="35" value=""></td>
+                                                            <input name="tel" class="box_input" size="20" value="" style="height:30px; font-size:25px;"></td>
                                                     </tr>
                                                     <tr valign="top">
                                                         <td>
-                                                            <div align="right" style="color: white"><font color="#CC0000">(*)</font>Email </div>
+                                                            <div class="nho626" align="right" style="color: white"><font color="#CC0000">(*)</font>Email </div>
                                                         </td>
                                                         <td>&nbsp;</td>
                                                         <td>
-                                                            <input id="email" name="email" class="box_input" size="35" value=""></td>
+                                                            <input id="email" name="email" class="box_input" size="20" value="" style="height:30px; font-size:25px;"></td>
                                                     </tr>
                                                     <tr valign="top">
                                                         <td>
-                                                            <div align="right" style="color:white"><font color="#CC0000">(*)</font>Chủ đề </div>
+                                                            <div class="nho626" align="right" style="color:white"><font color="#CC0000">(*)</font>Chủ đề </div>
                                                         </td>
                                                         <td>&nbsp;</td>
                                                         <td>
-                                                            <input id="title" name="title" class="box_input" id="title" size="35" value=""></td>
+                                                            <input id="title" name="title" class="box_input" id="title" size="20" value="" style="height:30px; font-size:25px;"></td>
                                                     </tr>
                                                     <tr valign="top">
                                                         <td>
-                                                            <div align="right" style="color:white"><font color="#CC0000">(*)</font>Nội dung chi tiết</div>
+                                                            <div class="nho626" align="right" style="color:white"><font color="#CC0000">(*)</font>Nội dung chi tiết</div>
                                                         </td>
                                                         <td>&nbsp;</td>
                                                         <td>
-                                                            <textarea id="message" name="message" cols="35" rows="6" wrap="VIRTUAL" class="box_area"></textarea></td>
+                                                            <textarea id="message" name="message" cols="22" rows="5" wrap="VIRTUAL" class="box_area" style="font-size:25px;"></textarea></td>
                                                     </tr>
                                                     <tr valign="top">
                                                         <td height="65">&nbsp;</td>
@@ -125,12 +127,10 @@
 
                             </table>
                         </form>
+						
                     </div>
                     <div class="footer-1A" style="width: 45%; float: left; margin-top: 20px">
                         <ul>
-                            <li>
-                                <p>VIETSOVPETRO Resort</p>
-                            </li>
                             <li><span>Địa chỉ: Xã Phước Thuận, Huyện Xuyên Mộc, Tỉnh Bà Rịa Vũng Tàu, Việt Nam</span></li>
                             <li><span>ĐT: (84.64) 3.782.266 - 67 - 68 - 69   Fax: @Resources.SR.ContactFax</span></li>
                             <li><span>Email: info@vietsovpetroresort.com</span></li>
@@ -138,7 +138,9 @@
                         </ul>
                     </div>
                     <div class="clearfix" style="height: 10px">&nbsp;</div>
+					<div style="width:100%;height:536px;background: url('/images/map.jpg') no-repeat top right;float: left;"><a href="https://maps.google.com/maps?ll=10.469307,107.369921&spn=0.011458,0.021136&ctz=-420&t=m&z=16" title="View large map with Google Map" target="_blank"><img src="/images/spacer.gif" width="100%" height="100%" alt="VietSov Petro map" border="0" /></a></div>
                 </div><!--tett-->
+				</div>
             </div><!--booking-->
         </div><!--in-booking-2-->
     </div><!--in-booking-1-->

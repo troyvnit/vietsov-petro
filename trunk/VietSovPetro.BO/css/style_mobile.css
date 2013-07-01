@@ -2,35 +2,36 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p,a, em, img, strong, ol, ul, li 
 margin:0px;	padding:0px; border:0px; outline:0px; vertical-align: baseline; background: transparent; text-decoration:none; font-family:Arial; font-size:12px;}
 body { width:100%; background:white;}
 
-.index { width:100%; float:left; background:url(../images/body.jpg) repeat;}
+.index { width:100%; float:left; background:url(../images_mobile/body.jpg) repeat;}
 
-.in-header { width:100%; height:auto; float:left; background:url(/images/mobile/header_1.jpg) repeat-x bottom #fef8d2;}
+.in-header { width:100%; height:120px; float:left; background:url(../images_mobile/header_1.jpg) repeat-x bottom; position:relative;}
 .header { width:100%; height:auto; float:left;}
-.logo { width:40%; height:auto; margin:0 auto;}
-.logo > img { text-align:center; margin:0 auto; display:block;}
+.logo { width:300px; height:auto; margin:0 auto;}
+.logo > a > img { float:left; width:300px; display:block;}
 
 .menu-A { width:50%; position:absolute; top:2%; right:2%;}
 .menu-A > ul { list-style:none; float:right;}
 .menu-A > ul > li { float:left; margin-left:5px;}
 .menu-A > ul > li > a > img { width:30px;}
 
-.menu-B { width:100%; float:left; margin-top:2%;}
+.menu-B { width:100%; position:absolute; top:856px; z-index:10000;}
 .menu-B > ul { list-style:none; float:right; width:100%;}
-.menu-B > ul > li { width:100%; float:left; display:block;}
-.menu-B > ul > li > a { color:#fff; display:block; text-align:right; font-size:30px;}
+.menu-B > ul > li { width:100%; height:auto; float:left; background:url(../images_mobile/menu_mobile.jpg) repeat-x bottom; margin-top:2px; height:40px;}
+.menu-B > ul > li > a { color:#a86900; font-weight:bold; display:block; text-align:center; font-size:31px; text-transform:uppercase;} 
 
-.menu-C { width:100%; height:auto; float:left;}
+.menu-C { width:100%; height:auto; float:left; position:absolute; top:520px; z-index:10000;}
 .menu-C > ul { list-style:none; width:100%;}
-.menu-C > ul > li { width:100%; height:auto; float:left; background:url(/images/mobile/menu_mobile.jpg) repeat-x bottom; margin-top:2px;}
+.menu-C > ul > li { width:100%; height:auto; float:left; background:url(../images_mobile/menu_mobile.jpg) repeat-x bottom; margin-top:2px; height:40px;}
 .menu-C > ul > li.first {}
-.menu-C > ul > li > a { color:#a86900; font-weight:bold; display:block; text-align:center; font-size:35px; text-transform:uppercase; padding-top:5px;} 
+.menu-C > ul > li > a { color:#a86900; font-weight:bold; display:block; text-align:center; font-size:31px; text-transform:uppercase;} 
 .menu-C > ul > li:hover > a { text-decoration:underline;}
 
 .in-content { width:100%; height:auto; float:left;}
 .content { width:100%; height:auto; margin:0 auto;}
-.homeFlash { width:100%; height:auto; float:left;}
+.homeFlash { width:100%; height:400px; float:left;}
+.homeFlash iframe { width:100% !important; height:400px !important;}
 
-.in-footer { width:100%; float:left; background:url(../images/footer.jpg) repeat; border-top:8px solid #7e5106; padding-bottom:10px;}
+.in-footer { width:100%; float:left; background:url(../images_mobile/footer.jpg) repeat; border-top:8px solid #7e5106; padding-bottom:10px; margin-top:506px;}
 
 .footer { width:100%; height:auto; margin:0 auto; padding:10px 0;}
 
@@ -56,18 +57,18 @@ body { width:100%; background:white;}
 .copy > ul > li > a { display:block; text-align:right; color:white; line-height:18px;}
 
 
-.banner-G { width:100%; float:left;}
+.banner-G { width:100%; height:400px; float:left;}
 
 .B-Left { width:100%; height:auto; float:left; display:none;}
-.tt-B-Left { width:100%; height:auto; float:left; background:url(/images/mobile/tt-B-Left_1.jpg) repeat-x;}
+.tt-B-Left { width:100%; height:auto; float:left; background:url(../images_mobile/tt-B-Left_1.jpg) repeat-x;}
 .tt-B-Left > p { font-weight:bold; text-transform:uppercase; text-align:center; display:block; color:white; font-size:30px; padding:1% 0; display:block;}
-.cc-B-Left { width:266px; height:292px; float:left; background:url(../images/cc-B-Left.jpg) no-repeat top left;}
+.cc-B-Left { width:266px; height:292px; float:left; background:url(../images_mobile/cc-B-Left.jpg) no-repeat top left;}
 .cc-B-Left > ul { list-style:none; margin-top:10px;}
-.cc-B-Left > ul > li.nut { width:155px; height:26px; float:left; background:url(../images/nut-1.png) no-repeat top left; margin:8px 0 0 30px;}
+.cc-B-Left > ul > li.nut { width:155px; height:26px; float:left; background:url(../images_mobile/nut-1.png) no-repeat top left; margin:8px 0 0 30px;}
 .cc-B-Left > ul > li.nut > a { color:#cc8b1e; text-align:center; display:block; line-height:25px; font-weight:bold;}
 .cc-B-Left > ul > li.tex { width:218px; height:auto; float:left; margin:20px 0 0 30px;}
 .cc-B-Left > ul > li.tex > p { color:white; text-align:justify; line-height:20px;}
-.cc-B-Left > ul > li.hot { width:218px; height:78px; float:left; background:url(../images/nut-2.png) no-repeat; margin:20px 0 0 30px;}
+.cc-B-Left > ul > li.hot { width:218px; height:78px; float:left; background:url(../images_mobile/nut-2.png) no-repeat; margin:20px 0 0 30px;}
 .cc-B-Left > ul > li.hot > ul { list-style:none; width:200px; float:left; margin:9px;}
 .cc-B-Left > ul > li.hot > ul > li { float:left; width:200px; float:left; margin-top:8px;}
 .cc-B-Left > ul > li.hot > ul > li > p { color:#cc8b1e; font-weight:bold; text-align:center; font-size:14px;}
@@ -76,13 +77,14 @@ body { width:100%; background:white;}
 .B-Right > img { width:100%; height:auto; float:left;}
 .fullscreen { width:180px; height:56px; position:absolute; right:10px; bottom:10px;}
 .fullscreen > a > img {  width:180px; height:56px; }
-.in-booking { width:100%; float:left; background:#5b350e;}
-.in-booking-1 { width:100%; float:left;}
+.in-booking { width:100%; background:#2b1c04; position:relative; top:506px;}
+.in-booking-1 { width:100%; background:#2b1c04; position:relative;}
 .in-booking-2 { width:100%; float:left;}
 
 .booking { width:100%; float:left; padding:2% 0;}
-.tit-booking { width:100%; height:auto; float:left; background:url(../images/bg-tit-booking.png) no-repeat bottom; padding-bottom:2%;}
-.tit-booking > p { color:white; font-weight:bold; text-transform:uppercase; font-size:35px;}
+.tit-booking { width:100%; height:auto; float:left; background:url(../images_mobile/bg-tit-booking.png) no-repeat bottom; padding-bottom:2%;}
+.tit-booking > p { color:white; font-weight:bold; text-transform:uppercase; text-align:center !important; font-size:40px;}
+.tit-booking > span { color:white; font-weight:bold; text-transform:uppercase; text-align:center !important; font-size:40px !important; display:block; padding:2%;}
 .bookTT { width:100%; height:auto; float:left; margin-top:30px;}
 .bookTT > ul { list-style:none; width:80%; margin:0 auto; display:block;}
 .bookTT > ul > li { width:100%; height:auto; float:left; margin-top:3%;}
@@ -105,14 +107,14 @@ body { width:100%; background:white;}
 
 
 
-.in-retau { width:100%; float:left; background:#5a350d;}
-.boxRetau { width:100%; height:auto; float:left;}
+.in-retau { width:100%; background:#2b1c04; position:relative; top:506px;}
+.boxRetau { width:100%; height:auto; float:left; margin-top:20px;}
 .tt-boxRetau { width:100%; height:auto; float:left; border-bottom:solid 1px #80550f;}
 .tt-boxRetau > p { color:white; font-weight:bold; text-transform:uppercase; font-size:35px; padding:1% 2%;}
 .cc-boxRetau { width:100%; height:auto; float:left; border-top:1px solid #483007;}
 
 .picRetau { width:96%; height:auto; float:left; padding:2%;}
-.picRetau > img { width:100%; float:left;}
+.picRetau > img { width:100% !important; height:auto !important; float:left;}
 
 .ttRetau { width:92%; height:auto; float:left; background:#54320c; padding:2%; margin:2%; border-bottom:solid 1px #80550f; border-top:solid 1px #80550f;}
 .ttRetau > ul { list-style:none;}
@@ -122,39 +124,99 @@ body { width:100%; background:white;}
 .ttRetau > ul > li.con > ul { list-style:none;}
 .ttRetau > ul > li.con > ul > li { width:100%; height:auto; float:left;}
 .ttRetau > ul > li.con > ul > li > p { color:#d99b75; display:block; font-size:30px;}
-.ttRetau > ul > li.view { width:238px; height:60px; float:right; background:url(/images/mobile/icon-31.png) no-repeat; margin-top:2%;}
+.ttRetau > ul > li.view { width:238px; height:60px; float:right; background:url(../images_mobile/icon-31.png) no-repeat; margin-top:2%;}
 .ttRetau > ul > li.view > a { color:#cf9b1f; font-weight:bold; text-align:center; display:block; line-height:40px; font-size:25px;}
+.ttRetau p, .ttRetau li, .ttRetau ul, .ttRetau span, .ttRetau strong { color:white; font-size:30px;}
 
 
-.B-Left-1 { width:100%; height:auto; float:left;}
-.cc-B-Left-1 { width:100%; height:auto; float:left; background:url(../images/cc-B-Left-1.jpg) repeat; padding-top:1%;}
+.B-Left-1 { width:100%; height:auto; float:left; display:none;}
+.cc-B-Left-1 { width:100%; height:auto; float:left; background:url(../images_mobile/cc-B-Left-1.jpg) repeat; padding-top:1%;}
 .cc-B-Left-1 > ul { list-style:none; width:100%; height:auto;}
 .cc-B-Left-1 > ul > li { width:100%; float:left; margin-top:2%;}
 .cc-B-Left-1 > ul > li > p { width:40%; float:left; display:block; color:white; font-size:28px; font-family:"arial"; font-weight:normal; margin-left:2%;}
 
-.tt-C-Left { width:100%; height:auto; float:left; background:url(../images/icon-4.png) repeat-x top; margin-top:1%; padding-bottom:1%;}
+.tt-C-Left { width:100%; height:auto; float:left; background:url(../images_mobile/icon-4.png) repeat-x top; margin-top:1%; padding-bottom:1%;}
 .tt-C-Left > p { color:white; font-weight:bold; display:block; color:white; text-align:center; line-height:25px;}
 
 
-.B-Right-1 { width:100%; height:auto; float:left; position:relative;}
+.B-Right-1 { width:100%; height:400px; float:left; position:relative;}
 .B-Right-1 > img { width:100%;}
 
-.in-Hotel { width:100%; background:#2b1c04; margin-top:5px; float:left; margin-bottom:5px;}
-.boxHotel { width:100%; height:auto; float:left; margin-top:10px; padding-bottom:20px;}
-.tt-boxHotel { width:100%; height:auto; float:left; border-bottom:1px solid #80550f; padding-bottom:10px;}
-.tt-boxHotel > a { color:white; font-weight:bold; text-transform:uppercase; font-size:35px; padding-left:2%;}
+.in-Hotel { width:100%; background:#2b1c04; position:relative; top:506px;}
+.boxHotel { width:100%; height:auto; float:left; padding-bottom:20px; padding-top:20px;}
+.tt-boxHotel { width:96%; height:auto; float:left; border-bottom:1px solid #80550f; padding-bottom:10px; margin:5% 2% 0 2%;}
+.tt-boxHotel > a { color:white; font-weight:bold; text-transform:uppercase; font-size:35px; display:block;}
 
 .cc-boxHotel { width:100%; height:auto; float:left; border-top:1px solid #483007; padding-top:20px;}
 
 .picHotel { width:96%; float:left; margin:0 2%;}
-.picHotel > a > img { width:100%; float:left;}
+.picHotel a img { width:100% !important; height:auto !important; float:left;}
 
-.conHotel-1 { width:95%; float:left; margin:2% 2% 0 2%; border:1px solid #80550f;}
-.conHotel-1 > ul { list-style:none; float:left; padding:30px;}
+.conHotel-1 { width:96%; float:left; margin:2% 2% 0 2%; border:1px solid #80550f; border-right:none; border-left:none;}
+.conHotel-1 > ul { list-style:none; float:left; width:96%; display:block; padding:2%;}
 .conHotel-1 > ul > li { width:100%; float:left;}
 .conHotel-1 > ul > li > p { color:white; display:block; font-size:30px;}
+.conHotel-1 strong, .conHotel-1 span, .conHotel-1 em, .conHotel-1 li, .conHotel-1 p { color:white; font-size:30px;}
 
-.conHotel-2 { width:95%; float:left; border:1px solid #80550f; margin:2% 2% 0 2%;}
-.conHotel-2 > ul { list-style:none; float:left; padding:30px;}
+.conHotel-2 { width:96%; float:left; border:1px solid #80550f; margin:2% 2% 0 2%; border-right:none; border-left:none;}
+.conHotel-2 > ul { list-style:none; float:left; width:96%; display:block; padding:2%;}
 .conHotel-2 > ul > li { width:100%; float:left;}
 .conHotel-2 > ul > li > p { color:white; display:block; font-size:30px;}
+.conHotel-2 span, .conHotel-2 strong, .conHotel-2 em,  .conHotel-2 p,  .conHotel-2 li { color:white; font-size:30px;}
+.conHotel-2 p { margin-top:2%; float:left;}
+
+.tett { width:96%; float:left; position:relative; padding:0 2%;}
+.tett > ul { list-style:none; width:100%; display:block;}
+.tett > ul > li { width:100%; height:auto; float:left;}
+.tett > ul > li > p { font-size:25px; display:block; color:white; text-align:justify; margin-top:5px;}
+.tett a { font-size:25px; color:white;}
+.tett img { padding:0 0 5px 5px;}
+.tett p, .tett li, .tett span, .tett strong, .tett em { font-size:30px !important; color:white; text-align:justify;} 
+.tett > p { margin-left:0 !important;}
+
+.in-Hotel > p { color:white; font-weight:bold; display:block; padding:10px 0; margin-top:10px; width:964px;}
+.in-Hotel > span { color:white; text-align:justify; display:block; line-height:20px;}
+
+.search {
+    border: 1px solid #80550F;
+    float: right;
+    height: 50px;
+    width: 450px;
+    padding: 0 5px;
+}
+
+.search tr td p {
+    color: white;
+}
+
+
+
+.fix266 { width:40%; float:right; height:auto; margin:0 2%;}
+.fix266 p { font-size:25px; float:left; display:block; padding:2%; color:white;}
+.fix266 p strong { font-size:25px; color:white;}
+.fix266 > ul { list-style:none; width:96%; float:left; padding:0 2%;}
+.fix266 > ul > li { width:100%; float:left; color:white; font-size:25px;}
+
+
+.soluoctintuc { width:96%; float:left; margin:2%;}
+.soluoctintuc > ul { list-style:none; width:100%;}
+.soluoctintuc > ul > li { width:100%; float:left;}
+.soluoctintuc p, .soluoctintuc ul, .soluoctintuc li, .soluoctintuc span, .soluoctintuc a, .soluoctintuc strong, .soluoctintuc em { color:white !important; font-size:30px !important; text-align:justify !important;}
+
+.thumbnailtintuc { width:96%; float:left; margin:2%;}
+.thumbnailtintuc img { width:100% !important; height:auto; float:left;}
+
+.soluocdiemden { width:96%; float:left; margin:2%;}
+.soluocdiemden > ul { list-style:none; width:100%;}
+.soluocdiemden > ul > li { width:100%; float:left;}
+.soluocdiemden p, .soluocdiemden ul, .soluocdiemden li, .soluocdiemden span, .soluocdiemden a, .soluocdiemden strong, .soluocdiemden em { color:white !important; font-size:30px !important; text-align:justify !important;}
+
+table { color:white; font-size:25px;}
+.nho626 { color:white; font-size:25px;}
+
+.book626 { float:left; margin-top:430px;}
+
+.picHotel iframe { width:100% !important; height:300px !important;}
+
+.conHotel-1 > ul > li.view { width:100%; height:auto; float:left;}
+.conHotel-1 > ul > li.view > a { font-size:25px; color:white; background:url(../images_mobile/icon-3_ok.png) no-repeat; width:198px !important; height:50px !important; display:block; text-align:center; line-height:40px;}

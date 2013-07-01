@@ -1,10 +1,50 @@
 ﻿@{
-    ViewBag.Title = "CategoryPage";
-    Layout = "~/Views/Shared/_LayoutFO.cshtml";
     List<VietSovPetro.BO.ViewModels.ArticleViewModel> articles = ViewBag.Articles;
+    var title = articles.Aggregate("", (current, articleViewModel) => current + (articleViewModel.Title + " "));
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_LayoutFO.cshtml";
+    var first = articles.FirstOrDefault(a => a.OrderID == -1);
 }
+<script src="@Url.Content("~/js/turn.min.js")"></script>
+<script type="text/javascript">
+    $(window).ready(function () {
+        $('#magazine').turn({
+            display: 'double',
+            acceleration: true,
+            gradients: !$.isTouch,
+            elevation: 50,
+            when: {
+                turned: function (e, page) {
+                    /*console.log('Current view: ', $(this).turn('view'));*/
+                }
+            }
+        });
+    });
+    $(window).bind('keydown', function (e) {
 
+        if (e.keyCode == 37)
+            $('#magazine').turn('previous');
+        else if (e.keyCode == 39)
+            $('#magazine').turn('next');
+    });
+</script>
+<style type="text/css">
+    #magazine
+    {
+        width: 1152px;
+        height: 752px;
+        margin-bottom: 470px;
+        background: #fd9814;
+        top: 470px;
+        left: -64px;
+    }
 
+        #magazine .turn-page
+        {
+            background-color: #ccc;
+            background-size: 100% 100%;
+        }
+</style>
 <div class="banner-G">
     <div class="B-Left">
         <div class="tt-B-Left">
@@ -29,14 +69,15 @@
         </div>
     </div>
     <div class="B-Right">
-        <iframe src="@Url.Content("~/images/virtualTour/RestaurantMain_2/RestaurantMain.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
-        <div class="fullscreen"><a href="#" style="display: block;">
-                                    <img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
+        <iframe src="@Url.Content("/Images/virtualTour/mainRestaurant/restaurant_main.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
     </div>
 </div>
+@Html.Raw(first != null ? HttpUtility.HtmlDecode(first.Description) : "")
 <div class="in-retau">
     @foreach (var article in articles)
     {
+        if (article.OrderID != -1)
+        {
         <!--boxRetau-->
         <div class="boxRetau">
             <div class="tt-boxRetau">
@@ -46,30 +87,32 @@
             <div class="cc-boxRetau">
                 <div class="picRetau">
                     @{ 
-                       if (Path.GetExtension(article.ImageUrl) == ".html")
-                       {
+            if (Path.GetExtension(article.ImageUrl) == ".html")
+            {
                         <iframe src="@article.ImageUrl"  style="width:584px; height:211px; display:block; border:none;"></iframe>
-                       }
-                       else
-                       {
+            }
+            else
+            {
                         <img src="@article.ImageUrl" alt="" style="width:584px; height:211px; display:block; border:none;"/>
-                       }
+            }
                     }
                 </div>
                 <!--picRetau-->
-                    <div class="ttRetau">
-                        <ul>
-                            @Html.Raw(HttpUtility.HtmlDecode(article.Description))
-                        </ul>
-                        <ul>
-                            <li class="view"><a href="@Url.Action("DetailPage", "VietSovPetro", new { articleID = article.ArticleID })" >Xem chi tiết</a></li>
-                        </ul>
-                    </div>
-                    <!--ttRetau-->
+                <div class="ttRetau">
+                    <ul>
+                        @Html.Raw(HttpUtility.HtmlDecode(article.Description))
+                    </ul>
+                    <ul>
+                        <li class="view"><a href="@Url.Action("DetailPage", "VietSovPetro", new { articleID = article.ArticleID })" >Xem chi tiết</a></li>
+                    </ul>
                 </div>
-                <!--cc-boxRetau-->
+                <!--ttRetau-->
             </div>
-            <!--boxRetau-->
+            <!--cc-boxRetau-->
+        </div>
+        <!--boxRetau-->
+        }
+
     }
 </div>
 <!--in-retau-->

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "DealingRoom";
+    ViewBag.Title = Resources.SR.Room_Deal;
     Layout = "~/Views/Shared/_LayoutFO.cshtml";
     var rooms = (List<VietSovPetro.Model.Entities.Room>)ViewBag.RoomAndPrices;
     var language = ViewBag.Language;
@@ -60,9 +60,7 @@
     </div>
     <!--B-Left-1-->
     <div class="B-Right-1">
-        <iframe src="@Url.Content("~/images/virtualTour/president/bedRoom/bedRoom.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
-        <div class="fullscreen"><a href="#" style="display: block;">
-            <img src="@Url.Content("~/images/fullsceen.png")" alt="" /></a></div>
+        <iframe src="@Url.Content("/Images/virtualTour/president/President_Room.html")" style="width:100%; height:100%; display:block; border:none"></iframe>
     </div>
 </div>
 <div class="in-Hotel">

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CreateJS export from map</title>
+
+<script src="libs/easeljs-0.6.0.min.js"></script>
+<script src="libs/tweenjs-0.4.0.min.js"></script>
+<script src="libs/movieclip-0.6.0.min.js"></script>
+<script src="libs/preloadjs-0.3.0.min.js"></script>
+<script src="map.js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+
+function init() {
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var manifest = [
+		{src:"images/Bitmap16.jpg", id:"Bitmap16"},
+		{src:"images/level0.jpg", id:"level0"},
+		{src:"images/level1.jpg", id:"level1"},
+		{src:"images/level10.jpg", id:"level10"},
+		{src:"images/level11.jpg", id:"level11"},
+		{src:"images/level12.jpg", id:"level12"},
+		{src:"images/level2.jpg", id:"level2"},
+		{src:"images/level3.jpg", id:"level3"},
+		{src:"images/level4.jpg", id:"level4"},
+		{src:"images/level5.jpg", id:"level5"},
+		{src:"images/level6.jpg", id:"level6"},
+		{src:"images/level7.jpg", id:"level7"},
+		{src:"images/level8.jpg", id:"level8"},
+		{src:"images/level9.jpg", id:"level9"}
+	];
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	exportRoot = new lib.map();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(24);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+</script>
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4">
+	<canvas id="canvas" width="1024" height="559" style="background-color:#ffffff"></canvas>
+</body>
+</html>

@@ -1,5 +1,5 @@
-2013/06/26-08:15:54.482 b4b8 Recovering log #123
-2013/06/26-08:15:54.552 b4b8 Level-0 table #126: started
-2013/06/26-08:15:54.806 b4b8 Level-0 table #126: 278271 bytes OK
-2013/06/26-08:15:55.168 b4b8 Delete type=0 #123
-2013/06/26-08:15:55.169 b4b8 Delete type=3 #121
+2013/07/01-08:19:41.869 2d34 Recovering log #134
+2013/07/01-08:19:41.869 2d34 Level-0 table #136: started
+2013/07/01-08:19:41.869 2d34 Level-0 table #136: 0 bytes OK
+2013/07/01-08:19:41.917 2d34 Delete type=0 #134
+2013/07/01-08:19:41.917 2d34 Delete type=3 #132
