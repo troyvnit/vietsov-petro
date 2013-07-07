@@ -312,6 +312,12 @@
                     }
                 }
             });
+            if ($("#currentuser").val() == "admin") {
+                grid.data("kendoGrid").showColumn(8);
+            } else {
+                grid.data("kendoGrid").hideColumn(8);
+            }
+
             function languageDropDownEditor(container, options) {
                 $('<input required data-text-field="Language" data-value-field="LanguageCode" data-bind="value:' + options.field + '"/>')
                     .appendTo(container)

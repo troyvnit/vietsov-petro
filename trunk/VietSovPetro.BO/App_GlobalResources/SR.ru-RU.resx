@@ -273,4 +273,13 @@
   <data name="Contact_Message_Banner" xml:space="preserve">
     <value>Welcome to VietSov Petro. Please call or send email to book room.(Rus Update)</value>
   </data>
+  <data name="Choose_date" xml:space="preserve">
+    <value>Please choose date before booking:</value>
+  </data>
+  <data name="NoRoomAvailable" xml:space="preserve">
+    <value>No Room available in this time. Please choose another day</value>
+  </data>
+  <data name="Has_N_Room" xml:space="preserve">
+    <value> rooms on this time. Please click Book button and fill out the booking form</value>
+  </data>
 </root>

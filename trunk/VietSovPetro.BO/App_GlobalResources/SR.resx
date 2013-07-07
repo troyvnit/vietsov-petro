@@ -282,4 +282,13 @@
   <data name="Tel" xml:space="preserve">
     <value>Điện thoại</value>
   </data>
+  <data name="Choose_date" xml:space="preserve">
+    <value>Trước khi thực hiện đặt phòng trực tuyến, Quý khách vui lòng chọn ngày</value>
+  </data>
+  <data name="NoRoomAvailable" xml:space="preserve">
+    <value>Không phòng nào có thể đặt trong khoảng thời gian này. Quý khách vui lòng chọn ngày khác</value>
+  </data>
+  <data name="Has_N_Room" xml:space="preserve">
+    <value> phòng có thể đặt trong khoảng thời gian này</value>
+  </data>
 </root>

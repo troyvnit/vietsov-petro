@@ -43,7 +43,7 @@ body { width:100%; background:white;}
 
 .footer-1B { width:35%; float:right; padding-right:2%;}
 .fff { width:100%; float:left;}
-.fff > p { font-weight:bold; color:#c08f0b; text-align:right; display:block; font-size:40px;}
+.fff > p { font-weight:bold; color:#c08f0b; text-align:right; display:block; font-size:30px;}
 .fff > ul { list-style:none; float:right; margin-top:5px;}
 .fff > ul > li { float:left; margin-left:5px;}
 
@@ -220,3 +220,5 @@ table { color:white; font-size:25px;}
 
 .conHotel-1 > ul > li.view { width:100%; height:auto; float:left;}
 .conHotel-1 > ul > li.view > a { font-size:25px; color:white; background:url(../images_mobile/icon-3_ok.png) no-repeat; width:198px !important; height:50px !important; display:block; text-align:center; line-height:40px;}
+
+canvas#canvas { width:100% !important; height:auto !important; float:left;}
