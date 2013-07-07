@@ -109,11 +109,20 @@ namespace VietSovPetro.BO.Controllers
             ViewBag.IntroductionArticles = articles;
             return View();
         }
-        public ActionResult DetailPage(Guid articleID)
+        public ActionResult DetailPage(Guid articleID, Guid categoryID)
         {
-            var article = articleRepository.GetById(articleID);
-            var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
-            ViewBag.Article = articlevm;
+            //var article = articleRepository.GetById(articleID);
+            //var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+            var articles = new List<ArticleViewModel>();
+            foreach (var article in articleRepository.GetAll().Where(a => a.IsDeleted != true && a.IsPublished && a.RoomID == categoryID && a.LanguageCode.ToLower() == RouteData.Values["lang"].ToString().ToLower())
+                .OrderBy(a => a.OrderID).ThenBy(a => a.UpdatedOn).ThenBy(a => a.CreatedOn))
+            {
+                var articlevm = Mapper.Map<Article, ArticleViewModel>(article);
+                articlevm.ArticleCategoryIDs = article.ArticleCategories.Select(a => a.ArticleCategoryID).ToList();
+                articles.Add(articlevm);
+            }
+            ViewBag.Articles = articles;
+            ViewBag.Article = articles.FirstOrDefault(a => a.ArticleID == articleID);
             return View();
         }
         public ActionResult CategoryPage(Guid categoryID)
@@ -127,6 +136,7 @@ namespace VietSovPetro.BO.Controllers
                 articles.Add(articlevm);
             }
             ViewBag.Articles = articles;
+            ViewBag.CategoryID = categoryID;
             return View();
         }
         public ActionResult Activity()

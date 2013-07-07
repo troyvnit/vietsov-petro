@@ -1,7 +1,8 @@
 ﻿@using VietSovPetro.BO.ViewModels
 @{
-    ArticleViewModel article = ViewBag.Article;
-    ViewBag.Title = article.Title;
+    List<VietSovPetro.BO.ViewModels.ArticleViewModel> articles = ViewBag.Articles;
+    var articleDetail = (ArticleViewModel)ViewBag.Article;
+    ViewBag.Title = articleDetail.Title;
     Layout = "~/Views/Shared/_LayoutFO.cshtml";
 }
 
@@ -31,11 +32,54 @@
             <div class="in-booking-1">
                 <div class="in-booking-2">
                     <div class="booking">
-                        <div class="tit-booking"><span>@article.Title</span></div><!--tit-booking-->
+                        <div class="tit-booking"><span>@articleDetail.Title</span></div><!--tit-booking-->
                         <div class="tett">
-                            @Html.Raw(HttpUtility.HtmlDecode(article.Content))
+                            @Html.Raw(HttpUtility.HtmlDecode(articleDetail.Content))
                         </div><!--tett-->
                     </div><!--booking-->
                 </div><!--in-booking-2-->
             </div><!--in-booking-1-->
-        </div><!--in-booking-->   
+    </div><!--in-booking-->   
+<div class="in-retau">
+    @foreach (var article in articles.Where(a => a.ArticleID != articleDetail.ArticleID))
+    {
+        if (article.OrderID != -1)
+        {
+        <!--boxRetau-->
+        <div class="boxRetau">
+            <div class="tt-boxRetau">
+                <p>@article.Title</p>
+            </div>
+            <!--tt-boxRetau-->
+            <div class="cc-boxRetau">
+                <div class="picRetau">
+                    @{ 
+            if (Path.GetExtension(article.ImageUrl) == ".html")
+            {
+                        <iframe src="@article.ImageUrl"  style="width:584px; height:211px; display:block; border:none;"></iframe>
+            }
+            else
+            {
+                        <img src="@article.ImageUrl" alt="" style="width:584px; height:211px; display:block; border:none;"/>
+            }
+                    }
+                </div>
+                <!--picRetau-->
+                <div class="ttRetau">
+                    <ul>
+                        @Html.Raw(HttpUtility.HtmlDecode(article.Description))
+                    </ul>
+                    <ul>
+                        <li class="view"><a href="@Url.Action("DetailPage", "VietSovPetro", new { articleID = article.ArticleID, categoryID = ViewBag.CategoryID })" >Xem chi tiết</a></li>
+                    </ul>
+                </div>
+                <!--ttRetau-->
+            </div>
+            <!--cc-boxRetau-->
+        </div>
+        <!--boxRetau-->
+        }
+
+    }
+</div>
+<!--in-retau-->

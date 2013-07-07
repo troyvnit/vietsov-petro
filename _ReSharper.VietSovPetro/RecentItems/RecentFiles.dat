@@ -1,17 +1,18 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:KendoUI/d:content/d:integration/d:simulator/d:styles/f:styles.css" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:KendoUI/d:content/d:mobilethemebuilder/d:styles/f:builder.css" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:js/f:turn.min.js" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DealingRoom.cshtml" caret="102" fromTop="3" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Index.cshtml" caret="169" fromTop="3" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DealingRestaurant.cshtml" caret="2701" fromTop="10" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="14367" fromTop="9" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:Index.cshtml" caret="13954" fromTop="19" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="1299" fromTop="1" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DetailPage.cshtml" caret="121" fromTop="3" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:RoomAndPrice.cshtml" caret="24" fromTop="1" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Restaurant.cshtml" caret="24" fromTop="1" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Restaurant.cshtml" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookLimited.cshtml" caret="2031" fromTop="56" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DetailPage.cshtml" caret="1869" fromTop="16" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_LayoutFO.cshtml" caret="7570" fromTop="108" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:Index.cshtml" caret="0" fromTop="0" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="16762" fromTop="14" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Index.cshtml" caret="169" fromTop="3" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:CategoryPage.cshtml" caret="8" fromTop="1" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DealingRoom.cshtml" caret="102" fromTop="3" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Partner.cshtml" caret="24" fromTop="1" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:News.cshtml" caret="24" fromTop="1" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:MeetingAndEvent.cshtml" caret="533" fromTop="10" />
@@ -21,28 +22,24 @@
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Contact.cshtml" caret="9664" fromTop="16" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Booking.cshtml" caret="24" fromTop="1" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Activity.cshtml" caret="24" fromTop="1" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_LayoutFO.cshtml" caret="360" fromTop="7" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:RestaurantIndex.cshtml" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:_RoomFilter.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookRoom.cshtml" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookMeeting.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookLimited.cshtml" caret="0" fromTop="0" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Account/f:Login.cshtml" caret="0" fromTop="0" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:CategoryPage.cshtml" caret="2432" fromTop="17" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="3007" fromTop="36" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="5963" fromTop="19" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:AccountController.cs" caret="5209" fromTop="43" />
   </RecentFiles>
   <RecentEdits>
-    <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Handlers/f:CreateOrUpdateArticleHandler.cs" caret="3145" fromTop="22" />
     <File id="D14C20D7-F8FB-4795-829A-9421EB42E64B/d:Commands/f:CreateOrUpdateArticleCommand.cs" caret="1535" fromTop="30" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:ViewModels/f:ArticleViewModel.cs" caret="1198" fromTop="18" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:ArticleController.cs" caret="4507" fromTop="16" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="2182" fromTop="14" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:CommonController.cs" caret="1431" fromTop="26" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:_RoomFilter.cshtml" caret="891" fromTop="21" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:_RoomFilter.cshtml" caret="839" fromTop="21" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:RestaurantIndex.cshtml" caret="5693" fromTop="25" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:RoomController.cs" caret="8881" fromTop="21" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/f:Web.config" caret="2534" fromTop="24" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_LayoutFO.cshtml" caret="360" fromTop="7" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Activity.cshtml" caret="24" fromTop="1" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DealingRoom.cshtml" caret="24" fromTop="1" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:MeetingAndEvent.cshtml" caret="24" fromTop="1" />
@@ -56,11 +53,14 @@
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Introduction.cshtml" caret="24" fromTop="1" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:News.cshtml" caret="24" fromTop="1" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Partner.cshtml" caret="24" fromTop="1" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DetailPage.cshtml" caret="121" fromTop="3" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:Index.cshtml" caret="13963" fromTop="19" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="14367" fromTop="9" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="2255" fromTop="2" />
     <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:Index.cshtml" caret="169" fromTop="3" />
-    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:CategoryPage.cshtml" caret="2413" fromTop="17" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Room/f:BookLimited.cshtml" caret="3217" fromTop="39" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:CategoryPage.cshtml" caret="3651" fromTop="32" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Controllers/f:VietSovPetroController.cs" caret="5963" fromTop="19" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:VietSovPetro/f:DetailPage.cshtml" caret="1869" fromTop="16" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_LayoutFO.cshtml" caret="7570" fromTop="44" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Admin/d:Article/f:Index.cshtml" caret="16752" fromTop="14" />
+    <File id="EAA1334A-5F1B-487C-9245-E07D43F6BBDF/d:Views/d:Shared/f:_Layout.cshtml" caret="3007" fromTop="36" />
   </RecentEdits>
 </RecentFiles>

@@ -5,13 +5,13 @@
 @if (rooms == null || rooms.Count == 0)
 {
     <div class="boxHotel">
-    <p style="color: red; font-size: 14px;">Không phòng nào có thể đặt trong khoảng thời gian này...</p>
+    <p style="color: red; font-size: 14px;">@Resources.SR.NoRoomAvailable</p>
         </div>
 }
 else
 {
     <div class="boxHotel">
-    <p style="color: green; font-size: 14px;">Có @rooms.Count phòng có thể đặt trong khoảng thời gian này...</p>
+    <p style="color: green; font-size: 14px;">@rooms.Count @Resources.SR.Has_N_Room</p>
         </div>
 }
 @foreach (var room in rooms)

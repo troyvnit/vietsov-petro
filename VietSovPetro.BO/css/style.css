@@ -18,8 +18,8 @@ body { width:100%; background:white;}
 
 .menu-C { width:1024px; height:46px; float:left; position:absolute; bottom:0;}
 .menu-C > ul { list-style:none;}
-.menu-C > ul > li { height:46px; float:left; background:url(../images/icon-1.png) no-repeat top left; padding:0 11px 0 13px;}
-.menu-C > ul > li.first { background:none; padding:0 14px;}
+.menu-C > ul > li { height:46px; float:left; background:url(../images/icon-1.png) no-repeat top left; padding:0 9px 0 11px;}
+.menu-C > ul > li.first { background:none; padding:0 12px;}
 .menu-C > ul > li > a { color:#a86900; font-weight:bold; display:block; line-height:65px; text-transform:uppercase;} 
 .menu-C > ul > li:hover > a { color:#331d05;}
 
@@ -39,7 +39,7 @@ body { width:100%; background:white;}
 
 .footer-1B { width:450px; float:right; padding-right:20px;}
 .fff { width:450px; height:19px; float:left;}
-.fff > p { font-weight:bold; color:#c08f0b; line-height:22px; text-align:right; width:347px;}
+.fff > p { font-weight:bold; color:#c08f0b; line-height:22px; text-align:right; }
 .fff > ul { list-style:none; float:right; margin-top:5px;}
 .fff > ul > li { float:left; margin-left:5px;}
 
@@ -211,3 +211,5 @@ body { width:100%; background:white;}
 .soluoctintuc > ul > li.con > ul > li > p { color:#d99b75; display:block; line-height:18px;}
 .soluoctintuc > ul > li.view { width:103px; height:26px; float:left; background:url(../images/icon-3.png) no-repeat; margin-top:15px;}
 .soluoctintuc > ul > li.view > a { color:#cf9b1f; font-weight:bold; text-align:center; display:block; line-height:24px;}
+
+.bookmenu_a01 { width:1024px; height:550px; float:left; background:url(../images/bookmenu_a01.jpg) no-repeat !important; margin-top:5px;}
